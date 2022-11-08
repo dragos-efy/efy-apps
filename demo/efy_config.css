@@ -1,5 +1,5 @@
-/*Fonts*/ @font-face {font-family: 'nunito'; src: url('../efy/nunito.woff2') format('truetype')} @font-face {font-family: 'nunito'; src: url('../efy/nunito_bold.woff2') format('truetype'); font-weight: bold}
-/*Global*/ :root {
+/*Global*/ @font-face {font-family: 'nunito'; src: url('../efy/nunito.woff2') format('truetype')} @font-face {font-family: 'nunito'; src: url('../efy/nunito_bold.woff2') format('truetype'); font-weight: bold}
+:root {
     --efy_color1_var: 0,200,135;
     --efy_color2_var: 255,175,0;
     --efy_radius: 12rem;
@@ -14,5 +14,6 @@
     --efy_bg: rgb(255,255,255);
     --efy_text: rgb(0,0,0);
 }
+/*Your code starts bellow*/
 
 [efy_tabs=demo] > [efy_content][efy_active] {background: transparent; border: 0; padding: 0; backdrop-filter: none!important; -webkit-backdrop-filter: none!important}
