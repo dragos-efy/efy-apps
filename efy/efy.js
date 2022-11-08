@@ -31,7 +31,7 @@ new MutationObserver((mutationRecords, d) =>{ Array.from($all(a)).forEach((c) =>
 ]), $add('div', {id: 'efy_modules'})
 ])); $append($body, $add('div', {efy_sidebar_btn: 'absolute'}));
 
-$insert($('[efy_about]'), 'afterend', $add('div', {efy_card: '', class: 'efy_about_div efy_hide_i'}, ['This page uses ', $add('code', {}, ['EFY']), ', a customisable, convergent, transparent, modular, futuristic css / js framework that can be added to your own web / local apps & websites.', $add('br', {}), $add('div', {class: 'efy_flex'}, [ $add('a', {href: 'https://efy.ooo/ui', role: 'button'}, ['Learn more']), $add('a', {href: 'https://matrix.to/#/#efy_ui:matrix.org', role: 'button'}, ['Matrix Chat']), $add('a', {href: 'https://github.com/dragos-efy/efy', role: 'button'}, ['Github']) ]) ]) );
+$insert($('[efy_about]'), 'afterend', $add('div', {efy_card: '', class: 'efy_about_div efy_hide_i'}, ['This page uses ', $add('code', {}, ['EFY']), ', a customisable, convergent, transparent, modular, futuristic css / js framework that can be added to your own web / local apps & websites.', $add('br', {}), $add('div', {class: 'efy_flex'}, [ $add('a', {href: 'https://demo.efy.ooo', role: 'button'}, ['Learn more']), $add('a', {href: 'https://matrix.to/#/#efy_ui:matrix.org', role: 'button'}, ['Matrix Chat']), $add('a', {href: 'https://github.com/dragos-efy/efy', role: 'button'}, ['Github']) ]) ]) );
 
 /*Quick Shortcuts*/ if ($efy_module('efy_quick')){
     $insert($('[efy_about]'), 'afterend', $add('input', {type: 'text', efy_search_input: '', class: 'efy_hide_i', placeholder: 'Search through menu...'}));
