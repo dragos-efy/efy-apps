@@ -16,19 +16,3 @@
 }
 
 [efy_tabs=demo] > [efy_content][efy_active] {background: transparent; border: 0; padding: 0; backdrop-filter: none!important; -webkit-backdrop-filter: none!important}
-
-/*Piped Menu*/
-#custom_sidebar_menu,
-#demo_sidebar_settings > div {
-    display: flex;
-    gap: 15rem;
-    margin-bottom: 15rem;
-}
-#custom_sidebar_menu a,
-#demo_sidebar_settings > div a {
-    background: var(--efy_bg1);
-    padding: var(--efy_padding);
-    border-radius: var(--efy_radius);
-    border: 1.5rem solid var(--efy_color_border);
-    -webkit-text-fill-color: var(--efy_text);
-}
