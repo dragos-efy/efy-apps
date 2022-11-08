@@ -1,0 +1,34 @@
+/*Fonts*/ @font-face {font-family: 'nunito'; src: url('../efy/nunito.woff2') format('truetype')} @font-face {font-family: 'nunito'; src: url('../efy/nunito_bold.woff2') format('truetype'); font-weight: bold}
+/*Global*/ :root {
+    --efy_color1_var: 0,200,135;
+    --efy_color2_var: 255,175,0;
+    --efy_radius: 12rem;
+    --efy_sidebar_button: right_top;
+    --efy_font_family: 'nunito', sans-serif,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    --efy_audio_path: ./efy/audio;
+    --efy_modules: efy_quick, efy_mode, efy_filters, efy_backup, efy_accessibility, efy_audio, efy_keyboard, efy_extra;
+}
+/*Default Mode*/ [efy_mode=default_mode] {
+    color-scheme: light;
+    --efy_bg_var: 0,0,0;
+    --efy_bg: rgb(255,255,255);
+    --efy_text: rgb(0,0,0);
+}
+
+[efy_tabs=demo] > [efy_content][efy_active] {background: transparent; border: 0; padding: 0; backdrop-filter: none!important; -webkit-backdrop-filter: none!important}
+
+/*Piped Menu*/
+#custom_sidebar_menu,
+#demo_sidebar_settings > div {
+    display: flex;
+    gap: 15rem;
+    margin-bottom: 15rem;
+}
+#custom_sidebar_menu a,
+#demo_sidebar_settings > div a {
+    background: var(--efy_bg1);
+    padding: var(--efy_padding);
+    border-radius: var(--efy_radius);
+    border: 1.5rem solid var(--efy_color_border);
+    -webkit-text-fill-color: var(--efy_text);
+}
