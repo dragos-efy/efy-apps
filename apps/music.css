@@ -1,0 +1,100 @@
+/*Global*/ @font-face {font-family: 'nunito'; src: url('../efy/nunito.woff2') format('truetype')} @font-face {font-family: 'nunito'; src: url('../efy/nunito_bold.woff2') format('truetype'); font-weight: bold}
+:root {
+    --efy_color1_var: 165,200,0;
+    --efy_color2_var: 20,150,0;
+    --efy_color_angle: 165deg;
+    --efy_radius: 12rem;
+    --efy_gap:  15rem;
+    --efy_sidebar_button: right_top, off;
+    --efy_body_width: 100%;
+    --efy_body_padding: 0;
+    --efy_font_family: 'nunito', sans-serif,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    --efy_audio_folder: ./efy/audio;
+    --efy_folder: ./efy;
+    --efy_modules: efy_quick, efy_mode, efy_filters, efy_backup, efy_accessibility, efy_language, efy_audio, efy_extra;
+}
+/*Default Mode*/ [efy_mode=default] {
+    --efy_scheme: dark;
+    --efy_bg_var: 255,255,255;
+    --efy_bg: rgb(20,20,20);
+    --efy_text: rgb(255,255,255);
+} /*Your code starts bellow*/
+
+
+
+:root {	--seeker-val: 0}
+[ms_app] {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: var(--efy_gap);
+    margin: 0;
+    overflow: hidden;
+    padding: var(--efy_gap);
+}
+
+.prev {position: relative} .prev i {transform: rotate(-180deg)!important}
+
+.ms_loader { position: fixed; top: 15rem; left: 15rem; width: 300rem; height: 100rem; bottom: 0; background: #0003; z-index: 10; backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; border-radius: var(--efy_radius)}
+
+[ms_bar] {
+    width: 100%;
+    display: flex;
+    gap: 10rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: var(--efy_gap0);
+    border: var(--efy_border);
+    border-radius: var(--efy_radius2);
+    background: var(--efy_bg1);
+}
+
+[ms_app*=top] {flex-direction: column-reverse}
+
+#seeker-slider {width: 500rem}
+.audio-seeker {display: flex; gap: var(--efy_gap0); align-items: center; justify-content: center; font-weight: bold}
+
+[ms_track_id].playing, [ms_track_id]:hover {background: var(--efy_color_trans); color: var(--efy_color)}
+:is([ms_track_id].playing, [ms_track_id]:hover) p {background: var(--efy_color); background-clip: text; -webkit-background-clip: text; -moz-background-clip: text; -webkit-text-fill-color: transparent}
+
+[ms_bar] :is(button, input, label), .player i, table, :is(.seeker-start-value, .seeker-end-value) p {margin: 0}
+
+.ms_buttons {display: flex; gap: var(--efy_gap0); justify-content: space-between; padding: 0 15px 0 0}
+.ms_buttons button {aspect-ratio: 1; height: 38rem; align-items: center; justify-content: center: border: 0}
+
+.ms_speed_text, .ms_time_text {display: flex; gap: 5rem; align-items: center; width: fit-content; height: 38rem; padding: 7rem 10rem; font-weight: bold; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
+.ms_speed_menu {position: absolute; display: flex; flex-wrap: wrap; gap: 10rem; width: fit-content; top: -115rem; right: 0; margin: calc(-1 * var(--efy_gap)) var(--efy_gap) 0 0}
+
+.ms_grid_box {width: 100; height: 100%; overflow-y: auto}
+
+[ms_grid] {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--efy_gap);
+
+}
+
+[ms_track_id] {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--efy_gap);
+    height: fit-content;
+    background: var(--efy_bg1);
+    border-radius: var(--efy_radius);
+    border: var(--efy_border);
+    padding: var(--efy_padding);
+    color: var(--efy_text);
+    cursor: pointer;
+}
+.ms_song_info {
+    display: flex;
+    gap: 15rem;
+}
+
+
+
+/*Match Bar height: Optional, for gap = 0
+[ms_bar] [type=range] {height: 38rem} [ms_bar] ::-moz-range-thumb {height: 38rem; width: 38rem} [ms_bar] ::-webkit-slider-thumb {width: 38rem; height: 38rem} */

@@ -1,0 +1,78 @@
+/*Global*/ @font-face {font-family: 'nunito'; src: url('../efy/nunito.woff2') format('truetype')} @font-face {font-family: 'nunito'; src: url('../efy/nunito_bold.woff2') format('truetype'); font-weight: bold}
+:root {
+    --efy_color1_var: 165,200,0;
+    --efy_color2_var: 20,150,0;
+    --efy_color_angle: 165deg;
+    --efy_radius: 12rem;
+    --efy_gap:  15rem;
+    --efy_sidebar_button: right_top, off;
+    --efy_body_width: 100%;
+    --efy_body_padding: var(--efy_gap);
+    --efy_font_family: 'nunito', sans-serif,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    --efy_audio_folder: ./efy/audio;
+    --efy_folder: ./efy;
+    --efy_modules: efy_quick, efy_mode, efy_filters, efy_backup, efy_accessibility, efy_language, efy_audio, efy_extra;
+}
+/*Default Mode*/ [efy_mode=default] {
+    --efy_scheme: dark;
+    --efy_bg_var: 255,255,255;
+    --efy_bg: rgb(20,20,20);
+    --efy_text: rgb(255,255,255);
+} /*Your code starts bellow*/
+
+html [efy_tabs=demo] > [efy_content][efy_active] {background: transparent;width: 100%; border: 0; padding: 0; backdrop-filter: none!important; -webkit-backdrop-filter: none!important}
+body {min-height: 100vh}
+
+[efy_tabs=demo] {display:flex; flex-wrap: wrap; gap: var(--efy_gap); justify-content: space-between}
+[efy_tabs=demo] > [efy_content] {flex-basis: 100%}
+[efy_tabs=demo] > input {width: fit-content; flex-basis: auto}
+[efy_tabs=demo] :is(.dc_right, .dc_left) {display:flex; flex-wrap: wrap; gap: var(--efy_gap); align-items: center; height: fit-content}
+[efy_tabs=demo] :is(.dc_right, .dc_left, .dc_left:last-of-type) *, [efy_tabs=demo] :is(table, figcaption, input, textarea, select, section, [efy_number]) {margin: 0}
+
+.dc_nav {display: flex; flex-wrap: wrap; gap: var(--efy_gap); width: 100%; justify-content: space-between}
+[efy_tabs=demo] .dc_right {display: flex; flex-wrap: nowrap; gap: var(--efy_gap); height: fit-content}
+.dc_search {width: fit-content; height: fit-content; position: relative}
+.dc_search i {position: absolute; z-index: 2; width: 100%; height: 100%; padding: var(--efy_padding)}
+.dc_search input {width: 39.2rem; height: 39.2rem}
+.dc_search input:focus {width: 170rem; padding-left: 35rem}
+.dc_search :not(input:focus)::placeholder {color: transparent}
+
+#dc_headings, #dc_buttons, #dc_lists {display: flex; flex-wrap: wrap; gap: var(--efy_gap); align-items: center; margin: var(--efy_gap) 0 0 0}
+#dc_headings * {margin: 0; line-height: 1}
+#dc_headings :is(mark, kbd) {line-height: unset!important}
+ #dc_buttons * {margin: 0; width: fit-content}
+
+ #dc_lists {align-items: unset; margin-bottom: 15rem; height: fit-content}
+ #dc_lists :is(input, label) {margin: 0}
+
+[efy_tabs=demo] > [efy_content="0"] {display: grid; gap: var(--efy_gap); grid-template-columns: 1fr 1fr; min-height: 70vh; max-height: 100vh; align-items: center;}
+[efy_tabs=demo] > [efy_content="0"] > div {display: flex; flex-direction: column; place-content: center; padding: 0 15rem}
+[efy_tabs=demo] > [efy_content="0"] h2 {text-transform: uppercase}
+
+#dc_buttons [efy_card] {display:flex; gap: var(--efy_gap); align-items: center; height: fit-content; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
+#dc_buttons [efy_card] mark {background: var(--efy_bg1); color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
+
+#dc_icons {display: flex; flex-wrap: wrap; gap: var(--efy_gap)}
+#dc_icons > div {display: flex; width: fit-content; padding: 0}
+#dc_icons > div > p {border-left: var(--efy_border); padding: var(--efy_padding)}
+#dc_icons > div > i {padding: 8rem 4rem 8rem 12rem}
+
+[efy_content="4"] :is([efy_tabs=demo2], pre, p.mb), .dc_grid {margin-bottom: 15rem}
+
+.dc_grid {display:grid; gap: var(--efy_gap); grid-template-columns: 1fr 1fr}
+.dc_clock {display:flex; gap: var(--efy_gap); flex-wrap: wrap; margin: 10rem 0}
+
+[efy_content="2"], [efy_content="3"], .dc_separator {display: flex; gap: var(--efy_gap); flex-direction: row}
+:is([efy_content="2"], [efy_content="3"]) > div, .dc_separator > div {display: flex; gap: var(--efy_gap); flex-direction: column; width: 100%}
+:is([efy_content="2"], [efy_content="3"]) > div > details {margin: 0}
+
+
+ /*Convergence*/
+ @media (max-width: 767.9px){
+    [efy_tabs=demo] > [efy_content="0"], .dc_grid {grid-template-columns: 1fr}
+    [efy_tabs=demo] > [efy_content="0"] > div {padding: 0}
+    [efy_tabs=demo] :is(.dc_right, .dc_right input, .dc_right label) {width: 100%}
+    [efy_content="2"], [efy_content="3"] {flex-direction: column}
+    .dc_search input {padding-left: 35rem}
+    .dc_search :not(input:focus)::placeholder {color: var(--efy_text_trans2)}
+}

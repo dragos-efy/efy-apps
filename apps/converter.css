@@ -1,0 +1,17 @@
+body > :is(h4, p) {text-align: center; margin: 0 0 calc(var(--efy_gap) * 1.5) 0}
+.lc_grid {display: grid; grid-template-columns: 1fr 1fr; gap: var(--efy_gap)}
+[lc_card] > div {display: flex; flex-wrap: wrap; gap: var(--efy_gap); align-items: center;}
+[lc_card] > div > :is(label, [role=button]) {margin: 0}
+a[role=button][disabled]{opacity: 0.5;/*position: absolute; top: 100vw; left: 100vh; opacity: 0*/}
+
+/*Convergence*/
+@media (max-width: 800px) {
+    .lc_grid {grid-template-columns: 1fr}
+}
+
+.img2 {width: 100rem; height: 100rem}
+
+
+/*Temporary*/ [lc_card=css_beautify], [lc_card=js_minify], [lc_card=js_beautify], [lc_card=html_minify], [lc_card=html_beautify] {background: transparent; filter: contrast(0.5) saturate(0); pointer-events: none; opacity: 0.3; border: 2rem dashed var(--efy_text_trans)}
+:is([lc_card=css_beautify], [lc_card=js_minify], [lc_card=js_beautify], [lc_card=html_minify], [lc_card=html_beautify]) :is(label, a) {filter: brightness(0); opacity: 0.3!important; }
+:is([lc_card=css_beautify], [lc_card=js_minify], [lc_card=js_beautify], [lc_card=html_minify], [lc_card=html_beautify]) :is(input) {display: none}

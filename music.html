@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EFY Music</title><meta name="description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><link rel="icon" type="image/png" href="./icon.png"><link rel="apple-touch-icon" sizes="180x180" href="./icon.png"><meta property="og:type" content="website"><meta property="og:url" content="https://efy.ooo"><meta property="og:title" content="EFY Music"><meta property="og:description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><meta name="robots" content="noindex, nofollow">
+
+<link rel="stylesheet" href="./efy/efy.css">
+<link rel="stylesheet" href="./apps/music.css">
+<script src="./efy/efy_local.js"></script>
+<script src="./apps/efy_global.js"></script>
+<script src="./apps/music.js"></script>
+
+</head><body><noscript><p style="background: #000; color:#fff; border-radius: 16rem; padding: 16rem;">Please enable JavaScript to load the page properly and enjoy extra features</p><br></noscript>
+
+<div ms_app>
+
+  <!--Loader--><div class="ms_loader" style="display: none"><p>Please wait...</p></div>
+  <!--Songs--><div class="ms_grid_box"><div ms_grid></div></div>
+
+  <!--Player--><div ms_bar class="efy_trans_filter" >
+      <div class="ms_buttons">
+        <button class="prev efy_square_btn" title="Previous"><i efy_icon="chevron"></i></button>
+        <button class="player efy_square_btn" title="Play or Pause"><i efy_icon="play" class="btn-play"></i></button>
+        <button class="next efy_square_btn" title="Next"><i efy_icon="chevron"></i></button>
+      </div>
+
+      <div class="audio-seeker">
+        <input type="range" max="100" id="seeker-slider" value="0" />
+        <div efy_card class="ms_time_text"><p class="seeker-start-value">0:00</p><p>/</p><p class="seeker-end-value">0:00</p></div>
+      </div>
+
+    <div style="display: inline-flex; align-items: center; gap: var(--efy_gap0);">
+      <button class="ms_speed_text" efy_card efy_sidebar_btn title="Speed">1X</button>
+      <label efy_upload="ms_upload,.mp3,small" title="Add file"></label>
+      <button class="ms_menu efy_square_btn" efy_sidebar_btn title="Menu"><i efy_icon="menu"></i></button>
+    </div>
+  </div>
+
+</div>
+
+
+</body></html>
