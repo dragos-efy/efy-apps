@@ -1,10 +1,9 @@
 /*Global*/ @font-face {font-family: 'nunito'; src: url('../efy/nunito.woff2') format('truetype')} @font-face {font-family: 'nunito'; src: url('../efy/nunito_bold.woff2') format('truetype'); font-weight: bold}
 :root {
-    --efy_color1_var: 165,200,0;
-    --efy_color2_var: 20,150,0;
+    --efy_color: 70 100% 40%, 110 100% 30%; /*No JS Fallback*/ --efy_color1_var: 70 100% 40%; --efy_color2_var: 110 100% 30%;
     --efy_color_angle: 165deg;
     --efy_radius: 12rem;
-    --efy_gap:  15rem;
+    --efy_gap: 15rem;
     --efy_sidebar_button: right_top, off;
     --efy_body_width: 100%;
     --efy_body_padding: var(--efy_gap);
@@ -15,7 +14,7 @@
 }
 /*Default Mode*/ [efy_mode=default] {
     --efy_scheme: dark;
-    --efy_bg_var: 255,255,255;
-    --efy_bg: rgb(20,20,20);
-    --efy_text: rgb(255,255,255);
+    --efy_bg_var: 0 0% 100%;
+    --efy_bg: hsl(0 0% 8%);
+    --efy_text: hsl(0 0% 100%);
 } /*Your code starts bellow*/
