@@ -1,282 +1,167 @@
-let aud64 = ''; $ready('#efy_sbtheme', ()=>{
+/*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
 $insert($('#efy_sbtheme'), 'beforebegin', $add('details', {id: 'ms_music_player'}, [
-  $add('summary', {}, [$add('i', {efy_icon: 'play'}), 'Music Player']),
+  $add('summary', {}, [$add('i', {efy_icon: 'audio'}), 'Music Player']),
     $add('div', {efy_select: ''}, [
-      $add('input', {type: 'checkbox', id: 'pitch', name: 'pitch'}), $add('label', {for: 'pitch', style: 'display: flex; align-items: center; width: fit-content'}, ['Pitch']),
-      $add('div', {efy_range_text: 'Speed', efy_lang: 'speed'}, [
-        $add('input', {type: 'range', id: 'rate', min: '0.25', max: '2', step: '0.05', value: '1'})
+      $add('details', {id: 'ms_sidebar_speed', open: ''}, [ $add('summary', {efy_lang: 'speed'}, [$add('i', {efy_icon: 'play'})]),
+        $add('input', {type: 'checkbox', id: 'pitch', name: 'pitch'}), $add('label', {for: 'pitch', style: 'display: flex; align-items: center; width: fit-content'}, ['Pitch']),
+        $add('div', {efy_range_text: 'Speed', efy_lang: 'speed'}, [
+          $add('input', {type: 'range', id: 'rate', min: '0.25', max: '2', step: '0.05', value: '1'})
+        ]),
+      ]),
+      $add('details', {id: 'bar_position'}, [ $add('summary', {}, [$add('i', {efy_icon: 'dots'}), 'Grid']), $add('p', {}, ['Bar Position']), $add('div', {}, [
+        $add('input', {type: 'radio', id: 'bar_position_bottom', name: 'bar_position', checked: ''}), $add('label', {for: 'bar_position_bottom', efy_lang: 'down', style: 'display: flex; align-items: center; width: fit-content'}),
+        $add('input', {type: 'radio', id: 'bar_position_top', name: 'bar_position'}), $add('label', {for: 'bar_position_top', efy_lang: 'up', style: 'display: flex; align-items: center; width: fit-content'})
+      ]),
+        $add('div', {efy_range_text: 'Columns', efy_lang: 'columns'}, [
+          $add('input', {type: 'range', id: 'ms_grid_columns', min: '1', max: '4', step: '1', value: '2'})
+        ])
       ])
     ])
-]))
+]));
 
-$('.ms_speed_text').addEventListener('click', ()=>{
-  $all('.efy_sidebar details').forEach(a=>{ a.removeAttribute('open')});
-  $('#ms_music_player').setAttribute('open', '');
-});
-
-
-/*Variables*/
-const mediaSourceFiles = [],
-audio = document.createElement('audio'),
-ms_playpause_btn = $('.player'),
-ms_prev_btn = $('.prev'), ms_next_btn = $('.next'),
-ms_grid = $('[ms_grid]'),
-loader = $('.ms_loader'),
-input = $('#ms_upload'),
-ms_time_nr = $('.seeker-start-value'), ms_time_val = $('.seeker-end-value'),
-ms_seek_slider = $('#seeker-slider');
-
-let ms_track_id = 0;
-
-input.setAttribute('multiple', '');
+/*Speed Indicator*/ $all('.ms_speed_text').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    $all('.efy_sidebar details').forEach(a=>{ a.removeAttribute('open')});
+    $('#ms_music_player').setAttribute('open', ''); $('#ms_sidebar_speed').setAttribute('open', '');
+})});
 
 
-/*Hightlight playing audio*/
-const highlightPlaying =(trackId)=>{
-  const ms_grid_rows = [...ms_grid.children];
+/*App Layout*/ $('#bar_position_top').addEventListener('click', ()=>{ $('[ms_app]').setAttribute('ms_app', 'top')});
+$('#bar_position_bottom').addEventListener('click', ()=>{ $('[ms_app]').setAttribute('ms_app', '')});
+$event($('#ms_grid_columns'), 'input', (a)=>{ $('[ms_grid]').setAttribute('ms_grid', a.target.value)});
 
-  ms_grid_rows
-    .filter((tr) => tr.classList.contains('playing'))
-    .forEach((tr) => (tr.classList.remove('playing')));
 
-  ms_grid_rows[trackId].classList.add('playing');
-};
+/*Variables*/ let audios = {}, audios_title = {}, audios_artist = {}, audios_album = {}, audios_image = {}, ms_track_id = 0, i = 0, ms_no_songs = true;
+const audio = $('.audio_test'), ms_playpause_btn = $('.player'), ms_prev_btn = $('.prev'), ms_next_btn = $('.next'), ms_grid = $('[ms_grid]'), ms_time_nr = $('.seeker-start-value'), ms_time_val = $('.seeker-end-value'), ms_seek_slider = $('#seeker-slider');
 
-/*Play & Pause*/
-const playPauseTrack =()=>{ if (audio.src){
-  if ($('.player i').getAttribute('efy_icon') == 'play'){ audio.play(); $('.player i').setAttribute('efy_icon', 'pause')}
+
+
+
+/*Play & Pause*/ const play_pause =()=>{let audio = $('.audio_test'); if (audio.src){
+  if ($('.player i').getAttribute('efy_icon') == 'play'){ audio.playbackRate = $('#rate').value; audio.play(); $('.player i').setAttribute('efy_icon', 'pause')}
   else { audio.pause(); $('.player i').setAttribute('efy_icon', 'play')}
-  ms_playpause_btn.addEventListener('click', playPauseTrack);
-}};
-
-const nextTrack =()=>{
-  if (mediaSourceFiles.length){
-    let newTrack = null;
-    ms_track_id += 1;
-
-    if (mediaSourceFiles.length - ms_track_id >= 1){
-      newTrack = mediaSourceFiles[ms_track_id];
-    } else {
-      ms_track_id = 0;
-      newTrack = mediaSourceFiles[ms_track_id];
-    }
-
-    if ($('.player i').getAttribute('efy_icon') == 'play'){
-      playPauseTrack();
-    }
-
-    audio.src = newTrack.path; audio.playbackRate = $('#rate').value;
-    audio.play();
-
-    highlightPlaying(ms_track_id);
-  }
-};
-ms_next_btn.addEventListener('click', nextTrack);
+}},
+duration_in_min =(dur, min = 0)=>{ if (dur < 60){ return dur < 10 ? `${min}:0${Math.floor(dur)}` : `${min}:${Math.floor(dur)}`}; return duration_in_min(dur - 60, (min += 1))};
 
 
-
-const prevTrack =()=>{
-  let prevTrack = null;
-
-  if (ms_track_id > 0){
-    ms_track_id -= 1;
-  } else {
-    ms_track_id = mediaSourceFiles.length - 1;
-  }
-
-  if ($('.player i').getAttribute('efy_icon') == 'play'){
-    playPauseTrack();
-  }
-
-  prevTrack = mediaSourceFiles[ms_track_id];
-
-  audio.src = prevTrack.path; audio.playbackRate = $('#rate').value;
-  audio.play();
-  highlightPlaying(ms_track_id);
+/*Hightlight active audio*/ const hightlight_playing =(a)=>{ if ($('.songs .song.playing') && $('.songs .song.playing').getAttribute('ms_track_id') !== a.getAttribute('ms_track_id')){ $('.songs .song.playing').classList.remove('playing')}
+  a.classList.add('playing');
 };
 
-ms_prev_btn.addEventListener('click', prevTrack);
 
+/*Load Files*/ const load_audio =(file)=>{
+	/*List tags*/ ID3.loadTags(file.name, ()=>{ i++; let tags = ID3.getAllTags(file.name);
+      /*Save to memory*/ audios[i] = URL.createObjectURL(file);
+      audios_title[i] = (tags.title || file.name.replace('.mp3', '').replace('.wav', '').replace('.m4a', '').replace('.flac', '').replace('.webm', '').replace('.mp4', '').replace('.ogg', ''));
+      audios_artist[i] = (tags.artist || '');
+      audios_album[i] = (tags.album || '');
+      audios_image[i] = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAA';
 
-let rate = $('#rate'), pitch = $('#pitch');
+		/*Add Songs*/
+		$append($('.songs'), $add('div', {class: 'song', efy_card: '', ms_track_id: i}, [
+			$add('div', {class: 'delete'}, [ $add('button', {title: 'delete'}) ]),
+			$add('p', {class: 'artist'}, [ audios_artist[i] ]),
+			$add('p', {class: 'title'}, [ audios_title[i] ]),
+			$add('p', {class: 'album'}, [ audios_album[i] ])
+		]) );
+		try {
+          audios_image[i] = `data:${tags.picture.format};base64,${Base64.encodeBytes(tags.picture.data)}`;
+          $insert($(`.song[ms_track_id="${i}"]`), 'afterbegin', $add('img', {src: audios_image[i], alt: 'Song image'}))
+        } catch (error){/**/}
 
-rate.addEventListener('input', ()=>{ let b = $('#rate').value; audio.playbackRate = b; $('.ms_speed_text').textContent = b+'X'; });
-
-pitch.addEventListener('change', ()=>{ audio.preservesPitch = pitch.checked
-  /*webkit  if ('webkitPreservesPitch' in audio){ audio.webkitPreservesPitch = pitch.checked} */
-});
-
-
-
-const loadTrack =(source)=>{ audio.load(); audio.src = source; playPauseTrack(); highlightPlaying(ms_track_id)},
-
-convertToUnit =(fileSize)=>{ const [gb, mb, kb, b] = [{value: 10 ** 9, unit: 'GB'}, {value: 10 ** 6, unit: 'MB'}, {value: 10 ** 3, unit: 'KB'}, {value: 10 * 2, unit: 'Bytes'}];
-  if (typeof fileSize == 'number'){
-    [gb, mb, kb, b].forEach((memory)=>{
-      if (Math.floor(fileSize / memory.value)){ fileSize = Math.floor(fileSize / memory.value) + memory.unit}
-    }); return fileSize;
-  } else {fileSize = Number(fileSize); return convertToUnit(fileSize)}
-},
-getYear =(dateInStr)=>{ return dateInStr.match(/\d{4}/)[0]},
-audioDurInMin =(dur, min = 0)=>{ if (dur < 60){ return dur < 10 ? `${min}:0${Math.floor(dur)}` : `${min}:${Math.floor(dur)}`}; return audioDurInMin(dur - 60, (min += 1))},
-
-// Structure a table for the data read
-structureTableUI =(data)=>{
-  if (!data.length){
-    loader.style.display = 'none';
-    loadTrack(`${mediaSourceFiles[0].path}`);
-    return;
-  }
-
-let  i = 0;
-  data[0].forEach((file)=>{ i = $all('[ms_track_id]').length;
-    const fileYearModified = getYear(file.lastModifiedDate.toString());
-    const fileSize = convertToUnit(file.size);
-
-
-
-
-  $append(ms_grid, $add('div', {ms_track_id: i, class: 'efy_trans_filter'}, [
-    $add('p', {}, [file.name.replace('.mp3', '')]),
-    $add('div', {class: 'ms_song_info'}, [
-      $add('p', {}, [fileYearModified]),
-      $add('p', {}, [fileSize]),
-      $add('p', {class: 'td_time'})
-    ])
-  ]));
-  });
-
-  setTimeout(()=>{ structureTableUI(data.slice(1))}, 2500);
-
-  $all('[ms_track_id]').forEach(a=>{
-    a.addEventListener('click', ()=>{ index = a.getAttribute('ms_track_id'); audio.addEventListener('loadedmetadata', (b)=>{$(`[ms_track_id].playing .td_time`).textContent = audioDurInMin(b.target.duration)});
-      if ($('.player i').getAttribute('efy_icon') == 'play'){ playPauseTrack()}
-      audio.src = mediaSourceFiles[index].path; audio.playbackRate = $('#rate').value; audio.play(); highlightPlaying(index);
-  })})
-
+		/*Events*/
+		$(`.song[ms_track_id="${i}"]`).addEventListener('click', (b)=>{ ms_track_id = b.target.getAttribute('ms_track_id');
+			audio.setAttribute('src', audios[ms_track_id]); audio.playbackRate = $('#rate').value; audio.play(); $('.player i').setAttribute('efy_icon', 'pause'); hightlight_playing(b.target);
+		});
+		/*Play 1st song*/ if (ms_no_songs == true){ ms_track_id = 1;
+          audio.setAttribute('src', audios[1]); audio.playbackRate = $('#rate').value; play_pause(); hightlight_playing($('.songs .song')); ms_no_songs = false }
+	},
+		{ tags: ["artist", "title", "album", "picture"], dataReader: FileAPIReader(file) });
 },
 
-truncateArray =(array, start, end)=>{
-  if (Array.isArray(array) && Number.isInteger(start) && Number.isInteger(end)){
-    let copy = array;
-    if (copy.length >= end)
-      return [copy.splice(start, end)].concat(truncateArray(array, start, end));
-    return [copy];
-  } else {
-    return `${Array.isArray(array) ? '' : array + 'must be an Array'} \n ${
-      Number.isInteger(start) ? '' : start + 'must be a number'
-    } \n ${Number.isInteger(end) ? '' : end + 'must be a number'}`;
-  }
-};
+read_files =(a)=>{ for (let i = 0; i < a.length; i++) { load_audio(a[i])}};
 
-input.addEventListener('change', async (e)=>{
-  loader.style.display = 'flex';
 
-  try {
-    const localData = Object.values(e.target.files);
-    const result = await read(localData);
-
-    if (Array.isArray(result)){
-      const data = result;
-      mediaSourceFiles.push(...data);
-      const pairedData = truncateArray(data, 0, 2);
-      structureTableUI(pairedData);
-    }
-  } catch (e){
-    console.error(e);
-  }
+/*Upload Buttons*/ $all('#ms_upload').forEach(a=>{
+  a.setAttribute('multiple', '');
+  a.addEventListener('change', (event)=>{ read_files(event.target.files)});
 });
 
-const dropArea = input;
 
-dropArea.addEventListener('dragover', (e)=>{
-  e.stopPropagation();
-  e.preventDefault();
 
-  e.dataTransfer.dropEffect = 'copy';
-});
 
-dropArea.addEventListener('drop', async (e)=>{
-  e.stopPropagation();
-  e.preventDefault();
+/*Next*/ const next_song =()=>{ let length = Object.keys(audios).length;
 
-  dropArea.style.display = 'none';
+  if (length - ms_track_id >= 1){ ms_track_id++}
+  else {ms_track_id = 1}
 
-  loader.style.display = 'flex';
+  if ($('.player i').getAttribute('efy_icon') == 'play'){ play_pause()}
 
-  try {
-    const localData = Object.values(e.dataTransfer.files);
-    const result = await read(localData);
+  audio.src = audios[ms_track_id]; audio.playbackRate = $('#rate').value; audio.play(); hightlight_playing($(`.song[ms_track_id="${ms_track_id}"]`));
 
-    if (Array.isArray(result)){
-      const data = result;
-      mediaSourceFiles.push(...data);
-      const pairedData = truncateArray(data, 0, 2);
-      structureTableUI(pairedData);
-    }
-  } catch (e){
-    console.error(e);
-  }
-});
+};
+ms_next_btn.addEventListener('click', next_song);
 
-const read = async (files)=>{
-  try {
-    if (!files.length) return [];
 
-    const file = await readFiles(...files.slice(0, 1));
-    return [file, ...(await read(files.slice(1)))];
-  } catch (e){
-    console.error(e);
-  }
+
+/*Previous*/ const prev_song =()=>{ let length = Object.keys(audios).length;
+
+  if (ms_track_id > 1){ ms_track_id -= 1}
+  else {ms_track_id = length}
+
+  if ($('.player i').getAttribute('efy_icon') == 'play'){ play_pause()}
+
+  audio.src = audios[ms_track_id]; audio.playbackRate = $('#rate').value; audio.play(); hightlight_playing($(`.song[ms_track_id="${ms_track_id}"]`));
 };
 
-const readFiles = async (file)=>{
+ms_prev_btn.addEventListener('click', prev_song);
+
+
+/*Speed & Pitch*/ let rate = $('#rate'), pitch = $('#pitch');
+
+rate.addEventListener('input', ()=>{ let b = $('#rate').value; audio.playbackRate = b;
+  $all('.ms_speed_text').forEach(c=>{ c.textContent = b+'X' })
+});
+
+pitch.addEventListener('change', ()=>{ audio.preservesPitch = !pitch.checked;
+  if ('webkitPreservesPitch' in audio){ audio.webkitPreservesPitch = !pitch.checked; prev_song(); next_song()}
+});
+
+
+
+const update_progress =()=>{
   try {
-    const reader = new FileReader();
-    const promise = new Promise((resolve, _)=>{
-      reader.readAsDataURL(file);
+    const seeker_max_val = Number(ms_seek_slider.getAttribute('max'));
 
-      reader.addEventListener('loadend', function (e){
-        if (reader.readyState == 2){
-          file.path = e.target.result; aud64 = e.target.result;
-          resolve(file);
-        }
-      });
-    });
-
-    const result = await promise;
-    return result;
-  } catch (e){
-    console.error(e);
-  }
-};
-
-const updateProgress =()=>{
-  try {
-    const sliderSeekerMaxVal = Number(ms_seek_slider.getAttribute('max'));
-
-    const audioDur = audioDurInMin(audio.duration);
-    const currTime = audioDurInMin(audio.currentTime);
-    ms_time_val.textContent = audioDur;
-    ms_time_nr.textContent = currTime;
-    const seekerVal =(sliderSeekerMaxVal / audio.duration) * audio.currentTime;
-    if (Number(ms_seek_slider.value) !== seekerVal){
-      ms_seek_slider.value = seekerVal;
-      document.documentElement.style.setProperty(
-        '--seeker-val',
-        `${ms_seek_slider.value * 0.1 * 10}%`
-      );
+    const audio_duration = duration_in_min(audio.duration);
+    const current_time = duration_in_min(audio.currentTime);
+    ms_time_val.textContent = audio_duration;
+    ms_time_nr.textContent = current_time;
+    const seeker_val =(seeker_max_val / audio.duration) * audio.currentTime;
+    if (Number(ms_seek_slider.value) !== seeker_val){
+      ms_seek_slider.value = seeker_val;
+      document.documentElement.style.setProperty('--ms_song_time', `${ms_seek_slider.value * 0.1 * 10}%`);
     }
   } catch (e){}
 },
 
-seek =(e)=>{ if (audio.src){ audio.currentTime = Math.round(e.target.value / (100 / audio.duration))}};
+seek =(e)=>{ if (audio.src){ audio.currentTime = Math.round(e.target.value / (100 / audio.duration))}},
 
-ms_seek_slider.addEventListener('change', seek);
-audio.addEventListener('ended', nextTrack);
-audio.addEventListener('timeupdate', updateProgress);
+ms_mpris =()=>{ if ('mediaSession' in navigator) { const action = (ev, fn) => navigator.mediaSession.setActionHandler(ev,fn);
+  navigator.mediaSession.metadata = new MediaMetadata({ title: audios_title[ms_track_id], artist: audios_artist[ms_track_id], album: audios_album[ms_track_id], artwork: [{ src: audios_image[ms_track_id], type: 'image/png'}] });
+  action('play', play_pause); action('pause', play_pause);
+  action('previoustrack', prev_song); action('nexttrack', next_song);
+  action('stop', ()=>{}); action('seekto', ()=>{});
+  action('seekbackward', ()=>{}); action('seekforward', ()=>{});
+}};
 
+$event(ms_seek_slider, 'change', seek);
+$event(audio, 'ended', next_song);
+$event(audio, 'timeupdate', update_progress);
+$event(audio, 'play', ms_mpris); $event(audio, 'pause', ms_mpris);
+$event(ms_playpause_btn, 'click', play_pause);
 
+/*Alpha*/for (let a =['#ms_music_player > summary'], i=0; i<a.length; i++){ $insert($(a[i]), 'beforeend', $add('mark', {efy_lang: 'alpha'}))}
 
 });
