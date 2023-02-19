@@ -3,6 +3,7 @@
     --efy_color: 70 100% 40%, 110 100% 30%; /*No JS Fallback*/ --efy_color1_var: 70 100% 40%; --efy_color2_var: 110 100% 30%;
     --efy_color_angle: 165deg;
     --efy_radius: 12rem;
+    --efy_border_size: 1.5rem;
     --efy_gap: 15rem;
     --efy_sidebar_button: right_top, off;
     --efy_body_width: 100%;

@@ -18,7 +18,7 @@
 [ms_bar] :is(button, input, label), .player i, table, :is(.seeker-start-value, .seeker-end-value) p {margin: 0}
 
 .ms_buttons, .ms_buttons > div {display: flex; gap: var(--efy_gap0)}
-.ms_buttons button {aspect-ratio: 1; height: 38rem; align-items: center; justify-content: center: border: 0}
+.ms_buttons button {aspect-ratio: 1; height: calc(36rem + var(--efy_border_size) * 2); align-items: center; justify-content: center: border: 0}
 
 .ms_speed_text, .ms_time_text {display: flex; gap: 5rem; align-items: center; width: fit-content; height: 38rem; padding: 7rem 10rem; font-weight: bold; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
 .ms_speed_text {aspect-ratio: unset!important}
