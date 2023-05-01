@@ -1,14 +1,12 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EFY</title><meta name="description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><link rel="icon" type="image/png" href="./icon.png"><link rel="apple-touch-icon" sizes="180x180" href="./icon.png"><meta property="og:type" content="website"><meta property="og:url" content="https://efy.ooo"><meta property="og:title" content="EFY"><meta property="og:description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><meta name="robots" content="noindex, nofollow">
 
-<!--Redirections--><script>
-const $url_prev = [
-    {name: 'test', url: 'https://duckduckgo.com'},
-    {name: 'github', url: 'https://github.com/dragos-efy/efy'}/*,
-    {name: 'translate', url: 'https://translate.codeberg.org/projects/efy/efy/'}*/
-];
-for (const {name, url} of $url_prev){ if (document.referrer.includes('/'+name)){ window.location.href = url; break}}
-
-console.log('test 2');
+<!--URL Redirections--><script>const $url_prev = [
+    {name: 'donate', url: 'https://liberapay.com/efy'},
+    {name: 'github', url: 'https://github.com/dragos-efy/efy'},
+    {name: 'matrix', url: 'https://matrix.to/#/#efy_ui:matrix.org'},
+    {name: 'translate', url: 'https://translate.codeberg.org/projects/efy/efy/'},
+    {name: 'call', url: 'https://meet.jit.si/efy'}
+]; for (const {name, url} of $url_prev){ if (document.referrer.includes('/'+name)){ window.location.href = url; break}}
 </script>
 
 <link rel="stylesheet" href="./efy/efy.css">
