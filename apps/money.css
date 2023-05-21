@@ -1,0 +1,42 @@
+.mn_nav {display: flex; justify-content: space-between; align-items: center}
+.mn_nav :is(button, a[role=button], label) {margin: 0; white-space: nowrap}
+
+.mn_nav , .modal-overlay {margin-top: var(--efy_gap)}
+
+.button.cancel {display: flex; justify-content: center; align-items: center}
+
+#balance {display: flex; gap: var(--efy_gap)}
+#balance h2 {color: #fff; margin-top: 0}
+
+.percentageDisplay div {display: flex; gap: 10rem}
+.percentageDisplay progress {display: flex; width: 100%; margin-top: 10rem}
+
+#data-table {width: 100%; margin: var(--efy_gap) 0 0 0}
+table :is(td:nth-of-type(1), td:nth-of-type(2), td:nth-of-type(3)) {width: 100%; min-width: 100rem}
+
+.mn_income_expense_color td.income {color: #12a454}
+.mn_income_expense_color td.expense {color: #e92929}
+
+.modal-overlay {display: none}
+.modal-overlay.active {display: block}
+
+#form {max-width: 500px}
+#form h2 {margin-top: 0}
+
+.input-group.actions {display: flex; justify-content: space-between; align-items: center}
+.input-group.actions button {width: 48%}
+
+#mn_search {margin: 0}
+
+.mn_table thead .mn_row {background: var(--efy_bg1)}
+.mn_table thead .mn_row td {padding: var(--efy_gap) calc(var(--efy_gap0) + 5rem)}
+.mn_table .mn_row td {padding: var(--efy_gap0) 15rem}
+.mn_table .mn_row td:last-of-type {padding: var(--efy_gap0)}
+
+#mn_backup {display: flex; flex-wrap: wrap; gap: var(--efy_gap0)}
+#mn_backup > :is(a, label, button) {margin: 0}
+
+/*Convergence*/
+@media (max-width: 799px) {
+    #balance {flex-wrap: wrap}
+}

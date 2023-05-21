@@ -1,16 +1,16 @@
 $ready_once('.efy_sidebar').then(()=>{
 
-/*Load App*/ $append($body, $add('h4', {}, ['EFY Converter - Alpha']));
-$append($body, $add('p', {}, ['Disabled options are not ready yet. The other ones should in theory work, but you might experience bugs. Have fun!']))
-$append($body, $add('div', {class: 'lc_grid'}));
+/*Load App*/ $add('h4', {}, ['EFY Converter - Alpha'], $body);
+$add('p', {}, ['Disabled options are not ready yet. The other ones should in theory work, but you might experience bugs. Have fun!'], $body);
+$add('div', {class: 'lc_grid'}, [], $body);
 
 let d = 'JSON to CSS (Translations), CSS to JSON (Translations), Minify CSS, Beautify CSS, Minify JS, Beautify JS, Minify HTML, Beautify HTML'.split(', '), e = 'json css css css js js html html'.split(' '); 'json css css_minify css_beautify js_minify js_beautify html_minify html_beautify'.split(' ').map((a,i)=>{
-    $append($('.lc_grid'), $add('div', {lc_card: a, efy_card: ''}, [
+    $add('div', {lc_card: a, efy_card: ''}, [
         $add('h6', {}, [d[i]]), $add('hr', {}), $add('div', {}, [
             $add('label', {efy_upload: `lc_import_${a}, .${e[i]}`}),
             $add('a', {role: 'button', efy_lang: 'save', id: `lc_save_${a}`, disabled: ''})
         ])
-    ]))
+    ], $('.lc_grid'))
 });
 
 $wait(2, ()=>{

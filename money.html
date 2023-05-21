@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EFY Money</title><meta name="description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><link rel="icon" type="image/png" href="./icon.png"><link rel="apple-touch-icon" sizes="180x180" href="./icon.png"><meta property="og:type" content="website"><meta property="og:url" content="https://efy.ooo"><meta property="og:title" content="EFY Money"><meta property="og:description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><meta name="robots" content="noindex, nofollow">
+
+<link rel="stylesheet" href="./efy/efy.css">
+<link rel="stylesheet" href="./apps/efy_global.css">
+<link rel="stylesheet" href="./apps/money.css">
+<script src="./efy/efy_local.js"></script>
+<script src="./apps/efy_global.js"></script>
+
+</head><body id="mn_body">
+
+
+<div id="balance">
+   <div efy_card><h6>Total</h6><h4 id="totalDisplay">$0,00</h4></div>
+   <div efy_card><h6>Income</h6><h4 id="incomeDisplay">$0,00</h4></div>
+   <div efy_card><h6>Expenses</h6><h4 id="expenseDisplay">$0,00</h4></div>
+   <div efy_card class="percentageDisplay"><div><h6>Left: </h6><h6 id="percentageDisplay">0%</h6></div><progress value="100" max="100"></progress></div>
+</div>
+
+<div class="mn_nav">
+    <div style="display: flex; gap: var(--efy_gap0);">
+        <button class="button new efy_square_btn" onClick="mn_modal.toggle()"><i efy_icon="plus" style="margin: 0 2rem 0 16rem"></i></button>
+    </div>
+    <button efy_sidebar_btn class="efy_square_btn"><i efy_icon="menu"></i></button>
+</div>
+
+    <div class="modal-overlay">
+        <div class="modal" efy_card>
+            <div class="form">
+                <form action="#" onSubmit="mn_form.submit(event)">
+                    <div class="input-group">
+                        <label for="description"></label>
+                        <input type="text" id="description" name="description" placeholder="Description">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="quantity">Quantity</label><input type="number" step="0.01" id="quantity" name="quantity" placeholder="1" value="1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="amount">Value</label>
+                        <input type="number" step="0.01" id="amount" name="amount" placeholder="0,00">
+                        <small class="help">Use - (minus) for negative numbers and , (comma) for decimals</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="sr-only" for="date">Date</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="category"></label>
+                        <input type="text" id="category" name="category" placeholder="Category (Default)" />
+                    </div>
+
+                    <div class="input-group actions">
+                        <button onClick="mn_modal.toggle()" onSubmit="preventDefault()" href="#" class="button cancel efy_square_btn"><i efy_icon="remove"></i></button>
+                        <button efy_lang="save"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+        <table id="data-table" class="mn_table"><thead>
+            <tr class="mn_row efy_ignore_search"><td class="description">Description</td><td class="quantity">Quantity</td><td class="income">Price</td><td class="date">Date</td><td></td></tr></thead><tbody></tbody>
+        </table>
+
+
+
+<script src="./apps/money.js"></script>
+
+</body></html>
