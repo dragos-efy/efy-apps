@@ -14,6 +14,7 @@
     --efy_lang_folder: ./apps/lang;
     --efy_lang_code: en;
     --efy_modules: efy_quick, efy_mode, efy_filters, efy_backup, efy_accessibility, efy_language, efy_audio, efy_extra;
+    --efy_protocol: file;
 }
 /*Default Mode*/ [efy_mode=default] {
     --efy_scheme: dark;
