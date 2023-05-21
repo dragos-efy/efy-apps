@@ -1,0 +1,7 @@
+#cc_calculator {max-width: 600rem; background: var(--efy_bg1); padding: var(--efy_gap); border: var(--efy_border); border-radius: var(--efy_radius)}
+#cc_calculator input {margin: 0}
+#cc_calculator .cc_buttons {display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: var(--efy_gap); margin-top: var(--efy_gap)}
+#cc_calculator .cc_buttons button {min-height: 50rem; margin: 0}
+#cc_calculator .cc_buttons button:not(#equal, #del, #bksp){background: var(--efy_bg1); color: var(--efy_text!important); -webkit-text-fill-color: var(--efy_text)}
+#cc_calculator .cc_buttons button:is(#pct, #div, #mul, #sub, #add, #ptleft, #ptright, #exp, #sqrt, #pi/*, #expand*/) {background: var(--efy_color), var(--efy_color_trans); -webkit-background-clip: text, padding-box; -moz-background-clip: text, padding-box; -webkit-text-fill-color: transparent}
+/*#cc_calculator .cc_buttons #expand i:before {background: var(--efy_color), transparent; -webkit-background-clip: text, padding-box; -moz-background-clip: text, padding-box; -webkit-text-fill-color: transparent}*/

@@ -15,7 +15,7 @@ body {min-height: 100vh}
 .dc_search input:focus {width: 170rem; padding-left: 35rem}
 .dc_search :not(input:focus)::placeholder {color: transparent}
 
-#dc_headings, #dc_buttons, #dc_lists {display: flex; flex-wrap: wrap; gap: var(--efy_gap); align-items: center; margin: var(--efy_gap) 0 0 0}
+#dc_headings, #dc_buttons, #dc_lists {display: flex; flex-wrap: wrap; gap: var(--efy_gap); align-items: center; margin: var(--efy_gap) 0 var(--efy_gap) 0}
 #dc_headings * {margin: 0; line-height: 1}
 #dc_headings :is(mark, kbd) {line-height: unset!important}
  #dc_buttons * {margin: 0; width: fit-content}
@@ -44,13 +44,16 @@ body {min-height: 100vh}
 :is([efy_content="2"], [efy_content="3"]) > div, .dc_separator > div {display: flex; gap: var(--efy_gap); flex-direction: column; width: 100%}
 :is([efy_content="2"], [efy_content="3"]) > div > details {margin: 0}
 
+[efy_tabs="demo"] > [efy_content="0"] > div:first-of-type > h2 {line-height: 1; margin-bottom: 20rem}
 
  /*Convergence*/
  @media (max-width: 767.9px){
     [efy_tabs=demo] > [efy_content="0"], .dc_grid {grid-template-columns: 1fr}
     [efy_tabs=demo] > [efy_content="0"] > div {padding: 0}
     [efy_tabs=demo] :is(.dc_right, .dc_right input, .dc_right label) {width: 100%}
-    [efy_content="2"], [efy_content="3"] {flex-direction: column}
+    [efy_content="2"], [efy_content="3"], .dc_separator {flex-direction: column}
+    .dc_separator div:first-of-type details {margin: 0}
     .dc_search input {padding-left: 35rem}
     .dc_search :not(input:focus)::placeholder {color: var(--efy_text_trans2)}
+    [efy_tabs="demo"] > [efy_content="0"] > div:first-of-type > h2 {margin-top: 10rem}
 }
