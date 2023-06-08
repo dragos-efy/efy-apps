@@ -10,10 +10,10 @@
 
 
 <div id="balance">
-   <div efy_card><h6>Total</h6><h4 id="totalDisplay">$0,00</h4></div>
-   <div efy_card><h6>Income</h6><h4 id="incomeDisplay">$0,00</h4></div>
-   <div efy_card><h6>Expenses</h6><h4 id="expenseDisplay">$0,00</h4></div>
-   <div efy_card class="percentageDisplay"><div><h6>Left: </h6><h6 id="percentageDisplay">0%</h6></div><progress value="100" max="100"></progress></div>
+   <div efy_card><h6 efy_lang="total"></h6><h4 id="totalDisplay">$0,00</h4></div>
+   <div efy_card><h6 efy_lang="income"></h6><h4 id="incomeDisplay">$0,00</h4></div>
+   <div efy_card><h6 efy_lang="expenses"></h6><h4 id="expenseDisplay">$0,00</h4></div>
+   <div efy_card class="percentageDisplay"><div><h6 efy_lang="left_"></h6><h6 id="percentageDisplay">0%</h6></div><progress value="100" max="100"></progress></div>
 </div>
 
 <div class="mn_nav">
@@ -27,35 +27,38 @@
         <div class="modal" efy_card>
             <div class="form">
                 <form action="#" onSubmit="mn_form.submit(event)">
-                    <div class="input-group">
-                        <label for="description"></label>
-                        <input type="text" id="description" name="description" placeholder="Description">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="quantity">Quantity</label><input type="number" step="0.01" id="quantity" name="quantity" placeholder="1" value="1">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="amount">Value</label>
-                        <input type="number" step="0.01" id="amount" name="amount" placeholder="0,00">
-                        <small class="help">Use - (minus) for negative numbers and , (comma) for decimals</small>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="sr-only" for="date">Date</label>
-                        <input type="date" id="date" name="date">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="category"></label>
-                        <input type="text" id="category" name="category" placeholder="Category (Default)" />
-                    </div>
 
                     <div class="input-group actions">
-                        <button onClick="mn_modal.toggle()" onSubmit="preventDefault()" href="#" class="button cancel efy_square_btn"><i efy_icon="remove"></i></button>
-                        <button efy_lang="save"></button>
+                        <h6 efy_lang="transaction"></h6>
+                        <div class="buttons">
+                            <button efy_lang="save"></button>
+                            <button onClick="mn_modal.toggle()" onSubmit="preventDefault()" href="#" class="button cancel efy_square_btn"><i efy_icon="remove"></i></button>
+                        </div>
                     </div>
+
+                    <div class="modal_grid">
+                        <div class="input-group">
+                            <label for="description" efy_lang="description" class="efy_trans_filter"></label>
+                            <input type="text" id="description" name="description">
+                        </div>
+                        <div class="input-group">
+                            <label for="quantity" efy_lang="quantity" class="efy_trans_filter"></label>
+                            <input type="number" step="0.01" id="quantity" name="quantity" placeholder="1" value="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="amount" efy_lang="price" class="efy_trans_filter"></label>
+                            <input type="number" step="0.01" id="amount" name="amount" placeholder="0,00">
+                        </div>
+                        <div class="input-group">
+                            <label for="date" efy_lang="date" class="efy_trans_filter"></label>
+                            <input type="date" id="date" name="date">
+                        </div>
+                        <div class="input-group">
+                            <label for="category" efy_lang="tags" class="efy_trans_filter"></label>
+                            <input type="text" id="category" name="category" placeholder="coming soon..." disabled />
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -63,7 +66,7 @@
 
 
         <table id="data-table" class="mn_table"><thead>
-            <tr class="mn_row efy_ignore_search"><td class="description">Description</td><td class="quantity">Quantity</td><td class="income">Price</td><td class="date">Date</td><td></td></tr></thead><tbody></tbody>
+            <tr class="mn_row efy_ignore_search"><td class="description" efy_lang="description"></td><td class="quantity" efy_lang="quantity"></td><td class="income" efy_lang="price"></td><td class="date" efy_lang="date"></td><td></td></tr></thead><tbody></tbody>
         </table>
 
 

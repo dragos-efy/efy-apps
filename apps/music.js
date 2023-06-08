@@ -1,7 +1,38 @@
+/*Storage*/ let  efy_ms = {}, $ms_save =()=>{};
+try { if (localStorage.efy_ms){ efy_ms = JSON.parse(localStorage.efy_ms)} $ms_save =()=>{localStorage.efy_ms = JSON.stringify(efy_ms)}} catch {}
+
 /*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
+$add('div', {ms_app: ''}, [
+  $add('audio', {class: 'audio_html', controls: ''}),
+  /*Songs*/ $add('div', {class: 'ms_grid_box'}, [ $add('div', {ms_grid: '', class: 'songs'}) ]),
+  /*Player*/ $add('div', {ms_bar: '', class: 'efy_trans_filter'}, [
+    $add('div', {class: 'ms_buttons'}, [
+      $add('div', {}, [
+        $add('button', {class: 'prev efy_square_btn', title: 'Previous'}, [ $add('i', {efy_icon: 'chevron'}) ]),
+        $add('button', {class: 'player efy_square_btn', title: 'Play or Pause'}, [ $add('i', {efy_icon: 'play', class: 'btn-play'}) ]),
+        $add('button', {class: 'next efy_square_btn', title: 'Next'}, [ $add('i', {efy_icon: 'chevron'}) ])
+      ]),
+      $add('div', {class: 'mobile ms_buttons2'}, [
+        $add('button', {class: 'ms_speed_text', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, ['1X']),
+        $add('label', {efy_upload: 'ms_upload,audio/*, small, multiple', title: 'Add file'}),
+        $add('button', {class: 'ms_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [ $add('i', {efy_icon: 'menu'}) ])
+      ])
+     ]),
+    $add('div', {class: 'audio_seeker'}, [
+      $add('input', {type: 'range', max: '100', id: 'seeker_slider', value: '0'}),
+      $add('div', {class: 'ms_time_text', efy_card: ''}, [ $add('p', {class: 'seeker-start-value'}, ['0:00']), $add('p', {}, ['/']), $add('p', {class: 'seeker-end-value'}, ['0:00']) ])
+    ]),
+    $add('div', {class: 'desktop ms_buttons2'}, [
+      $add('button', {class: 'ms_speed_text', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, ['1X']),
+      $add('label', {efy_upload: 'ms_upload,audio/*, small, multiple', title: 'Add file'}),
+      $add('button', {class: 'ms_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [ $add('i', {efy_icon: 'menu'}) ])
+    ])
+  ])
+], $body);
+
 $add('details', {id: 'ms_music_player'}, [
-  $add('summary', {}, [$add('i', {efy_icon: 'audio'}), $add('p', {efy_lang: 'music_player'}), $add('mark', {efy_lang: 'alpha'})]),
+  $add('summary', {}, [$add('i', {efy_icon: 'audio'}), $add('p', {efy_lang: 'music_player'}), $add('mark', {efy_lang: 'beta'})]),
     $add('div', {efy_tabs: 'ms_menu', efy_select: ''}, [
 
     $add('button', {efy_tab: 'effects', efy_lang: 'effects', efy_active: ''}),
@@ -9,14 +40,14 @@ $add('details', {id: 'ms_music_player'}, [
     $add('button', {efy_tab: 'tags', efy_lang: 'tags'}),
 
     $add('div', {efy_content: 'effects', efy_select: '', id: 'ms_sidebar_speed', efy_active: ''}, [
-       $add('input', {type: 'checkbox', id: 'pitch', name: 'pitch'}), $add('label', {for: 'pitch', style: 'display: flex; align-items: center; width: fit-content'}, ['Pitch']),
+       $add('input', {type: 'checkbox', id: 'pitch', name: 'pitch'}), $add('label', {for: 'pitch', style: 'display: flex; align-items: center; width: fit-content', efy_lang: 'pitch'}),
         $add('div', {efy_range_text: 'Speed', efy_lang: 'speed'}, [
           $add('input', {type: 'range', id: 'rate', min: '0.25', max: '2', step: '0.05', value: '1'})
         ])
     ]),
 
     $add('div', {efy_content: 'grid', efy_select: '', id: 'bar_position'}, [
-      $add('p', {}, ['Bar Position']), $add('div', {}, [
+      $add('p', {efy_lang: 'bar_position'}), $add('div', {}, [
         $add('input', {type: 'radio', id: 'bar_position_bottom', name: 'bar_position', checked: ''}), $add('label', {for: 'bar_position_bottom', efy_lang: 'down', style: 'display: flex; align-items: center; width: fit-content'}),
         $add('input', {type: 'radio', id: 'bar_position_top', name: 'bar_position'}), $add('label', {for: 'bar_position_top', efy_lang: 'up', style: 'display: flex; align-items: center; width: fit-content'})
       ]),
@@ -24,15 +55,20 @@ $add('details', {id: 'ms_music_player'}, [
       ]),
 
     $add('div', {efy_content: 'tags', efy_select: '', id: 'items'}, [ $add('div', {}, [
-        $add('input', {type: 'checkbox', id: 'ms_song_info_image', name: 'song_info', checked: ''}), $add('label', {for: 'ms_song_info_image'}, ['Image']),
-        $add('input', {type: 'checkbox', id: 'ms_song_info_artist', name: 'song_info', checked: ''}), $add('label', {for: 'ms_song_info_artist'}, ['Artist']),
-        $add('input', {type: 'checkbox', id: 'ms_song_info_title', name: 'song_info', checked: ''}), $add('label', {for: 'ms_song_info_title'}, ['Title']),
-        $add('input', {type: 'checkbox', id: 'ms_song_info_album', name: 'song_info', checked: ''}), $add('label', {for: 'ms_song_info_album'}, ['Album']),
-        $add('input', {type: 'checkbox', id: 'ms_song_info_number', name: 'song_info'}), $add('label', {for: 'ms_song_info_number'}, ['Number']),
+        $add('input', {type: 'checkbox', id: 'ms_song_info_image', name: 'song_info', checked: ''}), $add('label', {for: 'ms_song_info_image', efy_lang: 'image'}),
+        $add('input', {type: 'checkbox', id: 'ms_song_info_artist', name: 'song_info', checked: ''}), $add('label', {for: 'ms_song_info_artist', efy_lang: 'artist'}),
+        $add('input', {type: 'checkbox', id: 'ms_song_info_title', name: 'song_info', checked: ''}), $add('label', {for: 'ms_song_info_title', efy_lang: 'title'}),
+        $add('input', {type: 'checkbox', id: 'ms_song_info_album', name: 'song_info', checked: ''}), $add('label', {for: 'ms_song_info_album', efy_lang: 'album'}),
+        $add('input', {type: 'checkbox', id: 'ms_song_info_number', name: 'song_info'}), $add('label', {for: 'ms_song_info_number', efy_lang: 'number'}),
         $add('div', {efy_range_text: 'Image Size', efy_lang: 'img_size'}, [ $add('input', {type: 'range', id: 'ms_img_size', min: '25', max: '65', step: '1', value: '50'}) ])
       ]) ])
   ])
 ], $('#efy_sbtheme'), 'beforebegin');
+
+$add('style', {class: 'efy_3d_back_ms'}, [], $head);
+
+/*Variables*/ let audios = {}, audios_title = {}, audios_artist = {}, audios_album = {}, audios_image = {}, ms_track_id = 0, i = 0, ms_no_songs = true;
+const audio = $('.audio_html'), ms_playpause_btn = $('.player'), ms_prev_btn = $('.prev'), ms_next_btn = $('.next'), ms_grid = $('[ms_grid]'), ms_time_nr = $('.seeker-start-value'), ms_time_val = $('.seeker-end-value'), ms_seek_slider = $('#seeker_slider'), rate = $('#rate'), pitch = $('#pitch'), img_size = $('#ms_img_size');
 
 /*Speed Indicator*/ $all('.ms_speed_text').forEach(b=>{
   b.addEventListener('click', ()=>{
@@ -40,20 +76,51 @@ $add('details', {id: 'ms_music_player'}, [
     $('#ms_music_player').setAttribute('open', ''); $('#ms_sidebar_speed').setAttribute('open', '');
 })});
 
+/*Restore Settings*/
+if (efy_ms.columns){ let a = efy_ms.columns; $('#ms_grid_columns').value = a; $('[ms_grid]').setAttribute('ms_grid', a)}
+if (efy_ms.speed){ let a = efy_ms.speed; rate.value = a; audio.playbackRate = a; $all('.ms_speed_text').forEach(b=>{ b.textContent = a+'X' })}
+if (efy_ms.pitch){ let a = efy_ms.pitch; pitch.checked = a; audio.preservesPitch = !a; if ('webkitPreservesPitch' in audio){ audio.webkitPreservesPitch = !a; prev_song(); next_song()}}
+if (efy_ms.bar_position){ let a = efy_ms.bar_position; $('[ms_app]').setAttribute('ms_app', a); $(`#bar_position_${a}`).checked = true}
 
-/*App Layout*/ $('#bar_position_top').addEventListener('click', ()=>{ $('[ms_app]').setAttribute('ms_app', 'top')});
-$('#bar_position_bottom').addEventListener('click', ()=>{ $('[ms_app]').setAttribute('ms_app', '')});
-$event($('#ms_grid_columns'), 'input', (a)=>{ $('[ms_grid]').setAttribute('ms_grid', a.target.value)});
-$event($('#ms_img_size'), 'input', (a)=>{ $root.style.setProperty('--ms_thumb_height', a.target.value + 'rem')});
-
-
-/*Variables*/ let audios = {}, audios_title = {}, audios_artist = {}, audios_album = {}, audios_image = {}, ms_track_id = 0, i = 0, ms_no_songs = true;
-const audio = $('.audio_test'), ms_playpause_btn = $('.player'), ms_prev_btn = $('.prev'), ms_next_btn = $('.next'), ms_grid = $('[ms_grid]'), ms_time_nr = $('.seeker-start-value'), ms_time_val = $('.seeker-end-value'), ms_seek_slider = $('#seeker-slider');
+if (efy_ms.img_size){ let a = efy_ms.img_size; img_size.value = a.replace('rem', ''); $root.style.setProperty('--ms_thumb_height', a) }
 
 
+for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
+  if (typeof efy_ms[`tag_${a[i]}`] !== 'undefined'){ $(`#ms_song_info_${a[i]}`).checked = efy_ms[`tag_${a[i]}`] ; console.log(a[i])}
+}
 
 
-/*Play & Pause*/ const play_pause =()=>{let audio = $('.audio_test'); if (audio.src){
+
+
+/*App Layout*/
+
+for (let a = ['top', 'bottom'], i = 0; i < a.length; i++){
+  $event($(`#bar_position_${a[i]}`), 'click', ()=>{ $('[ms_app]').setAttribute('ms_app', a[i]); efy_ms.bar_position = a[i]; $ms_save()})
+}
+
+$event($('#ms_grid_columns'), 'input', (a)=>{ let b = a.target.value;
+  $('[ms_grid]').setAttribute('ms_grid', b); efy_ms.columns = b; $ms_save()
+});
+
+$event(img_size, 'input', (a)=>{ let b = a.target.value + 'rem'; $root.style.setProperty('--ms_thumb_height', b); efy_ms.img_size = b; $ms_save(); });
+
+
+/*Current Song Image as Background*/
+$add('label', {for: 'ms_song_bg', efy_lang: 'song_image'}, [], $('label[for="trans_window"]'), 'afterend');
+$add('input', {id: 'ms_song_bg', type: 'checkbox'}, [], $('label[for="trans_window"]'), 'afterend');
+
+if (efy_ms.song_bg == true){ $('#ms_song_bg').checked = true}
+
+$event($('#ms_song_bg'), 'change', ()=>{ let a = $('#ms_song_bg').checked; efy_ms.song_bg = a; $ms_save(); song_bg()});
+
+song_bg =()=>{ let a = $('.efy_3d_back_ms');
+  if ((efy_ms.song_bg == true) && (audios_image[ms_track_id] !== 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAA')){
+    a.textContent = `.efy_3d_back, html.trans_window .efy_3d_back {background: url(${audios_image[ms_track_id]})!important; background-repeat: no-repeat!important; background-size: cover!important}`;
+  }
+  else {a.textContent = ''}
+}
+
+/*Play & Pause*/ const play_pause =()=>{ if (audio.src){
   if ($('.player i').getAttribute('efy_icon') == 'play'){ audio.playbackRate = $('#rate').value; audio.play(); $('.player i').setAttribute('efy_icon', 'pause')}
   else { audio.pause(); $('.player i').setAttribute('efy_icon', 'play')}
 }},
@@ -83,17 +150,24 @@ duration_in_min =(dur, min = 0)=>{ if (dur < 60){ return dur < 10 ? `${min}:0${M
               $add('p', {class: 'album'}, [ audios_album[i] ])
             ])
 		], $('.songs'));
-		try {
-          audios_image[i] = `data:${tags.picture.format};base64,${Base64.encodeBytes(tags.picture.data)}`;
-          $add('div', {class: 'ms_img', style: `background: url(${audios_image[i]})`, title: 'Song image'}, [], $(`.song[ms_track_id="${i}"]`), 'afterbegin')
-        } catch (error){ $add('div', {class: 'ms_empty ms_img'}, [ $add('i', {efy_icon: 'audio'}) ], $(`.song[ms_track_id="${i}"]`), 'afterbegin')}
+
+        /*Variables*/ const current_track = $(`.song[ms_track_id="${i}"]`), c_track = `.song[ms_track_id="${i}"]`;
+
+		/*Image*/ try { audios_image[i] = `data:${tags.picture.format};base64,${Base64.encodeBytes(tags.picture.data)}`;
+          $add('div', {class: 'image', style: `background: url(${audios_image[i]})`, title: 'Song image'}, [], current_track, 'afterbegin')
+        } catch (error){ $add('div', {class: 'ms_empty image'}, [ $add('i', {efy_icon: 'audio'}) ], current_track, 'afterbegin')}
+
+        /*Tags - Checked*/ for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
+          if ($(`#ms_song_info_${a[i]}`).checked){ $all(c_track + ` .${a[i]}`).forEach(b=>{ b.classList.remove('efy_hide_i') }) }
+          else { $all(c_track + ` .${a[i]}`).forEach(b=>{ b.classList.add('efy_hide_i') }) }
+        }
 
 		/*Events*/
-		$(`.song[ms_track_id="${i}"]`).addEventListener('click', (b)=>{ ms_track_id = b.target.getAttribute('ms_track_id');
-			audio.setAttribute('src', audios[ms_track_id]); audio.playbackRate = $('#rate').value; audio.play(); $('.player i').setAttribute('efy_icon', 'pause'); hightlight_playing(b.target);
+		$event(current_track, 'click', (b)=>{ ms_track_id = b.target.getAttribute('ms_track_id');
+			audio.setAttribute('src', audios[ms_track_id]); audio.playbackRate = $('#rate').value; audio.play(); $('.player i').setAttribute('efy_icon', 'pause'); hightlight_playing(b.target); song_bg()
 		});
 		/*Play 1st song*/ if (ms_no_songs == true){ ms_track_id = 1;
-          audio.setAttribute('src', audios[1]); audio.playbackRate = $('#rate').value; play_pause(); hightlight_playing($('.songs .song')); ms_no_songs = false }
+          audio.setAttribute('src', audios[1]); audio.playbackRate = $('#rate').value; play_pause(); hightlight_playing($('.songs .song')); ms_no_songs = false; song_bg() }
 	},
 		{ tags: ["artist", "title", "album", "picture"], dataReader: FileAPIReader(file) });
 },
@@ -101,10 +175,9 @@ duration_in_min =(dur, min = 0)=>{ if (dur < 60){ return dur < 10 ? `${min}:0${M
 read_files =(a)=>{ for (let i = 0; i < a.length; i++) { load_audio(a[i])}};
 
 
-/*Upload Buttons*/ $all('#ms_upload').forEach(a=>{
-  a.setAttribute('multiple', '');
+/*Upload Buttons*/ $wait(0.5, ()=>{ $all('#ms_upload').forEach(a=>{
   a.addEventListener('change', (event)=>{ read_files(event.target.files)});
-});
+})});
 
 
 
@@ -114,8 +187,7 @@ read_files =(a)=>{ for (let i = 0; i < a.length; i++) { load_audio(a[i])}};
   if (length - ms_track_id >= 1){ ms_track_id++} else {ms_track_id = 1}
   if ($('.player i').getAttribute('efy_icon') == 'play'){ play_pause()}
 
-  audio.src = audios[ms_track_id]; audio.playbackRate = $('#rate').value; audio.play(); hightlight_playing($(`.song[ms_track_id="${ms_track_id}"]`));
-
+  audio.src = audios[ms_track_id]; audio.playbackRate = rate.value; audio.play(); hightlight_playing($(`.song[ms_track_id="${ms_track_id}"]`)); song_bg()
 };
 ms_next_btn.addEventListener('click', next_song);
 
@@ -126,22 +198,20 @@ ms_next_btn.addEventListener('click', next_song);
   if (ms_track_id > 1){ ms_track_id -= 1} else {ms_track_id = length}
   if ($('.player i').getAttribute('efy_icon') == 'play'){ play_pause()}
 
-  audio.src = audios[ms_track_id]; audio.playbackRate = $('#rate').value; audio.play(); hightlight_playing($(`.song[ms_track_id="${ms_track_id}"]`));
+  audio.src = audios[ms_track_id]; audio.playbackRate = rate.value; audio.play(); hightlight_playing($(`.song[ms_track_id="${ms_track_id}"]`)); song_bg()
 };
 
 ms_prev_btn.addEventListener('click', prev_song);
 
 
-/*Speed & Pitch*/ let rate = $('#rate'), pitch = $('#pitch');
-
-rate.addEventListener('input', ()=>{ let b = $('#rate').value; audio.playbackRate = b;
-  $all('.ms_speed_text').forEach(c=>{ c.textContent = b+'X' })
+/*Speed & Pitch*/
+rate.addEventListener('input', ()=>{ let b = rate.value; audio.playbackRate = b;
+  $all('.ms_speed_text').forEach(c=>{ c.textContent = b+'X' }); efy_ms.speed = b; $ms_save();
 });
-
-pitch.addEventListener('change', ()=>{ audio.preservesPitch = !pitch.checked;
-  if ('webkitPreservesPitch' in audio){ audio.webkitPreservesPitch = !pitch.checked; prev_song(); next_song()}
+pitch.addEventListener('change', ()=>{ let a = !pitch.checked; audio.preservesPitch = a;
+  if ('webkitPreservesPitch' in audio){ audio.webkitPreservesPitch = a; prev_song(); next_song()}
+  efy_ms.pitch = !a; $ms_save();
 });
-
 
 
 const update_progress =()=>{
@@ -178,10 +248,13 @@ $event(ms_playpause_btn, 'click', play_pause);
 $body.setAttribute('id','ms_app'); $body.setAttribute('efy_search','.songs > .song');
 
 
-$event($('.efy_sidebar #ms_song_info_image'), 'click', ()=>{ $all('.songs .song :is(img, .ms_img)').forEach((a)=>{ a.classList.toggle('efy_hide_i') })});
-$event($('.efy_sidebar #ms_song_info_number'), 'click', ()=>{ $all('.songs .song .number').forEach((a)=>{ a.classList.toggle('efy_hide_i') })});
-$event($('.efy_sidebar #ms_song_info_title'), 'click', ()=>{ $all('.songs .song .title').forEach((a)=>{ a.classList.toggle('efy_hide_i') })});
-$event($('.efy_sidebar #ms_song_info_artist'), 'click', ()=>{ $all('.songs .song .artist').forEach((a)=>{ a.classList.toggle('efy_hide_i') })});
-$event($('.efy_sidebar #ms_song_info_album'), 'click', ()=>{ $all('.songs .song .album').forEach((a)=>{ a.classList.toggle('efy_hide_i') })});
+for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
+  $event($(`.efy_sidebar #ms_song_info_${a[i]}`), 'click', ()=>{ let b = $(`#ms_song_info_${a[i]}`), c = $all(`.songs .song .${a[i]}`);
+    if (b.checked){ c.forEach((a)=>{ a.classList.remove('efy_hide_i') }) }
+    else { c.forEach((a)=>{ a.classList.add('efy_hide_i') }) }
+    efy_ms[`tag_${a[i]}`] = b.checked; $ms_save();
+  });
+}
+
 
 });

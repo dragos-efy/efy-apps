@@ -23,8 +23,22 @@ table :is(td:nth-of-type(1), td:nth-of-type(2), td:nth-of-type(3)) {width: 100%;
 #form {max-width: 500px}
 #form h2 {margin-top: 0}
 
-.input-group.actions {display: flex; justify-content: space-between; align-items: center}
-.input-group.actions button {width: 48%}
+.modal {padding: 0}
+.modal:focus-within {box-shadow: none!important}
+
+.modal_grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); gap: var(--efy_gap); border-top: var(--efy_border); padding: var(--efy_gap)}
+.modal_grid :is(input, [efy_number]) {margin: 0}
+
+.modal_grid .input-group {display: flex}
+.modal_grid .input-group label {display: flex; padding: var(--efy_padding); background: var(--efy_bg1); border-radius: var(--efy_radius) 0 0 var(--efy_radius); border: var(--efy_border); border-right: 0}
+.modal_grid .input-group input {border-radius: 0 var(--efy_radius) var(--efy_radius) 0; height: 100%}
+.modal_grid .input-group [efy_number] {width: 100%}
+.modal_grid .input-group:focus-within label {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text_trans2); border-color: var(--efy_text_trans2)}
+.modal_grid .input-group:focus-within {gap: calc(var(--efy_border_size) + 2rem)}
+
+.input-group.actions {padding: var(--efy_gap)}
+.input-group.actions, .input-group.actions .buttons {display: flex; justify-content: space-between; align-items: center; gap: var(--efy_gap)}
+.input-group.actions button {width: 100%; margin: 0}
 
 #mn_search {margin: 0}
 
@@ -35,6 +49,8 @@ table :is(td:nth-of-type(1), td:nth-of-type(2), td:nth-of-type(3)) {width: 100%;
 
 #mn_backup {display: flex; flex-wrap: wrap; gap: var(--efy_gap0)}
 #mn_backup > :is(a, label, button) {margin: 0}
+
+/*Temporary*/ [efy_number] button {display: none!important}
 
 /*Convergence*/
 @media (max-width: 799px) {

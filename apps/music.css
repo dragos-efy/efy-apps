@@ -9,8 +9,8 @@
 
 [ms_bar] {width: 100%; display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(--efy_gap0); border: var(--efy_border); border-radius: var(--efy_radius2); background: var(--efy_bg1)}
 
-#seeker-slider {width: 100%}
-.audio-seeker {display: flex; gap: var(--efy_gap0); align-items: center; justify-content: center; font-weight: bold; width: 100%; max-width: 50%}
+#seeker_slider {width: 100%}
+.audio_seeker {display: flex; gap: var(--efy_gap0); align-items: center; justify-content: center; font-weight: bold; width: 100%; max-width: 50%}
 
 [ms_track_id].playing, [ms_track_id]:hover {background: var(--efy_color_trans); color: var(--efy_color)}
 :is([ms_track_id].playing, [ms_track_id]:hover) p {background: var(--efy_color); background-clip: text; -webkit-background-clip: text; -moz-background-clip: text; -webkit-text-fill-color: transparent}
@@ -33,7 +33,7 @@
 .ms_song_info {display: flex; gap: 15rem}
 
 .songs .song {display: flex; gap: 10rem; justify-content: flex-start; align-items: center; flex-wrap: nowrap}
-.audio_test {position: absolute; opacity: 0; pointer-events: none}
+.audio_html {position: absolute; opacity: 0; pointer-events: none}
 .song :is(.delete, :empty):not(img, i) {display: none}
 .song .text {pointer-events: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden}
 .song .text p {display: inline}
@@ -55,11 +55,11 @@
 .ms_buttons2 {align-items: center; gap: var(--efy_gap0)}
 
 
-.ms_img {display: flex!important; height: var(--ms_thumb_height); aspect-ratio: 1; border-radius: var(--efy_radius); border: var(--efy_border); align-items: center; justify-content: center}
-.ms_empty.ms_img {background: var(--efy_bg1)}
-.ms_empty.ms_img i {margin: 0; font-size: calc(var(--ms_thumb_height) / 2); letter-spacing: 0!important}
-:is(.song:hover, .song.playing) .ms_empty.ms_img i {background: var(--efy_color); background-clip: text; -webkit-background-clip: text; -moz-background-clip: text; -webkit-text-fill-color: transparent}
-.ms_img:not(.ms_empty) {background-size: cover!important; background-position: center!important; background-repeat: no-repeat!important}
+.song .image {display: flex!important; height: var(--ms_thumb_height); aspect-ratio: 1; border-radius: var(--efy_radius); border: var(--efy_border); align-items: center; justify-content: center}
+.ms_empty.image {background: var(--efy_bg1)}
+.ms_empty.image i {margin: 0; font-size: calc(var(--ms_thumb_height) / 2); letter-spacing: 0!important}
+:is(.song:hover, .song.playing) .ms_empty.image i {background: var(--efy_color); background-clip: text; -webkit-background-clip: text; -moz-background-clip: text; -webkit-text-fill-color: transparent}
+.image:not(.ms_empty) {background-size: cover!important; background-position: center!important; background-repeat: no-repeat!important}
 
 .efy_sidebar {overflow-x: hidden}
 html, body {overflow: hidden}
@@ -75,11 +75,9 @@ html, body {overflow: hidden}
     [ms_grid] {grid-template-columns: 1fr}
     #bar_position :is(#ms_grid_columns, [efy_range_text="Columns"]), [ms_bar] .desktop {display: none}
     [ms_bar] .mobile {display: flex}
-    .audio-seeker {max-width: 100%}
+    .audio_seeker {max-width: 100%}
     .ms_buttons {justify-content: space-between; width: 100%}
 }
-
- @media (max-width: 935px){}
 
 /*Match Bar height: Optional, for gap = 0
 [ms_bar] [type=range] {height: 38rem} [ms_bar] ::-moz-range-thumb {height: 38rem; width: 38rem} [ms_bar] ::-webkit-slider-thumb {width: 38rem; height: 38rem} */

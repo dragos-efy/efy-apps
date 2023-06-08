@@ -1,6 +1,6 @@
 /*default data*/ if (localStorage.efy_mn === undefined){ localStorage.efy_mn = '[{"description": "Test Income","quantity":"1","amount":100000,"date":"25/04/2023"}, {"description":"Test Expense","quantity":"1","amount":-50000,"date":"25/04/2023"}]'};
 
-/*Variables*/ const mn_modal = { toggle(){ $('.modal-overlay').classList.toggle('active')} },
+/*Variables*/ const mn_modal = { toggle(){ $('.modal-overlay').classList.toggle('active'); $('.modal_grid #description').focus() } },
 
 mn_storage = {
     get(){ return JSON.parse(localStorage.efy_mn) || []},
@@ -94,7 +94,7 @@ App = {
 /*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
 $add('details', {id: 'mn_settings'}, [
-  $add('summary', {}, [$add('i', {efy_icon: 'group'}), $add('p', {efy_lang: 'money'}), $add('mark', {efy_lang: 'alpha'})]),
+  $add('summary', {}, [$add('i', {efy_icon: 'group'}), $add('p', {efy_lang: 'money'}), $add('mark', {efy_lang: 'beta'})]),
         $add('div', {efy_tabs: 'mn_menu', efy_select: ''}, [
             /*Tabs*/
             $add('button', {efy_tab: 'backup', efy_lang: 'backup', efy_active: ''}),
@@ -107,10 +107,10 @@ $add('details', {id: 'mn_settings'}, [
                 $add('button', {class: 'mn_localstorage_reset', efy_lang: 'reset'}, [$add('i', {efy_icon: 'reload'})])
             ]),
             $add('div', {efy_content: 'grid', efy_select: '', id: 'mn_grid'}, [
-                $add('div', {}, ['Coming soon...'])
+                $add('div', {efy_lang: 'coming_soon'})
             ]),
             $add('div', {efy_content: 'tags', efy_select: '', id: 'mn_tags'}, [
-                $add('div', {}, ['Coming soon...'])
+                $add('div', {efy_lang: 'coming_soon'})
             ]),
         ])
 ], $('#efy_sbtheme'), 'beforebegin');
@@ -128,7 +128,5 @@ $wait(2, ()=>{
 
 /*Search Transactions*/ $add('input', {id: 'mn_search', type: 'text', placeholder: 'Search...', efy_search_input:''}, [], $('.mn_nav div'), 'beforeend');
 $body.setAttribute('efy_search','#data-table tr:not(.efy_ignore_search)');
-
-/*Alpha*/for (let a =['#mn_settings > summary'], i=0; i<a.length; i++){ }
 
 });

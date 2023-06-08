@@ -1,8 +1,31 @@
 [efy_lang]{
---music_player: Music Player;
+--music_player: Player de Muzică;
 --money: Bani;
+--text_editor: Editor de Text;
 --img_size: Mărime Imagini;
---effects: Effecte;
+--effects: Efecte;
 --grid: Grid;
+--bar_position: Poziție Bară;
 --tags: Taguri;
+--pitch: Pitch;
+--image: Imagine;
+--artist: Artist;
+--title: Titlu;
+--album: Album;
+--number: Număr;
+--keywords: Cuvinte cheie;
+--punctuation: Punctuație;
+--strings: Stringuri;
+--comments: Comentarii;
+--mono_font: Font Mono;
+--song_image: Imaginea cântecului;
+--transaction: Tranzacție;
+--description: Descriere;
+--quantity: Cantitate;
+--price: Preț;
+--date: Dată;
+--total: Total;
+--income: Venit;
+--expenses: Cheltuieli;
+--left_: Rămas: ;
 }

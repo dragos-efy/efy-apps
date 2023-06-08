@@ -4,7 +4,7 @@
     {name: 'donate', url: 'https://liberapay.com/efy'},
     {name: 'github', url: 'https://github.com/dragos-efy/efy'},
     {name: 'matrix', url: 'https://matrix.to/#/#efy_ui:matrix.org'},
-    {name: 'translate', url: 'https://translate.codeberg.org/projects/efy/efy/'},
+    {name: 'translate', url: 'https://translate.codeberg.org/projects/efy'},
     {name: 'call', url: 'https://meet.jit.si/efy'}
 ]; for (const {name, url} of $url_prev){ if (document.referrer.includes('/'+name)){ window.location.href = url; break}}
 </script>
@@ -41,7 +41,7 @@
         <div efy_searchable id ="dc_buttons">
             <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" efy_lang="matrix"></a>
             <a href="https://github.com/dragos-efy/efy" role="button" efy_lang="github"></a>
-            <a href="https://translate.codeberg.org/projects/efy/efy" role="button" efy_lang="translations"></a>
+            <a href="https://translate.codeberg.org/projects/efy" role="button" efy_lang="translations"></a>
             <a href="https://liberapay.com/efy" role="button" efy_lang="donate"></a>
         </div>
     </div>
@@ -51,8 +51,8 @@
 
         <div efy_searchable id ="dc_buttons">
             <a href="https://efy.piped.pages.dev" role="button" efy_card>Piped<mark efy_lang="beta"></mark></a>
-            <a href="./music.html" role="button" efy_card>Music<mark efy_lang="alpha"></mark></a>
-            <a href="./money.html" role="button" efy_card>Money<mark efy_lang="alpha"></mark></a>
+            <a href="./music.html" role="button" efy_card>Music<mark efy_lang="beta"></mark></a>
+            <a href="./money.html" role="button" efy_card>Money<mark efy_lang="beta"></mark></a>
             <a href="./calculator.html" role="button" efy_card>Calculator<mark efy_lang="alpha"></mark></a>
             <a href="./converter.html" role="button" efy_card>Converter<mark efy_lang="alpha"></mark></a>
             <a href="#" role="button" efy_card>Planner<mark efy_lang="soon"></mark></a>
