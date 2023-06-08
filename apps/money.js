@@ -1,4 +1,4 @@
-/*default data*/ if (localStorage.efy_mn === undefined){ localStorage.efy_mn = '[{"description": "Test Income","quantity":"1","amount":100000,"date":"25/04/2023"}, {"description":"Test Expense","quantity":"1","amount":-50000,"date":"25/04/2023"}]'};
+/*default data*/ if (localStorage.efy_mn === undefined){ localStorage.efy_mn = '[{"description": "Test Income","quantity":"1","price":100000,"date":"25/04/2023"}, {"description":"Test Expense","quantity":"1","price":-50000,"date":"25/04/2023"}]'};
 
 /*Variables*/ const mn_modal = { toggle(){ $('.modal-overlay').classList.toggle('active'); $('.modal_grid #description').focus() } },
 
@@ -12,13 +12,13 @@ Transaction = { all: mn_storage.get(),
     remove(index){ Transaction.all.splice(index, 1); App.reload() },
     incomes(){ let income = 0;
         Transaction.all.forEach(transaction => {
-            if (transaction.amount > 0) {income += transaction.amount}
+            if (transaction.price > 0) {income += transaction.price}
         })
         return income;
     },
     expenses(){ let expense = 0;
         Transaction.all.forEach(transaction => {
-            if (transaction.amount < 0){ expense += transaction.amount}
+            if (transaction.price < 0){ expense += transaction.price}
         })
         return expense;
     },
@@ -27,16 +27,16 @@ Transaction = { all: mn_storage.get(),
 
 mn_table = {
 
-    add_transaction(transaction, index){ const CSSClass = transaction.amount > 0 ? 'income' : 'expense', amount = format.currency(transaction.amount);
+    add_transaction(transaction, index){ const CSSClass = transaction.price > 0 ? 'income' : 'expense', price = format.currency(transaction.price);
         $add('tr', {class: 'mn_row', efy_searchable: ''}, [
             $add('td', {class: 'description'}, [transaction.description]),
             $add('td', {class: 'quantity'}, [transaction.quantity]),
-            $add('td', {class: CSSClass}, [amount]),
+            $add('td', {class: CSSClass}, [price]),
             $add('td', {class: 'date'}, [transaction.date]),
             $add('td', {}, [ $add('button', {class: 'efy_square_btn', onClick: `Transaction.remove(${index})`}, [ $add('i', {efy_icon: 'remove'}) ]) ])
         ], $('.mn_table tbody'));
     },
-    updateBalance() { let perc = ((Transaction.incomes() + Transaction.expenses()) / Transaction.incomes() * 100).toFixed(2);
+    update_balance() { let perc = ((Transaction.incomes() + Transaction.expenses()) / Transaction.incomes() * 100).toFixed(2);
         $('#incomeDisplay').innerHTML = format.currency(Transaction.incomes());
         $('#expenseDisplay').innerHTML = format.currency(Transaction.expenses());
         $('#totalDisplay').innerHTML = format.currency(Transaction.total());
@@ -45,7 +45,7 @@ mn_table = {
     clear_transactions(){ $('.mn_table tbody').innerHTML = ''}
 },
 
-format = { amount(value){ return Number(value) * 100 },
+format = { price(value){ return Number(value) * 100 },
     date(date){ const split_date = date.split('-');
         return `${split_date[2]}/${split_date[1]}/${split_date[0]}`;
     },
@@ -57,22 +57,22 @@ format = { amount(value){ return Number(value) * 100 },
     }
 },
 
-mn_form = { description: $('#description'), quantity: $('#quantity'), amount: $('#amount'), date: $('#date'),
+mn_form = { description: $('#description'), quantity: $('#quantity'), price: $('#price'), date: $('#date'),
 
-    get_values(){ return { description: mn_form.description.value, quantity: mn_form.quantity.value, amount: mn_form.amount.value, date: mn_form.date.value }},
+    get_values(){ return { description: mn_form.description.value, quantity: mn_form.quantity.value, price: mn_form.price.value, date: mn_form.date.value }},
 
-    validateFields(){ const { description, quantity, amount, date } = mn_form.get_values();
-        if (description.trim() === '' || quantity.trim() === '' || amount.trim() === '' || date.trim() === ''){
-            throw new Error('Fill in the required fields');
+    validateFields(){ const { description, quantity, price, date } = mn_form.get_values();
+        if (description.trim() === '' || quantity.trim() === '' || price.trim() === '' || date.trim() === ''){
+            $notify(5, 'Keep going', 'Fill in the required fields'); throw new Error('Fill in the required fields');
         }
     },
-    data(){ let { description, quantity, amount, date } = mn_form.get_values();
-        amount = format.amount(amount);
+    data(){ let { description, quantity, price, date } = mn_form.get_values();
+        price = format.price(price);
         date = format.date(date);
-        return ({description, quantity, amount, date})
+        return ({description, quantity, price, date})
     },
     save_transaction(transaction){ Transaction.add(transaction)},
-    clear_fields(){ mn_form.description.value = ''; mn_form.quantity.value = '1'; mn_form.amount.value = ''; mn_form.date.value = ''},
+    clear_fields(){ mn_form.description.value = ''; mn_form.quantity.value = '1'; mn_form.price.value = ''; mn_form.date.value = ''},
     submit(event){ event.preventDefault();
         try {
             mn_form.validateFields();
@@ -85,7 +85,7 @@ mn_form = { description: $('#description'), quantity: $('#quantity'), amount: $(
 },
 
 App = {
-    start(){ Transaction.all.forEach(mn_table.add_transaction); mn_table.updateBalance(); mn_storage.set(Transaction.all) },
+    start(){ Transaction.all.forEach(mn_table.add_transaction); mn_table.update_balance(); mn_storage.set(Transaction.all) },
     reload(){ mn_table.clear_transactions(); App.start()}
 }; App.start();
 
@@ -128,5 +128,10 @@ $wait(2, ()=>{
 
 /*Search Transactions*/ $add('input', {id: 'mn_search', type: 'text', placeholder: 'Search...', efy_search_input:''}, [], $('.mn_nav div'), 'beforeend');
 $body.setAttribute('efy_search','#data-table tr:not(.efy_ignore_search)');
+
+/*2 Decimals & Remove final 0 digits on Blur*/ $all('#price, #quantity').forEach(a=>{ $event(a, 'blur', ()=>{
+    let b = parseFloat(a.value); if (!isNaN(b)){ a.value = b.toFixed(2).replace(/(?<=\d[1-9])0(?=\d)|\.0+$/g, '').replace(/(\.\d*?[1-9])0+$/g, '\$1');}
+})});
+
 
 });
