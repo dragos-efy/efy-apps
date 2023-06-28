@@ -1,4 +1,4 @@
-:root {	--ms_song_time: 0; --efy_body_padding: 0; --ms_thumb_height: 50rem}
+:root {--efy_body_padding: 0; --ms_thumb_height: 50rem}
 
 [ms_app] {width: 100%; height: 100vh; max-height: 100vh; display: flex; flex-direction: column; gap: var(--efy_gap); margin: 0; overflow: hidden; padding: var(--efy_gap)}
 [ms_app*=top] {flex-direction: column-reverse}
@@ -27,7 +27,7 @@
 [ms_grid] {width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: var(--efy_gap)}
 [ms_grid="1"] {grid-template-columns: 1fr} [ms_grid="3"] {grid-template-columns: 1fr 1fr 1fr} [ms_grid="4"] {grid-template-columns: 1fr 1fr 1fr 1fr}
 
-.ms_grid_box {width: 100; height: 100%; overflow-y: auto; border-radius: var(--efy_radius)}
+.ms_grid_box {width: 100%; height: 100%; overflow-y: auto; border-radius: var(--efy_radius)}
 
 [ms_track_id] {display: flex; justify-content: space-between; gap: var(--efy_gap); height: fit-content; background: var(--efy_bg1); border-radius: var(--efy_radius); border: var(--efy_border); padding: var(--efy_gap0); color: var(--efy_text); cursor: pointer}
 .ms_song_info {display: flex; gap: 15rem}
@@ -55,7 +55,8 @@
 .ms_buttons2 {align-items: center; gap: var(--efy_gap0)}
 
 
-.song .image {display: flex!important; height: var(--ms_thumb_height); aspect-ratio: 1; border-radius: var(--efy_radius); border: var(--efy_border); align-items: center; justify-content: center}
+.song .image {display: flex!important; height: var(--ms_thumb_height); aspect-ratio: 1; border-radius: var(--efy_radius); align-items: center; justify-content: center}
+.song .image:is(.ms_empty) {border: var(--efy_border)}
 .ms_empty.image {background: var(--efy_bg1)}
 .ms_empty.image i {margin: 0; font-size: calc(var(--ms_thumb_height) / 2); letter-spacing: 0!important}
 :is(.song:hover, .song.playing) .ms_empty.image i {background: var(--efy_color); background-clip: text; -webkit-background-clip: text; -moz-background-clip: text; -webkit-text-fill-color: transparent}

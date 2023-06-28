@@ -214,18 +214,13 @@ pitch.addEventListener('change', ()=>{ let a = !pitch.checked; audio.preservesPi
 });
 
 
-const update_progress =()=>{
-  try {
-    const seeker_max_val = Number(ms_seek_slider.getAttribute('max')), audio_duration = duration_in_min(audio.duration), current_time = duration_in_min(audio.currentTime);
+const update_progress =()=>{ try {
+    const seeker_max = Number(ms_seek_slider.getAttribute('max')), audio_duration = duration_in_min(audio.duration), current_time = duration_in_min(audio.currentTime);
     ms_time_val.textContent = audio_duration;
     ms_time_nr.textContent = current_time;
-    const seeker_val = (seeker_max_val / audio.duration) * audio.currentTime;
-    if (Number(ms_seek_slider.value) !== seeker_val){
-      ms_seek_slider.value = seeker_val;
-      document.documentElement.style.setProperty('--ms_song_time', `${ms_seek_slider.value * 0.1 * 10}%`);
-    }
-  } catch (e){}
-},
+    const value = (seeker_max / audio.duration) * audio.currentTime;
+    if (Number(ms_seek_slider.value) !== value){ ms_seek_slider.value = value}
+  } catch (e){}},
 
 seek =(e)=>{ if (audio.src){ audio.currentTime = Math.round(e.target.value / (100 / audio.duration))}},
 
@@ -257,4 +252,4 @@ for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; 
 }
 
 
-});
+}, 1);

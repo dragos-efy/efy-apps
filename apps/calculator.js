@@ -1,4 +1,4 @@
-$wait(0.1, ()=>{
+$ready('#efy_sbtheme', ()=>{
 
 $add('div', {id: 'cc_calculator', class: 'efy_trans_filter'}, [
     $add('input', {type: 'text', id: 'display', readonly: '', placeholder: 'efy calculator'}),
@@ -72,4 +72,4 @@ evaluate =(a)=>{ const regex = /(\d+(\.\d*)?|\.\d+|[+\-*/()]|-?\d+(\.\d*)?|-?\.\
 }});
 
 
-});
+}, 1);

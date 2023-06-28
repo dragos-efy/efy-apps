@@ -13,11 +13,12 @@ body {min-height: 100vh}
 .dc_search i {position: absolute; z-index: 2; width: 100%; height: 100%; padding: var(--efy_padding)}
 .dc_search input {width: 39.2rem; height: 39.2rem}
 .dc_search input:focus {width: 170rem; padding-left: 35rem}
-.dc_search :not(input:focus)::placeholder {color: transparent}
+.dc_search :not(input:focus, i), .dc_search :not(input:focus)::placeholder {color: transparent}
 
 #dc_headings, #dc_buttons, #dc_lists {display: flex; flex-wrap: wrap; gap: var(--efy_gap); align-items: center; margin: var(--efy_gap) 0 var(--efy_gap) 0}
 #dc_headings * {margin: 0; line-height: 1}
 #dc_headings :is(mark, kbd) {line-height: unset!important}
+#dc_buttons.dc_cta {margin: 25rem 0 0 0}
  #dc_buttons * {margin: 0; width: fit-content}
 
  #dc_lists {align-items: unset; margin-bottom: 15rem; height: fit-content}
@@ -27,8 +28,14 @@ body {min-height: 100vh}
 [efy_tabs=demo] > [efy_content="0"] > div {display: flex; flex-direction: column; place-content: center; padding: 0 15rem}
 [efy_tabs=demo] > [efy_content="0"] h2 {text-transform: uppercase}
 
-#dc_buttons [efy_card] {display:flex; gap: var(--efy_gap); align-items: center; height: fit-content; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
-#dc_buttons [efy_card] mark {background: var(--efy_bg1); color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
+#dc_buttons [efy_card] {display: flex; align-items: center; height: fit-content; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text); padding: 0}
+#dc_buttons [efy_card] mark {background: transparent; color: var(--efy_text_trans)!important; -webkit-text-fill-color: var(--efy_text_trans); padding: 6px 10rem 0 10rem; line-height: 1; border-top: var(--efy_border); width: 100%; margin: 0!important; border-radius: 0}
+#dc_buttons [efy_card] :is(i, .logo) {padding: 15rem; border-radius: var(--efy_radius) 0 0 var(--efy_radius); display: flex; align-items: center; justify-content: center; height: 63rem; width: 63rem; border-right: var(--efy_border); font-size: 30rem}
+#dc_buttons [efy_card] .column_flex {display: flex; flex-direction: column; margin: 0!important; padding: 0!important}
+#dc_buttons [efy_card] .column_flex div {padding: 0px 12rem 4px 10rem}
+
+.piped_logo {width: 20rem!important; height: 34rem; margin-right: -3rem!important;}
+.piped_logo path {fill: var(--efy_text)}
 
 #dc_icons {display: flex; flex-wrap: wrap; gap: var(--efy_gap)}
 #dc_icons > div {display: flex; width: fit-content; padding: 0}
@@ -45,6 +52,16 @@ body {min-height: 100vh}
 :is([efy_content="2"], [efy_content="3"]) > div > details {margin: 0}
 
 [efy_tabs="demo"] > [efy_content="0"] > div:first-of-type > h2 {line-height: 1; margin-bottom: 20rem}
+
+
+/*Dashboard Mode*/ [dc_dash] {--dc_dash_width: 800rem; --dc_dash_align: center}
+[dc_dash=on] [efy_tabs=demo] :is(.dc_left, .dc_right), [dc_dash=on] .dash_hide {display: none!important}
+[dc_dash=on] [efy_tabs=demo] > [efy_content="0"] {grid-template-columns: 1fr; min-height: calc(100vh - var(--efy_gap) * 2); max-width: var(--dc_dash_width)}
+[dc_dash=on] .dc_nav {justify-content: center}
+[dc_dash=on] [efy_tabs=demo] > [efy_content="0"] > div {align-items: var(--dc_dash_align)}
+[dc_dash=on] #dc_buttons {place-content: var(--dc_dash_align)}
+.soon_off .soon {display: none!important}
+
 
  /*Convergence*/
  @media (max-width: 767.9px){

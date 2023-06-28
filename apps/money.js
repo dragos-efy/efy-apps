@@ -116,7 +116,7 @@ $add('details', {id: 'mn_settings'}, [
 ], $('#efy_sbtheme'), 'beforebegin');
 
 
-$wait(2, ()=>{
+$ready('.mn_localstorage_reset', ()=>{
     /*Export Settings*/ $event($('.mn_localstorage_export'), 'click', ()=>{ let e = $('.mn_localstorage_export'), f = localStorage.efy_mn.replaceAll('  ', '').replaceAll(',"', ', "').replaceAll('"},', '"},\n').replaceAll('":', '": ');
     e.href = URL.createObjectURL(new Blob([f], {type: 'application/json'})); e.setAttribute('download', 'efy_money.json'); console.log('hi') });
 
@@ -124,7 +124,7 @@ $wait(2, ()=>{
 	read.onload =()=>{localStorage.efy_mn = read.result; location.reload()}; read.readAsText(file)});
 
     /*Reset Settings*/ $all(".mn_localstorage_reset").forEach(x =>{ x.onclick =()=>{ Object.entries(localStorage).forEach(([k])=>{ if (k.includes('efy_mn')){ localStorage.removeItem(k)}}); location.reload()}});
-});
+}, 1);
 
 /*Search Transactions*/ $add('input', {id: 'mn_search', type: 'text', placeholder: 'Search...', efy_search_input:''}, [], $('.mn_nav div'), 'beforeend');
 $body.setAttribute('efy_search','#data-table tr:not(.efy_ignore_search)');
@@ -134,4 +134,4 @@ $body.setAttribute('efy_search','#data-table tr:not(.efy_ignore_search)');
 })});
 
 
-});
+}, 1);

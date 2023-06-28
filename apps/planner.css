@@ -1,0 +1,131 @@
+:root {--pn_priority_0: var(--efy_text); --pn_priority_1: 85 100% 40%; --pn_priority_2: 50 100% 50%; --pn_priority_3: 0 100% 50%}
+
+[pn_priority], #pn_goals.priority_color [pn_has] button, [efy_color*=pn_priority_0] [efy_color_preview] {background: var(--efy_text)!important}
+[pn_priority=low], #pn_goals.priority_color [pn_has=low] button, [efy_color*=pn_priority_1] [efy_color_preview] {background: hsl(var(--pn_priority_1))!important}
+[pn_priority=medium], #pn_goals.priority_color [pn_has=medium] button, [efy_color*=pn_priority_2] [efy_color_preview] {background: hsl(var(--pn_priority_2))!important}
+[pn_priority=high], #pn_goals.priority_color [pn_has=high] button, [efy_color*=pn_priority_3] [efy_color_preview] {background: hsl(var(--pn_priority_3))!important}
+
+.pn_nav {display: flex; justify-content: space-between; align-items: center; margin-bottom: 5rem}
+.pn_nav :is(button, a[role=button], label) {margin: 0; white-space: nowrap}
+.pn_nav .pn_toggles, .pn_tags {display: flex; gap: var(--efy_gap0)}
+
+.pn_search {width: fit-content; height: fit-content; position: relative}
+.pn_search input {width: 39.2rem; height: 39.2rem}
+.pn_search i {position: absolute; z-index: 2; width: 100%; height: 100%; padding: var(--efy_padding)}
+.pn_search input:focus {width: 170rem; padding-left: 35rem}
+.pn_search :not(input:focus, i), .pn_search :not(input:focus)::placeholder {color: transparent}
+
+.modal-overlay {margin: 10rem 0 5rem 0}
+
+.buttons :is(.cancel, .pn_submit) {display: flex; justify-content: center; align-items: center}
+
+.modal-overlay {display: none}
+.modal-overlay.active {display: block}
+
+#form {max-width: 500px}
+#form h2 {margin-top: 0}
+
+.modal {padding: 0}
+.modal:focus-within {box-shadow: none!important}
+
+.modal_grid {display: flex; flex-direction: column; gap: 0}
+.modal_grid .grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); gap: var(--efy_gap); border-top: var(--efy_border); padding: var(--efy_gap)}
+.modal_grid :is(input, [efy_number]) {margin: 0}
+.modal_grid #description {margin: 0 var(--efy_gap) var(--efy_gap) var(--efy_gap); width: calc(100% - var(--efy_gap) * 2)}
+
+.time :is(.hour, .minute), .time label:not([for=time]) {border-radius: 0!important}
+.time input {text-align: center}
+
+.modal_grid .input-group {display: flex}
+.modal_grid .input-group label:not(details label) {display: flex; padding: var(--efy_padding); background: var(--efy_bg1); border-radius: var(--efy_radius) 0 0 var(--efy_radius); border: var(--efy_border); border-right: 0}
+.modal_grid .input-group :is(input, select) {border-radius: 0 var(--efy_radius) var(--efy_radius) 0; height: 100%; line-height: 1; margin: 0}
+.modal_grid .input-group [efy_number] {width: 100%}
+.modal_grid .input-group:focus-within :is(label:not(details label), input:not(input:focus)) {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text_trans2); border-color: var(--efy_text_trans2)}
+.modal_grid .input-group:focus-within {gap: calc(var(--efy_border_size) + 2rem)}
+
+.modal_grid .input-group details {width: 100%; margin: 0}
+
+.input-group.actions {padding: var(--efy_gap)}
+.input-group.actions, .input-group.actions .buttons {display: flex; justify-content: space-between; align-items: center; gap: var(--efy_gap0)}
+.input-group.actions button {width: 100%; margin: 0}
+.input-group.actions button i {margin: 0}
+
+#pn_search {margin: 0}
+
+#pn_backup {display: flex; flex-wrap: wrap; gap: var(--efy_gap0)}
+#pn_backup > :is(a, label, button) {margin: 0}
+
+/*Temporary*/ [efy_number] button {display: none!important}
+
+
+/*Planner*/
+[pn_planner] {display: grid; gap: calc(var(--efy_gap) /2.5) var(--efy_gap); grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr))}
+:is(#pn_goals, #pn_notes, #pn_links) .header {display: flex; justify-content: start; gap: var(--efy_gap0); align-items: center; margin: 5rem 0 10rem 0}
+:is(#pn_goals, #pn_notes, #pn_links) .header mark {padding: 5rem 7rem; background: var(--efy_bg1); color: var(--efy_text); line-height: 1; font-size: 18rem; border: var(--efy_border); align-items: center; display: flex; justify-content: center; min-width: 30rem}
+:is(#pn_goals, #pn_notes, #pn_links) h5 { line-height: 1; margin: 0}
+:is(#pn_goals, #pn_notes, #pn_links) .pn_full i {margin-right: 0; font-size: 14rem}
+:is(#pn_goals, #pn_notes, #pn_links) .pn_full {padding: 7rem 0!important}
+:is(#pn_goals, #pn_links) [efy_drag] > div {background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius); padding: var(--efy_padding)}
+#pn_links [efy_drag] {display: grid; gap: var(--efy_gap0); grid-template-columns: 1fr 1fr; height: fit-content}
+
+:is(#pn_goals, #pn_notes) [efy_drag] details[open], #priority[open] {padding: 0}
+:is(#pn_goals, #pn_notes) [efy_drag] details[open] summary, #priority[open] summary {padding: 0 0 0 12rem; margin-bottom: 7rem}
+:is(#pn_goals, #pn_notes) [efy_drag] details[open] summary:before, #priority[open] summary:before {right: 9rem}
+:is(#pn_goals, #pn_notes) [efy_drag] .description {white-space: pre-wrap; text-wrap: wrap; border-top: var(--efy_border); border-bottom: var(--efy_border); padding: 10rem; margin: 0 0 10rem 0}
+:is(#pn_goals, #pn_notes) [efy_drag] .date {background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius); padding: 6rem 8rem; width: fit-content;}
+[efy_drag] .pn_tags {padding: 0 10rem 10rem 10rem}
+#priority[open] > div {border-top: var(--efy_border);  padding: 10rem; display: flex; flex-wrap: wrap; gap: var(--efy_gap0)}
+#priority[open] > div label {margin: 0}
+
+[efy_drag] {display: flex; gap: var(--efy_gap0); flex-wrap: wrap;}
+[efy_drag] > * {width: 100%; margin: 0}
+[efy_drag=on] * {cursor: move!important} [efy_drag=on] * > * {pointer-events: none}
+[efy_drag=on] > *.active {border: var(--efy_border_size) dashed var(--efy_text); background: transparent}
+[efy_drag] a {padding: var(--efy_padding); background: var(--efy_bg1)!important; -webkit-text-fill-color: var(--efy_text)!important; color: var(--efy_text)!important}
+[efy_drag_cursor] {display: none}
+
+
+[efy_tabs=pn_form] :is([efy_tab], [efy_tab]:last-of-type) {margin: 0}
+[efy_tabs=pn_form] [efy_content] {padding: 0; border: none; background: transparent}
+[efy_tabs=pn_form] .pn_tabs {display: flex; align-items: center; gap: var(--efy_gap0)}
+
+
+:is(#pn_goals, #pn_notes, #pn_links) summary {display: flex; gap: 8rem; align-items: center; padding-right: 32rem!important}
+[pn_priority] {width: 10rem; height: 10rem; border-radius: 50%; padding: 5rem}
+#pn_goals .time {border: var(--efy_border); line-height: 1; padding: 3rem 5rem; background: var(--efy_bg1); border-radius: var(--efy_radius0); display: flex; align-items: center}
+
+
+#pn_goals [pn_done=true] :is([pn_priority], summary .time, [efy_timer]) {display: none}
+#pn_goals [pn_done=true] .title {opacity: 0.5; text-decoration: line-through}
+#pn_goals [pn_done=true] .description {padding: 0; border-bottom: 0}
+
+:is(#pn_goals, #pn_notes, #pn_links) .title {width: fit-content}
+:is(#pn_goals, #pn_notes, #pn_links) :is(.title, .description2, .url)[contenteditable=true] {border: var(--efy_border_size) dashed var(--efy_text_trans2); border-radius: calc(var(--efy_radius0) * 0.75); padding: 0 5rem}
+:is(#pn_goals, #pn_notes, #pn_links) :is(.title, .description2, .url)[contenteditable=true]:focus {border: var(--efy_border_size) solid var(--efy_text); box-shadow: 0 0 0 var(--efy_border_size) var(--efy_text)}
+:is(#pn_goals, #pn_notes, #pn_links):has([contenteditable=true]:focus) :is(details, a) {pointer-events: none; box-shadow: none!important}
+
+#pn_links .url:not([contenteditable=true]), #pn_links .pn_tags:not(.active) {display: none}
+#pn_links .url {margin-top: var(--efy_gap0); line-break: anywhere}
+#pn_links .pn_tags {padding: var(--efy_gap0) 0 0 0; margin: var(--efy_gap0) 0 0 0; border-top: var(--efy_border)}
+
+.title {display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; word-break: break-all; overflow-wrap: anywhere}
+.title[contenteditable=true] {-webkit-line-clamp: 3; line-height: 20rem}
+#pn_links .title {max-width: 100%}
+
+.pn_toggles label:before, .pn_toggles label:after {display: none!important}
+.pn_toggles label i {margin: 0}
+#pn_edit_toggle, #pn_drag_toggle {pointer-events: none!important}
+html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) {display: flex; gap: 8rem; align-items: center}
+html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {margin: 0}
+[for=pn_drag_toggle] [efy_icon=move] {margin-right: 4rem}
+[for=pn_drag_toggle] [efy_icon=move]:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
+
+#pn_theme {display: flex; flex-wrap: wrap; gap: var(--efy_gap0)}
+#pn_theme .pn_title {line-height: 1; margin: 0; width: 100%}
+#pn_theme :is([efy_color_preview], label) {margin: 0}
+
+/*Convergence*/
+@media (max-width: 799px) {
+    :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {display: none}
+    [for=pn_drag_toggle] [efy_icon=move] {margin-right: 0}
+}

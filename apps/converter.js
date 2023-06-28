@@ -1,4 +1,4 @@
-$ready_once('.efy_sidebar').then(()=>{
+$ready('.efy_sidebar', ()=>{
 
 /*Load App*/ $add('h4', {}, ['EFY Converter - Alpha'], $body);
 $add('p', {}, ['Disabled options are not ready yet. The other ones should in theory work, but you might experience bugs. Have fun!'], $body);
@@ -30,4 +30,4 @@ console.log(a);
 
 });
 
-});
+}, 1);
