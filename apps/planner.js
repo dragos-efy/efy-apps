@@ -1,6 +1,6 @@
 /*Storage*/ let  efy_pn = {}, $pn_save =()=>{}; try { if (localStorage.efy_pn){ efy_pn = JSON.parse(localStorage.efy_pn)} $pn_save =()=>{localStorage.efy_pn = JSON.stringify(efy_pn)}} catch {}
 
-/*default data*/ let pn_defaults = ['[{"text": "Goal 1","priority":"high","date":"25/04/2023", "time": "30"}, {"text":"Goal 2","priority":"medium","date":"25/04/2023", "time": "150"}, {"text":"Goal 3","priority":"low","date":"25/04/2023", "time": "45"}, {"text":"Goal 4","priority":"normal","date":"29/06/2023", "time": "0"}, {"text":"Goal 5","priority":"normal","date":"25/04/2023", "time": "600", "done": "true"}]', '[{"text": "Note 1","description":"1","date":"25/04/2023"}, {"text":"Note 2","description":"2","date":"27/06/2023"}]', '[{"text": "EFY Site","url":"https://efy.ooo"}, {"text":"Music","url":"./music.html"}, {"text":"Money","url":"./money.html"}, {"text":"Github","url":"https://github.com/dragos-efy/efy"}]']; ['goals', 'notes', 'links'].map((a,i)=>{ if (localStorage[`efy_pn_${a}`] === undefined){ localStorage[`efy_pn_${a}`] = pn_defaults[i] }});
+/*default data*/ let pn_defaults = ['[{"text": "Goal 1","priority":"high","date":"25/04/2023", "time": "30"}, {"text":"Goal 2","priority":"medium","date":"25/04/2023", "time": "150"}, {"text":"Goal 3","priority":"low","date":"25/04/2023", "time": "45"}, {"text":"Goal 4","priority":"normal","date":"29/06/2023", "time": "0"}, {"text":"Goal 5","priority":"normal","date":"25/04/2023", "time": "600", "done": "true"}]', '[{"text": "Note 1","description":"1","date":"25/04/2023"}, {"text":"Note 2","description":"2","date":"27/06/2023"}]', '[{"text": "EFY Site","url":"https://efy.ooo"}, {"text":"Music","url":"./music.html"}, {"text":"Money","url":"./money.html"}, {"text":"Github","url":"https://github.com/dragos-efy/efy"}]', '[{"text": "Personal"}, {"text": "Work"}, {"text": "Later"}, {"text": "Fun"}]']; 'goals notes links tags'.split(' ').map((a,i)=>{ if (localStorage[`efy_pn_${a}`] === undefined){ localStorage[`efy_pn_${a}`] = pn_defaults[i] }});
 
 /*Variables*/ const pn_modal ={ toggle(){ $('.modal-overlay').classList.toggle('active'); $('.modal_grid #text').focus() } },
 /*Convert Month Number to Name*/ month_name = {'01': 'January', '02': 'February', '03': 'March', '04': 'April', '05': 'May', '06': 'June', '07': 'July', '08': 'August', '09': 'September', '10': 'October', '11': 'November', '12': 'December'},
@@ -29,12 +29,16 @@ Link ={ all: pn_storage.get('links'),
     add(a){ Link.all.push(a); App_links.reload()},
     remove(index){ Link.all.splice(index, 1); App_links.reload()}
 },
+Tag ={ all: pn_storage.get('tags'),
+    add(a){ Tag.all.push(a); App_tags.reload()},
+    remove(index){ Tag.all.splice(index, 1); App_tags.reload()}
+},
 
 ////
 
 pn_notes ={ add_note(note, index){ let now = 'pn_note_' + Date.now(), date = note.date.split('/'), month = month_name[date[1]];
     $add('details', {efy_searchable: '', 'data-value': index, id: now, pn_date: note.date}, [ $add('summary', {}, [ $add('div', {class: 'title'}, [note.text]) ]),
-        $add('div', {class: 'description'}, [ $add('div', {class: 'description2'}, [note.description]) ]),
+        $add('div', {class: 'description'}, [ $add('textarea', {class: 'description2 efy_trans_filter_off', readonly: ''}, [note.description]) ]),
         $add('div', {class: 'pn_tags'}, [
             $add('div', {class: 'date'}, [ month +', '+ date[0] ]),
                 $add('button', {class: 'remove efy_square_btn', onClick: `Note.remove(${index})`}, [ $add('i', {efy_icon: 'remove'}) ])
@@ -63,6 +67,14 @@ pn_links ={ add_link(a, index){
     ], $('#pn_links [efy_drag]'));
 }, clear_links(){ $('#pn_links [efy_drag]').innerHTML = ''}},
 
+pn_tags ={ add_tag(a, index){
+    $add('div', {efy_searchable: '', efy_card: ''}, [ $add('p', {class: 'title'}, [a.text]),
+        $add('div', {class: 'pn_tags'}, [
+            $add('button', {class: 'remove efy_square_btn', onClick: `Tag.remove(${index})`}, [ $add('i', {efy_icon: 'remove'}) ])
+        ])
+    ], $('#pn_tags [efy_drag]'));
+}, clear_tags(){ $('#pn_tags [efy_drag]').innerHTML = ''}},
+
 ////
 
 pn_form_goals =()=>{ let x = '.pn_goals_form #', y = '.pn_goals_form .', a = $(x+'text'), b = $(x+'priority input:checked'), c = $(x+'date'), d1 = $(y+'hour'), d2 = $(y+'minute'), d3 = $(y+'second'), aa = a.value, bb = b.id, cc = format.date(c.value), dd = String(Math.floor((Number(d1.value) * 3600) + (Number(d2.value) * 60) + Number(d3.value)));
@@ -80,6 +92,11 @@ pn_form_links =()=>{ let x = '.pn_links_form #', a = $(x+'text'), b = $(x+'url')
         else { Link.add({ text: aa, url: bb }); a.value = ''; b.value = ''; pn_modal.toggle()}
 } catch (error){ console.log(error.message)}},
 
+pn_form_tags =()=>{ let x = '.pn_tags_form #', a = $(x+'text'), aa = a.value;
+    try { if (aa.trim() === ''){ $notify(3, 'Missed Required Fields', 'Fill in the rest')}
+        else { Tag.add({text: aa}); a.value = ''; pn_modal.toggle()}
+} catch (error){ console.log(error.message)}},
+
 ////
 
 App_notes ={
@@ -93,8 +110,12 @@ App_goals ={
 App_links ={
     start(){ Link.all.forEach(pn_links.add_link); pn_storage.set('links', Link.all); $('#pn_links .header mark').textContent = $all('#pn_links [efy_drag] > *').length},
     reload(){ pn_links.clear_links(); App_links.start()}
+},
+App_tags ={
+    start(){ Tag.all.forEach(pn_tags.add_tag); pn_storage.set('tags', Tag.all); $('#pn_tags .header mark').textContent = $all('#pn_tags [efy_drag] > *').length},
+    reload(){ pn_tags.clear_tags(); App_tags.start()}
 };
-App_goals.start(); App_notes.start(); App_links.start();
+App_goals.start(); App_notes.start(); App_links.start(); App_tags.start();
 
 
 
@@ -148,7 +169,7 @@ $wait(2, ()=>{
 $body.setAttribute('efy_search','#pn_notes [efy_drag] > *:not(.efy_ignore_search)');
 
 /*Submit*/ $event($('.pn_submit'), 'click', ()=>{ let a = $('[efy_tabs=pn_form] [efy_tab][efy_active]').getAttribute('efy_tab');
-    if (a == 'goals'){ pn_form_goals()} else if (a == 'notes'){ pn_form_notes()} else if (a == 'links'){ pn_form_links()} else {$notify(3, "Can't submit it", 'Try a different approach')}
+    if (a == 'goals'){ pn_form_goals()} else if (a == 'notes'){ pn_form_notes()} else if (a == 'links'){ pn_form_links()} else if (a == 'tags'){ pn_form_tags()} else {$notify(3, "Can't submit it", 'Try a different approach')}
 });
 
 
@@ -212,7 +233,7 @@ $pn_save_edits =()=>{ let goals = [], notes = [], links = [];
     }); localStorage[`efy_pn_goals`] = JSON.stringify(goals);
 
     /*Notes*/ $all('#pn_notes details').forEach(a =>{
-        let b = $$(a, '.title').textContent, c = $$(a, '.description2').innerHTML.replaceAll('</div><div>', '\n').replaceAll('<div>', '\n').replaceAll('</div>', '').replaceAll('<br>', ''), d = a.getAttribute('pn_date');
+        let b = $$(a, '.title').textContent, c = $$(a, '.description2').value/*.replaceAll('</div><div>', '\n').replaceAll('<div>', '\n').replaceAll('</div>', '').replaceAll('<br>', '')*/, d = a.getAttribute('pn_date');
         notes.push({"text": b, "description": c, "date": d})
     }); localStorage[`efy_pn_notes`] = JSON.stringify(notes);
 
@@ -221,14 +242,21 @@ $pn_save_edits =()=>{ let goals = [], notes = [], links = [];
     }); localStorage[`efy_pn_links`] = JSON.stringify(links);
 };
 
-/*Drag*/ $event($('#pn_drag_toggle'), 'change', (a) => { let b = $all(':is(#pn_goals, #pn_notes, #pn_links) [efy_drag]'); efy_drag($('#pn_goals [efy_drag]')); efy_drag($('#pn_notes [efy_drag]')); efy_drag($('#pn_links [efy_drag]'));
+/*Drag*/ $event($('#pn_drag_toggle'), 'change', (a) => { let b = $all(':is(#pn_goals, #pn_notes, #pn_links, #pn_tags) [efy_drag]');
+    'goal note link tag'.split(' ').forEach(c => efy_drag($(`#pn_${c}s [efy_drag]`)) );
     if (a.target.checked){ atb_all(b, 'efy_drag', 'on'); $notify(2, 'Move - ON', 'You can order items now'); }
     else { atb_all(b, 'efy_drag', ''); $pn_save_edits(); }
 });
 
-/*Edit*/ $event($('#pn_edit_toggle'), 'change', (a) => { let b = $all(':is(#pn_goals, #pn_notes, #pn_links) :is(.title, .description2, .url)'), c = []; $all('#pn_links .url').forEach(a => c.push({url: a.textContent}));
-  if (a.target.checked){ atb_all(b, 'contenteditable', 'true'); $all('#pn_links a').forEach(a=>{ a.removeAttribute('href'); a.removeAttribute('target')})}
-  else { atb_all(b, 'contenteditable', ''); $pn_save_edits(); $all('#pn_links a').forEach((a,i)=>{ a.href = c[i].url; a.target = '_blank' })}
+/*Edit*/ $event($('#pn_edit_toggle'), 'change', (a) => { let b = $all(':is(#pn_goals, #pn_notes, #pn_links) :is(.title, .url)'), c = []; $all('#pn_links .url').forEach(a => c.push({url: a.textContent}));
+    if (a.target.checked){ atb_all(b, 'contenteditable', 'true');
+        $all('#pn_links a').forEach(a=>{ a.removeAttribute('href'); a.removeAttribute('target')});
+        $all('#pn_notes .description2').forEach(a=>{ a.removeAttribute('readonly')})
+}
+    else { atb_all(b, 'contenteditable', 'false'); $pn_save_edits();
+        $all('#pn_links a').forEach((a,i)=>{ a.href = c[i].url; a.target = '_blank' });
+        $all('#pn_notes .description2').forEach(a=>{ a.setAttribute('readonly', '')})
+}
   $all('#pn_links .pn_tags').forEach(x => x.classList.toggle('active'))
 });
 
@@ -241,8 +269,12 @@ $pn_save_edits =()=>{ let goals = [], notes = [], links = [];
 $event($('#pn_priority_custom'), 'change', (a)=>{ $('#pn_goals').classList.toggle('priority_color'); efy_pn.priority_match = a.target.checked; $pn_save() });
 if (efy_pn.priority_match == true){ $('#pn_goals').classList.add('priority_color'); $('#pn_priority_custom').checked = true}
 
-//////////
-
+/*Auto Resize*/ $ready('#pn_notes .description2', (a)=>{ a.style.height = 0; a.style.height = a.scrollHeight + 'rem';
+    $event(a, 'input', ()=>{ a.style.height = 0; a.style.height = a.scrollHeight + 'rem'})
+});
+$all('#pn_notes details').forEach(a =>{ let b = $$(a, '.description2');
+    $event(a, 'toggle', ()=>{ b.style.height = 0; b.style.height = b.scrollHeight + 'rem'})
+});
 
 
 }, 1);

@@ -60,11 +60,12 @@
 
 /*Planner*/
 [pn_planner] {display: grid; gap: calc(var(--efy_gap) /2.5) var(--efy_gap); grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr))}
-:is(#pn_goals, #pn_notes, #pn_links) .header {display: flex; justify-content: start; gap: var(--efy_gap0); align-items: center; margin: 5rem 0 10rem 0}
-:is(#pn_goals, #pn_notes, #pn_links) .header mark {padding: 5rem 7rem; background: var(--efy_bg1); color: var(--efy_text); line-height: 1; font-size: 18rem; border: var(--efy_border); align-items: center; display: flex; justify-content: center; min-width: 30rem}
-:is(#pn_goals, #pn_notes, #pn_links) h5 { line-height: 1; margin: 0}
-:is(#pn_goals, #pn_notes, #pn_links) .pn_full i {margin-right: 0; font-size: 14rem}
-:is(#pn_goals, #pn_notes, #pn_links) .pn_full {padding: 7rem 0!important}
+:is(#pn_goals, #pn_notes, #pn_links, #pn_tags) .header {display: flex; justify-content: start; gap: var(--efy_gap0); align-items: center; margin: 5rem 0 10rem 0}
+#pn_tags .header {margin: 0rem 15rem 15rem 15rem}
+:is(#pn_goals, #pn_notes, #pn_links, #pn_tags) .header mark {padding: 5rem 7rem; background: var(--efy_bg1); color: var(--efy_text); line-height: 1; font-size: 18rem; border: var(--efy_border); align-items: center; display: flex; justify-content: center; min-width: 30rem}
+:is(#pn_goals, #pn_notes, #pn_links, #pn_tags) h5 { line-height: 1; margin: 0}
+:is(#pn_goals, #pn_notes, #pn_links, #pn_tags) .pn_full i {margin-right: 0; font-size: 14rem}
+:is(#pn_goals, #pn_notes, #pn_links, #pn_tags) .pn_full {padding: 7rem 0!important}
 :is(#pn_goals, #pn_links) [efy_drag] > div {background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius); padding: var(--efy_padding)}
 #pn_links [efy_drag] {display: grid; gap: var(--efy_gap0); grid-template-columns: 1fr 1fr; height: fit-content}
 
@@ -100,6 +101,8 @@
 #pn_goals [pn_done=true] .description {padding: 0; border-bottom: 0}
 
 :is(#pn_goals, #pn_notes, #pn_links) .title {width: fit-content}
+:is(#pn_goals, #pn_notes) .description2 {background: transparent; border: 0; resize: none; margin: 0; padding: 0; display: flex; cursor: unset; overflow: hidden; border-radius: 0}
+:is(#pn_goals, #pn_notes) .description2:not([contenteditable=true]):focus {box-shadow: none!important}
 :is(#pn_goals, #pn_notes, #pn_links) :is(.title, .description2, .url)[contenteditable=true] {border: var(--efy_border_size) dashed var(--efy_text_trans2); border-radius: calc(var(--efy_radius0) * 0.75); padding: 0 5rem}
 :is(#pn_goals, #pn_notes, #pn_links) :is(.title, .description2, .url)[contenteditable=true]:focus {border: var(--efy_border_size) solid var(--efy_text); box-shadow: 0 0 0 var(--efy_border_size) var(--efy_text)}
 :is(#pn_goals, #pn_notes, #pn_links):has([contenteditable=true]:focus) :is(details, a) {pointer-events: none; box-shadow: none!important}
@@ -107,6 +110,13 @@
 #pn_links .url:not([contenteditable=true]), #pn_links .pn_tags:not(.active) {display: none}
 #pn_links .url {margin-top: var(--efy_gap0); line-break: anywhere}
 #pn_links .pn_tags {padding: var(--efy_gap0) 0 0 0; margin: var(--efy_gap0) 0 0 0; border-top: var(--efy_border)}
+
+#pn_tags [efy_drag] {padding: 0 var(--efy_gap) var(--efy_gap) var(--efy_gap)}
+#pn_tags [efy_drag] > div {width: fit-content; height: fit-content; display: flex; padding: 0 0 0 10rem; gap: var(--efy_gap0); align-items: center}
+#pn_tags [efy_drag] > div .pn_tags {padding: 0!important; display: flex!important}
+#pn_tags [efy_drag] > div .pn_tags .remove {width: 30rem; height: 30rem; align-items: center; justify-content: center; background: transparent; border: 0; border-left: var(--efy_border); border-radius: 0 var(--efy_radius) var(--efy_radius) 0}
+#pn_tags [efy_drag] > div .pn_tags .remove:hover {background: var(--efy_bg1)}
+#pn_tags [efy_drag] > div .pn_tags .remove i {-webkit-text-fill-color: var(--efy_text); color: var(--efy_text); font-size: 12rem}
 
 .title {display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; word-break: break-all; overflow-wrap: anywhere}
 .title[contenteditable=true] {-webkit-line-clamp: 3; line-height: 20rem}
@@ -129,3 +139,5 @@ html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {margin: 0}
     :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {display: none}
     [for=pn_drag_toggle] [efy_icon=move] {margin-right: 0}
 }
+
+/*Temporary*/ .pn_tabs [efy_tab=tags] {display: none}

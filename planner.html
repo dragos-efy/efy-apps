@@ -30,6 +30,7 @@
                             <button efy_tab="goals" efy_active efy_lang="goals"></button>
                             <button efy_tab="notes" efy_lang="notes"></button>
                             <button efy_tab="links" efy_lang="links"></button>
+                            <button efy_tab="tags" efy_lang="tags"></button>
                         </div>
                         <div class="buttons">
                             <button class="pn_submit efy_square_btn" title="Save"><i efy_icon="check"></i></button>
@@ -43,7 +44,7 @@
 
                     <div class="modal_grid"><div class="grid">
                         <div class="input-group">
-                            <label for="text" efy_lang="text" class="efy_trans_filter"></label>
+                            <label for="text" efy_lang="name" class="efy_trans_filter"></label>
                             <input type="text" id="text" name="text">
                         </div>
                         <div class="input-group">
@@ -79,7 +80,7 @@
 
                     <div class="modal_grid"><div class="grid">
                         <div class="input-group">
-                            <label for="text" efy_lang="text" class="efy_trans_filter"></label>
+                            <label for="text" efy_lang="name" class="efy_trans_filter"></label>
                             <input type="text" id="text" name="text">
                         </div>
                         <div class="input-group">
@@ -103,7 +104,7 @@
 
                     <div class="modal_grid"><div class="grid">
                         <div class="input-group">
-                            <label for="text" efy_lang="text" class="efy_trans_filter"></label>
+                            <label for="text" efy_lang="name" class="efy_trans_filter"></label>
                             <input type="text" id="text" name="text">
                         </div>
                         <div class="input-group">
@@ -118,6 +119,28 @@
                     </div>
 
                 </form>
+            </div>
+
+            <div efy_content="tags" class="form pn_tags_form"><form action="#">
+
+                    <div class="modal_grid"><div class="grid">
+                        <div class="input-group">
+                            <label for="text" efy_lang="name" class="efy_trans_filter"></label>
+                            <input type="text" id="text" name="text">
+                        </div></div>
+
+                    </div>
+
+                </form>
+
+                <div id="pn_tags" >
+                    <div class="header">
+                        <h5 class="efy_no_drag" efy_lang="tags"></h5>
+                        <mark class="efy_trans_filter">0</mark>
+                        <mark class="efy_trans_filter pn_full" efy_toggle="#pn_notes, #pn_goals" title="Full Size"><i efy_icon="fullscreen"></i></mark>
+                    </div><div efy_drag></div>
+                </div>
+
             </div>
 
         </div></div>

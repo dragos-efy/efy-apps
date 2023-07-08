@@ -1,6 +1,6 @@
 :root {--efy_body_padding: 0; --ms_thumb_height: 50rem}
 
-[ms_app] {width: 100%; height: 100vh; max-height: 100vh; display: flex; flex-direction: column; gap: var(--efy_gap); margin: 0; overflow: hidden; padding: var(--efy_gap)}
+[ms_app] {width: 100%; height: var(--efy_100vh); max-height: var(--efy_100vh); display: flex; flex-direction: column; gap: var(--efy_gap); margin: 0; overflow: hidden; padding: var(--efy_gap)}
 [ms_app*=top] {flex-direction: column-reverse}
 
 .prev {position: relative} .prev i {transform: rotate(-180deg)!important}
