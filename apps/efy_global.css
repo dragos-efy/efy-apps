@@ -22,3 +22,7 @@
     --efy_bg: hsl(0 0% 8%);
     --efy_text: hsl(0 0% 100%);
 } /*Your code starts bellow*/
+
+/*View Transitions API*/ @keyframes vt_in {from {opacity: 0}} @keyframes vt_out {to { opacity: 0}} @keyframes vt_in_scale {from {transform: scale(0.1)}} @keyframes vt_out_scale {to { transform: scale(0.1)}}
+::view-transition-old(root) {animation: 90ms cubic-bezier(0.4, 0, 1, 1) both vt_out, 300ms cubic-bezier(0.4, 0, 0.2, 1) both vt_out_scale}
+::view-transition-new(root) {animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both vt_in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both vt_in_scale}

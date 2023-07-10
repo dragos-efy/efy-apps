@@ -1,13 +1,19 @@
-:root {--pn_priority_0: var(--efy_text); --pn_priority_1: 85 100% 40%; --pn_priority_2: 50 100% 50%; --pn_priority_3: 0 100% 50%}
+:root {overflow-x: hidden; --pn_priority_0: var(--efy_text); --pn_priority_1: 85 100% 40%; --pn_priority_2: 50 100% 50%; --pn_priority_3: 0 100% 50%}
 
 [pn_priority], #pn_goals.priority_color [pn_has] button, [efy_color*=pn_priority_0] [efy_color_preview] {background: var(--efy_text)!important}
 [pn_priority=low], #pn_goals.priority_color [pn_has=low] button, [efy_color*=pn_priority_1] [efy_color_preview] {background: hsl(var(--pn_priority_1))!important}
 [pn_priority=medium], #pn_goals.priority_color [pn_has=medium] button, [efy_color*=pn_priority_2] [efy_color_preview] {background: hsl(var(--pn_priority_2))!important}
 [pn_priority=high], #pn_goals.priority_color [pn_has=high] button, [efy_color*=pn_priority_3] [efy_color_preview] {background: hsl(var(--pn_priority_3))!important}
 
+#pn_goals.priority_color [pn_done=true] .done_btn {background: var(--efy_text_trans)!important; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
+#pn_goals.priority_color [pn_has=low][pn_done=true] .done_btn {background: hsla(var(--pn_priority_1) / .3)!important; color: hsl(var(--pn_priority_1)); -webkit-text-fill-color: hsl(var(--pn_priority_1))}
+#pn_goals.priority_color [pn_has=medium][pn_done=true] .done_btn {background: hsla(var(--pn_priority_2) / .3)!important; color: hsl(var(--pn_priority_2)); -webkit-text-fill-color: hsl(var(--pn_priority_2))}
+#pn_goals.priority_color [pn_has=high][pn_done=true] .done_btn {background: hsla(var(--pn_priority_3) / .3)!important; color: hsl(var(--pn_priority_3)); -webkit-text-fill-color: hsl(var(--pn_priority_3))}
+
 .pn_nav {display: flex; justify-content: space-between; align-items: center; margin-bottom: 5rem}
 .pn_nav :is(button, a[role=button], label) {margin: 0; white-space: nowrap}
 .pn_nav .pn_toggles, .pn_tags {display: flex; gap: var(--efy_gap0)}
+.pn_tags {flex-wrap: wrap}
 
 .pn_search {width: fit-content; height: fit-content; position: relative}
 .pn_search input {width: 39.2rem; height: 39.2rem}
@@ -96,16 +102,37 @@
 #pn_goals .time {border: var(--efy_border); line-height: 1; padding: 3rem 5rem; background: var(--efy_bg1); border-radius: var(--efy_radius0); display: flex; align-items: center}
 
 
-#pn_goals [pn_done=true] :is([pn_priority], summary .time, [efy_timer]) {display: none}
+#pn_goals [pn_done=true] :is([pn_priority], summary .time, [efy_timer], .pn_fs) {display: none}
 #pn_goals [pn_done=true] .title {opacity: 0.5; text-decoration: line-through}
 #pn_goals [pn_done=true] .description {padding: 0; border-bottom: 0}
+#pn_goals [pn_done=true] .done_btn {background: var(--efy_color), var(--efy_color_trans); -webkit-background-clip: text, padding-box; -moz-background-clip: text, padding-box; -webkit-text-fill-color: transparent}
 
 :is(#pn_goals, #pn_notes, #pn_links) .title {width: fit-content}
-:is(#pn_goals, #pn_notes) .description2 {background: transparent; border: 0; resize: none; margin: 0; padding: 0; display: flex; cursor: unset; overflow: hidden; border-radius: 0}
-:is(#pn_goals, #pn_notes) .description2:not([contenteditable=true]):focus {box-shadow: none!important}
-:is(#pn_goals, #pn_notes, #pn_links) :is(.title, .description2, .url)[contenteditable=true] {border: var(--efy_border_size) dashed var(--efy_text_trans2); border-radius: calc(var(--efy_radius0) * 0.75); padding: 0 5rem}
-:is(#pn_goals, #pn_notes, #pn_links) :is(.title, .description2, .url)[contenteditable=true]:focus {border: var(--efy_border_size) solid var(--efy_text); box-shadow: 0 0 0 var(--efy_border_size) var(--efy_text)}
+:is(#pn_goals, #pn_notes) .description2 {background: transparent; border: 0; resize: none; margin: 0; padding: 0; display: flex; cursor: unset; overflow: visible; border-radius: 0}
+:is(#pn_goals, #pn_notes):not(.pn_fs) .description2 {max-height: 385rem; overflow: visible}
+:is(#pn_goals, #pn_notes) .description2[readonly]:focus {box-shadow: none!important}
+:is(#pn_goals, #pn_notes, #pn_links) :is(:is(.title, .url)[contenteditable=true], .description2:not([readonly])) {border: var(--efy_border_size) dashed var(--efy_text_trans2); border-radius: calc(var(--efy_radius0) * 0.75); padding: 0 5rem}
+:is(#pn_goals, #pn_notes, #pn_links) :is(:is(.title, .url)[contenteditable=true], .description2:not([readonly])):focus {border: var(--efy_border_size) solid var(--efy_text); box-shadow: 0 0 0 var(--efy_border_size) var(--efy_text)}
 :is(#pn_goals, #pn_notes, #pn_links):has([contenteditable=true]:focus) :is(details, a) {pointer-events: none; box-shadow: none!important}
+
+/*Pseudo Fullscreen*/ html.pn_fs {padding-top: var(--efy_100vh); overflow: hidden!important}
+details.pn_fs {position: absolute; z-index: 9; inset: 0; margin: 0; border-radius: 0; background: var(--efy_bg)}
+[efy_mode*=trans] details.pn_fs {background: transparent}
+details.pn_fs:active, details.pn_fs .description2 {transform: unset!important}
+details.pn_fs summary {pointer-events: none}
+#pn_notes details.pn_fs .description2 {overflow: unset!important; height: calc(var(--efy_100vh) - 120rem)!important; max-height: unset}
+#pn_goals details.pn_fs .description {overflow: unset!important; height: calc(var(--efy_100vh) - 100rem)!important; max-height: unset}
+#pn_goals details.pn_fs [efy_timer] {width: 100%; height: 100%; background: transparent; border: 0; justify-content: center}
+#pn_goals .pn_fs [efy_timer] [efy_text] {padding: 3rem 10rem; line-height: 1}
+[efy_drag].pn_full_on {display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr))!important}
+[efy_drag].pn_full_on details {height: fit-content}
+
+.pn_fs [efy_timer] [efy_text] {font-size: 20vmin}
+.pn_fs [efy_timer] button {display: none}
+.pn_tags button.pseudo {display: flex; justify-content: center; align-items: center}
+details:not(.pn_fs) .pn_tags button.pseudo {display: none}
+.pn_tags [efy_start].pseudo:before { content: "\e90a"}
+.pn_tags [efy_start].pseudo[efy_active]:before { content: "\e90b"}
 
 #pn_links .url:not([contenteditable=true]), #pn_links .pn_tags:not(.active) {display: none}
 #pn_links .url {margin-top: var(--efy_gap0); line-break: anywhere}
@@ -133,6 +160,9 @@ html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {margin: 0}
 #pn_theme {display: flex; flex-wrap: wrap; gap: var(--efy_gap0)}
 #pn_theme .pn_title {line-height: 1; margin: 0; width: 100%}
 #pn_theme :is([efy_color_preview], label) {margin: 0}
+
+#pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh); border-radius: 0!important; background-position: var(--efy_bg_x) var(--efy_bg_y)!important; pointer-events: none}
+[efy_mode*=light] #pn_confetti {filter: invert(1)}
 
 /*Convergence*/
 @media (max-width: 799px) {

@@ -41,19 +41,23 @@ pn_notes ={ add_note(note, index){ let now = 'pn_note_' + Date.now(), date = not
         $add('div', {class: 'description'}, [ $add('textarea', {class: 'description2 efy_trans_filter_off', readonly: ''}, [note.description]) ]),
         $add('div', {class: 'pn_tags'}, [
             $add('div', {class: 'date'}, [ month +', '+ date[0] ]),
-                $add('button', {class: 'remove efy_square_btn', onClick: `Note.remove(${index})`}, [ $add('i', {efy_icon: 'remove'}) ])
+            $add('button', {class: 'pn_fs efy_square_btn', onClick: `$('#pn_notes [data-value="${index}"]').classList.toggle('pn_fs'); $('html').classList.toggle('pn_fs'); window.scrollTo(0,0)`}, [ $add('i', {efy_icon: 'fullscreen'}) ]),
+            $add('button', {class: 'remove efy_square_btn', onClick: `Note.remove(${index})`}, [ $add('i', {efy_icon: 'remove'}) ])
         ])
     ], $('#pn_notes [efy_drag]'));
 }, clear_notes(){ $('#pn_notes [efy_drag]').innerHTML = ''}},
 
-pn_goals ={ add_goal(goal, index){ let now = 'pn_goal_' + Date.now(), date = goal.date.split('/'), month = month_name[date[1]]; /* if (goal.done == 'true'){ where = $('#pn_goals [efy_drag]')} */
+pn_goals ={ add_goal(goal, index){ let now = 'pn_goal_' + Date.now(), date = goal.date.split('/'), month = month_name[date[1]], this_details = `#pn_goals [data-value="${index}"]`; /* if (goal.done == 'true'){ where = $('#pn_goals [efy_drag]')} */
 
     $add('details', {efy_searchable: '', 'data-value': index, id: now, pn_date: goal.date, pn_done: goal.done, /*remove when firefox supports :has*/ pn_has: goal.priority}, [ $add('summary', {}, [$add('div', {pn_priority: goal.priority}), $add('div', {class: 'title'}, [goal.text]), $add('div', {class: 'time'}, [$sec_time(goal.time)])]),
         $add('div', {class: 'description'}, [$add('div', {efy_timer: `${now},${goal.time},reverse` })]),
         $add('div', {class: 'pn_tags'}, [
             $add('div', {class: 'date'}, [ month +', '+ date[0] ]),
-            $add('button', {class: 'done_btn efy_square_btn', onClick: `let x = $('[data-value="${index}"]'); if (x.getAttribute('pn_done') == 'true'){ x.setAttribute('pn_done', 'false')} else {x.setAttribute('pn_done', 'true')}`}, [ $add('i', {efy_icon: 'check'}) ]),
-            $add('button', {class: 'remove efy_square_btn', onClick: `Goal.remove(${index})`}, [ $add('i', {efy_icon: 'remove'}) ])
+            $add('button', {efy_start: '', title: 'Start or Pause', class: 'pseudo efy_square_btn', onClick: `$('${this_details}.pn_fs [efy_start].pseudo').toggleAttribute('efy_active'); $('${this_details}.pn_fs [efy_timer] [efy_start]').dispatchEvent(new Event('click', { 'bubbles': true }))`}),
+            $add('button', {efy_reset: '', title: 'Reset', class: 'pseudo efy_square_btn', onClick: `$('${this_details}.pn_fs [efy_start].pseudo').toggleAttribute('efy_active'); $('${this_details}.pn_fs [efy_timer] [efy_reset]').dispatchEvent(new Event('click', { 'bubbles': true }))`}),
+            $add('button', {class: 'done_btn efy_square_btn', efy_audio_mute: 'ok', onClick: `let x = $('${this_details}'); if (x.getAttribute('pn_done') == 'true'){ x.setAttribute('pn_done', 'false')} else { let y = $('#pn_confetti'); y.currentTime = 0; y.play(); x.toggleAttribute('open'); x.setAttribute('pn_done', 'true'); x.classList.remove('pn_fs'); $('html').classList.remove('pn_fs')}`}, [ $add('i', {efy_icon: 'check'}) ]),
+            $add('button', {class: 'pn_fs efy_square_btn', onClick: `let x = $('${this_details}'); x.classList.toggle('pn_fs'); x.classList.toggle('efy_sidebar_width'); $('html').classList.toggle('pn_fs'); window.scrollTo(0,0)`}, [ $add('i', {efy_icon: 'fullscreen'}) ]),
+            $add('button', {class: 'remove efy_square_btn', onClick: `Goal.remove(${index}); $('html').classList.remove('pn_fs')`}, [ $add('i', {efy_icon: 'remove'}) ])
         ])
     ], $('#pn_goals [efy_drag]'));
 }, clear_goals(){ $('#pn_goals [efy_drag]').innerHTML = ''}},
@@ -166,7 +170,7 @@ $wait(2, ()=>{
 /*Search*/ $add('label', {class: 'pn_search', title: 'Search'}, [
     $add('i', {efy_icon: 'search'}), $add('input', {id: 'pn_search', type: 'text', placeholder: 'Search...', efy_search_input:''})
 ], $('.pn_nav .pn_toggles.pn_right'), 'afterbegin');
-$body.setAttribute('efy_search','#pn_notes [efy_drag] > *:not(.efy_ignore_search)');
+$body.setAttribute('efy_search',':is(#pn_goals, #pn_notes, #pn_links) [efy_drag] > *:not(.efy_ignore_search)');
 
 /*Submit*/ $event($('.pn_submit'), 'click', ()=>{ let a = $('[efy_tabs=pn_form] [efy_tab][efy_active]').getAttribute('efy_tab');
     if (a == 'goals'){ pn_form_goals()} else if (a == 'notes'){ pn_form_notes()} else if (a == 'links'){ pn_form_links()} else if (a == 'tags'){ pn_form_tags()} else {$notify(3, "Can't submit it", 'Try a different approach')}
@@ -244,12 +248,12 @@ $pn_save_edits =()=>{ let goals = [], notes = [], links = [];
 
 /*Drag*/ $event($('#pn_drag_toggle'), 'change', (a) => { let b = $all(':is(#pn_goals, #pn_notes, #pn_links, #pn_tags) [efy_drag]');
     'goal note link tag'.split(' ').forEach(c => efy_drag($(`#pn_${c}s [efy_drag]`)) );
-    if (a.target.checked){ atb_all(b, 'efy_drag', 'on'); $notify(2, 'Move - ON', 'You can order items now'); }
+    if (a.target.checked){ atb_all(b, 'efy_drag', 'on'); $notify(2, 'Move - ON', 'You can order items now'); let x = $('#pn_edit_toggle'); x.checked = false; x.dispatchEvent(new Event('change', { 'bubbles': true })) }
     else { atb_all(b, 'efy_drag', ''); $pn_save_edits(); }
 });
 
 /*Edit*/ $event($('#pn_edit_toggle'), 'change', (a) => { let b = $all(':is(#pn_goals, #pn_notes, #pn_links) :is(.title, .url)'), c = []; $all('#pn_links .url').forEach(a => c.push({url: a.textContent}));
-    if (a.target.checked){ atb_all(b, 'contenteditable', 'true');
+    if (a.target.checked){ atb_all(b, 'contenteditable', 'true'); let x = $('#pn_drag_toggle'); x.checked = false; x.dispatchEvent(new Event('change', { 'bubbles': true }));
         $all('#pn_links a').forEach(a=>{ a.removeAttribute('href'); a.removeAttribute('target')});
         $all('#pn_notes .description2').forEach(a=>{ a.removeAttribute('readonly')})
 }
@@ -270,11 +274,13 @@ $event($('#pn_priority_custom'), 'change', (a)=>{ $('#pn_goals').classList.toggl
 if (efy_pn.priority_match == true){ $('#pn_goals').classList.add('priority_color'); $('#pn_priority_custom').checked = true}
 
 /*Auto Resize*/ $ready('#pn_notes .description2', (a)=>{ a.style.height = 0; a.style.height = a.scrollHeight + 'rem';
-    $event(a, 'input', ()=>{ a.style.height = 0; a.style.height = a.scrollHeight + 'rem'})
+    $event(a, 'input', ()=>{ if (a.classList.contains('pn_fs')){ a.style.height = 0; a.style.height = a.scrollHeight + 'rem'}})
 });
-$all('#pn_notes details').forEach(a =>{ let b = $$(a, '.description2');
-    $event(a, 'toggle', ()=>{ b.style.height = 0; b.style.height = b.scrollHeight + 'rem'})
+$all('#pn_notes details').forEach(a =>{ let b = $$(a, '.description2'), c = $$(a, '.pn_fs'); const fn =()=>{ b.style.height = 0; b.style.height = b.scrollHeight + 'rem'};
+    $event(a, 'toggle', fn); $event(c, 'click', fn)
 });
+
+/*Fullscreen Grids*/ $all('.pn_full').forEach(a=>{ $event(a, 'click', ()=>{ $all(':is(#pn_goals, #pn_notes, #pn_links) [efy_drag]').forEach(b=> b.classList.toggle('pn_full_on')) })});
 
 
 }, 1);
