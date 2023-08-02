@@ -117,18 +117,17 @@
 
 /*Pseudo Fullscreen*/ html.pn_fs {padding-top: var(--efy_100vh); overflow: hidden!important}
 details.pn_fs {position: absolute; z-index: 9; inset: 0; margin: 0; border-radius: 0; background: var(--efy_bg)}
-[efy_mode*=trans] details.pn_fs {background: transparent}
+:is([efy_mode=default], [efy_mode*=trans]) details.pn_fs {background: transparent}
 details.pn_fs:active, details.pn_fs .description2 {transform: unset!important}
 details.pn_fs summary {pointer-events: none}
 #pn_notes details.pn_fs .description2 {overflow: unset!important; height: calc(var(--efy_100vh) - 120rem)!important; max-height: unset}
 #pn_goals details.pn_fs .description {overflow: unset!important; height: calc(var(--efy_100vh) - 100rem)!important; max-height: unset}
-#pn_goals details.pn_fs [efy_timer] {width: 100%; height: 100%; background: transparent; border: 0; justify-content: center}
-#pn_goals .pn_fs [efy_timer] [efy_text] {padding: 3rem 10rem; line-height: 1}
+#pn_goals details.pn_fs :not(.efy_sidebar) [efy_timer] {width: 100%; height: 100%; background: transparent; border: 0; justify-content: center}
+#pn_goals .pn_fs [efy_timer] [efy_text] {font-size: 20vmin; padding: 3rem 10rem; line-height: 1}
+#pn_goals .pn_fs [efy_timer] button {display: none}
 [efy_drag].pn_full_on {display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr))!important}
 [efy_drag].pn_full_on details {height: fit-content}
 
-.pn_fs [efy_timer] [efy_text] {font-size: 20vmin}
-.pn_fs [efy_timer] button {display: none}
 .pn_tags button.pseudo {display: flex; justify-content: center; align-items: center}
 details:not(.pn_fs) .pn_tags button.pseudo {display: none}
 .pn_tags [efy_start].pseudo:before { content: "\e90a"}

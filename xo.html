@@ -1,0 +1,87 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EFY</title><meta name="description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><link rel="icon" type="image/png" href="./icon.png"><link rel="apple-touch-icon" sizes="180x180" href="./icon.png"><meta property="og:type" content="website"><meta property="og:url" content="https://efy.ooo"><meta property="og:title" content="EFY"><meta property="og:description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><meta name="robots" content="noindex, nofollow"><meta name="view-transition" content="same-origin" />
+
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://efy.ooo/ui">
+<meta property="og:title" content="EFY UI">
+<meta property="og:description" content="Convergent, responsive, acessible, futuristic, customisable css / javascript framework">
+
+<link rel="stylesheet" href="./efy/efy.css">
+<link rel="stylesheet" href="./apps/efy_global.css">
+<script src="./efy/efy_local.js"></script>
+<script src="./apps/efy_global.js"></script>
+
+</head><body><noscript><p style="background: #000; color:#fff; border-radius: 16rem; padding: 16rem;">Please enable JavaScript to load the page properly &amp; enjoy extra features.</p><br></noscript>
+
+<div ttt efy_select>
+    <div class="cells"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div id="result"></div>
+    <div class="control">
+      <button onclick="restartGame()" efy_lang="reset"><i efy_icon="reload"></i></button>
+      <input id="players" type="checkbox" checked /><label for="players" onclick="restartGame(); $notify(1, '2 Player Mode', String(!$('#players').checked))">2 Players</label>
+    </div>
+</div>
+
+<video id="pn_confetti" src="./apps/assets/confetti.webm"></video>
+
+<style>
+:root{--efy_sidebar_button: right_top, on}
+
+[ttt] {display: flex; flex-direction: column; align-items: center; place-content: center; height: calc(var(--efy_100vh) - (var(--efy_gap) * 2))}
+[ttt] .cells {display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--efy_gap)}
+[ttt] .cells div {background: var(--efy_bg1); border-radius: var(--efy_radius); border: var(--efy_border); display: flex; align-items: center; justify-content: center; font-size: 50rem; font-weight: bold; cursor: pointer; height: 100rem; aspect-ratio: 1}
+[ttt] #result {display: none; text-align: center; margin-top: 15rem}
+[ttt] button {display: block; margin: 0 auto; margin-top: 15rem}
+.control {display: flex; gap: var(--efy_gap0); align-items: center; margin-top: calc(var(--efy_gap) + 15rem)}
+.control :is(button, label) {margin: 0; border: 0; height: 39.2rem}
+
+#pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh); border-radius: 0!important; background-position: var(--efy_bg_x) var(--efy_bg_y)!important; pointer-events: none}
+[efy_mode*=light] #pn_confetti {filter: invert(1)}
+</style>
+
+<script>
+let gameActive = true, currentPlayer = "X", gameState = ['', '', '', '', '', '', '', '', ''], i = 0;
+
+let a = $all('.cells div'); for (let i = 0; i < a.length; i++){ a[i].setAttribute('efy_card', '');
+  $event(a[i], 'click', ()=>{ ttt(i)})
+};
+
+function ttt(cellIndex){
+  if (gameState[cellIndex] === '' && gameActive){
+    gameState[cellIndex] = currentPlayer; $all('.cells div')[cellIndex].innerText = currentPlayer;
+    if (checkWin() || checkDraw()){ gameActive = false; $('#result').innerText = 'Game Over'; let y = $('#pn_confetti'); y.currentTime = 0; y.play()}
+    else { currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      if (gameActive && currentPlayer === "O" && !$('#players').checked){ makeAutomatedMove()}
+}}}
+
+function checkWin(){ const winningCombinations = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+    [0, 4, 8], [2, 4, 6] // diagonals
+  ];
+
+  for (let combination of winningCombinations){ const [a, b, c] = combination;
+    if (gameState[a] !== '' && gameState[a] === gameState[b] && gameState[b] === gameState[c]){ return true}
+  } return false;
+}
+
+function checkDraw(){ return !gameState.includes('')}
+
+function restartGame(){ gameActive = true; currentPlayer = 'X'; gameState = ['', '', '', '', '', '', '', '', ''];
+  const cells = $all('.cells div');
+  for (let cell of cells){ cell.innerText = ''}
+  $('#result').innerText = '';
+}
+
+function makeAutomatedMove(){ /*Find an empty cell for the move*/ let emptyCells = [];
+  for (let i = 0; i < gameState.length; i++) {
+    if (gameState[i] === ''){ emptyCells.push(i)}
+  }
+  /*Choose a random empty cell*/ const randomIndex = Math.floor(Math.random() * emptyCells.length), cellIndex = emptyCells[randomIndex];
+  /*Move AI Player*/ gameState[cellIndex] = currentPlayer; $all('.cells div')[cellIndex].innerText = currentPlayer;
+  if (checkWin() || checkDraw()){ gameActive = false; $('#result').innerText = 'Game Over'}
+  else {/*Switch back to human player*/ currentPlayer = currentPlayer === 'X' ? 'O' : 'X'}
+}
+</script>
+
+</body></html>

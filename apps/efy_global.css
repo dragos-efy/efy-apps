@@ -1,6 +1,6 @@
 /*Global*/ @font-face {font-family: 'nunito'; src: url('../efy/nunito.woff2') format('truetype')} @font-face {font-family: 'nunito'; src: url('../efy/nunito_bold.woff2') format('truetype'); font-weight: bold}
 :root {
-    --efy_color: 70 100% 40%, 110 100% 30%; /*No JS Fallback*/ --efy_color1_var: 70 100% 40%; --efy_color2_var: 110 100% 30%;
+    --efy_color: 179 100% 45%, 46 100% 50%, 335 100% 70%; /*No JS Fallback*/ --efy_color1_var: 70 100% 40%; --efy_color2_var: 110 100% 30%;
     --efy_color_angle: 165deg;
     --efy_radius: 12rem;
     --efy_border_size: 1.5rem;
@@ -19,10 +19,14 @@
 /*Default Mode*/ [efy_mode=default] {
     --efy_scheme: dark;
     --efy_bg_var: 0 0% 100%;
-    --efy_bg: hsl(0 0% 8%);
-    --efy_text: hsl(0 0% 100%);
-} /*Your code starts bellow*/
+    --efy_bg: hsl(0 0% 0%);
+    --efy_text: hsl(60 100% 90%);
+} html[efy_mode=default]:not([efy_color_bgcol]) .efy_3d_back {background: radial-gradient(circle at 60vw 0, hsl(60deg 100% 25% / 34%), #ffc30000 50%, #ff000000), radial-gradient(circle at 35vw 90vh, hsl(317deg 100% 10% / 44%), #ffc30000 50%, #ff000000), radial-gradient(circle at bottom right, #081400, #191a00, hsl(84 50% 9% / 1))!important}
+[efy_mode=default] :is(.efy_sidebar, body) {background: transparent!important}
+[efy_mode=default] .efy_sidebar {backdrop-filter: blur(50rem); -webkit-backdrop-filter: blur(50rem)}
 
 /*View Transitions API*/ @keyframes vt_in {from {opacity: 0}} @keyframes vt_out {to { opacity: 0}} @keyframes vt_in_scale {from {transform: scale(0.1)}} @keyframes vt_out_scale {to { transform: scale(0.1)}}
 ::view-transition-old(root) {animation: 90ms cubic-bezier(0.4, 0, 1, 1) both vt_out, 300ms cubic-bezier(0.4, 0, 0.2, 1) both vt_out_scale}
 ::view-transition-new(root) {animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both vt_in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both vt_in_scale}
+
+html.efy_iframe:not([eos=app]), html.efy_iframe:not([eos=app]) :is(body, .efy_3d_back) {background: transparent!important}

@@ -1,3 +1,12 @@
+/*HTML to EFY*/ const $html_efy = (a) =>{ const parser = new DOMParser(), doc = parser.parseFromString(a, 'text/html'),
+  node_to_string =(node)=>{
+    if (node.nodeType === Node.TEXT_NODE){ return node.textContent}
+    else if (node.nodeType === Node.ELEMENT_NODE) { const tagName = node.tagName.toLowerCase(),
+        attributes = Array.from(node.attributes).map((attr) => `${attr.name}: '${attr.value}'`).join(', '),
+        children = Array.from(node.childNodes).map(node_to_string).join(', ');
+        return `$add('${tagName}', {${attributes}}, [${children}])`;
+}}; return node_to_string(doc.body.firstChild)};
+
 $ready('.efy_sidebar', ()=>{
 
 /*Load App*/ $add('h4', {}, ['EFY Converter - Alpha'], $body);

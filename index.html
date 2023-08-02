@@ -20,43 +20,40 @@
 
 <div id="efy_docs" efy_search="details, #efy_docs [efy_searchable]">
 
-<div efy_tabs="demo" class="dc_nav">
+<div efy_tabs="demo" class="dc_nav"><div class="dc_nav_div">
 <div class="dc_left">
-    <button efy_tab="0" efy_active>EFY</button>
-    <button efy_tab="1">HTML</button>
-    <button efy_tab="2">Questions</button>
-    <button efy_tab="3">Code</button>
-    <button efy_tab="4">Components</button>
+    <button efy_tab="0" class="efy_trans_filter_off" efy_active>EFY</button>
+    <button efy_tab="2" class="efy_trans_filter_off">Questions</button>
+    <button efy_tab="1" class="efy_trans_filter_off">HTML</button>
+    <button efy_tab="3" class="efy_trans_filter_off">Code</button>
 </div><div class="dc_right">
     <label class="dc_search"><i efy_icon="search"></i><input type="text" efy_search_input placeholder="Search..." /></label>
-    <button efy_sidebar_btn class="efy_square_btn"><i efy_icon="menu"></i></button>
-</div>
+    <button efy_sidebar_btn class="efy_square_btn efy_trans_filter_off"><i efy_icon="menu"></i></button>
+</div></div>
 
 <div efy_content="0" efy_active>
 
     <div class="dash_hide">
-        <h2 efy_lang="join_future"></h2>
-        <p efy_lang="sidebar_about_text">. Time for a change, no more egotistical apps dictating & tracking your moves without aproval, cuz YOU are in control now! Click the top right sidebar button to try out trillions of possible combinations. It's still in beta tho, so you might experience bugs. Stay free & have fun!</p>
-        <div efy_searchable id ="dc_buttons" class="dc_cta">
-            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" efy_lang="matrix"></a>
-            <a href="https://github.com/dragos-efy/efy" role="button" efy_lang="github"></a>
-            <a href="https://translate.codeberg.org/projects/efy" role="button" efy_lang="translations"></a>
+        <h2 efy_lang="join_future" efy_searchable></h2><p efy_lang="sidebar_about_text" efy_searchable></p>
+        <div efy_searchable id ="dc_buttons" class="dc_cta" efy_searchable>
+            <button efy_sidebar_btn efy_lang="try_it" class="efy_trans_filter_off"><i efy_icon="play"></i></button>
+            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split"><p>Github</p><p>37</p></a>
+            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split"><p>Matrix</p><p>38</p></a>
         </div>
     </div>
     <div>
-        <h2 class="dash_hide">EFY Apps</h2>
 
-        <div efy_searchable id ="dc_buttons">
+        <div id ="dc_buttons" class="apps" efy_searchable>
             <a href="https://efy.piped.pages.dev" role="button" efy_card><div class="logo"><svg class="piped_logo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 508 819" width="496" height="800"><path d="m0.4 27.8c0 0 7.3-5.4 20.3-12.7 7.3-3.1 16.4-6.4 26.8-9.3 10.9-2.2 23.1-4 35.6-4.9 12.8 0 25.8 0.8 38 2.4 12.1 2.4 23.3 5.6 32.7 8.9 18.2 8.5 29.6 15.6 29.6 15.6v749.9h-183z" /><path d="m242.1 163.5c0 0 0-9.7-0.1-22.3-0.2-5.6-0.4-11.9-0.6-18.2-0.2-6.3-0.4-13-0.6-19.9-0.1-7.4-0.1-15.5 0-23.8 0.3-9.3 0.7-19 1.2-28.2 1.3-21.2 2.6-37.7 2.6-37.7 0 0 14.6-1.2 39.3-1.4 5.9 0.4 12.4 1 19.4 1.8 6.9 0.9 14.3 2 22.1 3.5q11.3 2.9 23.4 7.1c8 2.8 16.3 6 24.7 9.7q12 6.5 24.1 14.5 12.1 8 24 17.6 11.3 10.3 22.1 22.1c6.8 8.2 13.4 16.8 19.7 25.9q8.9 14.1 16.8 29.3c4.8 10.4 9.2 21 13.2 32 3.5 11.1 6.6 22.4 9.2 33.9 2.1 11.6 3.7 23.3 4.8 35q1 17.6 0.3 35c-0.9 11.6-2.4 23-4.4 34.2q-0.9 4.1-1.9 8.2-1 4.1-2.1 8.1-1.2 4.1-2.4 8.1-1.2 4-2.5 8-1.5 3.8-3 7.6-1.6 3.8-3.3 7.5-1.6 3.8-3.4 7.4-1.7 3.7-3.6 7.4-2 3.4-4 6.8-2.1 3.4-4.2 6.7-2.2 3.4-4.4 6.6-2.3 3.3-4.6 6.5-2.4 3-4.9 6-2.5 2.9-5.1 5.8-2.6 2.8-5.2 5.6-2.7 2.8-5.4 5.6-2.9 2.4-5.8 4.8-2.9 2.4-5.9 4.7-3 2.3-6 4.6-3.1 2.2-6.2 4.4c-8.1 5.6-16.3 10.8-24.6 15.4-8.9 4-17.8 7.6-26.5 10.7-8.8 3.1-17.3 5.8-25.7 8.1-8.7 1.7-17.2 3.2-25.1 4.4-8 1.1-15.5 2-22.4 2.6-14.5 0.4-26.2 0.5-34.2 0.4-8 0-12.4-0.2-12.4-0.2 0 0 0.3-9.6 0.8-23.1 0.1-6.4 0.3-13.8 0.5-21.6 0.1-7.8 0.1-16.3 0.1-25.1-0.1-9.2-0.2-19-0.5-28.8-0.3-10.5-0.7-21.1-1.2-30.8-1.1-21.5-2.1-37.5-2.1-37.5 0 0 6.9 0.4 18.6 0.5 5.5-0.2 12.1-0.7 19.3-1.6 7-1.3 14.4-3 22-5.3 7.1-2.7 14.3-6.1 21.2-10.1q4.9-3.2 9.4-7 4.3-3.8 8.2-8.2 3.5-4.4 6.6-9.2 2.7-4.9 4.8-10.2 1.8-5.3 3-10.7 0.8-5.6 0.9-11.2-0.2-5.6-1.1-11.2-1.3-5.6-3.2-11-2.2-5.4-5-10.5-3.2-5.1-6.9-9.8-4-4.6-8.4-8.8-4.6-4.1-9.6-7.7c-7.2-4.5-14.5-8.4-21.9-11.7-7.8-2.9-15.5-5.2-22.6-7-7.5-1.5-14.3-2.5-20-3.2-12.1-0.9-19.3-1.1-19.3-1.1z" /><path d="m92 819c-50.9 0-92-16.5-92-37 0-20.5 41.1-37 92-37 50.9 0 92 16.5 92 37 0 20.5-41.1 37-92 37z" /><path d="m248.4 165c-22.5 0-40.7-34.1-40.7-76.3 0-42.1 18.2-76.2 40.7-76.2 22.4 0 40.6 34.1 40.6 76.3 0 42.1-18.2 76.2-40.6 76.2z" /><path d="m249.9 486c-22.5 0-40.6-37.5-40.6-84 0-46.5 18.1-84 40.6-84 22.5 0 40.6 37.6 40.6 84 0 46.5-18.1 84-40.6 84z" /></svg></div><div class="column_flex"><div>Piped</div><mark efy_lang="beta"></mark></div></a>
             <a href="./music.html" role="button" efy_card><i efy_icon="audio"></i><div class="column_flex"><div>Music</div><mark efy_lang="beta"></mark></div></a>
             <a href="./money.html" role="button" efy_card><i efy_icon="group"></i><div class="column_flex"><div>Money</div><mark efy_lang="beta"></mark></div></a>
             <a href="./planner.html" role="button" efy_card><i efy_icon="edit"></i><div class="column_flex"><div>Planner</div><mark efy_lang="alpha"></mark></div></a>
             <a href="./calculator.html" role="button" efy_card><i efy_icon="remove"></i><div class="column_flex"><div>Calculator</div><mark efy_lang="alpha"></mark></div></a>
             <a href="./converter.html" role="button" efy_card><i efy_icon="reload"></i><div class="column_flex"><div>Converter</div><mark efy_lang="alpha"></mark></div></a>
+            <a href="./os.html" role="button" efy_card class="alpha"><i efy_icon="dots"></i><div class="column_flex"><div>OS</div><mark efy_lang="soon"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="menu"></i><div class="column_flex"><div>Text Editor</div><mark efy_lang="soon"></mark></div></a>
-            <a role="button" efy_card class="soon"><i efy_icon="heart"></i><div class="column_flex"><div>Themes</div><mark efy_lang="soon"></mark></div></a>
+            <a href="./themes.html" role="button" efy_card class="soon"><i efy_icon="heart"></i><div class="column_flex"><div>Themes</div><mark efy_lang="soon"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="play"></i><div class="column_flex"><div>Video</div><mark efy_lang="soon"></mark></div></a>
-            <a role="button" efy_card class="soon"><i efy_icon="dots"></i><div class="column_flex"><div>OS</div><mark efy_lang="soon"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="globe"></i><div class="column_flex"><div>Injector</div><mark efy_lang="soon"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="key"></i><div class="column_flex"><div>Passwords</div><mark efy_lang="soon"></mark></div></a>
         </div>
@@ -66,9 +63,11 @@
 
 <div efy_content="1">
 
+<p style="margin-bottom: 15rem" efy_searchable>Bellow you can see examples of simple, commonly used HTML styled by efy:</p>
+
 <div efy_searchable class="dc_grid">
-    <div><figure><img src="./apps/image.webp" alt="image" /><figcaption>image + figcaption</figcaption></figure></div>
-    <div><video src="./apps/efy_video.mp4" controls></video></div>
+    <div><figure><img src="./apps/assets/image.webp" alt="image" /><figcaption>image + figcaption</figcaption></figure></div>
+    <div><video src="./apps/assets/efy_video.mp4" controls></video></div>
 </div>
 
 <div efy_searchable id ="dc_headings">
@@ -140,11 +139,11 @@
         <details><summary>Summary</summary><p>content</p>
     </details></details>
 
-    <audio src="./apps/efy_audio.mp4" controls></audio>
+    <audio src="./apps/assets/efy_audio.mp4" controls></audio>
 
     <div efy_searchable><h6>Progress &amp; Meter</h6>
         <progress value="40" max="100">40%</progress>
-        <meter value="5" min="0" max="10">5 / 10</meter>
+        <meter value="5" min="0" max="10" style="margin-left: 5rem">5 / 10</meter>
     </div>
 </div>
 
@@ -208,30 +207,45 @@
 </form></div>
 
 
-</div><div efy_content="2">
+</div><div efy_content="2" efy_details>
     <div>
         <details efy_searchable><summary>The logic behind it</summary><ul>
         <li>Minimalism - no dependencies, efficient code</li>
-        <li>Modularity - users are in control</li>
+        <li>Modularity - users are in control, billions of possible patterns</li>
         <li>Accessible - not fully yet</li>
         <li>Sounds &amp; 3D Layers - cinematic &amp; immersive experience</li>
-        <li>Touchscreen &amp; convergence - hovering or using a cursor are not requirements for interracting with the ui, usually not fully taken into consideration by devs / frameworks. Here it is!</li>
+        <li>Touchscreen &amp; Convergence - works on (almost) all devices, hovering or using a cursor are not requirements for interracting with the ui, usually not fully taken into consideration by devs &amp; frameworks. Here it is!</li>
         <li>Transparency - semitransparent multilayers, support for os integration with transparent windows</li>
         <li>Searchable &amp; open on demand -  to reduce physical space and help you focus</li>
+        <li>Private - all data stays on your device</li>
+        <li>Supports both the <mark>https://</mark> and <mark>file:///</mark> protocols - most frameworks don't do that, we do, so you can use the apps statically &amp; offline too, without any server, compiling, nodejs etc. required.</li>
         </ul></details>
 
-        <details efy_searchable><summary>Can I use it on my own projects?</summary>
-        <p>Yes, as long as you follow the <a target="_blank" href="https://github.com/dragos-efy/efy/blob/main/LICENSE">AGPL 3.0 License</a></p>
+        <details efy_searchable><summary>How do I use it on my own projects?</summary>
+        <p>In any way you want, as long as you keep it open source and follow the <a target="_blank" href="https://github.com/dragos-efy/efy/blob/main/LICENSE">AGPL 3.0 License here</a>. Propper documentation is coming soon</p>
         </details>
 
-        <details efy_searchable><summary>I see glitches or errors. How do I reset it?</summary><p><mark>efy</mark> <i efy_icon="chevron"></i><mark efy_lang="backup"></mark> <i efy_icon="chevron"></i><mark efy_lang="efy_settings"></mark> or <mark efy_lang="efy_images"></mark> <i efy_icon="chevron"></i><mark efy_lang="reset"></mark></p><br /><p>Or clear your browser's cache, try a different browser, device etc.</p></details>
+        <details efy_searchable><summary>I see glitches or errors. How do I reset it?</summary>
+            <p><mark>EFY</mark> <i efy_icon="chevron"></i><mark efy_lang="backup"></mark> <i efy_icon="chevron"></i><mark efy_lang="efy_settings"></mark> or <mark efy_lang="efy_images"></mark> <i efy_icon="chevron"></i><mark efy_lang="reset"></mark></p>
+            <p>Or clear your browser's cache, try a different browser, device etc.</p>
+        </details>
+
+        <details efy_searchable><summary>How do I repport bugs or share my ideas?</summary><p>On <a href="https://github.com/dragos-efy/efy">Github</a> or <a href="https://matrix.to/#/#efy_ui:matrix.org">Matrix</a>. Try to specify how you encountered the bugs, on what device, browser etc. And for ideas, why they should be implemented and what use cases they have.</p></details>
 
     </div><div>
 
-        <details efy_searchable><summary>What <code>efy</code> stands for</summary><p>Nothing. It's just a name, like Andy or Izzy.</p></details>
+        <details efy_searchable><summary>Is it stable / production-ready?</summary><div>
+            <p>EFY is currently in Beta, so expect potential bugs. Features and apps that are unstable are usually marked this way:</p><br />
+            <p><mark efy_lang="soon"></mark> <i efy_icon="chevron"></i><mark efy_lang="alpha"></mark> <i efy_icon="chevron"></i><mark efy_lang="beta"></mark> <i efy_icon="chevron"></i><mark>Stable</mark></p><br />
+            <div><mark efy_lang="soon"></mark> - unavailable now, but expected to come up</div>
+            <div><mark efy_lang="alpha"></mark> - unsafe to use, lots of bugs</div>
+            <div><mark efy_lang="beta"></mark> - safer to use, less bugs</div>
+        </div></details>
+
+        <details efy_searchable><summary>What the name <code>efy</code> stands for</summary><p>Nothing. It's just a name, like Andy or Izzy.</p></details>
 
         <details efy_searchable><summary>Add a background image</summary>
-        <p><mark>efy</mark> <i efy_icon="chevron"></i><mark efy_lang="theme"></mark> <i efy_icon="chevron"></i><mark efy_lang="transparency"></mark> <i efy_icon="chevron"></i><mark efy_lang="mode"></mark> <i efy_icon="chevron"></i> <mark efy_lang="add_file"></mark></p>
+        <p><mark>EFY</mark> <i efy_icon="chevron"></i><mark efy_lang="theme"></mark> <i efy_icon="chevron"></i><mark efy_lang="transparency"></mark> <i efy_icon="chevron"></i><mark efy_lang="mode"></mark> <i efy_icon="chevron"></i> <mark efy_lang="add_file"></mark></p>
         </details>
 
         <details efy_searchable><summary>More coming soon...</summary><p>This is just the beginning...</p></details>
@@ -240,13 +254,13 @@
 </div>
 
 
-    <div efy_content="3"><div>
-        <details efy_searchable><summary><mark>efy_mode</mark></summary><ul>
+    <div efy_content="3" efy_details><h5 style="margin-bottom: 15rem" efy_searchable>Learn how to use efy <mark efy_lang="soon"></mark></h5><div class="columns">
+        <div><details efy_searchable><summary>[efy_mode]</summary><ul>
         <li>It sets the mode, the default value is <code>default</code></li>
 
-        <li>Options: <mark>light_light</mark> <mark>light_sepia</mark> <mark>light_trans</mark> <mark>dark_dark</mark> <mark>dark_nord</mark> <mark>dark_black</mark> <mark>dark_trans</mark></li>
+        <li>Options: <mark>light_light</mark> , <mark>light_sepia</mark> , <mark>light_trans</mark> , <mark>dark_dark</mark> , <mark>dark_nord</mark> , <mark>dark_black</mark> , <mark>dark_trans</mark></li>
 
-        <h4>Structure</h4>
+        </ul><h4>Structure</h4><ul>
 
         <li>1st part: can be <mark>light</mark> or <mark>dark</mark> to indicate the general mode</li>
 
@@ -258,24 +272,32 @@
         <p>Specific mode:</p><pre efy_code="css"><code>[efy_mode=light_sepia]</code> { your css }</pre>
         <p>All light modes:</p><pre efy_code="css"><code>[efy_mode*=light]</code> { your css }</pre>
         <p>Not this specific mode:</p><pre efy_code="css"><code>:not([efy_mode=light_sepia])</code> { your css }</pre>
-        <p>Remove selector if any light mode is on</p><pre efy_code="javascript"><code>$('[efy_mode*=light] #your_selector')</code>.remove()</pre>
+        <p>Remove selector if any light mode is on:</p><pre efy_code="javascript"><code>$('[efy_mode*=light] #your_selector')</code>.remove()</pre>
         </details>
 
-        <!--Separator--></div><div>
+        <!--Separator--></div>
 
-        <details efy_searchable><summary>More coming soon...</summary><p>This is just the beginning...</p></details>
+            <div><details efy_searchable><summary>More coming soon...</summary><p>This is just the beginning...</p></details></div>
         </div>
-    </div>
 
-
-    <div efy_content="4">
-
+        <h5 style="margin: 15rem 0" efy_searchable>Components</h5>
         <div class="dc_separator"><div>
-            <details efy_searchable><summary>Icons</summary><pre style="width: fit-content">&lt;<code>i efy_icon</code>="<code>star</code>"&gt;&lt;/i&gt;</pre>
+
+            <details efy_searchable style="margin: 0"><summary>Icons</summary><div><pre efy_code="html" style="margin-top: 15rem">&lt;<code>i efy_icon</code>="<code>star</code>"&gt;&lt;/i&gt;</pre></div>
             <p class="mb">Add an <code>&lt;i&gt;</code> tag with an <code>[efy_icon]</code> attribute containing your icon code from bellow</p>
             <div id="dc_icons"></div></details>
+
+            <div efy_searchable><h6>Color Picker</h6>
+                <div efy_color="Color 1, 50 100% 50%"></div>
+                <div efy_color="Color 2, 150 100% 50%"></div>
+                <div efy_color="Color 3, 0 0% 50%"></div>
+            </div>
+
+            <div efy_searchable><h6 style="margin-top: 15rem">Clock &amp; Timer</h6><div class="dc_clock"><div efy_clock></div><div efy_timer="efy_demo"></div></div></div>
+
         <!--Separator--></div><div>
-            <details efy_select efy_searchable><summary>Select menu</summary>
+
+            <details efy_select efy_searchable style="margin: 0"><summary>Select menu</summary><div>
                 <p>Radio</p>
                 <input type="radio" name="efy_example_radio" id="efy_example_select1"><label for="efy_example_select1">Option 1</label>
                 <input type="radio" name="efy_example_radio" id="efy_example_select2" checked><label for="efy_example_select2">Option 2</label>
@@ -284,28 +306,19 @@
                 <input type="checkbox" name="efy_example_checkbox" id="efy_example_select4" checked><label for="efy_example_select4">Option 4</label>
                 <input type="checkbox" name="efy_example_checkbox" id="efy_example_select5"><label for="efy_example_select5">Option 5</label>
                 <input type="checkbox" name="efy_example_checkbox" id="efy_example_select6" checked><label for="efy_example_select6">Option 6</label>
-            </details>
+            </div></details>
+
+            <div efy_searchable><details efy_help><summary>Tabs</summary><p>This element explains stuff</p></details>
+                <div efy_tabs="demo2">
+                    <button efy_tab="c4_1">1</button>
+                    <button efy_tab="c4_2" efy_active>2</button>
+                    <button efy_tab="c4_3">3</button>
+                    <div efy_content="c4_1">1</div>
+                    <div efy_content="c4_2" efy_active>2</div>
+                    <div efy_content="c4_3">3</div>
+            </div></div>
+
         </div></div>
-
-        <div efy_searchable><details efy_help><summary>Tabs</summary><p>learn how it works</p></details>
-        <div efy_tabs="demo2">
-            <button efy_tab="1">1</button>
-            <button efy_tab="2" efy_active>2</button>
-            <button efy_tab="3">3</button>
-            <div efy_content="1">1</div>
-            <div efy_content="2" efy_active>2</div>
-            <div efy_content="3">3</div>
-        </div></div>
-
-
-    <div efy_searchable><h6>Clock &amp; Timer</h6><div class="dc_clock"><div efy_clock></div><div efy_timer="efy_demo"></div></div></div>
-
-    <div efy_searchable><h6>Color Picker</h6>
-        <div efy_color="Color 1,50,100,50"></div>
-        <div efy_color="Color 2,150,100,50"></div>
-        <div efy_color="No Default"></div>
-    </div>
-
     </div>
 </div>
 

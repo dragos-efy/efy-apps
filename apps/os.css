@@ -1,0 +1,106 @@
+[efy_frames] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400rem, 1fr));
+    gap: 15rem; width: 100%;
+    height: 100%;
+    border-radius: var(--efy_radius);
+    overflow-y: auto;
+    scroll-snap-type: both mandatory; overscroll-behavior-x: contain
+}
+[efy_frames].eos_full {grid-template-columns: 1fr}
+
+[efy_frame], [efy_frames] > .item {
+    width: 100%;
+    height: calc(var(--efy_100vh) - 108rem);
+    overflow: scroll;
+    border-radius: var(--efy_radius);
+    border: var(--efy_border);
+    background: var(--efy_bg1);
+    scroll-snap-stop: always; scroll-snap-align: center;
+}
+/*[efy_outline] */[efy_frame][efy_active] {border-color: var(--efy_text); box-shadow: inset 0 0 0 2rem var(--efy_text)}
+
+/*Drag*/ [efy_drag=on] * {cursor: move!important} [efy_drag=on] * > * {pointer-events: none}
+[efy_drag=on] > *.active {border: var(--efy_border_size) dashed var(--efy_text); background: transparent}
+#os_drag_toggle, [for=os_drag_toggle]:before, [for=os_drag_toggle]:after {display: none!important}
+[efy_select] input + label[for=os_drag_toggle] {height: 39rem; width: 39rem; display: flex; align-items: center; place-content: center}
+
+/*Fix 2 BG Glitch*/ [for=os_drag_toggle] [efy_icon=move]:before, [os_drawer] [efy_card] [efy_icon=plus]:before { -webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
+
+/*iFrames*/ [efy_frame*=iframe] {overflow: hidden!important}
+[efy_frame] iframe {border: 0; width: 100%; height: 100%}
+
+/*App Drawer*/ [os_drawer] {width: 100%; height: 100%; overflow: auto}
+[os_drawer]:active {transform: scale(1)!important}
+[os_drawer] .apps {display: grid; grid-template-columns: repeat(auto-fill, minmax(67rem, 1fr)); gap: calc(var(--efy_gap) * 3) calc(var(--efy_gap) * 2); align-self: center; align-items: var(--dc_dash_align); padding-bottom: 25rem}
+.soon_off .soon {display: none!important}
+
+[os_drawer] [efy_card] {display: flex; align-items: center; height: fit-content; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text); padding: 0; margin: 0; flex-direction: column; background: transparent; border: 0; width: 100%; aspect-ratio: 1; position: relative}
+[os_drawer] [efy_card] :is(i, .logo) {padding: 15rem; border-radius: var(--efy_radius); display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; font-size: 30rem; margin: 0}
+[os_drawer] [efy_card] [efy_icon=plus]:before {margin: 0; font-size: 22rem}
+[os_drawer] .logo {background: var(--efy_color)}
+.piped_logo {width: 20rem!important; height: 34rem; margin-right: -3rem!important}
+.piped_logo path {fill: var(--efy_text2)}
+[os_drawer] [efy_card] .column_flex {display: flex; flex-direction: column; align-items: center; margin: 0!important; padding: 0!important; width: 100%; position: absolute; top: 100%}
+[os_drawer] [efy_card] .column_flex .name {padding: 8rem 0 0 0; font-weight: normal; font-size: 14rem}
+
+/*Add Apps*/ .pn_links_form .grid {display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--efy_gap)}
+.pn_links_form .grid input {margin-bottom: 0}
+
+.modal_grid .input-group {display: flex}
+.modal_grid .input-group label:not(details label) {display: flex; padding: var(--efy_padding); background: var(--efy_bg1); border-radius: var(--efy_radius) 0 0 var(--efy_radius); border: var(--efy_border); border-right: 0}
+.modal_grid .input-group :is(input, select) {border-radius: 0 var(--efy_radius) var(--efy_radius) 0; height: 100%; line-height: 1; margin: 0}
+.modal_grid .input-group [efy_number] {width: 100%}
+.modal_grid .input-group:focus-within :is(label:not(details label), input:not(input:focus)) {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text_trans2); border-color: var(--efy_text_trans2)}
+.modal_grid .input-group:focus-within {gap: calc(var(--efy_border_size) + 2rem)}
+
+
+
+:root {--efy_body_padding: 0; --os_thumb_height: 50rem}
+
+[os_app] {width: 100%; height: var(--efy_100vh); max-height: var(--efy_100vh); display: flex; flex-direction: column; gap: var(--efy_gap); margin: 0; overflow: hidden; padding: var(--efy_gap)}
+[os_app*=top] {flex-direction: column-reverse}
+
+.os_loader { position: fixed; top: 15rem; left: 15rem; width: 300rem; height: 100rem; bottom: 0; background: #0003; z-index: 10; backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; border-radius: var(--efy_radius)}
+
+[os_bar] {width: 100%; display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(--efy_gap0); border: var(--efy_border); border-radius: var(--efy_radius2); background: var(--efy_bg1)}
+[os_bar] :is([efy_clock], .os_speed_text) {line-height: 1; padding: 5rem 8rem; font-size: 26rem; border-radius: var(--efy_radius)}
+[os_bar] :is(button, input, label) {margin: 0}
+
+.os_buttons, .os_buttons > div {display: flex; gap: var(--efy_gap0)}
+.os_buttons button {aspect-ratio: 1; height: calc(36rem + var(--efy_border_size) * 2); align-items: center; justify-content: center: border: 0}
+
+.os_speed_text, .os_time_text {display: flex; gap: 5rem; align-items: center; width: fit-content; height: 38rem; padding: 7rem 10rem; font-weight: bold; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
+.os_speed_text {aspect-ratio: unset!important}
+.os_speed_menu {position: absolute; display: flex; flex-wrap: wrap; gap: 10rem; width: fit-content; top: -115rem; right: 0; margin: calc(-1 * var(--efy_gap)) var(--efy_gap) 0 0}
+
+[os_grid] {width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: var(--efy_gap)}
+[os_grid="1"] {grid-template-columns: 1fr} [os_grid="3"] {grid-template-columns: 1fr 1fr 1fr} [os_grid="4"] {grid-template-columns: 1fr 1fr 1fr 1fr}
+
+.os_grid_box {width: 100%; height: 100%; overflow-y: auto; border-radius: var(--efy_radius)}
+
+:is(.efy_sidebar details details):not([open]) {padding: 0 12rem}
+
+#bar_position div {display: flex; gap: var(--efy_gap0); flex-wrap: wrap}
+#bar_position div label {margin: 0}
+
+#bar_position [efy_range_text="Columns"] {margin-top: var(--efy_gap0); gap: 0}
+
+[os_bar] .mobile {display: none}
+[os_bar] .desktop {display: flex}
+.os_buttons2 {align-items: center; gap: var(--efy_gap0)}
+
+
+.efy_sidebar {overflow-x: hidden}
+html, body {overflow: hidden}
+
+/*Convergence*/
+ @media (max-width: 767.9px){
+    [os_grid] {grid-template-columns: 1fr}
+    #bar_position :is(#os_grid_columns, [efy_range_text="Columns"]), [os_bar] .desktop {display: none}
+    [os_bar] .mobile {display: flex}
+    .os_buttons {justify-content: space-between; width: 100%; place-content: center}
+}
+
+
+[efy_mode*=trans] :is([os_bar], [efy_frames] [efy_frame], [os_drawer]) {backdrop-filter: blur(50rem) brightness(.8); -webkit-backdrop-filter: blur(50rem) brightness(.8)}

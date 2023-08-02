@@ -86,7 +86,7 @@ if (efy_ms.img_size){ let a = efy_ms.img_size; img_size.value = a.replace('rem',
 
 
 for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
-  if (typeof efy_ms[`tag_${a[i]}`] !== 'undefined'){ $(`#ms_song_info_${a[i]}`).checked = efy_ms[`tag_${a[i]}`] ; console.log(a[i])}
+  if (typeof efy_ms[`tag_${a[i]}`] !== 'undefined'){ $(`#ms_song_info_${a[i]}`).checked = efy_ms[`tag_${a[i]}`]}
 }
 
 
