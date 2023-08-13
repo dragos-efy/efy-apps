@@ -1,4 +1,5 @@
 :root{--efy_sidebar_button: right_top, on}
+.efy_iframe :is(.efy_sidebar, [efy_sidebar_btn*=absolute]) {display: none}
 
 #app {display: flex; flex-wrap: wrap; gap: var(--efy_gap)}
 

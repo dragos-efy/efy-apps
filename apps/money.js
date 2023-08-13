@@ -93,7 +93,7 @@ App = {
 
 /*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
-$add('details', {id: 'mn_settings'}, [
+$add('details', {id: 'mn_settings', class: 'eos_menu'}, [
   $add('summary', {}, [$add('i', {efy_icon: 'group'}), $add('p', {efy_lang: 'money'}), $add('mark', {efy_lang: 'beta'})]),
         $add('div', {efy_tabs: 'mn_menu', efy_select: ''}, [
             /*Tabs*/

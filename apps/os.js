@@ -1,3 +1,6 @@
+/*Storage*/ let  efy_os = {}, $os_save =()=>{};
+try { if (localStorage.efy_os){ efy_os = JSON.parse(localStorage.efy_os)} $os_save =()=>{localStorage.efy_os = JSON.stringify(efy_os)}} catch {/**/}
+
 $ready('#efy_sbtheme', ()=>{
 
 $add('div', {os_app: ''}, [
@@ -31,47 +34,96 @@ $add('div', {os_app: ''}, [
     ])]),
   /*Dock*/ $add('div', {os_bar: '', class: 'efy_trans_filter'}, [
     $add('div', {class: 'os_buttons'}, [
-        $add('div', {}, [ $add('div', {efy_clock: ''}) ]),
-         // $add('button', {class: 'desktop os_speed_text', efy_card: '', title: 'Speed'}, ['3x']),
-         $add('div', {class: 'mobile os_buttons'}, [ $add('div', {efy_select: ''}, [
-          $add('button', {class: 'efy_square_btn', title: 'Apps', efy_toggle: '[efy_frames], [os_drawer]', style: 'display: flex; align-items: center; place-content: center'}, [ $add('i', {efy_icon: 'dots', style: 'font-size: 18rem'}) ]),
-          $add('input', {id: 'os_drag_toggle', type: 'checkbox'}), $add('label', {for: 'os_drag_toggle', class: 'efy_square_btn', title: 'Move'}, [ $add('i', {efy_icon: 'move'}) ]),
-          $add('button', {class: 'os_remove efy_square_btn', title: 'Remove', efy_audio_mute: 'ok'}, [ $add('i', {efy_icon: 'remove'}) ])
-        ]) ]),
-      $add('div', {class: 'mobile os_buttons2'}, [
-        $add('button', {class: 'os_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [ $add('i', {efy_icon: 'menu'}) ])
-      ])
-     ]),
-     $add('div', {class: 'desktop os_buttons'}, [ $add('div', {efy_select: ''}, [
+      $add('div', {}, [ $add('div', {efy_clock: ''}) ]),
+      // $add('button', {class: 'desktop os_speed_text', efy_card: '', title: 'Speed'}, ['3x'])
+    ]),
+    $add('div', {class: 'os_buttons'}, [ $add('div', {efy_select: ''}, [
         $add('button', {class: 'efy_square_btn', title: 'Apps', efy_toggle: '[efy_frames], [os_drawer]', style: 'display: flex; align-items: center; place-content: center'}, [ $add('i', {efy_icon: 'dots', style: 'font-size: 18rem'}) ]),
         $add('input', {id: 'os_drag_toggle', type: 'checkbox'}), $add('label', {for: 'os_drag_toggle', class: 'efy_square_btn', title: 'Move'}, [ $add('i', {efy_icon: 'move'}) ]),
-        $add('button', {class: 'os_remove efy_square_btn', title: 'Remove', efy_audio_mute: 'ok'}, [ $add('i', {efy_icon: 'remove'}) ])
+        $add('input', {id: 'os_remove', type: 'checkbox'}), $add('label', {for: 'os_remove', class: 'efy_square_btn', title: 'Remove', efy_audio_mute: 'ok'}, [ $add('i', {efy_icon: 'remove'}) ])
       ]) ]),
-    $add('div', {class: 'desktop os_buttons2'}, [
-        $add('button', {class: 'os_fullscreen efy_square_btn', title: 'Fullscreen', efy_audio_mute: 'ok'}, [ $add('i', {efy_icon: 'fullscreen'}) ]),
+    $add('div', {class: 'os_buttons'}, [
+      $add('button', {class: 'os_fullscreen efy_square_btn', title: 'Fullscreen', efy_audio_mute: 'ok'}, [ $add('i', {efy_icon: 'fullscreen'}) ]),
       $add('button', {class: 'os_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [ $add('i', {efy_icon: 'menu'}) ])
     ])
+])], $body);
+
+/*Sidebar Menu*/ $add('details', {id: 'os_sidebar'}, [
+  $add('summary', {}, [$add('i', {efy_icon: 'dots'}), $add('p', {}, ['OS']), $add('mark', {efy_lang: 'alpha'})]),
+    $add('div', {efy_tabs: 'ms_menu', efy_select: ''}, [
+
+    $add('button', {efy_tab: 'grid', efy_lang: 'grid', efy_active: ''}),
+    $add('button', {efy_tab: 'effects', efy_lang: 'effects'}),
+    $add('button', {efy_tab: 'tags', efy_lang: 'tags'}),
+
+    $add('div', {efy_content: 'effects', efy_select: '', id: 'ms_sidebar_speed'}, [
+       $add('div', {efy_lang: 'soon'}, ['...'])
+    ]),
+
+    $add('div', {efy_content: 'grid', efy_select: '', id: 'bar_position', efy_active: ''}, [
+      $add('p', {efy_lang: 'bar_position', style: 'margin-top: 0'}), $add('div', {}, [
+        $add('input', {type: 'radio', id: 'bar_position_bottom', name: 'bar_position', checked: ''}), $add('label', {for: 'bar_position_bottom', efy_lang: 'down', style: 'display: flex; align-items: center; width: fit-content'}),
+        $add('input', {type: 'radio', id: 'bar_position_top', name: 'bar_position'}), $add('label', {for: 'bar_position_top', efy_lang: 'up', style: 'display: flex; align-items: center; width: fit-content'}),
+        $add('input', {type: 'radio', id: 'bar_position_left', name: 'bar_position'}), $add('label', {for: 'bar_position_left', efy_lang: 'left', style: 'display: flex; align-items: center; width: fit-content'}),
+        $add('input', {type: 'radio', id: 'bar_position_right', name: 'bar_position'}), $add('label', {for: 'bar_position_right', efy_lang: 'right', style: 'display: flex; align-items: center; width: fit-content'})
+      ]),
+      $add('p', {efy_lang: 'gap'}), $add('div', {}, [
+        $add('input', {type: 'radio', id: 'grid_gap_default', name: 'grid_gap', checked: ''}), $add('label', {for: 'grid_gap_default', efy_lang: 'default'}),
+        $add('input', {type: 'radio', id: 'grid_gap_small', name: 'grid_gap'}), $add('label', {for: 'grid_gap_small'}, ['Small']),
+        $add('input', {type: 'radio', id: 'grid_gap_none', name: 'grid_gap'}), $add('label', {for: 'grid_gap_none'}, ['None'])
+      ])/*,
+        $add('div', {efy_range_text: 'Columns', efy_lang: 'columns'}, [ $add('input', {type: 'range', id: 'ms_grid_columns', min: '250', max: '1500', step: '10', value: '400'}) ])*/
+    ]),
+
+    $add('div', {efy_content: 'tags', efy_select: '', id: 'items'}, [
+      $add('div', {efy_lang: 'soon'}, ['...'])
+    ])
   ])
-], $body);
+], $('#efy_sbtheme'), 'beforebegin');
 
-
-/* Set Active App - $ready('[efy_frame]', (a)=>{ $event(a, 'click', ()=>{
-    $all('[efy_frame]').forEach(b => b.removeAttribute('efy_active')); a.setAttribute('efy_active', '');
-})}); */
 
 $all('[os_drawer] [efy_card]').forEach(a =>{ let b = $$(a, '.name').textContent.replaceAll(' ', '_').toLowerCase(), c = a.getAttribute('efy_card');  if (a.classList[0] != 'add_app'){ a.setAttribute('efy_toggle', '[efy_frames], [os_drawer]')}; a.setAttribute('role', 'button');
     $event(a, 'click', ()=>{ if (c !== ''){ if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}
-        $add('iframe', {efy_frame: b, src: c, class: 'efy_app efy_trans_filter', allowfullscreen: 'true', loading: 'lazy', sandbox: 'allow-scripts allow-same-origin'}, [], $('[efy_frames]'))
+        $add('div', {efy_frame: b, class: 'efy_app efy_trans_filter'}, [
+          $add('iframe', {src: c, allowfullscreen: 'true', loading: 'lazy', sandbox: 'allow-scripts allow-same-origin'}),
+        ], $('[efy_frames]'))
 } else { $notify(3, 'Not available yet!', 'It should be released soon...')}})});
+
+
+/*Restore Preferences*/
+if (efy_os.bar_position){ let a = efy_os.bar_position; $('[os_app]').setAttribute('os_app', a); $(`#bar_position_${a}`).checked = true}
+if (efy_os.grid_gap){ let a = efy_os.grid_gap; $('[os_app]').setAttribute('os_grid_gap', a); $(`#grid_gap_${a}`).checked = true}
+
+/*Bar Position*/ 'top bottom left right'.split(' ').map(a=>{ $event($(`#bar_position_${a}`), 'click', ()=>{
+  $('[os_app]').setAttribute('os_app', a); efy_os.bar_position = a; $os_save()
+})});
+/*Grid Gap*/ 'default small none'.split(' ').map(a=>{ $event($(`#grid_gap_${a}`), 'click', ()=>{
+  $('[os_app]').setAttribute('os_grid_gap', a); efy_os.grid_gap = a; $os_save()
+})});
+
 
 /*Fullscreen*/ $event($('.os_fullscreen'), 'click', ()=>{
     if (document.fullscreenElement){ document.exitFullscreen()} else {document.documentElement.requestFullscreen()};
     if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}
 });
-/*Remove Last Frame*/ $all('.os_remove').forEach(a=>{ $event(a, 'click', ()=>{
-  try {$('[efy_frames] [efy_frame]:last-of-type').remove();
-    if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}} catch {}
+/*Close Apps*/ $all('#os_remove').forEach(a=>{ $event(a, 'change', ()=>{ let b = $all('[efy_frames] [efy_frame]');
+  if (b.length == 0){ a.checked = false}
+  else if (b.length == 1){ let c = b[0]; c.classList.add('efy_anim_remove'); $wait($css_prop('--efy_anim_speed') * 0.05, ()=>{ c.remove(); if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)} }); a.checked = false}
+  else {
+    if (a.checked){ $('[efy_frames]').classList.add('remove')}
+    else { $('[efy_frames]').classList.remove('remove')}
+  }
 })});
+
+$event($('[efy_frames]'), 'click', ()=>{ let a = event.target;
+    if (a.matches('[efy_frames].remove [efy_frame]')){ let c = $all('[efy_frames] [efy_frame]').length;
+      a.classList.add('efy_anim_remove'); $wait($css_prop('--efy_anim_speed') * 0.05, ()=>{ a.remove(); if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}});
+      if (c <= 2){ $('[efy_frames]').classList.remove('remove'); $('#os_remove').checked = false}
+    columns()}
+}); /*Close Apps - End*/
+
+/*Get App Columns*/ const columns =()=>{ let a = window.getComputedStyle($('[efy_frames]')).getPropertyValue("grid-template-columns").split(' ').length; console.log(a)}
+
 
 /*Drag*/ function efy_drag(list){
 let currentElement = '', initialX = 0, initialY = 0, x, y, chld = '*:not(.efy_no_drag, [efy_drag] > * > *, [efy_drag] [efy_drag_cursor])';

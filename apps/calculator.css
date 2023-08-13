@@ -1,3 +1,5 @@
+.efy_iframe :is(.efy_sidebar, [efy_sidebar_btn*=absolute]) {display: none}
+
 #cc_calculator {max-width: 600rem; background: var(--efy_bg1); padding: var(--efy_gap); border: var(--efy_border); border-radius: var(--efy_radius)}
 #cc_calculator input {margin: 0}
 #cc_calculator .cc_buttons {display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: var(--efy_gap); margin-top: var(--efy_gap)}

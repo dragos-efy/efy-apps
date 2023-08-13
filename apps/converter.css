@@ -1,4 +1,5 @@
 :root{--efy_sidebar_button: right_top, on}
+.efy_iframe :is(.efy_sidebar, [efy_sidebar_btn*=absolute]) {display: none}
 
 body > :is(h4, p) {text-align: center; margin: 0 0 calc(var(--efy_gap) * 1.5) 0}
 .lc_grid {display: grid; grid-template-columns: 1fr 1fr; gap: var(--efy_gap)}

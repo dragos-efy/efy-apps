@@ -1,29 +1,69 @@
-[efy_frames] {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400rem, 1fr));
-    gap: 15rem; width: 100%;
-    height: 100%;
-    border-radius: var(--efy_radius);
-    overflow-y: auto;
-    scroll-snap-type: both mandatory; overscroll-behavior-x: contain
-}
+:root {--efy_body_padding: 0; --os_thumb_height: 50rem}
+html, body {overflow: hidden}
+.efy_sidebar {overflow-x: hidden}
+
+[os_app] {--os_grid_gap: 3; width: 100%; height: var(--efy_100vh); max-height: var(--efy_100vh); display: flex; flex-direction: column; gap: var(--efy_gap); margin: 0; overflow: hidden; padding: var(--efy_gap)}
+[os_app*=top] {flex-direction: column-reverse}
+[os_app*=left] {flex-direction: row-reverse} [os_app*=right] {flex-direction: row}
+:is([os_app*=left], [os_app*=right]) [os_bar] [efy_clock] {padding: 8rem 5rem}
+:is([os_app*=left], [os_app*=right]) [os_bar] [efy_clock] :is(.s1, .s2) {width: 100%; border-top: var(--efy_border); content-visibility: hidden; margin: 5rem 0 calc(var(--efy_border_size) + 5rem) 0}
+:is([os_app*=left], [os_app*=right]) [os_bar] [efy_clock] p {font-size: 23rem}
+:is([os_app*=left], [os_app*=right]) :is([os_bar], [os_bar] [efy_clock], .os_buttons, .os_buttons > div) {flex-direction: column; width: fit-content}
+
+.os_loader { position: fixed; top: 15rem; left: 15rem; width: 300rem; height: 100rem; bottom: 0; background: #0003; z-index: 10; backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; border-radius: var(--efy_radius)}
+
+[os_bar] {width: 100%; display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(--efy_gap0); border: var(--efy_border); border-radius: var(--efy_radius2); background: var(--efy_bg1)}
+[os_bar] :is([efy_clock], .os_speed_text) {line-height: 1; padding: 5rem 8rem; font-size: 26rem; border-radius: var(--efy_radius)}
+[os_bar] [efy_clock] p {font-size: 26rem}
+[os_bar] :is(button, input, label) {margin: 0}
+
+[os_grid_gap*=small] {--os_grid_gap: 1}
+[os_grid_gap*=none] {--os_grid_gap: 0}
+[os_grid_gap*=small], [os_grid_gap*=none] {padding: 0}
+[os_grid_gap*=small] [os_bar] {border-radius: var(--efy_radius2) var(--efy_radius2) 0 0; border: 0; border-top: var(--efy_border)}
+[os_grid_gap*=small] :is([efy_frames], [os_drawer], [efy_frame]:first-of-type) {border-top-left-radius: 0}
+[os_grid_gap*=small] :is([efy_frames], [os_drawer], [efy_frames] [efy_frame]:only-child) {border-top-right-radius: 0}
+[os_grid_gap*=none], [os_grid_gap*=none] [efy_frames] {gap: 0}
+[os_grid_gap*=none] :is([efy_frames], [efy_frames] [efy_frame], [os_drawer], [os_bar]) {border-radius: 0}
+
+.os_buttons, .os_buttons > div {display: flex; gap: var(--efy_gap0)}
+.os_buttons button {aspect-ratio: 1; height: calc(36rem + var(--efy_border_size) * 2); align-items: center; justify-content: center; border: 0}
+
+.os_speed_text, .os_time_text {display: flex; gap: 5rem; align-items: center; width: fit-content; height: 38rem; padding: 7rem 10rem; font-weight: bold; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
+.os_speed_text {aspect-ratio: unset!important}
+.os_speed_menu {position: absolute; display: flex; flex-wrap: wrap; gap: 10rem; width: fit-content; top: -115rem; right: 0; margin: calc(-1 * var(--efy_gap)) var(--efy_gap) 0 0}
+
+[os_grid] {width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: var(--efy_gap)}
+[os_grid="1"] {grid-template-columns: 1fr} [os_grid="3"] {grid-template-columns: 1fr 1fr 1fr} [os_grid="4"] {grid-template-columns: 1fr 1fr 1fr 1fr}
+
+.os_grid_box {width: 100%; height: 100%; overflow-y: auto; border-radius: var(--efy_radius)}
+
+:is(.efy_sidebar details details):not([open]) {padding: 0 12rem}
+
+#bar_position div {display: flex; gap: var(--efy_gap0); flex-wrap: wrap}
+#bar_position div label {margin: 0}
+
+#bar_position [efy_range_text="Columns"] {margin-top: var(--efy_gap0); gap: 0}
+
+[os_bar] .mobile {display: none}
+[os_bar] .desktop {display: flex}
+
+[efy_frames] {display: grid; grid-template-columns: repeat(auto-fit, minmax(400rem, 1fr)); gap: var(--efy_gap); width: 100%; height: 100%; border-radius: var(--efy_radius); overflow-y: auto; scroll-snap-type: both mandatory; overscroll-behavior-x: contain}
 [efy_frames].eos_full {grid-template-columns: 1fr}
 
-[efy_frame], [efy_frames] > .item {
-    width: 100%;
-    height: calc(var(--efy_100vh) - 108rem);
-    overflow: scroll;
-    border-radius: var(--efy_radius);
-    border: var(--efy_border);
-    background: var(--efy_bg1);
-    scroll-snap-stop: always; scroll-snap-align: center;
-}
+[efy_frames] [efy_frame] {width: 100%; height: calc(var(--efy_100vh) - 35.4rem - (var(--efy_gap) * (var(--os_grid_gap))) - (var(--efy_gap0) * 2) - (var(--efy_border_size) * 4)); border-radius: var(--efy_radius); border: var(--efy_border); background: var(--efy_bg1); scroll-snap-stop: always; scroll-snap-align: center; overflow: hidden}
+:is([os_app*=left], [os_app*=right]) [efy_frames] [efy_frame] {height: calc(var(--efy_100vh) - (var(--efy_gap) * (var(--os_grid_gap) - 1)))}
+
+[efy_frames] [efy_frame] iframe {overflow: scroll; border: 0; width: 100%; height: 100%}
 /*[efy_outline] */[efy_frame][efy_active] {border-color: var(--efy_text); box-shadow: inset 0 0 0 2rem var(--efy_text)}
+
+[efy_frames].remove [efy_frame] {border-color: var(--efy_text)}
+[efy_frames].remove iframe {pointer-events: none}
 
 /*Drag*/ [efy_drag=on] * {cursor: move!important} [efy_drag=on] * > * {pointer-events: none}
 [efy_drag=on] > *.active {border: var(--efy_border_size) dashed var(--efy_text); background: transparent}
-#os_drag_toggle, [for=os_drag_toggle]:before, [for=os_drag_toggle]:after {display: none!important}
-[efy_select] input + label[for=os_drag_toggle] {height: 39rem; width: 39rem; display: flex; align-items: center; place-content: center}
+#os_drag_toggle, #os_remove, :is([for=os_drag_toggle], [for=os_remove]):before, :is([for=os_drag_toggle], [for=os_remove]):after {display: none!important}
+[efy_select] input + label:is([for=os_drag_toggle], [for=os_remove]) {height: 39rem; width: 39rem; display: flex; align-items: center; place-content: center}
 
 /*Fix 2 BG Glitch*/ [for=os_drag_toggle] [efy_icon=move]:before, [os_drawer] [efy_card] [efy_icon=plus]:before { -webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
 
@@ -55,52 +95,19 @@
 .modal_grid .input-group:focus-within {gap: calc(var(--efy_border_size) + 2rem)}
 
 
+[efy_mode*=trans] :is([os_bar], [efy_frames] [efy_frame], [os_drawer]) {backdrop-filter: blur(50rem) brightness(.8); -webkit-backdrop-filter: blur(50rem) brightness(.8)}
 
-:root {--efy_body_padding: 0; --os_thumb_height: 50rem}
-
-[os_app] {width: 100%; height: var(--efy_100vh); max-height: var(--efy_100vh); display: flex; flex-direction: column; gap: var(--efy_gap); margin: 0; overflow: hidden; padding: var(--efy_gap)}
-[os_app*=top] {flex-direction: column-reverse}
-
-.os_loader { position: fixed; top: 15rem; left: 15rem; width: 300rem; height: 100rem; bottom: 0; background: #0003; z-index: 10; backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; border-radius: var(--efy_radius)}
-
-[os_bar] {width: 100%; display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(--efy_gap0); border: var(--efy_border); border-radius: var(--efy_radius2); background: var(--efy_bg1)}
-[os_bar] :is([efy_clock], .os_speed_text) {line-height: 1; padding: 5rem 8rem; font-size: 26rem; border-radius: var(--efy_radius)}
-[os_bar] :is(button, input, label) {margin: 0}
-
-.os_buttons, .os_buttons > div {display: flex; gap: var(--efy_gap0)}
-.os_buttons button {aspect-ratio: 1; height: calc(36rem + var(--efy_border_size) * 2); align-items: center; justify-content: center: border: 0}
-
-.os_speed_text, .os_time_text {display: flex; gap: 5rem; align-items: center; width: fit-content; height: 38rem; padding: 7rem 10rem; font-weight: bold; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
-.os_speed_text {aspect-ratio: unset!important}
-.os_speed_menu {position: absolute; display: flex; flex-wrap: wrap; gap: 10rem; width: fit-content; top: -115rem; right: 0; margin: calc(-1 * var(--efy_gap)) var(--efy_gap) 0 0}
-
-[os_grid] {width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: var(--efy_gap)}
-[os_grid="1"] {grid-template-columns: 1fr} [os_grid="3"] {grid-template-columns: 1fr 1fr 1fr} [os_grid="4"] {grid-template-columns: 1fr 1fr 1fr 1fr}
-
-.os_grid_box {width: 100%; height: 100%; overflow-y: auto; border-radius: var(--efy_radius)}
-
-:is(.efy_sidebar details details):not([open]) {padding: 0 12rem}
-
-#bar_position div {display: flex; gap: var(--efy_gap0); flex-wrap: wrap}
-#bar_position div label {margin: 0}
-
-#bar_position [efy_range_text="Columns"] {margin-top: var(--efy_gap0); gap: 0}
-
-[os_bar] .mobile {display: none}
-[os_bar] .desktop {display: flex}
-.os_buttons2 {align-items: center; gap: var(--efy_gap0)}
-
-
-.efy_sidebar {overflow-x: hidden}
-html, body {overflow: hidden}
 
 /*Convergence*/
- @media (max-width: 767.9px){
+@media (max-width: 767.9px){
     [os_grid] {grid-template-columns: 1fr}
     #bar_position :is(#os_grid_columns, [efy_range_text="Columns"]), [os_bar] .desktop {display: none}
     [os_bar] .mobile {display: flex}
-    .os_buttons {justify-content: space-between; width: 100%; place-content: center}
+    .os_buttons {justify-content: space-between; place-content: center}
 }
-
-
-[efy_mode*=trans] :is([os_bar], [efy_frames] [efy_frame], [os_drawer]) {backdrop-filter: blur(50rem) brightness(.8); -webkit-backdrop-filter: blur(50rem) brightness(.8)}
+@media (max-width: 389px){
+    .os_fullscreen {display: none}
+}
+@media (max-width: 400px){
+    [efy_frames] {grid-template-columns: repeat(auto-fit, minmax(250rem, 1fr))}
+}

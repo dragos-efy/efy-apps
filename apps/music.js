@@ -31,7 +31,7 @@ $add('div', {ms_app: ''}, [
   ])
 ], $body);
 
-$add('details', {id: 'ms_music_player'}, [
+$add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
   $add('summary', {}, [$add('i', {efy_icon: 'audio'}), $add('p', {efy_lang: 'music_player'}), $add('mark', {efy_lang: 'beta'})]),
     $add('div', {efy_tabs: 'ms_menu', efy_select: ''}, [
 

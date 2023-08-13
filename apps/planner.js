@@ -133,7 +133,7 @@ App_goals.start(); App_notes.start(); App_links.start(); App_tags.start();
 
 /*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
-$add('details', {id: 'pn_settings'}, [
+$add('details', {id: 'pn_settings', class: 'eos_menu'}, [
   $add('summary', {}, [$add('i', {efy_icon: 'edit'}), $add('p', {}, ['Planner']), $add('mark', {efy_lang: 'alpha'})]),
         $add('div', {efy_tabs: 'pn_menu', efy_select: ''}, [
             /*Tabs*/
