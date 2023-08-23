@@ -38,9 +38,9 @@ Tag ={ all: pn_storage.get('tags'),
 
 pn_notes ={ add_note(note, index){ let now = 'pn_note_' + Date.now(), date = note.date.split('/'), month = month_name[date[1]];
     $add('details', {efy_searchable: '', 'data-value': index, id: now, pn_date: note.date}, [ $add('summary', {}, [ $add('div', {class: 'title'}, [note.text]) ]),
-        $add('div', {class: 'description'}, [ $add('textarea', {class: 'description2 efy_trans_filter_off', readonly: ''}, [note.description]) ]),
+        $add('div', {class: 'description'}, [ $add('textarea', {class: 'description2 efy_trans_filter_off efy_shadow_trans_off', readonly: ''}, [note.description]) ]),
         $add('div', {class: 'pn_tags'}, [
-            $add('div', {class: 'date'}, [ month +', '+ date[0] ]),
+            $add('div', {class: 'date efy_shadow_trans'}, [ month +', '+ date[0] ]),
             $add('button', {class: 'copy efy_square_btn', onClick: `navigator.clipboard.writeText( $('#pn_notes [data-value="${index}"] .description2').value ); $notify(3, 'Copied', 'to clipboard')`}, [ $add('i', {efy_icon: 'copy'}) ]),
             $add('button', {class: 'pn_fs efy_square_btn', onClick: `$('#pn_notes [data-value="${index}"]').classList.toggle('pn_fs'); $('html').classList.toggle('pn_fs'); window.scrollTo(0,0)`}, [ $add('i', {efy_icon: 'fullscreen'}) ]),
             $add('button', {class: 'remove efy_square_btn', onClick: `Note.remove(${index})`}, [ $add('i', {efy_icon: 'remove'}) ])
@@ -53,7 +53,7 @@ pn_goals ={ add_goal(goal, index){ let now = 'pn_goal_' + Date.now(), date = goa
     $add('details', {efy_searchable: '', 'data-value': index, id: now, pn_date: goal.date, pn_done: goal.done, /*remove when firefox supports :has*/ pn_has: goal.priority}, [ $add('summary', {}, [$add('div', {pn_priority: goal.priority}), $add('div', {class: 'title'}, [goal.text]), $add('div', {class: 'time'}, [$sec_time(goal.time)])]),
         $add('div', {class: 'description'}, [$add('div', {efy_timer: `${now},${goal.time},reverse` })]),
         $add('div', {class: 'pn_tags'}, [
-            $add('div', {class: 'date'}, [ month +', '+ date[0] ]),
+            $add('div', {class: 'date efy_shadow_trans'}, [ month +', '+ date[0] ]),
             $add('button', {efy_start: '', title: 'Start or Pause', class: 'pseudo efy_square_btn', onClick: `$('${this_details} [efy_start].pseudo').toggleAttribute('efy_active'); $('${this_details} [efy_timer] [efy_start]').dispatchEvent(new Event('click', { 'bubbles': true }))`}),
             $add('button', {efy_reset: '', title: 'Reset', class: 'pseudo efy_square_btn', onClick: `$('${this_details} [efy_start].pseudo').toggleAttribute('efy_active'); $('${this_details} [efy_timer] [efy_reset]').dispatchEvent(new Event('click', { 'bubbles': true }))`}),
             $add('button', {class: 'done_btn efy_square_btn', efy_audio_mute: 'ok', onClick: `let x = $('${this_details}'); if (x.getAttribute('pn_done') == 'true'){ x.setAttribute('pn_done', 'false')}

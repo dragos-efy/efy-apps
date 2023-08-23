@@ -32,7 +32,7 @@ $add('div', {os_app: ''}, [
       $add('a', {efy_card: './planner.html#notes', class: 'efy_trans_filter_off'}, [$add('i', {efy_icon: 'menu', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Notes'])])]),
       $add('a', {efy_card: '', class: 'add_app soon efy_trans_filter_off' /* , efy_toggle: '.pn_links_form' */}, [$add('i', {efy_icon: 'plus', class: 'efy_color_trans'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Add App'])])])
     ])]),
-  /*Dock*/ $add('div', {os_bar: '', class: 'efy_trans_filter'}, [
+  /*Dock*/ $add('div', {os_bar: '', class: 'efy_trans_filter efy_shadow_trans'}, [
     $add('div', {class: 'os_buttons'}, [
       $add('div', {}, [ $add('div', {efy_clock: ''}) ]),
       // $add('button', {class: 'desktop os_speed_text', efy_card: '', title: 'Speed'}, ['3x'])

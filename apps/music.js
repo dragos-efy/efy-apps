@@ -5,8 +5,9 @@ try { if (localStorage.efy_ms){ efy_ms = JSON.parse(localStorage.efy_ms)} $ms_sa
 
 $add('div', {ms_app: ''}, [
   $add('audio', {class: 'audio_html', controls: ''}),
+  $add('div', {class: 'ms_loading efy_hide_i'}, ['Loading...']),
   /*Songs*/ $add('div', {class: 'ms_grid_box'}, [ $add('div', {ms_grid: '', class: 'songs'}) ]),
-  /*Player*/ $add('div', {ms_bar: '', class: 'efy_trans_filter'}, [
+  /*Player*/ $add('div', {ms_bar: '', class: 'efy_trans_filter efy_shadow_trans'}, [
     $add('div', {class: 'ms_buttons'}, [
       $add('div', {}, [
         $add('button', {class: 'prev efy_square_btn', title: 'Previous'}, [ $add('i', {efy_icon: 'chevron'}) ]),
@@ -26,6 +27,7 @@ $add('div', {ms_app: ''}, [
     $add('div', {class: 'desktop ms_buttons2'}, [
       $add('button', {class: 'ms_speed_text', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, ['1X']),
       $add('label', {efy_upload: 'ms_upload,audio/*, small, multiple', title: 'Add file'}),
+      $add('button', {class: 'ms_filesystem efy_square_btn efy_hide_i', title: 'Add file'}, [$add('i', {efy_icon: 'plus'})]),
       $add('button', {class: 'ms_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [ $add('i', {efy_icon: 'menu'}) ])
     ])
   ])
@@ -132,16 +134,87 @@ duration_in_min =(dur, min = 0)=>{ if (dur < 60){ return dur < 10 ? `${min}:0${M
 };
 
 
-/*Load Files*/ const load_audio =(file)=>{
-	/*List tags*/ ID3.loadTags(file.name, ()=>{ i++; let tags = ID3.getAllTags(file.name), artist_line = '', album_line = '';
-      /*Save to memory*/ audios[i] = URL.createObjectURL(file);
+
+
+const openDB = () => {
+  return new Promise((resolve, reject) => {
+    const request = window.indexedDB.open('efy_music', 1);
+
+    request.onerror = (event) => {
+      reject(event.target.error);
+    };
+
+    request.onsuccess = (event) => {
+      resolve(event.target.result);
+    };
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      db.createObjectStore('files', { keyPath: 'id' });
+    };
+  });
+};
+
+const clearDB = (db) => {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction('files', 'readwrite');
+    const objectStore = transaction.objectStore('files');
+    const clearRequest = objectStore.clear();
+
+    clearRequest.onsuccess = () => {
+      resolve();
+    };
+
+    clearRequest.onerror = (event) => {
+      reject(event.target.error);
+    };
+  });
+};
+
+const addFileToDB = (db, file) => {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction('files', 'readwrite');
+    const objectStore = transaction.objectStore('files');
+    const addRequest = objectStore.add({ id: file.name, file });
+
+    addRequest.onsuccess = () => {
+      resolve();
+    };
+
+    addRequest.onerror = (event) => {
+      reject(event.target.error);
+    };
+  });
+};
+
+
+  const process_song =(file)=>{
+  /*List tags*/
+  ID3.loadTags(file.name, () => {
+      i++;
+      let tags = ID3.getAllTags(file.name),
+      artist_line = '',
+      album_line = '';
+
+      /*Save to memory*/
+      audios[i] = URL.createObjectURL(file);
       audios_title[i] = (tags.title || file.name.replace('.mp3', '').replace('.wav', '').replace('.m4a', '').replace('.flac', '').replace('.webm', '').replace('.mp4', '').replace('.ogg', ''));
-      audios_artist[i] = (tags.artist || ''); if (audios_artist[i] !== ''){ artist_line = ' - '}
-      audios_album[i] = (tags.album || ''); if (audios_album[i] !== ''){ album_line = ' - '}
+      audios_artist[i] = (tags.artist || '');
+
+      if (audios_artist[i] !== ''){
+        artist_line = ' - '
+      }
+
+      audios_album[i] = (tags.album || '');
+
+      if (audios_album[i] !== ''){
+        album_line = ' - '
+      }
+
       audios_image[i] = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAA';
 
-		/*Add Songs*/
-		$add('div', {class: 'song', efy_card: '', ms_track_id: i}, [
+      /*Add Songs*/
+      $add('div', {class: 'song', efy_card: '', ms_track_id: i}, [
 			$add('div', {class: 'delete'}, [ $add('button', {title: 'delete'}) ]),
             $add('div', {class: 'text'}, [
               $add('p', {class: 'number efy_hide_i'}, [`${i}. `]),
@@ -151,34 +224,104 @@ duration_in_min =(dur, min = 0)=>{ if (dur < 60){ return dur < 10 ? `${min}:0${M
             ])
 		], $('.songs'));
 
-        /*Variables*/ const current_track = $(`.song[ms_track_id="${i}"]`), c_track = `.song[ms_track_id="${i}"]`;
+      /*Variables*/
+      const current_track = $(`.song[ms_track_id="${i}"]`),
+      c_track = `.song[ms_track_id="${i}"]`;
 
-		/*Image*/ try { audios_image[i] = `data:${tags.picture.format};base64,${Base64.encodeBytes(tags.picture.data)}`;
-          $add('div', {class: 'image', style: `background: url(${audios_image[i]})`, title: 'Song image'}, [], current_track, 'afterbegin')
-        } catch (error){ $add('div', {class: 'ms_empty image'}, [ $add('i', {efy_icon: 'audio'}) ], current_track, 'afterbegin')}
+      /*Image*/
+      try {
+        audios_image[i] = `data:${tags.picture.format};base64,${Base64.encodeBytes(tags.picture.data)}`;
+        $add('div', {class: 'image efy_shadow_trans', style: `background: url(${audios_image[i]})`, title: 'Song image'}, [], current_track, 'afterbegin')
+      } catch (error){
+        $add('div', {class: 'ms_empty image efy_shadow_trans'}, [ $add('i', {efy_icon: 'audio'}) ], current_track, 'afterbegin')
+      }
 
-        /*Tags - Checked*/ for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
-          if ($(`#ms_song_info_${a[i]}`).checked){ $all(c_track + ` .${a[i]}`).forEach(b=>{ b.classList.remove('efy_hide_i') }) }
-          else { $all(c_track + ` .${a[i]}`).forEach(b=>{ b.classList.add('efy_hide_i') }) }
+      /*Tags - Checked*/
+      for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
+        if ($(`#ms_song_info_${a[i]}`).checked){
+          $all(c_track + ` .${a[i]}`).forEach(b=>{ b.classList.remove('efy_hide_i') })
+        } else {
+          $all(c_track + ` .${a[i]}`).forEach(b=>{ b.classList.add('efy_hide_i') })
         }
+      }
 
-		/*Events*/
-		$event(current_track, 'click', (b)=>{ ms_track_id = b.target.getAttribute('ms_track_id');
-			audio.setAttribute('src', audios[ms_track_id]); audio.playbackRate = $('#rate').value; audio.play(); $('.player i').setAttribute('efy_icon', 'pause'); hightlight_playing(b.target); song_bg()
-		});
-		/*Play 1st song*/ if (ms_no_songs == true){ ms_track_id = 1;
+      /*Events*/
+      $event(current_track, 'click', (b)=>{ ms_track_id = b.target.getAttribute('ms_track_id');
+        audio.setAttribute('src', audios[ms_track_id]); audio.playbackRate = $('#rate').value; audio.play(); $('.player i').setAttribute('efy_icon', 'pause'); hightlight_playing(b.target); song_bg()
+    });
+
+      /*Play 1st song*/ if (ms_no_songs == true){ ms_track_id = 1;
           audio.setAttribute('src', audios[1]); audio.playbackRate = $('#rate').value; play_pause(); hightlight_playing($('.songs .song')); ms_no_songs = false; song_bg() }
-	},
-		{ tags: ["artist", "title", "album", "picture"], dataReader: FileAPIReader(file) });
+    },
+        { tags: ["artist", "title", "album", "picture"], dataReader: FileAPIReader(file) });
+  }
+
+
+  const restore_songs = async ()=>{
+    const db = await openDB();
+    const transaction = db.transaction('files', 'readonly');
+    const objectStore = transaction.objectStore('files');
+    const getAllRequest = objectStore.getAll();
+
+    getAllRequest.onsuccess = (event) => {
+      $('.ms_loading').classList.remove('efy_hide_i');
+      const storedFiles = event.target.result;
+      if (storedFiles.length > 0) {
+        filesToUse = storedFiles.map(storedFile => storedFile.file);
+        // Process the files retrieved from IndexedDB...
+        for (const file of filesToUse) {
+            process_song(file)
+        }
+      }; $('.ms_loading').classList.add('efy_hide_i');
+    };
+
+    getAllRequest.onerror = (event) => {
+      console.error(event.target.error);
+    };
+  }; if (efy_ms.restore == true){ restore_songs()}
+
+
+
+/*Load Files*/ const load_audio = async (file) => {
+  let filesToUse = []; $('.ms_loading').classList.remove('efy_hide_i');
+
+  if (efy_ms.filesystem == true) {
+    if (efy_ms.filesystem_dir == true) {
+      const dirHandle = await window.showDirectoryPicker();
+      for await (const entry of dirHandle.values()) {
+        if (entry.kind === 'file') { filesToUse.push(await entry.getFile())}
+      }
+    } else {
+      const fileHandles = await window.showOpenFilePicker({ multiple: true });
+      filesToUse = await Promise.all(fileHandles.map(fileHandle => fileHandle.getFile()));
+    }
+
+    const db = await openDB();
+    // await clearDB(db);
+    for (const file of filesToUse) { // process each file...
+      await addFileToDB(db, file);
+    }
+
+  } else { filesToUse = [file] }
+
+  for (const file of filesToUse) { // process each file
+    process_song(file);
+  }
+  $('.ms_loading').classList.add('efy_hide_i');
 },
 
-read_files =(a)=>{ for (let i = 0; i < a.length; i++) { load_audio(a[i])}};
 
+read_files = async (a)=>{ for (let i = 0; i < a.length; i++) { await load_audio(a[i])}};
 
-/*Upload Buttons*/ $wait(0.5, ()=>{ $all('#ms_upload').forEach(a=>{
-  a.addEventListener('change', (event)=>{ read_files(event.target.files)});
-})});
-
+$ready('.ms_filesystem', (b)=>{
+  if (efy_ms.filesystem == true){
+    $all('[efy_upload*=ms_upload]').forEach(a=>{ a.classList.add('efy_hide_i')});
+    b.classList.remove('efy_hide_i');
+    $event(b, 'click', async ()=>{ load_audio()})
+  } else { console.log('fr'); $wait(1, ()=>{
+    $all('#ms_upload').forEach(a=>{ $event(a, 'change', async (event)=>{ console.log('a'); read_files(event.target.files)})}); });
+  }
+});
 
 
 

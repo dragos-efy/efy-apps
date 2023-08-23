@@ -11,7 +11,7 @@
 
 <div class="pn_nav">
     <div style="display: flex; gap: var(--efy_gap0);">
-        <button class="button new efy_square_btn" onClick="pn_modal.toggle()" title="Add"><i efy_icon="plus" style="margin: 0 2rem 0 16rem"></i></button>
+        <button class="button new efy_square_btn" onClick="pn_modal.toggle()" title="Add"><i efy_icon="plus"></i></button>
         <div efy_select class="pn_toggles">
             <input type="checkbox" id="pn_edit_toggle" /><label for="pn_edit_toggle" title="Edit"><i efy_icon="edit"></i><p efy_lang="edit"></p></label>
             <input type="checkbox" id="pn_drag_toggle" /><label for="pn_drag_toggle" title="Move"><i efy_icon="move"></i><p efy_lang="move"></p></label>
@@ -40,7 +40,7 @@
 
                 <div class="efy_trans_filter_off">
 
-            <div efy_content="goals" efy_active class="form pn_goals_form"><form action="#">
+            <div efy_content="goals" efy_active class="form pn_goals_form efy_shadow_trans_off"><form action="#">
 
                     <div class="modal_grid"><div class="grid">
                         <div class="input-group">
@@ -76,7 +76,7 @@
             </div>
 
 
-            <div efy_content="notes" class="form pn_notes_form"><form action="#">
+            <div efy_content="notes" class="form pn_notes_form efy_shadow_trans_off"><form action="#">
 
                     <div class="modal_grid"><div class="grid">
                         <div class="input-group">
@@ -100,7 +100,7 @@
             </div>
 
 
-            <div efy_content="links" class="form pn_links_form"><form action="#">
+            <div efy_content="links" class="form pn_links_form efy_shadow_trans_off"><form action="#">
 
                     <div class="modal_grid"><div class="grid">
                         <div class="input-group">
@@ -152,23 +152,23 @@
     <div id="pn_goals">
         <div class="header">
             <h5 class="efy_no_drag" efy_lang="goals"></h5>
-            <mark class="efy_trans_filter">0</mark>
-            <mark class="efy_trans_filter pn_full" efy_toggle="#pn_notes, #pn_links" title="Full Size"><i efy_icon="fullscreen"></i></mark>
+            <mark class="efy_trans_filter efy_shadow_trans">0</mark>
+            <mark class="efy_trans_filter pn_full efy_shadow_trans" efy_toggle="#pn_notes, #pn_links" title="Full Size"><i efy_icon="fullscreen"></i></mark>
         </div><div efy_drag></div>
         <!--<div efy_drag class="done"><p>Done</p></div>-->
     </div>
     <div id="pn_notes">
         <div class="header">
             <h5 class="efy_no_drag" efy_lang="notes"></h5>
-            <mark class="efy_trans_filter">0</mark>
-            <mark class="efy_trans_filter pn_full" efy_toggle="#pn_goals, #pn_links" title="Full Size"><i efy_icon="fullscreen"></i></mark>
+            <mark class="efy_trans_filter efy_shadow_trans">0</mark>
+            <mark class="efy_trans_filter pn_full efy_shadow_trans" efy_toggle="#pn_goals, #pn_links" title="Full Size"><i efy_icon="fullscreen"></i></mark>
         </div><div efy_drag></div>
     </div>
     <div id="pn_links" >
         <div class="header">
             <h5 class="efy_no_drag" efy_lang="links"></h5>
-            <mark class="efy_trans_filter">0</mark>
-            <mark class="efy_trans_filter pn_full" efy_toggle="#pn_notes, #pn_goals" title="Full Size"><i efy_icon="fullscreen"></i></mark>
+            <mark class="efy_trans_filter efy_shadow_trans">0</mark>
+            <mark class="efy_trans_filter pn_full efy_shadow_trans" efy_toggle="#pn_notes, #pn_goals" title="Full Size"><i efy_icon="fullscreen"></i></mark>
         </div><div efy_drag></div>
     </div>
     <i efy_drag_cursor></i>
