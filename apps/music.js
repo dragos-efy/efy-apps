@@ -15,7 +15,7 @@ $add('div', {ms_app: ''}, [
         $add('button', {class: 'next efy_square_btn', title: 'Next'}, [ $add('i', {efy_icon: 'chevron'}) ])
       ]),
       $add('div', {class: 'mobile ms_buttons2'}, [
-        $add('button', {class: 'ms_speed_text', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, ['1X']),
+        $add('button', {class: 'ms_speed_text efy_button_text_off', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, ['1X']),
         $add('label', {efy_upload: 'ms_upload,audio/*, small, multiple', title: 'Add file'}),
         $add('button', {class: 'ms_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [ $add('i', {efy_icon: 'menu'}) ])
       ])
@@ -25,7 +25,7 @@ $add('div', {ms_app: ''}, [
       $add('div', {class: 'ms_time_text', efy_card: ''}, [ $add('p', {class: 'seeker-start-value'}, ['0:00']), $add('p', {}, ['/']), $add('p', {class: 'seeker-end-value'}, ['0:00']) ])
     ]),
     $add('div', {class: 'desktop ms_buttons2'}, [
-      $add('button', {class: 'ms_speed_text', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, ['1X']),
+      $add('button', {class: 'ms_speed_text efy_button_text_off', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, ['1X']),
       $add('label', {efy_upload: 'ms_upload,audio/*, small, multiple', title: 'Add file'}),
       $add('button', {class: 'ms_filesystem efy_square_btn efy_hide_i', title: 'Add file'}, [$add('i', {efy_icon: 'plus'})]),
       $add('button', {class: 'ms_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [ $add('i', {efy_icon: 'menu'}) ])

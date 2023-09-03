@@ -20,25 +20,25 @@
 
 <div id="efy_docs" efy_search="details, #efy_docs [efy_searchable]">
 
-<div efy_tabs="demo" class="dc_nav efy_shadow_trans_off"><div class="dc_nav_div">
-<div class="dc_left">
-    <button efy_tab="0" class="efy_trans_filter_off" efy_active>EFY</button>
-    <button efy_tab="2" class="efy_trans_filter_off">Questions</button>
-    <button efy_tab="1" class="efy_trans_filter_off">HTML</button>
-    <button efy_tab="3" class="efy_trans_filter_off">Code</button>
+<div efy_tabs="dc" class="dc_nav efy_shadow_trans_off"><div class="dc_nav_div">
+<div class="dc_left efy_button_text_off">
+    <button efy_tab="efy" class="efy_trans_filter_off" efy_active>EFY</button>
+    <button efy_tab="faq" class="efy_trans_filter_off">FAQ</button>
+    <button efy_tab="html" class="efy_trans_filter_off">HTML</button>
+    <button efy_tab="docs" class="efy_trans_filter_off">Docs</button>
 </div><div class="dc_right">
     <label class="dc_search"><i efy_icon="search"></i><input type="text" efy_search_input placeholder="Search..." /></label>
     <button efy_sidebar_btn class="efy_square_btn efy_trans_filter_off"><i efy_icon="menu"></i></button>
 </div></div>
 
-<div efy_content="0" efy_active>
+<div efy_content="efy" efy_active>
 
     <div class="dash_hide">
         <h2 efy_lang="join_future" efy_searchable></h2><p efy_lang="sidebar_about_text" efy_searchable></p>
         <div efy_searchable id ="dc_buttons" class="dc_cta" efy_searchable>
             <button efy_sidebar_btn efy_lang="try_it" class="efy_trans_filter_off"><i efy_icon="play"></i></button>
             <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter"><p>Github</p><p>40</p></a>
-            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>41</p></a>
+            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>43</p></a>
         </div>
     </div>
     <div>
@@ -61,7 +61,7 @@
 
 </div>
 
-<div efy_content="1">
+<div efy_content="html">
 
 <p style="margin-bottom: 15rem" efy_searchable>Bellow you can see examples of simple, commonly used HTML styled by efy:</p>
 
@@ -153,7 +153,7 @@
         <form>
             <fieldset class="dc_grid">
                 <label><input type="color"></label>
-                <label>hidden input<input type="hidden"></label></label>
+                <label>hidden input<input type="hidden"></label>
                 <label><input type="date"></label>
                 <label><input type="datetime-local"></label>
                 <label><input type="email" placeholder="email"></label>
@@ -207,9 +207,9 @@
 </form></div>
 
 
-</div><div efy_content="2" efy_details>
+</div><div efy_content="faq" efy_details>
     <div>
-        <details efy_searchable><summary>The logic behind it</summary><ul>
+        <details efy_searchable="logic"><summary>The logic behind it</summary><ul>
         <li>Minimalism - no dependencies, efficient code</li>
         <li>Modularity - users are in control, billions of possible patterns</li>
         <li>Accessible - not fully yet</li>
@@ -221,20 +221,20 @@
         <li>Supports both the <mark>https://</mark> and <mark>file:///</mark> protocols - most frameworks don't do that, we do, so you can use the apps statically &amp; offline too, without any server, compiling, nodejs etc. required.</li>
         </ul></details>
 
-        <details efy_searchable><summary>How do I use it on my own projects?</summary>
+        <details efy_searchable="how_to_use"><summary>How do I use it on my own projects?</summary>
         <p>In any way you want, as long as you keep it open source and follow the <a target="_blank" href="https://github.com/dragos-efy/efy/blob/main/LICENSE">AGPL 3.0 License here</a>. Propper documentation is coming soon</p>
         </details>
 
-        <details efy_searchable><summary>I see glitches or errors. How do I reset it?</summary>
+        <details efy_searchable="reset"><summary>I see glitches or errors. How do I reset it?</summary>
             <p><mark>EFY</mark> <i efy_icon="chevron"></i><mark efy_lang="backup"></mark> <i efy_icon="chevron"></i><mark efy_lang="efy_settings"></mark> or <mark efy_lang="efy_images"></mark> <i efy_icon="chevron"></i><mark efy_lang="reset"></mark></p>
             <p>Or clear your browser's cache, try a different browser, device etc.</p>
         </details>
 
-        <details efy_searchable><summary>How do I repport bugs or share my ideas?</summary><p>On <a href="https://github.com/dragos-efy/efy">Github</a> or <a href="https://matrix.to/#/#efy_ui:matrix.org">Matrix</a>. Try to specify how you encountered the bugs, on what device, browser etc. And for ideas, why they should be implemented and what use cases they have.</p></details>
+        <details efy_searchable="bugs_ideas"><summary>How do I repport bugs or share my ideas?</summary><p>On <a href="https://github.com/dragos-efy/efy">Github</a> or <a href="https://matrix.to/#/#efy_ui:matrix.org">Matrix</a>. Try to specify how you encountered the bugs, on what device, browser etc. And for ideas, why they should be implemented and what use cases they have.</p></details>
 
     </div><div>
 
-        <details efy_searchable><summary>Is it stable / production-ready?</summary><div>
+        <details efy_searchable="stable"><summary>Is it stable / production-ready?</summary><div>
             <p>EFY is currently in Beta, so expect potential bugs. Features and apps that are unstable are usually marked this way:</p><br />
             <p><mark efy_lang="soon"></mark> <i efy_icon="chevron"></i><mark efy_lang="alpha"></mark> <i efy_icon="chevron"></i><mark efy_lang="beta"></mark> <i efy_icon="chevron"></i><mark>Stable</mark></p><br />
             <div><mark efy_lang="soon"></mark> - unavailable now, but expected to come up</div>
@@ -242,9 +242,9 @@
             <div><mark efy_lang="beta"></mark> - safer to use, less bugs</div>
         </div></details>
 
-        <details efy_searchable><summary>What the name <code>efy</code> stands for</summary><p>Nothing. It's just a name, like Andy or Izzy.</p></details>
+        <details efy_searchable="name"><summary>What the name <code>efy</code> stands for</summary><p>Nothing. It's just a name, like Andy or Izzy.</p></details>
 
-        <details efy_searchable><summary>Add a background image</summary>
+        <details efy_searchable="bg_image"><summary>Add a background image</summary>
         <p><mark>EFY</mark> <i efy_icon="chevron"></i><mark efy_lang="theme"></mark> <i efy_icon="chevron"></i><mark efy_lang="transparency"></mark> <i efy_icon="chevron"></i><mark efy_lang="mode"></mark> <i efy_icon="chevron"></i> <mark efy_lang="add_file"></mark></p>
         </details>
 
@@ -254,8 +254,8 @@
 </div>
 
 
-    <div efy_content="3" efy_details><h5 style="margin-bottom: 15rem" efy_searchable>Learn how to use efy <mark efy_lang="soon"></mark></h5><div class="columns">
-        <div><details efy_searchable><summary>[efy_mode]</summary><ul>
+    <div efy_content="docs" efy_details><h5 style="margin-bottom: 15rem" efy_searchable>Learn how to use efy <mark efy_lang="soon"></mark></h5><div class="columns">
+        <div><details efy_searchable="mode"><summary>[efy_mode]</summary><ul>
         <li>It sets the mode, the default value is <code>default</code></li>
 
         <li>Options: <mark>light_light</mark> , <mark>light_sepia</mark> , <mark>light_trans</mark> , <mark>dark_dark</mark> , <mark>dark_nord</mark> , <mark>dark_black</mark> , <mark>dark_trans</mark></li>
@@ -283,21 +283,21 @@
         <h5 style="margin: 15rem 0" efy_searchable>Components</h5>
         <div class="dc_separator"><div>
 
-            <details efy_searchable style="margin: 0"><summary>Icons</summary><div><pre efy_code="html" style="margin-top: 15rem">&lt;<code>i efy_icon</code>="<code>star</code>"&gt;&lt;/i&gt;</pre></div>
+            <details efy_searchable="icons" style="margin: 0"><summary>Icons</summary><div><pre efy_code="html" style="margin-top: 15rem">&lt;<code>i efy_icon</code>="<code>star</code>"&gt;&lt;/i&gt;</pre></div>
             <p class="mb">Add an <code>&lt;i&gt;</code> tag with an <code>[efy_icon]</code> attribute containing your icon code from bellow</p>
             <div id="dc_icons"></div></details>
 
-            <div efy_searchable><h6>Color Picker</h6>
+            <div efy_searchable="color_picker"><h6>Color Picker</h6>
                 <div efy_color="Color 1, 50 100% 50%"></div>
                 <div efy_color="Color 2, 150 100% 50%"></div>
                 <div efy_color="Color 3, 0 0% 50%"></div>
             </div>
 
-            <div efy_searchable><h6 style="margin-top: 15rem">Clock &amp; Timer</h6><div class="dc_clock"><div efy_clock></div><div efy_timer="efy_demo"></div></div></div>
+            <div efy_searchable="timer"><h6 style="margin-top: 15rem">Clock &amp; Timer</h6><div class="dc_clock"><div efy_clock></div><div efy_timer="efy_demo"></div></div></div>
 
         <!--Separator--></div><div>
 
-            <details efy_select efy_searchable style="margin: 0"><summary>Select menu</summary><div>
+            <details efy_select efy_searchable="select_menu" style="margin: 0"><summary>Select menu</summary><div>
                 <p>Radio</p>
                 <input type="radio" name="efy_example_radio" id="efy_example_select1"><label for="efy_example_select1">Option 1</label>
                 <input type="radio" name="efy_example_radio" id="efy_example_select2" checked><label for="efy_example_select2">Option 2</label>
@@ -308,8 +308,8 @@
                 <input type="checkbox" name="efy_example_checkbox" id="efy_example_select6" checked><label for="efy_example_select6">Option 6</label>
             </div></details>
 
-            <div efy_searchable><details efy_help><summary>Tabs</summary><p>This element explains stuff</p></details>
-                <div efy_tabs="demo2">
+            <div efy_searchable="tabs"><details efy_help><summary>Tabs</summary><p>This element explains stuff</p></details>
+                <div efy_tabs="dc2">
                     <button efy_tab="c4_1">1</button>
                     <button efy_tab="c4_2" efy_active>2</button>
                     <button efy_tab="c4_3">3</button>

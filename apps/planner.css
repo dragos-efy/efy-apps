@@ -155,6 +155,7 @@ html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) {display: flex; gap: 8rem; 
 html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {margin: 0}
 [for=pn_drag_toggle] [efy_icon=move] {margin-right: 4rem}
 [for=pn_drag_toggle] [efy_icon=move]:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
+[efy_color_buttoncol][efy_mode] [for=pn_drag_toggle] [efy_icon=move]:before {background: hsla(var(--efy_color_buttoncol_var) / .7)}
 
 #pn_theme {display: flex; flex-wrap: wrap; gap: var(--efy_gap0)}
 #pn_theme .pn_title {line-height: 1; margin: 0; width: 100%}

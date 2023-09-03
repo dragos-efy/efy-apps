@@ -64,4 +64,20 @@
 
 $add('style', {class: 'auto_demo'});
 
+
+/* Hash Isolated Parts*/ let faq = [], docs = []; const hash = location.hash,
+hash_fn =(a)=>{ a.scrollIntoView(); a.open = true; a.classList.add('hash_focus'); $wait(2, ()=> a.classList.remove('hash_focus')) },
+searchable =(a,b)=>{ $all(`[efy_content=${a}] [efy_searchable]`).forEach((c, i) => b[i] = c.getAttribute('efy_searchable') || b[i] )}; searchable('faq', faq); searchable('docs', docs);
+
+['faq', 'html', 'docs'].forEach(tab =>{ if (hash.includes(`#${tab}`)){
+    $(`[efy_tabs=dc] [efy_tab=${tab}]`).click();
+    if (tab === 'faq'){ faq.forEach(q =>{
+        if (hash.includes(`#${q}`)) hash_fn($(`[efy_content=faq] [efy_searchable="${q}"]`))
+    })}
+    if (tab === 'docs'){ docs.forEach(q =>{
+        if (hash.includes(`#${q}`)) hash_fn($(`[efy_content=docs] [efy_searchable="${q}"]`))
+    })}
+}});
+
+
 }, 1);

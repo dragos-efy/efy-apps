@@ -84,9 +84,10 @@ $add('div', {os_app: ''}, [
 
 $all('[os_drawer] [efy_card]').forEach(a =>{ let b = $$(a, '.name').textContent.replaceAll(' ', '_').toLowerCase(), c = a.getAttribute('efy_card');  if (a.classList[0] != 'add_app'){ a.setAttribute('efy_toggle', '[efy_frames], [os_drawer]')}; a.setAttribute('role', 'button');
     $event(a, 'click', ()=>{ if (c !== ''){ if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}
-        $add('div', {efy_frame: b, class: 'efy_app efy_trans_filter'}, [
-          $add('iframe', {src: c, allowfullscreen: 'true', loading: 'lazy', sandbox: 'allow-scripts allow-same-origin'}),
-        ], $('[efy_frames]'))
+      let index = Number($all('[efy_frame]').length);
+      $add('div', {efy_frame: b, 'data-value': index, style: `order: ${index}`, class: 'efy_app efy_trans_filter'}, [
+        $add('iframe', {src: c, allowfullscreen: 'true', loading: 'lazy', sandbox: 'allow-scripts allow-same-origin'}),
+      ], $('[efy_frames]'))
 } else { $notify(3, 'Not available yet!', 'It should be released soon...')}})});
 
 
@@ -158,8 +159,9 @@ drop =(e)=>{ e.preventDefault();
   /*Get index of current & target*/ let [currentPosition, targetPosition] = [getPosition(currentValue), getPosition(targetValue)]; initialX = x; initialY = y;
 
   if (list.contains(targetElement) && (list != targetElement) && (targetElement != currentElement) && currentElement.hasAttribute('data-value') && targetElement.hasAttribute('data-value') && (list.getAttribute('efy_drag') == 'on')){ try {
-    if (currentPosition < targetPosition){ targetElement.insertAdjacentElement("afterend", currentElement)}
-    else {targetElement.insertAdjacentElement("beforebegin", currentElement)}
+    let c = currentElement.style.order, t = targetElement.style.order;
+    currentElement.style.order = t; targetElement.style.order = c;
+    if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}
   } catch (err){} }
 };
 
@@ -175,7 +177,7 @@ else { $$all(list, chld).forEach((a)=>{ a.draggable = false;
 }; const atb_all =(a,b,c)=>{ a.forEach(d => d.setAttribute(b,c))};
 
 $event($('#os_drag_toggle'), 'change', (a) => { let b = $all('[efy_frames][efy_drag]'); efy_drag($('[efy_frames][efy_drag]'));
-    if (a.target.checked){ atb_all(b, 'efy_drag', 'on'); $notify(3, 'Not available yet!', 'It should be released soon...') }
+    if (a.target.checked){ atb_all(b, 'efy_drag', 'on'); $notify(3, 'Move - ON', 'You can order apps now') }
     else { atb_all(b, 'efy_drag', '')}
 });
 

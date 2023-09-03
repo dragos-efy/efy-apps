@@ -31,4 +31,4 @@
 
 html.efy_iframe:not([eos=app]), html.efy_iframe:not([eos=app]) :is(body, .efy_3d_back) {background: transparent!important}
 .efy_iframe:not([eos=app]) .efy_sidebar :is(#efy_sbtheme, #efy_vfilters, #efy_backup, #efy_language, #efy_accessibility, #efy_audio, #efy_nature), .efy_iframe:not([eos=app]) .efy_sidebar > details > summary {display: none}
-.efy_iframe:not([eos=app]) .efy_sidebar > details {background: transparent; padding: 0; border: 0; margin: 0}
+.efy_iframe:not([eos=app]) .efy_sidebar > details {background: transparent; padding: 0; border: 0; margin: 0; box-shadow: none!important}

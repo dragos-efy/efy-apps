@@ -66,6 +66,7 @@ html, body {overflow: hidden}
 [efy_select] input + label:is([for=os_drag_toggle], [for=os_remove]) {height: 39rem; width: 39rem; display: flex; align-items: center; place-content: center}
 
 /*Fix 2 BG Glitch*/ [for=os_drag_toggle] [efy_icon=move]:before, [os_drawer] [efy_card] [efy_icon=plus]:before { -webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
+[efy_color_buttoncol][efy_mode] [for=os_drag_toggle] [efy_icon=move]:before, [efy_color_buttoncol][efy_mode] [os_drawer] [efy_card] [efy_icon=plus]:before {background: hsla(var(--efy_color_buttoncol_var) / .7)}
 
 /*iFrames*/ [efy_frame*=iframe] {overflow: hidden!important}
 [efy_frame] iframe {border: 0; width: 100%; height: 100%}
@@ -75,12 +76,15 @@ html, body {overflow: hidden}
 [os_drawer] .apps {display: grid; grid-template-columns: repeat(auto-fill, minmax(67rem, 1fr)); gap: calc(var(--efy_gap) * 3) calc(var(--efy_gap) * 2); align-self: center; align-items: var(--dc_dash_align); padding-bottom: 25rem}
 .soon_off .soon {display: none!important}
 
-[os_drawer] [efy_card] {display: flex; align-items: center; height: fit-content; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text); padding: 0; margin: 0; flex-direction: column; background: transparent; border: 0; width: 100%; aspect-ratio: 1; position: relative}
+[os_drawer] [efy_card] {display: flex; align-items: center; height: fit-content; color: var(--efy_text)!important; -webkit-text-fill-color: var(--efy_text)!important; padding: 0; margin: 0; flex-direction: column; background: transparent; border: 0; width: 100%; aspect-ratio: 1; position: relative}
+[efy_color_buttoncol][efy_mode] [os_drawer] [efy_card]:not(.add_app) :is(i, .logo) {box-shadow: var(--efy_shadow_button)!important}
 [os_drawer] [efy_card] :is(i, .logo) {padding: 15rem; border-radius: var(--efy_radius); display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; font-size: 30rem; margin: 0}
+[efy_color_buttoncol][efy_mode] [os_drawer] [efy_card] :is(i, .logo):not([efy_icon=plus]) {-webkit-text-fill-color: hsl(var(--efy_color_buttoncol_var))!important}
 [os_drawer] [efy_card] [efy_icon=plus]:before {margin: 0; font-size: 22rem}
 [os_drawer] .logo {background: var(--efy_color)}
 .piped_logo {width: 20rem!important; height: 34rem; margin-right: -3rem!important}
 .piped_logo path {fill: var(--efy_text2)}
+[efy_color_buttoncol][efy_mode] .piped_logo path {fill: hsl(var(--efy_color_buttoncol_var))!important}
 [os_drawer] [efy_card] .column_flex {display: flex; flex-direction: column; align-items: center; margin: 0!important; padding: 0!important; width: 100%; position: absolute; top: 100%}
 [os_drawer] [efy_card] .column_flex .name {padding: 8rem 0 0 0; font-weight: normal; font-size: 14rem}
 
