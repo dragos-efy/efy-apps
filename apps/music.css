@@ -60,7 +60,7 @@
 .song .image {display: flex!important; height: var(--ms_thumb_height); aspect-ratio: 1; border-radius: var(--efy_radius); align-items: center; justify-content: center}
 .song .image:is(.ms_empty) {border: var(--efy_border)}
 .ms_empty.image {background: var(--efy_bg1)}
-.ms_empty.image i {margin: 0; font-size: calc(var(--ms_thumb_height) / 2); letter-spacing: 0!important}
+.song .image i {margin: 0; font-size: calc(var(--ms_thumb_height) / 2); letter-spacing: 0!important}
 :is(.song:hover, .song.playing) .ms_empty.image i {background: var(--efy_color); background-clip: text; -webkit-background-clip: text; -moz-background-clip: text; -webkit-text-fill-color: transparent}
 .image:not(.ms_empty) {background-size: cover!important; background-position: center!important; background-repeat: no-repeat!important}
 
@@ -72,6 +72,14 @@ html, body {overflow: hidden}
 :is([efy_content=effects], [efy_content=tags]) [type=range] {margin-top: 5rem!important}
 [efy_content=effects] [efy_range_text=Speed], [efy_content=tags] > div {margin-bottom: -5rem}
 [efy_content=grid] p:first-of-type {margin: -5rem 0 5rem 0}
+
+/*Nature Sounds*/ .songs .nature {text-transform: capitalize; justify-content: space-between; gap: 15rem; padding: var(--efy_gap0) var(--efy_gap) var(--efy_gap0) var(--efy_gap0)}
+.songs .nature :is(.image, .volume) {margin: 0}
+.songs .nature .image {}
+.songs .nature .left {display: flex; gap: 15rem; align-items: center; place-content: center}
+.songs .nature .text {display: flex; gap: 5rem}
+.ms_flex {display: flex; align-items: center; flex-wrap: wrap; gap: var(--efy_gap0)}
+.ms_flex label {display: flex; align-items: center; width: fit-content}
 
 /*Convergence*/
  @media (max-width: 767.9px){

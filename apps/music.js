@@ -17,6 +17,7 @@ $add('div', {ms_app: ''}, [
       $add('div', {class: 'mobile ms_buttons2'}, [
         $add('button', {class: 'ms_speed_text efy_button_text_off', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, ['1X']),
         $add('label', {efy_upload: 'ms_upload,audio/*, small, multiple', title: 'Add file'}),
+        $add('button', {class: 'ms_filesystem efy_square_btn efy_hide_i', title: 'Add file'}, [$add('i', {efy_icon: 'plus'})]),
         $add('button', {class: 'ms_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [ $add('i', {efy_icon: 'menu'}) ])
       ])
      ]),
@@ -42,10 +43,18 @@ $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
     $add('button', {efy_tab: 'tags', efy_lang: 'tags'}),
 
     $add('div', {efy_content: 'effects', efy_select: '', id: 'ms_sidebar_speed', efy_active: ''}, [
-       $add('input', {type: 'checkbox', id: 'pitch', name: 'pitch'}), $add('label', {for: 'pitch', style: 'display: flex; align-items: center; width: fit-content', efy_lang: 'pitch'}),
-        $add('div', {efy_range_text: 'Speed', efy_lang: 'speed'}, [
-          $add('input', {type: 'range', id: 'rate', min: '0.25', max: '2', step: '0.05', value: '1'})
-        ])
+      $add('div', {class: 'ms_flex'}, [
+        $add('input', {type: 'checkbox', id: 'ms_nature_status', name: 'ms_nature_status'}),
+        $add('label', {for: 'ms_nature_status', efy_lang: 'nature_effects'}),
+        $add('input', {type: 'checkbox', id: 'pitch', name: 'pitch'}),
+        $add('label', {for: 'pitch', efy_lang: 'pitch'})
+      ]),
+      $add('div', {efy_range_text: 'Speed', efy_lang: 'speed'}, [
+        $add('input', {type: 'range', id: 'rate', min: '0.25', max: '2', step: '0.05', value: '1'})
+      ]),
+      $add('div', {efy_range_text: 'Volume', efy_lang: 'music_volume', style: 'margin: 5rem 0 0 0; display: flex; flex-flow: wrap;'}, [
+        $add('input', {type: 'range', id: 'volume_music', class: 'volume_music', min: 0, max: 1, step: 0.05, value: 1})
+      ])
     ]),
 
     $add('div', {efy_content: 'grid', efy_select: '', id: 'bar_position'}, [
@@ -83,15 +92,45 @@ if (efy_ms.columns){ let a = efy_ms.columns; $('#ms_grid_columns').value = a; $(
 if (efy_ms.speed){ let a = efy_ms.speed; rate.value = a; audio.playbackRate = a; $all('.ms_speed_text').forEach(b=>{ b.textContent = a+'X' })}
 if (efy_ms.pitch){ let a = efy_ms.pitch; pitch.checked = a; audio.preservesPitch = !a; if ('webkitPreservesPitch' in audio){ audio.webkitPreservesPitch = !a; prev_song(); next_song()}}
 if (efy_ms.bar_position){ let a = efy_ms.bar_position; $('[ms_app]').setAttribute('ms_app', a); $(`#bar_position_${a}`).checked = true}
-
 if (efy_ms.img_size){ let a = efy_ms.img_size; img_size.value = a.replace('rem', ''); $root.style.setProperty('--ms_thumb_height', a) }
 
+'image artist title album number'.split(' ').map(a=>{
+  if (typeof efy_ms[`tag_${a}`] !== 'undefined'){ $(`#ms_song_info_${a}`).checked = efy_ms[`tag_${a}`]}
+});
 
-for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
-  if (typeof efy_ms[`tag_${a[i]}`] !== 'undefined'){ $(`#ms_song_info_${a[i]}`).checked = efy_ms[`tag_${a[i]}`]}
-}
+/*Add Nature Sounds*/ if (typeof efy_ms.nature !== 'undefined'){
+  let nature_nr = 0, audio_nature = [];
+  $('#ms_nature_status').checked = efy_ms.nature;
 
+  $add('div', {class: 'song nature', efy_card: '', ms_track_id_nature: 'music_volume'}, [
+      $add('div', {class: 'left'}, [
+        $add('button', {class: 'image', title: 'Play or Pause'}, [ $add('i', {efy_icon: 'audio'}) ]),
+        $add('div', {class: 'text'}, [ $add('p', {class: 'title'}, ['Music']) ]),
+      ]),
+      $add('input', {class: 'volume_music volume',  title: 'Volume', type: 'range', value: 1, step: 0.05, min: 0, max: 1}, ['a'])
+    ], $('.songs'));
 
+  'dreamy fireworks forest people rain underwater waves'.split(' ').map((a, i)=>{ nature_nr++;
+
+    const src = `./apps/assets/${a}.webm`;
+    $add('audio', {src: src, loop: '', class: 'efy_hide_i'});
+
+    $add('div', {class: 'song nature', efy_card: '', ms_track_id_nature: i}, [
+      $add('div', {class: 'left'}, [
+        $add('button', {class: 'image', title: 'Play or Pause'}, [ $add('i', {efy_icon: 'play'}) ]),
+        $add('div', {class: 'text'}, [ $add('p', {class: 'title'}, [a]) ]),
+      ]),
+      $add('input', {class: 'volume',  title: 'Volume', type: 'range', value: 1, step: 0.05, min: 0, max: 1}, [a])
+    ], $('.songs'));
+
+    const audio = $(`[src="${src}"]`); audio_nature[i] = audio, volume = $(`[ms_track_id_nature="${i}"] .volume`);
+
+    $event($(`[ms_track_id_nature="${i}"] .image`), 'click', (b)=>{ let icon = $$(b.target, 'i');
+      if (audio.paused){ audio.play(); audio.volume = volume.value; icon.setAttribute('efy_icon', 'pause')}
+      else { audio.pause(); icon.setAttribute('efy_icon', 'play')}
+    });
+    $event(volume, 'input', (b)=>{ audio.volume = b.target.value });
+})}
 
 
 /*App Layout*/
@@ -187,30 +226,18 @@ const addFileToDB = (db, file) => {
   });
 };
 
-
   const process_song =(file)=>{
   /*List tags*/
-  ID3.loadTags(file.name, () => {
-      i++;
-      let tags = ID3.getAllTags(file.name),
-      artist_line = '',
-      album_line = '';
+  ID3.loadTags(file.name, () => { i++;
+      let tags = ID3.getAllTags(file.name), artist_line = '', album_line = '';
 
       /*Save to memory*/
       audios[i] = URL.createObjectURL(file);
-      audios_title[i] = (tags.title || file.name.replace('.mp3', '').replace('.wav', '').replace('.m4a', '').replace('.flac', '').replace('.webm', '').replace('.mp4', '').replace('.ogg', ''));
+      audios_title[i] = (tags.title || file.name.replace(/\.(mp3|wav|m4a|flac|webm|mp4|ogg)$/g, ''));
       audios_artist[i] = (tags.artist || '');
-
-      if (audios_artist[i] !== ''){
-        artist_line = ' - '
-      }
-
+      if (audios_artist[i] !== ''){ artist_line = ' - '}
       audios_album[i] = (tags.album || '');
-
-      if (audios_album[i] !== ''){
-        album_line = ' - '
-      }
-
+      if (audios_album[i] !== ''){ album_line = ' - '}
       audios_image[i] = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAA';
 
       /*Add Songs*/
@@ -229,12 +256,9 @@ const addFileToDB = (db, file) => {
       c_track = `.song[ms_track_id="${i}"]`;
 
       /*Image*/
-      try {
-        audios_image[i] = `data:${tags.picture.format};base64,${Base64.encodeBytes(tags.picture.data)}`;
+      try { audios_image[i] = `data:${tags.picture.format};base64,${Base64.encodeBytes(tags.picture.data)}`;
         $add('div', {class: 'image efy_shadow_trans', style: `background: url(${audios_image[i]})`, title: 'Song image'}, [], current_track, 'afterbegin')
-      } catch (error){
-        $add('div', {class: 'ms_empty image efy_shadow_trans'}, [ $add('i', {efy_icon: 'audio'}) ], current_track, 'afterbegin')
-      }
+      } catch (error){ $add('div', {class: 'ms_empty image efy_shadow_trans'}, [ $add('i', {efy_icon: 'audio'}) ], current_track, 'afterbegin')}
 
       /*Tags - Checked*/
       for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
@@ -258,10 +282,8 @@ const addFileToDB = (db, file) => {
 
 
   const restore_songs = async ()=>{
-    const db = await openDB();
-    const transaction = db.transaction('files', 'readonly');
-    const objectStore = transaction.objectStore('files');
-    const getAllRequest = objectStore.getAll();
+    const db = await openDB(), transaction = db.transaction('files', 'readonly'),
+    objectStore = transaction.objectStore('files'), getAllRequest = objectStore.getAll();
 
     getAllRequest.onsuccess = (event) => {
       $('.ms_loading').classList.remove('efy_hide_i');
@@ -275,12 +297,8 @@ const addFileToDB = (db, file) => {
       }; $('.ms_loading').classList.add('efy_hide_i');
     };
 
-    getAllRequest.onerror = (event) => {
-      console.error(event.target.error);
-    };
+    getAllRequest.onerror =(event)=>{ console.error(event.target.error)};
   }; if (efy_ms.restore == true){ restore_songs()}
-
-
 
 /*Load Files*/ const load_audio = async (file) => {
   let filesToUse = []; $('.ms_loading').classList.remove('efy_hide_i');
@@ -313,15 +331,13 @@ const addFileToDB = (db, file) => {
 
 read_files = async (a)=>{ for (let i = 0; i < a.length; i++) { await load_audio(a[i])}};
 
-$ready('.ms_filesystem', (b)=>{
-  if (efy_ms.filesystem == true){
+if (efy_ms.filesystem == true){ $ready('.ms_filesystem', (b)=>{
     $all('[efy_upload*=ms_upload]').forEach(a=>{ a.classList.add('efy_hide_i')});
     b.classList.remove('efy_hide_i');
     $event(b, 'click', async ()=>{ load_audio()})
-  } else { console.log('fr'); $wait(1, ()=>{
-    $all('#ms_upload').forEach(a=>{ $event(a, 'change', async (event)=>{ console.log('a'); read_files(event.target.files)})}); });
-  }
-});
+})} else { console.log('file reader mode'); $wait(1, ()=>{
+  $all('#ms_upload').forEach(a=>{ $event(a, 'change', async (event)=>{ read_files(event.target.files)})}); });
+}
 
 
 
@@ -368,7 +384,12 @@ const update_progress =()=>{ try {
 seek =(e)=>{ if (audio.src){ audio.currentTime = Math.round(e.target.value / (100 / audio.duration))}},
 
 ms_mpris =()=>{ if ('mediaSession' in navigator) { const action = (ev, fn) => navigator.mediaSession.setActionHandler(ev,fn);
-  navigator.mediaSession.metadata = new MediaMetadata({ title: audios_title[ms_track_id], artist: audios_artist[ms_track_id], album: audios_album[ms_track_id], artwork: [{ src: audios_image[ms_track_id], type: 'image/png'}] });
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: audios_title[ms_track_id],
+    artist: audios_artist[ms_track_id],
+    album: audios_album[ms_track_id],
+    artwork: [{ src: audios_image[ms_track_id], type: 'image/png'}]
+  });
   action('play', play_pause); action('pause', play_pause);
   action('previoustrack', prev_song); action('nexttrack', next_song);
   action('stop', ()=>{}); action('seekto', ()=>{});
@@ -394,5 +415,13 @@ for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; 
   });
 }
 
+$all(`.volume_music`).forEach(a=>{
+  $event(a, 'input', ()=> audio.volume = a.value)
+})
+
+$event($('#ms_nature_status'), 'change', (e)=>{
+  e.target.checked ? efy_ms.nature = true : delete efy_ms.nature;
+  $ms_save(); location.reload()
+})
 
 }, 1);

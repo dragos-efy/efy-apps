@@ -1,11 +1,11 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EFY</title><meta name="description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><link rel="icon" type="image/png" href="./icon.png"><link rel="apple-touch-icon" sizes="180x180" href="./icon.png"><meta property="og:type" content="website"><meta property="og:url" content="https://efy.ooo"><meta property="og:title" content="EFY"><meta property="og:description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><meta name="robots" content="noindex, nofollow"><meta name="view-transition" content="same-origin" />
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EFY</title><meta name="description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><link rel="icon" type="image/png" href="./icon.png"><link rel="apple-touch-icon" sizes="180x180" href="./icon.png"><meta property="og:type" content="website"><meta property="og:url" content="https://efy.ooo"><meta property="og:title" content="EFY"><meta property="og:description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><meta name="robots" content="index, follow"><meta name="view-transition" content="same-origin" />
 
 <!--URL Redirections--><script>const $url_prev = [
     {name: 'donate', url: 'https://liberapay.com/efy'},
     {name: 'github', url: 'https://github.com/dragos-efy/efy'},
     {name: 'matrix', url: 'https://matrix.to/#/#efy_ui:matrix.org'},
     {name: 'translate', url: 'https://translate.codeberg.org/projects/efy'},
-    {name: 'call', url: 'https://meet.jit.si/efy'}
+    {name: 'call', url: 'https://jitsi.riot.im/efy'}
 ]; for (const {name, url} of $url_prev){ if (document.referrer.includes('/'+name)){ window.location.href = url; break}}
 </script>
 
@@ -37,8 +37,8 @@
         <h2 efy_lang="join_future" efy_searchable></h2><p efy_lang="sidebar_about_text" efy_searchable></p>
         <div efy_searchable id ="dc_buttons" class="dc_cta" efy_searchable>
             <button efy_sidebar_btn efy_lang="try_it" class="efy_trans_filter_off"><i efy_icon="play"></i></button>
-            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter"><p>Github</p><p>40</p></a>
-            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>43</p></a>
+            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter"><p>Github</p><p>42</p></a>
+            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>42</p></a>
         </div>
     </div>
     <div>
@@ -255,24 +255,54 @@
 
 
     <div efy_content="docs" efy_details><h5 style="margin-bottom: 15rem" efy_searchable>Learn how to use efy <mark efy_lang="soon"></mark></h5><div class="columns">
-        <div><details efy_searchable="mode"><summary>[efy_mode]</summary><ul>
+        <div style="display: flex; flex-direction: column; gap: var(--efy_gap)"><details efy_searchable="mode"><summary>[efy_mode]</summary><ul>
         <li>It sets the mode, the default value is <code>default</code></li>
-
         <li>Options: <mark>light_light</mark> , <mark>light_sepia</mark> , <mark>light_trans</mark> , <mark>dark_dark</mark> , <mark>dark_nord</mark> , <mark>dark_black</mark> , <mark>dark_trans</mark></li>
-
         </ul><h4>Structure</h4><ul>
-
         <li>1st part: can be <mark>light</mark> or <mark>dark</mark> to indicate the general mode</li>
-
         <li>2nd part: indicates the specific type of light / dark mode: <mark>light</mark> <mark>sepia</mark> <mark>trans</mark> <mark>dark</mark> <mark>nord</mark> <mark>black</mark></li>
-
         <li><mark>trans</mark> = Transparent - it makes the background invisible so that you can see behind the window (if your web engine, browser or operating system supports it) or the image you choose from the sidebar menu</li></ul>
-
         <h4>Examples</h4><div style="display:grid; gap: 10rem;">
         <p>Specific mode:</p><pre efy_code="css"><code>[efy_mode=light_sepia]</code> { your css }</pre>
         <p>All light modes:</p><pre efy_code="css"><code>[efy_mode*=light]</code> { your css }</pre>
         <p>Not this specific mode:</p><pre efy_code="css"><code>:not([efy_mode=light_sepia])</code> { your css }</pre>
-        <p>Remove selector if any light mode is on:</p><pre efy_code="javascript"><code>$('[efy_mode*=light] #your_selector')</code>.remove()</pre>
+        <p>Remove selector if any light mode is on:</p><pre efy_code="js"><code>$('[efy_mode*=light] #your_selector')</code>.remove()</pre>
+        </details>
+
+        <details efy_searchable="add"><summary>$add <div style="font-weight: normal; display: inline">- create html</div></summary>
+            <p>$add('<code>Tag</code>', {<code>Attributes</code>}, ['<code>Text</code>', <code>Children</code>], <code>Parent</code>, '<code>Position</code>')</p>
+
+            </ul><h4>Structure</h4>
+            <div><p efy_card style="margin: 0"><i efy_icon="help" style="display: inline-flex; margin-top: -3rem"></i>Only <code>Tag</code> is required. Other parameters are optional</p></div>
+            <p><code>Tag</code> - html tag like: div, p, img etc</p>
+            <p><code>Attributes</code> - one or multiple html attributes like: class, type, height etc</p>
+            <p><code>Text</code> - text content</p>
+            <p><code>Children</code> - nested html tags</p>
+            <p><code>Parent</code> - parent of the tag where it should be added. If not specified it defaults to the body tag</p>
+            <p><code>Position</code> - where the tag should be added in relationship to the parent:<br /><mark>beforebegin</mark> , <mark>afterbegin</mark> , <mark>beforeend</mark> , <mark>afterend</mark></p>
+
+            <h4>Examples</h4><div style="display:grid; gap: 10rem;">
+            <p>Add an empty button to body after all existent children</p><pre efy_code="js + efy">$add('button')</pre>
+            <p>Add a css styled button inside the <mark>#test</mark> selector, before other children</p>
+            <pre efy_code="js + efy">$add(<code>'button'</code>, {style: <code>'background: red; padding: 20rem'</code>}, [<code>'Text'</code>], $(<code>'#test'</code>), <code>'afterbegin'</code>)</pre>
+            <p>Range input with some attributes before <mark>#test</mark> ends</p>
+<pre efy_code="js + efy">
+$add(<code>'input'</code>,
+    {
+        type: <code>'range'</code>, value: <code>'50'</code>, min: <code>'0'</code>, max: <code>'100'</code>, step: <code>'1'</code>,
+        class: <code>'test'</code>, id: <code>'test'</code>,
+        style: <code>'margin: 0; padding: 15rem'</code>
+    },
+    [], $(<code>'#test'</code>)
+)</pre>
+            <p>2 nested buttons inside a div</p>
+<pre efy_code="js + efy" style="margin: 0">
+$add(<code>'div'</code>, {},
+    [
+        $add(<code>'button'</code>, {}, [<code>'1'</code>]),
+        $add(<code>'button'</code>, {}, [<code>'2'</code>])
+    ]
+)</pre>
         </details>
 
         <!--Separator--></div>
@@ -283,9 +313,12 @@
         <h5 style="margin: 15rem 0" efy_searchable>Components</h5>
         <div class="dc_separator"><div>
 
-            <details efy_searchable="icons" style="margin: 0"><summary>Icons</summary><div><pre efy_code="html" style="margin-top: 15rem">&lt;<code>i efy_icon</code>="<code>star</code>"&gt;&lt;/i&gt;</pre></div>
-            <p class="mb">Add an <code>&lt;i&gt;</code> tag with an <code>[efy_icon]</code> attribute containing your icon code from bellow</p>
-            <div id="dc_icons"></div></details>
+            <details efy_searchable="icons" style="margin: 0"><summary>Icons</summary>
+                <p>Add an <code>&lt;i&gt;</code> tag with an <code>[efy_icon]</code> attribute containing your icon code from bellow</p>
+                <div id="dc_icons"></div>
+                <p>Example:</p>
+                <div><pre efy_code="html" style="margin: 0">&lt;<code>i efy_icon</code>="<code>star</code>"&gt;&lt;/i&gt;</pre></div>
+            </details>
 
             <div efy_searchable="color_picker"><h6>Color Picker</h6>
                 <div efy_color="Color 1, 50 100% 50%"></div>
