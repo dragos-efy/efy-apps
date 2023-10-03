@@ -31,14 +31,14 @@
     <button efy_sidebar_btn class="efy_square_btn efy_trans_filter_off"><i efy_icon="menu"></i></button>
 </div></div>
 
-<div efy_content="efy" efy_active>
+<div efy_content="efy" efy_active class="efy_trans_filter_off">
 
     <div class="dash_hide">
         <h2 efy_lang="join_future" efy_searchable></h2><p efy_lang="sidebar_about_text" efy_searchable></p>
         <div efy_searchable id ="dc_buttons" class="dc_cta" efy_searchable>
             <button efy_sidebar_btn efy_lang="try_it" class="efy_trans_filter_off"><i efy_icon="play"></i></button>
-            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter"><p>Github</p><p>42</p></a>
-            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>42</p></a>
+            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter"><p>Github</p><p>44</p></a>
+            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>44</p></a>
         </div>
     </div>
     <div>
@@ -61,7 +61,7 @@
 
 </div>
 
-<div efy_content="html">
+<div efy_content="html" class="efy_trans_filter_off">
 
 <p style="margin-bottom: 15rem" efy_searchable>Bellow you can see examples of simple, commonly used HTML styled by efy:</p>
 
@@ -207,7 +207,7 @@
 </form></div>
 
 
-</div><div efy_content="faq" efy_details>
+</div><div efy_content="faq" efy_details class="efy_trans_filter_off">
     <div>
         <details efy_searchable="logic"><summary>The logic behind it</summary><ul>
         <li>Minimalism - no dependencies, efficient code</li>
@@ -254,7 +254,7 @@
 </div>
 
 
-    <div efy_content="docs" efy_details><h5 style="margin-bottom: 15rem" efy_searchable>Learn how to use efy <mark efy_lang="soon"></mark></h5><div class="columns">
+    <div efy_content="docs" efy_details class="efy_trans_filter_off"><h5 style="margin-bottom: 15rem" efy_searchable>Learn how to use efy <mark efy_lang="soon"></mark></h5><div class="columns">
         <div style="display: flex; flex-direction: column; gap: var(--efy_gap)"><details efy_searchable="mode"><summary>[efy_mode]</summary><ul>
         <li>It sets the mode, the default value is <code>default</code></li>
         <li>Options: <mark>light_light</mark> , <mark>light_sepia</mark> , <mark>light_trans</mark> , <mark>dark_dark</mark> , <mark>dark_nord</mark> , <mark>dark_black</mark> , <mark>dark_trans</mark></li>
@@ -320,13 +320,13 @@ $add(<code>'div'</code>, {},
                 <div><pre efy_code="html" style="margin: 0">&lt;<code>i efy_icon</code>="<code>star</code>"&gt;&lt;/i&gt;</pre></div>
             </details>
 
-            <div efy_searchable="color_picker"><h6>Color Picker</h6>
+            <div efy_searchable="color_picker"><h6 style="margin-bottom: 5rem">Color Picker</h6>
                 <div efy_color="Color 1, 50 100% 50%"></div>
                 <div efy_color="Color 2, 150 100% 50%"></div>
                 <div efy_color="Color 3, 0 0% 50%"></div>
             </div>
 
-            <div efy_searchable="timer"><h6 style="margin-top: 15rem">Clock &amp; Timer</h6><div class="dc_clock"><div efy_clock></div><div efy_timer="efy_demo"></div></div></div>
+            <div efy_searchable="timer"><h6>Clock &amp; Timer</h6><div class="dc_clock"><div efy_clock></div><div efy_timer="efy_demo"></div></div></div>
 
         <!--Separator--></div><div>
 
@@ -343,9 +343,11 @@ $add(<code>'div'</code>, {},
 
             <div efy_searchable="tabs"><details efy_help><summary>Tabs</summary><p>This element explains stuff</p></details>
                 <div efy_tabs="dc2">
-                    <button efy_tab="c4_1">1</button>
-                    <button efy_tab="c4_2" efy_active>2</button>
-                    <button efy_tab="c4_3">3</button>
+                    <div class="efy_tabs" style="margin-top: 5rem">
+                        <button efy_tab="c4_1">1</button>
+                        <button efy_tab="c4_2" efy_active>2</button>
+                        <button efy_tab="c4_3">3</button>
+                    </div>
                     <div efy_content="c4_1">1</div>
                     <div efy_content="c4_2" efy_active>2</div>
                     <div efy_content="c4_3">3</div>

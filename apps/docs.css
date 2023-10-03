@@ -32,6 +32,8 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
  #dc_lists {align-items: unset; margin-bottom: 15rem; height: fit-content}
  #dc_lists :is(input, label) {margin: 0}
 
+[efy_searchable=color_picker] [efy_color_preview] {margin: 5rem 0}
+
 [efy_tabs=dc] > [efy_content=efy] {display: grid; gap: var(--efy_gap); min-height: calc(var(--efy_100vh) - var(--efy_gap) * 6); align-items: center; place-content: space-evenly}
 [efy_tabs=dc] > [efy_content=efy] > div {display: flex; flex-direction: column; place-content: center; align-items: center; text-align: center}
 [efy_tabs=dc] > [efy_content=efy] h2 {text-transform: uppercase}
