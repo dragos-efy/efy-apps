@@ -21,6 +21,7 @@ $add('div', {os_app: ''}, [
       $add('a', {efy_card: './planner.html', class: 'efy_trans_filter_off'}, [$add('i', {efy_icon: 'edit', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Planner'])])]),
       $add('a', {efy_card: './money.html', class: 'efy_trans_filter_off'}, [$add('i', {efy_icon: 'group', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Money'])])]),
       $add('a', {efy_card: './calculator.html', class: 'efy_trans_filter_off'}, [$add('i', {efy_icon: 'remove', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Calculator'])])]),
+      $add('a', {efy_card: './recorder.html', class: 'efy_trans_filter_off'}, [$add('i', {efy_icon: 'circle', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Recorder'])])]),
       $add('a', {efy_card: './converter.html', class: 'efy_trans_filter_off'}, [$add('i', {efy_icon: 'reload', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Converter'])])]),
       $add('a', {efy_card: './xo.html', class: 'efy_trans_filter_off'}, [$add('i', {efy_icon: 'remove', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['X & O'])])]),
       $add('a', {efy_card: '', class: 'soon efy_trans_filter_off'}, [$add('i', {efy_icon: 'menu', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Text Editor'])])]),

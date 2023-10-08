@@ -1,0 +1,38 @@
+:root {--efy_body_padding: 0}
+
+[rc_app] {width: var(--efy_bg_width); height: var(--efy_100vh); max-height: var(--efy_100vh); display: flex; flex-direction: column; gap: var(--efy_gap); padding: var(--efy_gap); margin: 0; overflow: hidden;
+    .video_grid {display: grid; gap: var(--efy_gap); height: 100%; max-height: calc(var(--efy_100vh) - 105rem)}
+    .video_grid.columns2 {grid-template-columns: 1fr 1fr}
+    & video {margin: 0; height: 100%; max-height: calc(var(--efy_100vh) - 105rem); background: var(--efy_bg1); border: var(--efy_border)}
+} [rc_app*=top] {flex-direction: column-reverse}
+
+[rc_bar] {width: calc(var(--efy_bg_width) - var(--efy_gap2)); display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(--efy_gap0); background: var(--efy_bg1); border-radius: var(--efy_radius); border: var(--efy_border);
+    :is(input, button, select, label) {width: fit-content; margin: 0}
+    .efy_flex {gap: 10rem}
+    & label { width: var(--efy_ratio_width); height: var(--efy_ratio_width);
+        :is(.square) {background: var(--efy_text2); width: 16rem; height: 16rem}
+        .circle {border-radius: 50%}
+        .square {border-radius: var(--efy_radius00)}
+    }
+    [efy_select] [for=recordToggle] {background: var(--efy_color); padding: 8rem}
+    [efy_select] [for=recordToggle]:before {-webkit-mask: none!important; background: var(--efy_bg)!important; border-radius: 50%; width: 16rem; height: 16rem; margin: 0; border: 0}
+    [efy_select] #recordToggle:not(:checked) + label:before {background: transparent!important; content: "\e914"; -webkit-text-fill-color: var(--efy_bg); font-family: 'efy_icons'; line-height: 1; margin-bottom: -3rem}
+    [efy_select] label:after, [efy_select] [type=checkbox]:checked + label:after {display: none; content: none}
+    :is(#videoSource, #audioSource) {width: var(--efy_ratio_width); background: var(--efy_bg1)}
+    .source_input, .select_icon {display: flex; align-items: center}
+    .select_icon {position: relative; place-content: center}
+    .select_icon i {position: absolute; margin: 0}
+    .source_input label {border-radius: var(--efy_radius) 0 0 var(--efy_radius); padding: 8rem}
+    .source_input select {border-radius: 0 var(--efy_radius) var(--efy_radius) 0; cursor: pointer}
+    .source_input label:before, [efy_select] [for=fullscreen]:before {margin: 0; display: none}
+    .source_input i, [efy_select] [for=fullscreen] i {margin: 0}
+    .source_input #microphoneToggle + label:before {content: "\e914"!important; font-family: 'efy_icons'}
+    .source_input:has(input:checked) {
+        .select_icon {display: none}
+        & label {border-radius: var(--efy_radius); background: var(--efy_bg1); -webkit-text-fill-color: var(--efy_text)}
+    }
+    [efy_select] #screenShareToggle + label {border-radius: var(--efy_radius); background: var(--efy_bg1); -webkit-text-fill-color: var(--efy_text)}
+    [efy_select] #screenShareToggle:checked + label {background: var(--efy_color); -webkit-text-fill-color: var(--efy_bg)}
+}
+[rc_bar]:has([value=audio]:checked) .source_input:has(#cameraToggle, #screenShareToggle) {display: none}
+[rc_bar]:has([value=image]:checked) .source_input:has(#microphoneToggle) {display: none}

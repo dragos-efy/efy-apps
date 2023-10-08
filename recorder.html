@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EFY</title><meta name="description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><link rel="icon" type="image/png" href="./icon.png"><link rel="apple-touch-icon" sizes="180x180" href="./icon.png"><meta property="og:type" content="website"><meta property="og:url" content="https://efy.ooo"><meta property="og:title" content="EFY"><meta property="og:description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><meta name="robots" content="noindex, nofollow"><meta name="view-transition" content="same-origin" />
+
+<link rel="stylesheet" href="./efy/efy.css">
+<link rel="stylesheet" href="./apps/efy_global.css">
+<script src="./efy/efy_local.js"></script>
+<script src="./apps/efy_global.js"></script>
+<link rel="stylesheet" href="./apps/recorder.css">
+
+</head><body><noscript><p style="background: #000; color:#fff; border-radius: 16rem; padding: 16rem;">Please enable JavaScript to load the page properly and enjoy extra features</p><br></noscript>
+
+<div rc_app>
+  <div class="video_grid">
+    <video autoplay class="camera efy_trans_filter efy_shadow_trans"></video>
+    <video autoplay class="screen_sharing efy_trans_filter efy_shadow_trans efy_hide"></video>
+  </div>
+  <div rc_bar class="efy_trans_filter efy_shadow_trans">
+    <div class="efy_flex" efy_select>
+      <select id="mediaSelect" title="Media Type">
+        <option value="video">Video</option>
+        <option value="image">Image</option>
+        <option value="audio">Audio</option>
+      </select>
+    </div>
+      <div class="efy_flex" efy_select>
+        <input  type="checkbox" id="recordToggle" checked>
+        <label class="efy_square_btn" for="recordToggle" title="Record Toggle"></label>
+        <div class="source_input">
+          <input type="checkbox" id="microphoneToggle">
+          <label for="microphoneToggle" title="Microphone"><i efy_icon="microphone"></i></label>
+          <div class="select_icon">
+            <select id="audioSource" title="Microphone Devices"></select>
+            <i efy_icon="chevron"></i>
+          </div>
+        </div>
+        <div class="source_input">
+          <input type="checkbox" id="cameraToggle">
+          <label for="cameraToggle" title="Camera"><i efy_icon="camera"></i></label>
+          <div class="select_icon">
+            <select id="videoSource" title="Camera Devices"></select>
+            <i efy_icon="chevron"></i>
+          </div>
+        </div>
+        <div class="source_input">
+          <input type="checkbox" id="screenShareToggle">
+          <label for="screenShareToggle" title="Screen Share"><i efy_icon="screen"></i></label>
+        </div>
+      </div>
+      <div class="efy_flex" efy_select>
+        <select title="Timer" class="efy_hide">
+          <option value="video">0</option>
+          <option value="image">10</option>
+          <option value="audio">30</option>
+        </select>
+        <input type="checkbox" id="fullscreen">
+        <label for="fullscreen" title="Fullscreen"><i efy_icon="fullscreen"></i></label>
+        <button efy_sidebar_btn class="efy_square_btn" title="Menu"><i efy_icon="menu"></i></button>
+      </div>
+  </div>
+</div>
+
+<script src="./apps/recorder.js"></script>
+
+</body></html>
