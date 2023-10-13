@@ -37,8 +37,8 @@
         <h2 efy_lang="join_future" efy_searchable></h2><p efy_lang="sidebar_about_text" efy_searchable></p>
         <div efy_searchable id ="dc_buttons" class="dc_cta" efy_searchable>
             <button efy_sidebar_btn efy_lang="try_it" class="efy_trans_filter_off"><i efy_icon="play"></i></button>
-            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter"><p>Github</p><p>46</p></a>
-            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>42</p></a>
+            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter" title="Github"><p><i efy_icon="github"></i></p><p>46</p></a>
+            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>43</p></a>
         </div>
     </div>
     <div>
@@ -66,8 +66,8 @@
 <p style="margin-bottom: 15rem" efy_searchable>Bellow you can see examples of simple, commonly used HTML styled by efy:</p>
 
 <div efy_searchable class="dc_grid">
-    <div><figure><img src="./apps/assets/image.webp" alt="image" /><figcaption>image + figcaption</figcaption></figure></div>
-    <div><video src="./apps/assets/efy_video.mp4" controls></video></div>
+    <div><figure><img src="./apps/assets/image.webp" alt="image" loading="lazy" /><figcaption>image + figcaption</figcaption></figure></div>
+    <div><video src="./apps/assets/efy_video.mp4" controls loading="lazy"></video></div>
 </div>
 
 <div efy_searchable id ="dc_headings">
@@ -139,7 +139,7 @@
         <details><summary>Summary</summary><p>content</p>
     </details></details>
 
-    <audio src="./apps/assets/efy_audio.mp4" controls></audio>
+    <audio src="./apps/assets/efy_audio.mp4" controls loading="lazy"></audio>
 
     <div efy_searchable><h6>Progress &amp; Meter</h6>
         <progress value="40" max="100">40%</progress>
@@ -284,25 +284,21 @@
             <h4>Examples</h4><div style="display:grid; gap: 10rem;">
             <p>Add an empty button to body after all existent children</p><pre efy_code="js + efy">$add('button')</pre>
             <p>Add a css styled button inside the <mark>#test</mark> selector, before other children</p>
-            <pre efy_code="js + efy">$add(<code>'button'</code>, {style: <code>'background: red; padding: 20rem'</code>}, [<code>'Text'</code>], $(<code>'#test'</code>), <code>'afterbegin'</code>)</pre>
+            <pre efy_code="js + efy">$add(<code>'button'</code>, {style: <code>'background: red; padding: 20rem'</code>}, <code>'Text'</code>, $(<code>'#test'</code>), <code>'afterbegin'</code>)</pre>
             <p>Range input with some attributes before <mark>#test</mark> ends</p>
 <pre efy_code="js + efy">
-$add(<code>'input'</code>,
-    {
+$add(<code>'input'</code>, {
         type: <code>'range'</code>, value: <code>'50'</code>, min: <code>'0'</code>, max: <code>'100'</code>, step: <code>'1'</code>,
         class: <code>'test'</code>, id: <code>'test'</code>,
         style: <code>'margin: 0; padding: 15rem'</code>
-    },
-    [], $(<code>'#test'</code>)
+    }, [], $(<code>'#test'</code>)
 )</pre>
             <p>2 nested buttons inside a div</p>
 <pre efy_code="js + efy" style="margin: 0">
-$add(<code>'div'</code>, {},
-    [
-        $add(<code>'button'</code>, {}, [<code>'1'</code>]),
-        $add(<code>'button'</code>, {}, [<code>'2'</code>])
-    ]
-)</pre>
+$add(<code>'div'</code>, {}, [
+    [<code>'button'</code>, {}, <code>'1'</code>],
+    [<code>'button'</code>, {}, <code>'2'</code>]
+])</pre>
         </details>
 
         <!--Separator--></div>

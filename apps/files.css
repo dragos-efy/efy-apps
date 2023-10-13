@@ -1,0 +1,6 @@
+#fileList {margin-top: 20px;
+    & ul {display: grid; grid-template-columns: repeat(auto-fill,minmax(240rem,1fr)); gap: var(--efy_gap); list-style-type: none; padding: 0;
+        & li {margin-bottom: 10px; display: flex; gap: 10rem; line-height: 1}
+        :is(li, p, i) {margin: 0}
+    }
+}
