@@ -8,7 +8,7 @@
 hash_fn =(a)=>{ a.scrollIntoView(); a.open = true; a.classList.add('hash_focus'); $wait(2, ()=> a.classList.remove('hash_focus')) },
 searchable =(a,b)=>{ $all(`[efy_content=${a}] [efy_searchable]`).forEach((c, i) => b[i] = c.getAttribute('efy_searchable') || b[i] )}; searchable('faq', faq); searchable('docs', docs);
 
-['faq', 'html', 'docs'].forEach(tab =>{ if (hash.includes(`#${tab}`)){
+'faq html docs apps'.split(' ').forEach(tab =>{ if (hash.includes(`#${tab}`)){
     $(`[efy_tabs=dc] [efy_tab=${tab}]`).click();
     if (tab === 'faq'){ faq.forEach(q =>{
         if (hash.includes(`#${q}`)) hash_fn($(`[efy_content=faq] [efy_searchable="${q}"]`))
@@ -16,6 +16,13 @@ searchable =(a,b)=>{ $all(`[efy_content=${a}] [efy_searchable]`).forEach((c, i) 
     if (tab === 'docs'){ docs.forEach(q =>{
         if (hash.includes(`#${q}`)) hash_fn($(`[efy_content=docs] [efy_searchable="${q}"]`))
     })}
+    if (tab === 'apps' || tab === 'html'){ const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]`);
+        $add('script', {src: `./apps/${tab}_page.js`}, [], $('head'));
+        $event($(`script[src="./apps/${tab}_page.js"]`), 'load', ()=>{
+            $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i')
+            frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
+        });
+    }
 }});
 
 /*Live Auto Demo*/ let n = 0; const $root = document.documentElement,
@@ -75,5 +82,19 @@ auto =()=>{ let m = n * 14;
                 break;
 }}}; $add('style', {class: 'auto_demo'});
 $event($('.dc_cta [efy_sidebar_btn]'), 'click', () =>{ counts = setInterval(auto, 100) });
+
+['apps', 'html'].map(tab =>{ const frame = $(`[efy_content=${tab}]`);
+    $event($(`[efy_tab=${tab}]`), 'click', () =>{ if (! frame.classList.contains('efy_dom')){
+        $add('script', {src: `./apps/${tab}_page.js`}, [], $('head'));
+        $event($(`script[src="./apps/${tab}_page.js"]`), 'load', ()=>{
+            $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i')
+            frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
+        });
+    }});
+});
+
+$event($('.apps .more'), 'click', ()=>{
+    $('[efy_tabs=dc] [efy_tab=apps]').dispatchEvent(new Event('click', {'bubbles': true }))
+});
 
 }, 1);

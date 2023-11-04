@@ -24,6 +24,7 @@
 <div class="dc_left efy_button_text_off">
     <button efy_tab="efy" class="efy_trans_filter_off" efy_active>EFY</button>
     <button efy_tab="faq" class="efy_trans_filter_off">FAQ</button>
+    <button efy_tab="apps" class="efy_trans_filter_off">Apps</button>
     <button efy_tab="html" class="efy_trans_filter_off">HTML</button>
     <button efy_tab="docs" class="efy_trans_filter_off">Docs</button>
 </div><div class="dc_right">
@@ -31,183 +32,44 @@
     <button efy_sidebar_btn class="efy_square_btn efy_trans_filter_off"><i efy_icon="menu"></i></button>
 </div></div>
 
+<div efy_content="apps" class="efy_trans_filter_off efy_hide_i"></div>
+<i efy_icon="reload" efy_content="apps" class="loading efy_trans_filter_off"></i>
+
+<div efy_content="html" class="efy_trans_filter_off efy_hide_i"></div>
+<i efy_icon="reload" efy_content="html" class="loading efy_trans_filter_off"></i>
+
+
 <div efy_content="efy" efy_active class="efy_trans_filter_off">
 
     <div class="dash_hide">
         <h2 efy_lang="join_future" efy_searchable></h2><p efy_lang="sidebar_about_text" efy_searchable></p>
         <div efy_searchable id ="dc_buttons" class="dc_cta" efy_searchable>
-            <button efy_sidebar_btn efy_lang="try_it" class="efy_trans_filter_off"><i efy_icon="play"></i></button>
-            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter" title="Github"><p><i efy_icon="github"></i></p><p>46</p></a>
-            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>43</p></a>
+            <button efy_sidebar_btn efy_lang="try_it"><i efy_icon="play"></i></button>
+            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter" title="Github"><p><i efy_icon="github"></i></p><p>49</p></a>
+            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>44</p></a>
         </div>
     </div>
     <div>
 
         <div id ="dc_buttons" class="apps" efy_searchable>
-            <a href="./music.html" role="button" efy_card><i efy_icon="audio"></i><div class="column_flex"><div>Music</div><mark efy_lang="beta"></mark></div></a>
-            <a href="./money.html" role="button" efy_card><i efy_icon="group"></i><div class="column_flex"><div>Money</div><mark efy_lang="beta"></mark></div></a>
+            <a href="./media.html" role="button" efy_card><i efy_icon="audio"></i><div class="column_flex"><div>Media</div><mark efy_lang="beta"></mark></div></a>
+            <a href="./planner.html" role="button" efy_card><i efy_icon="edit"></i><div class="column_flex"><div>Planner</div><mark efy_lang="beta"></mark></div></a>
             <a href="https://efy.piped.pages.dev" role="button" efy_card><div class="logo"><svg class="piped_logo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 508 819" width="496" height="800"><path d="m0.4 27.8c0 0 7.3-5.4 20.3-12.7 7.3-3.1 16.4-6.4 26.8-9.3 10.9-2.2 23.1-4 35.6-4.9 12.8 0 25.8 0.8 38 2.4 12.1 2.4 23.3 5.6 32.7 8.9 18.2 8.5 29.6 15.6 29.6 15.6v749.9h-183z" /><path d="m242.1 163.5c0 0 0-9.7-0.1-22.3-0.2-5.6-0.4-11.9-0.6-18.2-0.2-6.3-0.4-13-0.6-19.9-0.1-7.4-0.1-15.5 0-23.8 0.3-9.3 0.7-19 1.2-28.2 1.3-21.2 2.6-37.7 2.6-37.7 0 0 14.6-1.2 39.3-1.4 5.9 0.4 12.4 1 19.4 1.8 6.9 0.9 14.3 2 22.1 3.5q11.3 2.9 23.4 7.1c8 2.8 16.3 6 24.7 9.7q12 6.5 24.1 14.5 12.1 8 24 17.6 11.3 10.3 22.1 22.1c6.8 8.2 13.4 16.8 19.7 25.9q8.9 14.1 16.8 29.3c4.8 10.4 9.2 21 13.2 32 3.5 11.1 6.6 22.4 9.2 33.9 2.1 11.6 3.7 23.3 4.8 35q1 17.6 0.3 35c-0.9 11.6-2.4 23-4.4 34.2q-0.9 4.1-1.9 8.2-1 4.1-2.1 8.1-1.2 4.1-2.4 8.1-1.2 4-2.5 8-1.5 3.8-3 7.6-1.6 3.8-3.3 7.5-1.6 3.8-3.4 7.4-1.7 3.7-3.6 7.4-2 3.4-4 6.8-2.1 3.4-4.2 6.7-2.2 3.4-4.4 6.6-2.3 3.3-4.6 6.5-2.4 3-4.9 6-2.5 2.9-5.1 5.8-2.6 2.8-5.2 5.6-2.7 2.8-5.4 5.6-2.9 2.4-5.8 4.8-2.9 2.4-5.9 4.7-3 2.3-6 4.6-3.1 2.2-6.2 4.4c-8.1 5.6-16.3 10.8-24.6 15.4-8.9 4-17.8 7.6-26.5 10.7-8.8 3.1-17.3 5.8-25.7 8.1-8.7 1.7-17.2 3.2-25.1 4.4-8 1.1-15.5 2-22.4 2.6-14.5 0.4-26.2 0.5-34.2 0.4-8 0-12.4-0.2-12.4-0.2 0 0 0.3-9.6 0.8-23.1 0.1-6.4 0.3-13.8 0.5-21.6 0.1-7.8 0.1-16.3 0.1-25.1-0.1-9.2-0.2-19-0.5-28.8-0.3-10.5-0.7-21.1-1.2-30.8-1.1-21.5-2.1-37.5-2.1-37.5 0 0 6.9 0.4 18.6 0.5 5.5-0.2 12.1-0.7 19.3-1.6 7-1.3 14.4-3 22-5.3 7.1-2.7 14.3-6.1 21.2-10.1q4.9-3.2 9.4-7 4.3-3.8 8.2-8.2 3.5-4.4 6.6-9.2 2.7-4.9 4.8-10.2 1.8-5.3 3-10.7 0.8-5.6 0.9-11.2-0.2-5.6-1.1-11.2-1.3-5.6-3.2-11-2.2-5.4-5-10.5-3.2-5.1-6.9-9.8-4-4.6-8.4-8.8-4.6-4.1-9.6-7.7c-7.2-4.5-14.5-8.4-21.9-11.7-7.8-2.9-15.5-5.2-22.6-7-7.5-1.5-14.3-2.5-20-3.2-12.1-0.9-19.3-1.1-19.3-1.1z" /><path d="m92 819c-50.9 0-92-16.5-92-37 0-20.5 41.1-37 92-37 50.9 0 92 16.5 92 37 0 20.5-41.1 37-92 37z" /><path d="m248.4 165c-22.5 0-40.7-34.1-40.7-76.3 0-42.1 18.2-76.2 40.7-76.2 22.4 0 40.6 34.1 40.6 76.3 0 42.1-18.2 76.2-40.6 76.2z" /><path d="m249.9 486c-22.5 0-40.6-37.5-40.6-84 0-46.5 18.1-84 40.6-84 22.5 0 40.6 37.6 40.6 84 0 46.5-18.1 84-40.6 84z" /></svg></div><div class="column_flex"><div>Piped</div><mark efy_lang="beta"></mark></div></a>
-            <a href="./planner.html" role="button" efy_card><i efy_icon="edit"></i><div class="column_flex"><div>Planner</div><mark efy_lang="alpha"></mark></div></a>
-            <a href="./calculator.html" role="button" efy_card><i efy_icon="remove"></i><div class="column_flex"><div>Calculator</div><mark efy_lang="alpha"></mark></div></a>
+            <a href="./money.html" role="button" efy_card><i efy_icon="group"></i><div class="column_flex"><div>Money</div><mark efy_lang="beta"></mark></div></a>
+            <a href="./calculator.html" role="button" efy_card><i efy_icon="plus"></i><div class="column_flex"><div>Calculator</div><mark efy_lang="alpha"></mark></div></a>
             <a href="./converter.html" role="button" efy_card><i efy_icon="reload"></i><div class="column_flex"><div>Converter</div><mark efy_lang="alpha"></mark></div></a>
             <a href="./os.html" role="button" efy_card><i efy_icon="dots"></i><div class="column_flex"><div>OS</div><mark efy_lang="alpha"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="menu"></i><div class="column_flex"><div>Text Editor</div><mark efy_lang="soon"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="heart"></i><div class="column_flex"><div>Themes</div><mark efy_lang="soon"></mark></div></a>
-            <a role="button" efy_card class="soon"><i efy_icon="play"></i><div class="column_flex"><div>Video</div><mark efy_lang="soon"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="globe"></i><div class="column_flex"><div>Injector</div><mark efy_lang="soon"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="key"></i><div class="column_flex"><div>Passwords</div><mark efy_lang="soon"></mark></div></a>
+            <a role="button" efy_card class="more"><i efy_icon="chevron"></i><div class="column_flex"><div>More</div><mark>Apps</mark></div></a>
         </div>
     </div>
 
 </div>
 
-<div efy_content="html" class="efy_trans_filter_off">
-
-<p style="margin-bottom: 15rem" efy_searchable>Bellow you can see examples of simple, commonly used HTML styled by efy:</p>
-
-<div efy_searchable class="dc_grid">
-    <div><figure><img src="./apps/assets/image.webp" alt="image" loading="lazy" /><figcaption>image + figcaption</figcaption></figure></div>
-    <div><video src="./apps/assets/efy_video.mp4" controls loading="lazy"></video></div>
-</div>
-
-<div efy_searchable id ="dc_headings">
-    <h1>H1</h1><h2>H2</h2><h3>H3</h3><h4>H4</h4><h5>H5</h5><h6>H6</h6><p>paragraph</p><a href="#">link</a><abbr title="Abbreviations">abbr</abbr><del>del</del><dfn>dfn</dfn><em>em</em><ins>ins</ins><mark>mark</mark><s>strike through</s><small>small</small><strong>strong</strong><sub>sub</sub><sup>sup</sup><u>underlined</u><code>&lt;code&gt;</code><kbd>kbd</kbd>
-</div>
-
-<div efy_searchable id="dc_lists">
-    <ul>
-        <li>List item</li>
-        <ul><li>List item</li><li>List item</li></ul>
-        <li>List item</li>
-    </ul><ol>
-        <li>List item</li>
-        <ol><li>List Item</li><li>List Item</li></ol>
-        <li>List item</li>
-    </ol>
-    <dl>Definition list
-        <dt>dt</dt><dd>dd</dd>
-    </dl>
-    <div efy_searchable><h6>Navigation</h6><nav style="display: flex; gap: 10rem"><a href="#">Link1</a><a href="#">Link2</a><a href="#">Link3</a></nav></div>
-</div>
-
-<div efy_searchable><section>
-    <h4>Section</h4>
-    <p>A lot of boring text. In fact it's so boring that even if you find it funny while reading it, it will stay boring because it's pretty much useless. Reading it is a waste of time.</p>
-</section></div>
-
-<div efy_searchable id="dc_lists">
-
-<div><h6>Pre</h6><pre>div {
-  color: var(--text);
-  background: var(--bg);
-}</pre></div>
-
-<div><h6>Pre > Code</h6><pre><code>div {
-  color: var(--text);
-  background: var(--bg);
-}</code></pre></div>
-
-<div efy_searchable><h6>Article</h6>
-<article class="efy_shadow_trans">
-    <h4>H3</h4>
-    <p>Paragraph inside an article</p>
-</article></div>
-
-<div efy_searchable><h6>Blockquote</h6><blockquote>
-  <p>paragraph inside blockquote</p>
-  <p><cite>cite</cite></p>
-</blockquote></div>
-
-</div>
-
-<div efy_searchable class="dc_grid">
-
-<table>
-    <thead><tr><th>Table heading</th><th>Table heading</th><th>Table heading</th><th>Table heading</th><th>Table heading</th><th>Table heading</th></tr></thead>
-    <tfoot><tr><th>Table footer</th><th>Table footer</th><th>Table footer</th><th>Table footer</th><th>Table footer</th><th>Table footer</th></tr></tfoot>
-    <tbody>
-        <tr><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td></tr>
-        <tr><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td></tr>
-        <tr><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td></tr>
-        <tr><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td></tr>
-        <tr><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td><td>Table data</td></tr>
-    </tbody>
-</table>
-
-<div>
-    <details open style="height: fit-content"><summary>Details</summary><p>Content</p>
-        <details><summary>Summary</summary><p>content</p>
-    </details></details>
-
-    <audio src="./apps/assets/efy_audio.mp4" controls loading="lazy"></audio>
-
-    <div efy_searchable><h6>Progress &amp; Meter</h6>
-        <progress value="40" max="100">40%</progress>
-        <meter value="5" min="0" max="10" style="margin-left: 5rem">5 / 10</meter>
-    </div>
-</div>
-
-</div>
-
-<div efy_searchable>
-        <form>
-            <fieldset class="dc_grid">
-                <label><input type="color"></label>
-                <label>hidden input<input type="hidden"></label>
-                <label><input type="date"></label>
-                <label><input type="datetime-local"></label>
-                <label><input type="email" placeholder="email"></label>
-                <label><input type="month"></label>
-                <label><input type="number" value="123"></label>
-                <label><input type="password" value="password" autocomplete="new-password"></label>
-                <label><input type="range"></label>
-                <label><input type="search" placeholder="search"></label>
-                <label><input type="tel" placeholder="phone"></label>
-                <label><input type="text" placeholder="text"></label>
-                <label><input type="time"></label>
-                <label><input type="url" placeholder="url"></label>
-                <label><input type="week"></label>
-                <label><input type="text" readonly="" placeholder="input, read only"></label>
-                <label><textarea placeholder="textarea"></textarea></label>
-                <label><textarea placeholder="disabled textarea" disabled=""></textarea></label>
-                <label><select>
-                    <option>select</option>
-                    <optgroup label="optgroup 1">
-                        <option>option 1</option><option>option 2</option>
-                    </optgroup>
-                    <optgroup label="optgroup 2">
-                        <option>option 1</option><option>option 2</option>
-                    </optgroup>
-                    <option>option</option>
-                </select></label>
-                <label><select disabled=""><option>select disabled</option><option>2</option></select></label>
-                <label><select multiple=""><option>select multiple (ctrl + click)</option><option>1</option><option>2</option><option>3</option></select></label>
-                <p id="dc_lists" style="margin: 0">
-                    <label style="width: 100%"><input type="file"></label>
-                    <label><input type="radio" name="input-radio" value="1" checked> radio</label>
-                    <label><input type="radio" name="input-radio" value="2"> radio</label>
-                    <label><input type="checkbox" checked> checkbox</label>
-                    <label><input type="checkbox"> checkbox</label>
-                    <label><input type="radio" disabled=""> disabled</label>
-                </p>
-            </fieldset>
-
-            <div efy_searchable id ="dc_buttons">
-                <button>button</button>
-                <a href="#"><button>a &gt; button</button></a>
-                <a href="#" role="button" style="display: unset; float: unset">role=button</a>
-                <button type="submit" onclick="return false;">button type=submit</button>
-                <button type="reset" onclick="return false;">button type=reset</button>
-                <input type="button" value="input type=button">
-                <input type="submit" value="input type=submit" onclick="return false;">
-                <input type="reset" value="input type=reset" onclick="return false;">
-                <button type="button" disabled="">disabled</button>
-            </div>
-
-</form></div>
-
-
-</div><div efy_content="faq" efy_details class="efy_trans_filter_off">
+<div efy_content="faq" efy_details class="efy_trans_filter_off">
     <div>
         <details efy_searchable="logic"><summary>The logic behind it</summary><ul>
         <li>Minimalism - no dependencies, efficient code</li>

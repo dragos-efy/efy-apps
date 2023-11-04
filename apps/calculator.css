@@ -5,5 +5,5 @@
     .cc_buttons {display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: var(--efy_gap); margin-top: var(--efy_gap);
         & button {width: 100%;  min-height: 50rem; margin: 0;
             &:not(#equal, #del, #bksp){background: var(--efy_bg1); color: var(--efy_text!important); -webkit-text-fill-color: var(--efy_text)}
-            &:is(#pct, #div, #mul, #sub, #add, #ptleft, #ptright, #exp, #sqrt, #pi/*, #expand*/) {background: var(--efy_color), var(--efy_color_trans); -webkit-background-clip: text, padding-box; -moz-background-clip: text, padding-box; -webkit-text-fill-color: transparent}
+            &:is(#pct, #div, #mul, #sub, #add, #ptleft, #ptright, #exp, #sqrt, #pi/*, #expand*/) {background: var(--efy_color), var(--efy_color_trans); -webkit-background-clip: text, border-box; background-clip: text, border-box; background-origin: border-box; -webkit-text-fill-color: transparent}
 }}}

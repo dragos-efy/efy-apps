@@ -16,11 +16,12 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 .dc_nav_div {display: flex; justify-content: space-between; align-items: start; width: 100%; border-bottom: var(--efy_border); padding: var(--efy_gap0)}
 [efy_tabs=dc] .dc_right {display: flex; flex-wrap: nowrap; gap: var(--efy_gap); height: fit-content}
 .dc_search {width: fit-content; height: fit-content; position: relative;
-    & i {position: absolute; z-index: 2; 	width: fit-content; height: 100%; padding: var(--efy_padding)}
+    & i {position: absolute; z-index: 2; 	width: fit-content; height: 100%; padding: calc(10rem + var(--efy_border_size))}
     & input:focus {width: 170rem; padding-left: 35rem}
     & :not(input:focus, i), & :not(input:focus)::placeholder {color: transparent}
+    &:not(&:focus-within) {display: flex; place-content: center}
 }
-.dc_search input, .dc_right [efy_sidebar_btn] {width: 39.2rem; height: 39.2rem; cursor: pointer}
+.dc_search input, .dc_right [efy_sidebar_btn] {width: var(--efy_size); height: var(--efy_size); cursor: pointer}
 .dc_right [efy_sidebar_btn] {align-items: center; place-content: center}
 
 #dc_headings, #dc_buttons, #dc_lists {display: flex; flex-wrap: wrap; gap: var(--efy_gap); align-items: center; margin: var(--efy_gap) 0 var(--efy_gap) 0}
@@ -39,23 +40,29 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 [efy_tabs=dc] > [efy_content=efy] > div {display: flex; flex-direction: column; place-content: center; align-items: center; text-align: center}
 [efy_tabs=dc] > [efy_content=efy] h2 {text-transform: uppercase}
 
-#dc_buttons [efy_card] {display: flex; align-items: center; height: fit-content; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text); padding: 0}
+#dc_buttons [efy_card] {display: flex; align-items: center; height: fit-content; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text); padding: 0;
+    &.more {flex-direction: row-reverse;
+        & i {border-right: 0; border-left: var(--efy_border); border-radius: 0 var(--efy_radius) var(--efy_radius) 0}
+        & .column_flex div {line-height: 1}
+        & mark {-webkit-text-fill-color: var(--efy_text); border: 0; padding-top: 3px}
+    }
+}
 #dc_buttons [efy_card]:focus {outline: none!important}
 #dc_buttons [efy_card] mark {display: flex; background: transparent; color: var(--efy_text_trans)!important; -webkit-text-fill-color: var(--efy_text_trans); padding: 6px 10rem 0 10rem; line-height: 1; border-top: var(--efy_border); width: 100%; margin: 0!important; border-radius: 0}
-#dc_buttons [efy_card] :is(i, .logo) {padding: 15rem; border-radius: var(--efy_radius) 0 0 var(--efy_radius); display: flex; align-items: center; justify-content: center; height: 63rem; width: 63rem; border-right: var(--efy_border); font-size: 30rem}
+#dc_buttons [efy_card] :is(i, .logo) {padding: 15rem; border-radius: var(--efy_radius) 0 0 var(--efy_radius); display: flex; align-items: center; justify-content: center; height: 63rem; width: 63rem; border-right: var(--efy_border); font-size: 30rem;
+    &:is([efy_icon=plus]):before {font-size: 22rem}
+}
 #dc_buttons [efy_card] .column_flex {display: flex; flex-direction: column; margin: 0!important; padding: 0!important}
 #dc_buttons [efy_card] .column_flex div {padding: 0px 12rem 4px 10rem}
 
 /*Tabs*/ .dc_left [efy_tab]:not([efy_active]) {background: transparent; border: 0; -webkit-text-fill-color: var(--efy_text)}
-/* .dc_left [efy_tab][efy_active] {background: transparent, var(--efy_color); border: 0; -webkit-text-fill-color: var(--efy_text)} */
 
-/*Split Buttons*/ .efy_btn_split {padding: 0; --c: 0 0% 0%; --b: var(--efy_border_size) solid hsla(var(--c) / 0.5); background: var(--efy_color), var(--efy_color_trans); -webkit-background-clip: text, padding-box; -moz-background-clip: text, padding-box; -webkit-text-fill-color: transparent; height: 39.2rem}
-[efy_mode*=light_] .efy_btn_split {--c: 0 0% 100%}
-[efy_color_bgcol] .efy_btn_split {--c: var(--efy_color_bgcol_var)}
-[efy_color_bordercol] .efy_btn_split {--c: var(--efy_color_bordercol_var)}
-.efy_btn_split p {padding: var(--efy_padding)}
-.efy_btn_split p:first-of-type {border-right: var(--b); padding-right: 8rem}
-.efy_btn_split p:last-of-type {padding-left: 8rem}
+/*Split Buttons*/ .efy_btn_split {padding: 0; background: var(--efy_color), var(--efy_color_trans); -webkit-background-clip: text, border-box; background-clip: text, border-box; background-origin: border-box;  -webkit-text-fill-color: transparent; height: var(--efy_size)}
+.efy_btn_split p {padding: var(--efy_padding); height: calc(var(--efy_size) - var(--efy_border_size2)); display: flex; align-items: center; line-height: 1;
+    --size: calc(6.5rem + var(--efy_border_size));
+    &:first-of-type {border-right: var(--efy_border); padding-right: var(--size)}
+    &:last-of-type {padding-left: var(--size)}
+}
 .dc_cta [efy_sidebar_btn] {display: flex; align-items: center}
 
 .piped_logo {width: 20rem!important; height: 34rem; margin-right: -3rem!important;}
@@ -90,6 +97,39 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 .hash_focus {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text)!important; border-radius: var(--efy_radius)}
 [efy_shadow*=trans] .hash_focus {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text), var(--efy_shadow_trans)!important}
 
+div:is([efy_content=apps], [efy_content=html]) + .loading {
+    min-height: calc(var(--efy_100vh) - (var(--efy_size) + var(--efy_gap) * 2.5)); padding: 0!important; display: flex; align-items: center;
+    justify-content: center; width: 100%; background: transparent!important; animation: loading 2s linear infinite;
+    &.efy_hide_i {animation: none}
+}
+@keyframes loading {0% {rotate: 0deg} 50% {scale: 2} 100% {rotate: 360deg}}
+
+#dc_buttons.apps_page {display: block; columns: 240rem; gap: var(--efy_gap); max-width: unset;
+	& *:not([efy_sidebar_btn] i) {width: 100%}
+	[efy_card] {flex-direction: column; break-inside: avoid;
+		& + [efy_card] {margin-top: var(--efy_gap)}
+		.top {display: flex; height: 100rem; border-bottom: var(--efy_border)}
+		.column_flex {place-content: space-evenly;
+			& p {line-height: 1; width: fit-content; margin-left: 10rem}
+			& p:nth-of-type(1) {font-size: 20rem}
+			& p:nth-of-type(2) {background: var(--efy_color), var(--efy_color_trans); background-clip: text, border-box; -webkit-background-clip: text, border-box;
+				-webkit-text-fill-color: transparent; padding: 4rem 8rem; border-radius: var(--efy_radius0); border: var(--efy_border); background-origin: border-box}
+			& p[efy_lang=soon] {background: var(--efy_bg1); -webkit-text-fill-color: var(--efy_text)}
+		}
+		:is(i, .logo) {height: 100rem; width: 140rem; font-size: 50rem;
+			&.efydb svg {height: 50rem; fill: var(--efy_text)}
+		}
+		.description {font-weight: normal; padding: 10rem; text-align: start}
+		[tags] {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); align-items: start; padding: var(--efy_gap0); border-top: var(--efy_border);
+			[tag] {background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius0); width: fit-content; padding: 3rem 6rem; line-height: 1; font-weight: normal;}
+		}
+		[efy_icon=plus]:before {font-size: 35rem}
+		[efy_icon=circle]{font-size: 40rem}
+	}
+	.piped_logo {width: 40rem!important; height: 50rem}
+}
+
+
 /*Convergence*/
 @container content0 (max-width: 1100px){
     [efy_tabs="dc"] > [efy_content=efy] > div:first-of-type > h2 {font-size: 5.75cqw}
@@ -114,6 +154,7 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 @container content0 (max-width: 425px){
     [efy_tabs=dc] > [efy_content=efy] > div {text-align: left; align-items: start}
     [efy_tabs=dc] > [efy_content=efy] :is(#dc_buttons, #dc_buttons.apps) {place-content: start}
+    div:is([efy_content=apps], [efy_content=html]) + .loading {min-height: calc(var(--efy_100vh) - (var(--efy_size) * 2 + var(--efy_gap) * 3))}
 }
 @media screen and (max-width: 767.9px){
     [efy_tabs=dc] > [efy_content=efy], .dc_grid {grid-template-columns: 1fr}

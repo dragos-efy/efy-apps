@@ -1,4 +1,4 @@
-:root {overflow-x: hidden; --pn_priority_0: var(--efy_text); --pn_priority_1: 85 100% 40%; --pn_priority_2: 50 100% 50%; --pn_priority_3: 0 100% 50%}
+:root {overflow-x: hidden; --pn_priority_0: var(--efy_text); --pn_priority_1: 85 100% 40%; --pn_priority_2: 50 100% 50%; --pn_priority_3: 0 100% 50%; --efy_body_padding: 0}
 
 [pn_priority], #pn_goals.priority_color [pn_has] button, [efy_color*=pn_priority_0] [efy_color_preview] {background: var(--efy_text)!important}
 [pn_priority=low], #pn_goals.priority_color [pn_has=low] button, [efy_color*=pn_priority_1] [efy_color_preview] {background: hsl(var(--pn_priority_1))!important}
@@ -10,8 +10,8 @@
 #pn_goals.priority_color [pn_has=medium][pn_done=true] .done_btn {background: hsla(var(--pn_priority_2) / .3)!important; color: hsl(var(--pn_priority_2)); -webkit-text-fill-color: hsl(var(--pn_priority_2))}
 #pn_goals.priority_color [pn_has=high][pn_done=true] .done_btn {background: hsla(var(--pn_priority_3) / .3)!important; color: hsl(var(--pn_priority_3)); -webkit-text-fill-color: hsl(var(--pn_priority_3))}
 
-.pn_nav {display: flex; justify-content: space-between; align-items: center; margin-bottom: 5rem}
-.pn_nav :is(button, a[role=button], label) {margin: 0; white-space: nowrap}
+.pn_nav {display: flex; justify-content: space-between; align-items: center; margin-bottom: 5rem; border-bottom: var(--efy_border); padding: var(--efy_gap0)}
+.pn_nav :is(button, a[role=button], label) {margin: 0; white-space: nowrap; height: var(--efy_size)}
 .pn_nav .pn_toggles, .pn_tags {display: flex; gap: var(--efy_gap0)}
 .pn_tags {flex-wrap: wrap}
 
@@ -25,7 +25,7 @@
 
 .buttons :is(.cancel, .pn_submit) {display: flex; justify-content: center; align-items: center}
 
-.modal-overlay {display: none}
+.modal-overlay {display: none; padding: calc(var(--efy_gap0) / 2) var(--efy_gap) var(--efy_gap) var(--efy_gap); border-bottom: var(--efy_border)}
 .modal-overlay.active {display: block}
 
 #form {max-width: 500px}
@@ -65,7 +65,7 @@
 
 
 /*Planner*/
-[pn_planner] {display: grid; gap: calc(var(--efy_gap) /2.5) var(--efy_gap); grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr))}
+[pn_planner] {display: grid; gap: calc(var(--efy_gap) /2.5) var(--efy_gap); grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); padding: 0 var(--efy_gap) var(--efy_gap) var(--efy_gap)}
 :is(#pn_goals, #pn_notes, #pn_links, #pn_tags) .header {display: flex; justify-content: start; gap: var(--efy_gap0); align-items: center; margin: 5rem 0 10rem 0}
 #pn_tags .header {margin: 0rem 15rem 15rem 15rem}
 :is(#pn_goals, #pn_notes, #pn_links, #pn_tags) .header mark {padding: 5rem 7rem; background: var(--efy_bg1); color: var(--efy_text); line-height: 1; font-size: 18rem; border: var(--efy_border); align-items: center; display: flex; justify-content: center; min-width: 30rem}
@@ -105,7 +105,7 @@
 #pn_goals [pn_done=true] :is([pn_priority], summary .time, [efy_timer], .pn_fs) {display: none}
 #pn_goals [pn_done=true] .title {opacity: 0.5; text-decoration: line-through}
 #pn_goals [pn_done=true] .description {padding: 0; border-bottom: 0}
-#pn_goals [pn_done=true] .done_btn {background: var(--efy_color), var(--efy_color_trans); -webkit-background-clip: text, padding-box; -moz-background-clip: text, padding-box; -webkit-text-fill-color: transparent}
+#pn_goals [pn_done=true] .done_btn {background: var(--efy_color), var(--efy_color_trans); -webkit-text-fill-color: transparent; -webkit-background-clip: text, border-box !important; background-clip: text, border-box !important; background-origin: border-box!important}
 
 :is(#pn_goals, #pn_notes, #pn_links) .title {width: fit-content}
 :is(#pn_goals, #pn_notes) .description2 {background: transparent; border: 0; resize: none; margin: 0; padding: 0; display: flex; cursor: unset; overflow: visible; border-radius: 0}

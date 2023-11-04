@@ -1,5 +1,5 @@
 .mn_nav {display: flex; justify-content: space-between; align-items: center}
-.mn_nav :is(button, a[role=button], label) {margin: 0; white-space: nowrap; min-width: var(--efy_ratio_width); height: var(--efy_ratio_width); display: flex; align-items: center; place-content: center}
+.mn_nav :is(button, a[role=button], label) {margin: 0; white-space: nowrap; min-width: var(--efy_size); height: var(--efy_size); display: flex; align-items: center; place-content: center}
 
 .mn_nav , .modal-overlay {margin-top: var(--efy_gap)}
 

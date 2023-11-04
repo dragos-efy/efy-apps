@@ -27,7 +27,7 @@ html, body {overflow: hidden}
 [os_grid_gap*=none] :is([efy_frames], [efy_frames] [efy_frame], [os_drawer], [os_bar]) {border-radius: 0}
 
 .os_buttons, .os_buttons > div {display: flex; gap: var(--efy_gap0)}
-.os_buttons button {aspect-ratio: 1; height: calc(36rem + var(--efy_border_size) * 2); align-items: center; justify-content: center; border: 0}
+.os_buttons :is(button, label) {aspect-ratio: 1; height: var(--efy_size); align-items: center; justify-content: center}
 
 .os_speed_text, .os_time_text {display: flex; gap: 5rem; align-items: center; width: fit-content; height: 38rem; padding: 7rem 10rem; font-weight: bold; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
 .os_speed_text {aspect-ratio: unset!important}
@@ -55,7 +55,7 @@ html, body {overflow: hidden}
 :is([os_app*=left], [os_app*=right]) [efy_frames] [efy_frame] {height: calc(var(--efy_100vh) - (var(--efy_gap) * (var(--os_grid_gap) - 1)))}
 
 [efy_frames] [efy_frame] iframe {overflow: scroll; border: 0; width: 100%; height: 100%}
-/*[efy_outline] */[efy_frame][efy_active] {border-color: var(--efy_text); box-shadow: inset 0 0 0 2rem var(--efy_text)}
+/*[efy_outline]*/ [efy_frame][efy_active] {border-color: var(--efy_text); box-shadow: inset 0 0 0 2rem var(--efy_text)}
 
 [efy_frames].remove [efy_frame] {border-color: var(--efy_text)}
 [efy_frames].remove iframe {pointer-events: none}
@@ -63,7 +63,6 @@ html, body {overflow: hidden}
 /*Drag*/ [efy_drag=on] * {cursor: move!important} [efy_drag=on] * > * {pointer-events: none}
 [efy_drag=on] > *.active {border: var(--efy_border_size) dashed var(--efy_text); background: transparent}
 #os_drag_toggle, #os_remove, :is([for=os_drag_toggle], [for=os_remove]):before, :is([for=os_drag_toggle], [for=os_remove]):after {display: none!important}
-[efy_select] input + label:is([for=os_drag_toggle], [for=os_remove]) {height: 39rem; width: 39rem; display: flex; align-items: center; place-content: center}
 
 /*Fix 2 BG Glitch*/ [for=os_drag_toggle] [efy_icon=move]:before, [os_drawer] [efy_card] [efy_icon=plus]:before { -webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
 [efy_color_buttoncol][efy_mode] [for=os_drag_toggle] [efy_icon=move]:before, [efy_color_buttoncol][efy_mode] [os_drawer] [efy_card] [efy_icon=plus]:before {background: hsla(var(--efy_color_buttoncol_var) / .7)}

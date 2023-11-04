@@ -28,14 +28,16 @@
 :root{--efy_sidebar_button: right_top, on}
 .efy_iframe :is(.efy_sidebar, [efy_sidebar_btn*=absolute]) {display: none}
 
-[ttt] {display: flex; flex-direction: column; align-items: center; place-content: center; height: calc(var(--efy_100vh) - (var(--efy_gap) * 2))}
-[ttt] .cells {display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--efy_gap)}
-[ttt] .cells div {background: var(--efy_bg1); border-radius: var(--efy_radius); border: var(--efy_border); display: flex; align-items: center; justify-content: center; font-size: 50rem; font-weight: bold; cursor: pointer; height: 100rem; aspect-ratio: 1}
-[ttt] #result {display: none; text-align: center; margin-top: 15rem}
-[ttt] button {display: block; margin: 0 auto; margin-top: 15rem}
-.control {display: flex; gap: var(--efy_gap0); align-items: center; margin-top: calc(var(--efy_gap) + 15rem)}
-.control :is(button, label) {margin: 0; border: 0; height: 39.2rem}
-
+[ttt] {display: flex; flex-direction: column; align-items: center; place-content: center; height: calc(var(--efy_100vh) - (var(--efy_gap) * 2));
+  .cells {display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--efy_gap);
+    & div {background: var(--efy_bg1); border-radius: var(--efy_radius); border: var(--efy_border); display: flex; align-items: center; justify-content: center; font-size: 50rem; font-weight: bold; cursor: pointer; height: 100rem; aspect-ratio: 1}
+  }
+  #result {display: none; text-align: center; margin-top: 15rem}
+  & button {display: block; margin: 0 auto; margin-top: 15rem}
+}
+.control {display: flex; gap: var(--efy_gap0); align-items: center; margin-top: calc(var(--efy_gap) + 15rem);
+  :is(button, label) {margin: 0; height: var(--efy_size); display: flex; align-items: center; place-content: center; line-height: 1}
+}
 #pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh); border-radius: 0!important; background-position: var(--efy_bg_x) var(--efy_bg_y)!important; pointer-events: none}
 [efy_mode*=light] #pn_confetti {filter: invert(1)}
 </style>
