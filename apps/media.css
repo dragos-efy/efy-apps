@@ -30,6 +30,7 @@
         &, &:first-of-type {width: calc(var(--efy_size) - var(--efy_border_size))}
         &:first-of-type {border-radius: var(--efy_radius) 0 0 var(--efy_radius)}
         &:last-of-type {border-radius: 0 var(--efy_radius) var(--efy_radius) 0; width: calc(var(--efy_size) - var(--efy_border_size2)); border-right: 0}
+        & i {margin: 0}
     }
 }
 
