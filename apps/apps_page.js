@@ -49,12 +49,16 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'Convert efy translations from or to css and json, minify and beautify html, css, js',
         'productivity offline static'
     ), $app_card(
+        'OS', './os.html', 'edit', 'alpha',
+        'Web based operating system with efy apps inside. It has window tiling and it works regardless of your actual OS, but some features are limited compared to a real OS',
+        'productivity offline static'
+    ), $app_card(
         'Text Editor', '', 'menu', 'soon',
         'Edit text files, dynamic syntax highlighting, multiple tabs, split view, custom text colors. Mainly for simple use cases, not competing with complex text editors',
         'productivity offline static'
     ), $app_card(
-        'OS', './os.html', 'edit', 'alpha',
-        'Web based operating system with efy apps inside. It has window tiling and it works regardless of your actual OS, but some features are limited compared to a real OS',
+        'Files', './files.html', 'help', 'alpha',
+        "Experimental static file manager that allows you to create, read, update and delete files on your actual OS. Only works in chromium browsers (chrome, brave, edge, vivaldi etc). Very buggy currently, only use it for testing",
         'productivity offline static'
     ), $app_card(
         'Injector', '', 'edit', 'soon',
