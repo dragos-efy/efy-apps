@@ -37,7 +37,7 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         "An alternative privacy-friendly YouTube frontend which is efficient by design. Currently, only a few instances use efy and it's considered expiremental",
         'video fun server'
     ), $app_card(
-        'Planner', './planner.html', 'edit', 'beta',
+        'Planner', './planner.html', 'check', 'beta',
         'Organize your tasks, take notes, time-based reminders, track your progress and time',
         'productivity offline static'
     ), $app_card(
@@ -49,7 +49,7 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'Convert efy translations from or to css and json, minify and beautify html, css, js',
         'productivity offline static'
     ), $app_card(
-        'OS', './os.html', 'edit', 'alpha',
+        'OS', './os.html', 'dots', 'alpha',
         'Web based operating system with efy apps inside. It has window tiling and it works regardless of your actual OS, but some features are limited compared to a real OS',
         'productivity offline static'
     ), $app_card(
@@ -80,6 +80,10 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'efyDB', '', 'efydb', 'soon',
         'Upload, Share & Download user made efy themes on a public server',
         'server fun public'
+    ),  $app_card(
+        'Builder', './builder.html', 'edit', 'alpha',
+        'Create static apps & websites with efy components visually',
+        'productivity offline static'
     ), $app_card(
         'Social Media', '', 'user', 'soon',
         'It would be cool to bring efy to social platforms like matrix (element), mastodon, lemmy etc',
