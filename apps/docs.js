@@ -16,7 +16,7 @@ searchable =(a,b)=>{ $all(`[efy_content=${a}] [efy_searchable]`).forEach((c, i) 
     if (tab === 'docs'){ docs.forEach(q =>{
         if (hash.includes(`#${q}`)) hash_fn($(`[efy_content=docs] [efy_searchable="${q}"]`))
     })}
-    if (tab === 'apps' || tab === 'html'){ const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]`);
+    if (tab === 'apps' || tab === 'html'){ const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`);
         $add('script', {src: `./apps/${tab}_page.js`}, [], $('head'));
         $event($(`script[src="./apps/${tab}_page.js"]`), 'load', ()=>{
             $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i')
@@ -38,17 +38,17 @@ hsla =(array)=>{ array.push(
     array[0].replace(/hsl(?=\()|\),|\)\)/g, (match)=>{ return {'hsl': 'hsla', '),': ' / .3),', '))': ' / .3))'}[match] || match})
 )},
 setColor = (array) => {
-    $root.style.setProperty('--efy_color_trans', array[1]);
-    $root.style.setProperty('--efy_color', array[0]);
+    $css_prop('--efy_color_trans', array[1]);
+    $css_prop('--efy_color', array[0]);
 },
 auto =()=>{ let m = n * 14;
     if (n == 25){ n = 0; clearInterval(counts); $('.auto_demo').textContent = '';
-        $root.style.setProperty('--efy_radius', '12rem');
-        $root.style.setProperty('--efy_gap', '15rem');
+        $css_prop('--efy_radius', '12rem');
+        $css_prop('--efy_gap', '15rem');
         setColor(color);
     } else {
-        $root.style.setProperty('--efy_radius', ++n + 'rem');
-        $root.style.setProperty('--efy_gap', (n * 1.2) + 'rem');
+        $css_prop('--efy_radius', ++n + 'rem');
+        $css_prop('--efy_gap', (n * 1.2) + 'rem');
         let aa = ['linear-gradient(0deg, hsl(170 100% 50%), hsl(170 100% 50%))'],
         bb = ['radial-gradient(circle at center, hsl(0 100% 0%), hsl(0 100% 100%), hsl(0 100% 0%), hsl(0 100% 100%), hsl(0 100% 0%), hsl(0 100% 100%))'],
         c = ['linear-gradient(hsl(0 100% 0%), hsla(0 100% 50%), hsl(70 100% 50%), hsl(140 100% 50%), hsl(210 100% 50%), hsl(280 100% 50%))'],
@@ -77,14 +77,15 @@ auto =()=>{ let m = n * 14;
             break; case 23: case 24: x = ['linear-gradient(165deg, hsl(179 100% 45%), hsl(277 44% 50%), hsl(49 100% 50%))']; hsla(x); setColor(x);
                 $('.auto_demo').textContent = common[0]+'radial-gradient(circle at center, #413348 30%, #ffc800 30%, #000000 70%, #534067 70%, #000000)!important; filter: blur(0rem)'+common[1];
             break; default: const a = `${m} 100% 50%`, b = `${m + 50} 100% 50%`;
-                $root.style.setProperty('--efy_color', `linear-gradient(${m}deg, hsl(${a}), hsl(${b}))`);
-                $root.style.setProperty('--efy_color_trans', `linear-gradient(${m}deg, hsla(${a} / .3), hsla(${b} / .3))`);
+                $css_prop('--efy_color', `linear-gradient(${m}deg, hsl(${a}), hsl(${b}))`);
+                $css_prop('--efy_color_trans', `linear-gradient(${m}deg, hsla(${a} / .3), hsla(${b} / .3))`);
                 break;
 }}}; $add('style', {class: 'auto_demo'});
 $event($('.dc_cta [efy_sidebar_btn]'), 'click', () =>{ counts = setInterval(auto, 100) });
 
-['apps', 'html'].map(tab =>{ const frame = $(`[efy_content=${tab}]`);
+['apps', 'html'].map(tab =>{ const frame = $(`[efy_content=${tab}]:not(.loading)`);
     $event($(`[efy_tab=${tab}]`), 'click', () =>{ if (! frame.classList.contains('efy_dom')){
+        $(`[efy_content=${tab}] + .loading`).classList.remove('efy_hide_i');
         $add('script', {src: `./apps/${tab}_page.js`}, [], $('head'));
         $event($(`script[src="./apps/${tab}_page.js"]`), 'load', ()=>{
             $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i')
@@ -96,5 +97,20 @@ $event($('.dc_cta [efy_sidebar_btn]'), 'click', () =>{ counts = setInterval(auto
 $event($('.apps .more'), 'click', ()=>{
     $('[efy_tabs=dc] [efy_tab=apps]').dispatchEvent(new Event('click', {'bubbles': true }))
 });
+$event($('#dc_notify_test'), 'click', ()=>{
+    $notify('short', 'Short Notification', 'Disappears in 5s');
+});
+
+$event($('[efy_content=docs]'), 'click', (e)=>{ let x = e.target;
+    if (x.matches('.copy_url')){
+        let url = 'https://efy.ooo/#docs#' + $$(x.parentNode, '[efy_tab=preview]').textContent.toLowerCase().replaceAll(' ', '_'); navigator.clipboard.writeText(url);
+        if (efy.notify_clipboard != false){ $notify('short', 'Copied to clipboard', url)}
+    } else if (x.matches('#dc_icons [efy_card]')){
+        let icon = x.textContent; navigator.clipboard.writeText(icon);
+        if (efy.notify_clipboard != false){ $notify('short', 'Copied to clipboard', icon)}
+    }
+});
+
+
 
 }, 1);

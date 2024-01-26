@@ -16,7 +16,7 @@
 <script src="./apps/efy_global.js"></script>
 <script src="./apps/docs.js"></script>
 
-</head><body dc_dash><noscript><p style="background: #000; color:#fff; border-radius: 16rem; padding: 16rem;">Please enable JavaScript to load the page properly and enjoy extra features</p><br></noscript>
+</head><body><noscript><p style="background: #000; color:#fff; border-radius: 16rem; padding: 16rem;">Please enable JavaScript to load the page properly and enjoy extra features</p><br></noscript>
 
 <div id="efy_docs" efy_search="details, #efy_docs [efy_searchable]">
 
@@ -33,10 +33,10 @@
 </div></div>
 
 <div efy_content="apps" class="efy_trans_filter_off efy_hide_i"></div>
-<i efy_icon="reload" efy_content="apps" class="loading efy_trans_filter_off"></i>
+<i efy_icon="reload" efy_content="apps" class="loading efy_trans_filter_off efy_hide_i"></i>
 
 <div efy_content="html" class="efy_trans_filter_off efy_hide_i"></div>
-<i efy_icon="reload" efy_content="html" class="loading efy_trans_filter_off"></i>
+<i efy_icon="reload" efy_content="html" class="loading efy_trans_filter_off efy_hide_i"></i>
 
 
 <div efy_content="efy" efy_active class="efy_trans_filter_off">
@@ -46,7 +46,7 @@
         <div efy_searchable id ="dc_buttons" class="dc_cta" efy_searchable>
             <button efy_sidebar_btn efy_lang="try_it"><i efy_icon="play"></i></button>
             <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter" title="Github"><p><i efy_icon="github"></i></p><p>51</p></a>
-            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>49</p></a>
+            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>52</p></a>
         </div>
     </div>
     <div>
@@ -116,7 +116,7 @@
 </div>
 
 
-    <div efy_content="docs" efy_details class="efy_trans_filter_off"><h5 style="margin-bottom: 15rem" efy_searchable>Learn how to use efy <mark efy_lang="soon"></mark></h5><div class="columns">
+    <div efy_content="docs" efy_details class="efy_trans_filter_off"><h5 efy_searchable>Learn how to use efy <mark efy_lang="soon"></mark></h5><hr /><div class="columns">
         <div style="display: flex; flex-direction: column; gap: var(--efy_gap)"><details efy_searchable="mode"><summary>[efy_mode]</summary><ul>
         <li>It sets the mode, the default value is <code>default</code></li>
         <li>Options: <mark>light_light</mark> , <mark>light_sepia</mark> , <mark>light_trans</mark> , <mark>dark_dark</mark> , <mark>dark_nord</mark> , <mark>dark_black</mark> , <mark>dark_trans</mark></li>
@@ -144,7 +144,7 @@
             <p><code>Position</code> - where the tag should be added in relationship to the parent:<br /><mark>beforebegin</mark> , <mark>afterbegin</mark> , <mark>beforeend</mark> , <mark>afterend</mark></p>
 
             <h4>Examples</h4><div style="display:grid; gap: 10rem;">
-            <p>Add an empty button to body after all existent children</p><pre efy_code="js + efy">$add('button')</pre>
+            <p>Add an empty button to body after all existent children</p><pre efy_code="js + efy">$add(<code>'button'</code>)</pre>
             <p>Add a css styled button inside the <mark>#test</mark> selector, before other children</p>
             <pre efy_code="js + efy">$add(<code>'button'</code>, {style: <code>'background: red; padding: 20rem'</code>}, <code>'Text'</code>, $(<code>'#test'</code>), <code>'afterbegin'</code>)</pre>
             <p>Range input with some attributes before <mark>#test</mark> ends</p>
@@ -168,27 +168,135 @@ $add(<code>'div'</code>, {}, [
             <div><details efy_searchable><summary>More coming soon...</summary><p>This is just the beginning...</p></details></div>
         </div>
 
-        <h5 style="margin: 15rem 0" efy_searchable>Components</h5>
+        <hr /><h5 efy_searchable>Components</h5>
         <div class="dc_separator"><div>
 
-            <details efy_searchable="icons" style="margin: 0"><summary>Icons</summary>
-                <p>Add an <code>&lt;i&gt;</code> tag with an <code>[efy_icon]</code> attribute containing your icon code from bellow</p>
-                <div id="dc_icons"></div>
-                <p>Example:</p>
-                <div><pre efy_code="html" style="margin: 0">&lt;<code>i efy_icon</code>="<code>star</code>"&gt;&lt;/i&gt;</pre></div>
-            </details>
+                <div efy_tabs="demo_icons" class="dc_code_preview" efy_searchable="icons">
+                    <div class="tabs">
+                        <button efy_tab="preview" efy_active>Icons</button>
+                        <button efy_tab="collection">Collection</button>
+                        <button class="copy_url efy_square_btn" title="Copy URL"><i efy_icon="globe"></i></button>
+                    </div>
+                    <div efy_content="preview" class="efy_trans_filter_off" efy_active>
+                        <div style="display: flex; gap: var(--efy_gap); width: 100%;">
+                            <div class="efy_square_btn" style="background: var(--efy_bg1); height: 100%; width: unset; aspect-ratio: 1; border-radius: var(--efy_radius); border: var(--efy_border)">
+                                <i efy_icon="star" style="font-size: 40rem"></i>
+                            </div>
+                            <pre efy_code="example · html" style="margin: 0">&lt;i <code>efy_icon</code>=<code>"star"</code>&gt;&lt;/i&gt;</pre>
+                        </div>
+                    </div>
+                    <div efy_content="collection" class="efy_trans_filter_off">
+                        <div id="dc_icons"></div>
+                    </div>
+                </div>
 
-            <div efy_searchable="color_picker"><h6 style="margin-bottom: 5rem">Color Picker</h6>
-                <div efy_color="Color 1, 50 100% 50%"></div>
-                <div efy_color="Color 2, 150 100% 50%"></div>
-                <div efy_color="Color 3, 0 0% 50%"></div>
-            </div>
+                <hr />
 
-            <div efy_searchable="timer"><h6>Clock &amp; Timer</h6><div class="dc_clock"><div efy_clock></div><div efy_timer="efy_demo"></div></div></div>
+                <div efy_tabs="demo_color_picker" class="dc_code_preview" efy_searchable="color_picker">
+                    <div class="tabs">
+                        <button efy_tab="preview" efy_active>Color Picker</button>
+                        <button efy_tab="code">Code</button>
+                        <button class="copy_url efy_square_btn" title="Copy URL"><i efy_icon="globe"></i></button>
+                    </div>
+                    <div efy_content="preview" class="efy_trans_filter_off" efy_active>
+                        <div efy_color="Color 1, 0 100% 50%"></div>
+                        <div efy_color="Color 2, 160 100% 40%"></div>
+                    </div>
+                    <div efy_content="code" class="efy_trans_filter_off">
+                        <pre efy_code="logic"><code>efy_color</code> = <code>id</code>, <code>HSL color</code> (default before the user changes it)<hr /><ul><li>It defaults to HSL and it can copy, paste and convert the color to HEX or RGB</li><li>Soon it will default to OKLCH because of more accurate colors and will support multiple tabs</li></pre>
+                        <pre efy_code="example · html">&lt;div <code>efy_color</code>=<code>"Color 1, 0 100% 50%"</code>&gt;&lt;/div&gt;
+&lt;div <code>efy_color</code>=<code>"Color 2, 160 100% 40%"</code>&gt;&lt;/div&gt;</pre>
+                    </div>
+                </div>
+                <hr />
+
+                <div efy_tabs="demo_notifications" class="dc_code_preview" efy_searchable="notifications">
+                    <div class="tabs">
+                        <button efy_tab="preview" efy_active>Notifications</button>
+                        <button efy_tab="code">Code</button>
+                        <button class="copy_url efy_square_btn" title="Copy URL"><i efy_icon="globe"></i></button>
+                    </div>
+                    <div efy_content="preview" class="efy_trans_filter_off" efy_active>
+                        <button id="dc_notify_test"><i efy_icon="notify"></i>Test Notification</button>
+                    </div>
+                    <div efy_content="code" class="efy_trans_filter_off">
+                        <pre efy_code="logic · js">$notify('<code>time</code>', '<code>text</code>', '<code>text</code>', '<code>lang</code>', <code>function</code>)
+<hr /><code>lang</code> & <code>function</code> are optional
+<code>time</code> = <code>short</code>, <code>long</code>, <code>infinite</code> or <code>seconds</code> (example: <code>3</code>)
+<code>lang</code> - use efy translation variables instead of normal text</pre>
+                        <pre efy_code="example · js">$notify(<code>'short'</code>, <code>'Short'</code>, <code>'Disappears in 5s'</code>)
+$notify(<code>'long'</code>, <code>'Long'</code>, <code>'Disappears in 30s'</code>)
+$notify(<code>'infinite'</code>, <code>'Infinite'</code>, <code>'Never disappears'</code>)<hr /><span style="color: var(--efy_text_trans)">// Attach it to a click event</span>
+$event(<code>selector</code>, <code>'click'</code>, ()=> <code>$notify</code>(<code>'short'</code>, <code>'Test'</code>, <code>'Test'</code>))</pre>
+                    </div>
+                </div>
+
+            <hr />
+
+                <div efy_tabs="demo_clock" class="dc_code_preview" efy_searchable="clock">
+                    <div class="tabs">
+                        <button efy_tab="preview" efy_active>Clock</button>
+                        <button efy_tab="code">Code</button>
+                        <button class="copy_url efy_square_btn" title="Copy URL"><i efy_icon="globe"></i></button>
+                    </div>
+                    <div efy_content="preview" class="efy_trans_filter_off" efy_active>
+                        <div efy_clock></div>
+                        <div efy_clock="12"></div>
+                        <div efy_clock="hms"></div>
+                    </div>
+                    <div efy_content="code" class="efy_trans_filter_off">
+<pre efy_code="logic" efy_card><code>efy_clock</code> = empty, <code>12</code> (hour format, default is 24), <code>hms</code> (hour : minute : second) or <code>12hms</code> (12 + hms)</pre>
+<pre efy_code="example · html">
+&lt;div <code>efy_clock</code>&gt;&lt;/div&gt;
+&lt;div <code>efy_clock</code>=<code>"12"</code>&gt;&lt;/div&gt;
+&lt;div <code>efy_clock</code>=<code>"hms"</code>&gt;&lt;/div&gt;
+&lt;div <code>efy_clock</code>=<code>"12hms"</code>&gt;&lt;/div&gt;
+</pre>
+<pre efy_code="example · js">
+$add(<code>'div'</code>, {<code>efy_clock</code>: <code>''</code>})
+$add(<code>'div'</code>, {<code>efy_clock</code>: <code>'12'</code>})
+$add(<code>'div'</code>, {<code>efy_clock</code>: <code>'hms'</code>})
+$add(<code>'div'</code>, {<code>efy_clock</code>: <code>'12hms'</code>})
+</pre>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div efy_tabs="demo_timer" class="dc_code_preview" efy_searchable="timer">
+                    <div class="tabs">
+                        <button efy_tab="preview" efy_active>Timer</button>
+                        <button efy_tab="code">Code</button>
+                        <button class="copy_url efy_square_btn" title="Copy URL"><i efy_icon="globe"></i></button>
+                    </div>
+                    <div efy_content="preview" class="efy_trans_filter_off" efy_active>
+                        <div efy_timer="efy_demo"></div>
+                        <div efy_timer="efy_demo2,5,reverse"></div>
+                    </div>
+                    <div efy_content="code" class="efy_trans_filter_off">
+                        <pre efy_code="logic" efy_card><code>efy_timer</code> = <code>id</code>, <code>seconds</code> (until it stops), <code>reverse</code> (count backwards)<hr /><code>id</code>, <code>seconds</code>, <code>reverse</code> are optional</pre>
+                        <pre efy_code="example · html">&lt;div <code>efy_timer</code>&gt;&lt;/div&gt;
+&lt;div <code>efy_timer</code>="<code>efy_demo, 5, reverse</code>"&gt;&lt;/div&gt;</pre>
+                        <pre efy_code="example · js">
+$add(<code>'div'</code>, {<code>efy_timer</code>: <code>''</code>})
+$add(<code>'div'</code>, {<code>efy_timer</code>: <code>'efy_demo, 5, reverse'</code>})
+</pre>
+                    </div>
+                </div>
 
         <!--Separator--></div><div>
 
-            <details efy_select efy_searchable="select_menu" style="margin: 0"><summary>Select menu</summary><div>
+                <hr class="dc_hide_tablet" />
+
+                <div efy_tabs="demo_select_menu" class="dc_code_preview" efy_searchable="select_menu">
+                    <div class="tabs">
+                        <button efy_tab="preview" efy_active>Select Menu</button>
+                        <button efy_tab="code">Code</button>
+                        <button class="copy_url efy_square_btn" title="Copy URL"><i efy_icon="globe"></i></button>
+                    </div>
+                    <div efy_content="preview" class="efy_trans_filter_off" efy_active>
+
+            <details efy_select style="width: 100%; margin: 0" open><summary>Select Menu</summary><div>
                 <p>Radio</p>
                 <input type="radio" name="efy_example_radio" id="efy_example_select1"><label for="efy_example_select1">Option 1</label>
                 <input type="radio" name="efy_example_radio" id="efy_example_select2" checked><label for="efy_example_select2">Option 2</label>
@@ -199,28 +307,86 @@ $add(<code>'div'</code>, {}, [
                 <input type="checkbox" name="efy_example_checkbox" id="efy_example_select6" checked><label for="efy_example_select6">Option 6</label>
             </div></details>
 
-            <div efy_searchable="tabs"><details efy_help><summary>Tabs</summary><p>This element explains stuff</p></details>
-                <div efy_tabs="dc2">
-                    <div class="efy_tabs" style="margin-top: 5rem">
-                        <button efy_tab="c4_1">1</button>
-                        <button efy_tab="c4_2" efy_active>2</button>
-                        <button efy_tab="c4_3">3</button>
                     </div>
-                    <div efy_content="c4_1">1</div>
-                    <div efy_content="c4_2" efy_active>2</div>
-                    <div efy_content="c4_3">3
-                         <div efy_tabs="dc3">
-                    <div class="efy_tabs" style="margin-top: 5rem">
-                        <button efy_tab="e_1">1</button>
-                        <button efy_tab="e_2" efy_active>2</button>
-                        <button efy_tab="e_3">3</button>
+                    <div efy_content="code" class="efy_trans_filter_off">
+                        <pre efy_code="logic"><ul><li>Add <code>efy_select</code> to a <code>details</code> tag, the <code>Name</code> inside a <code>summary</code> and your radio / checkbox inputs inside a <code>div</code></li><li>It works this way cuz it's semantic html, so you can add other html too, like div, img, etc.</li></pre>
+                        <pre efy_code="example · html">&lt;details <code>efy_select</code>&gt;
+    &lt;summary&gt;<code>Name</code>&lt;/summary&gt;<br />    &lt;div&gt;<hr />        &lt;input type=<code>"radio"</code> name=<code>"demo_radio"</code> id=<code>"demo_radio1"</code>&gt;
+        &lt;label for=<code>"demo_radio1"</code>&gt;Radio 1&lt;/label&gt;
+        &lt;input type=<code>"radio"</code> name=<code>"demo_radio"</code> id=<code>"demo_radio2"</code>&gt;
+        &lt;label for=<code>"demo_radio2"</code>&gt;Radio 2&lt;/label&gt;<hr />        &lt;input type=<code>"checkbox"</code> name=<code>"demo_checkbox"</code> id=<code>"demo_checkbox1"</code>&gt;
+        &lt;label for=<code>"demo_checkbox1"</code>&gt;Checkbox 1&lt;/label&gt;
+        &lt;input type=<code>"checkbox"</code> name=<code>"demo_checkbox"</code> id=<code>"demo_checkbox2"</code>&gt;
+        &lt;label for=<code>"demo_checkbox2"</code>&gt;Checkbox 2&lt;/label&gt;<hr />    &lt;/div&gt;<br />&lt;/details&gt;</pre>
                     </div>
-                    <div efy_content="e_1">1</div>
-                    <div efy_content="e_2" efy_active>2</div>
-                    <div efy_content="e_3">3</div>
+                </div>
+                <hr />
+
+                <div efy_tabs="demo_tabs" class="dc_code_preview" efy_searchable="tabs">
+                    <div class="tabs">
+                        <button efy_tab="preview" efy_active>Tabs</button>
+                        <button efy_tab="code">Code</button>
+                        <button class="copy_url efy_square_btn" title="Copy URL"><i efy_icon="globe"></i></button>
+                    </div>
+                    <div efy_content="preview" class="efy_trans_filter_off" efy_active>
+
+                        <div efy_tabs="dc2">
+                            <div class="efy_tabs">
+                                <button efy_tab="c4_1">1</button>
+                                <button efy_tab="c4_2" efy_active>2</button>
+                                <button efy_tab="c4_3">3</button>
+                            </div>
+                            <div efy_content="c4_1">1</div>
+                            <div efy_content="c4_2" efy_active>2</div>
+                            <div efy_content="c4_3">
+                                <div efy_tabs="dc3">
+                                    <div class="efy_tabs" style="margin-top: 5rem">
+                                        <button efy_tab="e_1">4</button>
+                                        <button efy_tab="e_2" efy_active>5</button>
+                                    </div>
+                                    <div efy_content="e_1">4</div>
+                                    <div efy_content="e_2" efy_active>5</div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+                <div efy_content="code" class="efy_trans_filter_off">
+                    <pre efy_code="logic"><ul><li>Add <code>efy_tabs</code> to a <code>div</code>. Inside, an <code>efy_tabs</code> class with nested <code>efy_tab</code> buttons and <code>efy_content</code> divs (where you can add your html)</li><li>Add <code>efy_active</code> to the <code>efy_tab</code> and <code>efy_content</code> you want open by default</li><li>The matching <code>efy_tab</code> and <code>efy_content</code> should have the same name and <code>efy_tabs</code> should have an unique name, unless you want to control a duplicate set of tabs</li><li>You can nest tabs if you add them inside an <code>efy_content</code> div</li></pre>
+                    <pre efy_code="example · html" style="margin: 0">&lt;div <code>efy_tabs</code>=<code>"demo"</code>&gt;
+    &lt;div class=<code>"efy_tabs"</code>&gt;
+        &lt;button <code>efy_tab</code>=<code>"tab1"</code> <code>efy_active</code>&gt;Tab 1&lt;/button&gt;
+        &lt;button <code>efy_tab</code>=<code>"tab2"</code>&gt;Tab 2&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div <code>efy_content</code>=<code>"tab1"</code> <code>efy_active</code>&gt;Your HTML 1&lt;/div&gt;
+    &lt;div <code>efy_content</code>=<code>"tab2"</code>&gt;Your HTML 2&lt;/div&gt;
+&lt;/div&gt;</pre>
+                    <pre efy_code="example · js" style="margin: 0">$add('div', {<code>efy_tabs</code>: <code>'demo'</code>}, [
+    ['div', {class: <code>'efy_tabs'</code>}, [
+        ['button', {<code>efy_tab</code>: <code>'tab1'</code>, <code>efy_active</code>: ''}, 'Tab 1'],
+        ['button', {<code>efy_tab</code>: <code>'tab2'</code>}, 'Tab 2']
+    ]],
+    ['div', {<code>efy_content</code>: <code>'tab1'</code>, <code>efy_active</code>: ''}, 'Your HTML 1'],
+    ['div', {<code>efy_content</code>: <code>'tab2'</code>}, 'Your HTML 2']
+])</pre>
+
+                </div>
             </div>
-                    </div>
-            </div></div>
+
+            <hr class="dc_show_tablet" />
+
+            <!--<div efy_tabs="demo_help" class="dc_code_preview" efy_searchable="help">
+                <div class="tabs">
+                    <button efy_tab="preview" efy_active>Help</button>
+                    <button efy_tab="code">Code</button>
+                    <button class="copy_url efy_square_btn" title="Copy URL"><i efy_icon="globe"></i></button>
+                </div>
+                <div efy_content="preview" class="efy_trans_filter_off" efy_active>
+                    <details efy_help><summary>Help</summary><p>This element explains stuff</p></details>
+                <div efy_content="code" class="efy_trans_filter_off">
+                    <pre efy_code="example · html" style="margin: 0">&lt;i <code>efy_icon</code>=<code>"star"</code>&gt;&lt;/i&gt;</pre>
+                </div>
+            </div>-->
 
         </div></div>
     </div>

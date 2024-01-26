@@ -89,7 +89,7 @@ $all('[os_drawer] [efy_card]').forEach(a =>{ let b = $$(a, '.name').textContent.
       $add('div', {efy_frame: b, 'data-value': index, style: `order: ${index}`, class: 'efy_app efy_trans_filter'}, [
         $add('iframe', {src: c, allowfullscreen: 'true', loading: 'lazy', sandbox: 'allow-scripts allow-same-origin'}),
       ], $('[efy_frames]'))
-} else { $notify(3, 'Not available yet!', 'It should be released soon...')}})});
+} else { $notify('short', 'Not available yet!', 'It should be released soon...')}})});
 
 
 /*Restore Preferences*/
@@ -178,7 +178,7 @@ else { $$all(list, chld).forEach((a)=>{ a.draggable = false;
 }; const atb_all =(a,b,c)=>{ a.forEach(d => d.setAttribute(b,c))};
 
 $event($('#os_drag_toggle'), 'change', (a) => { let b = $all('[efy_frames][efy_drag]'); efy_drag($('[efy_frames][efy_drag]'));
-    if (a.target.checked){ atb_all(b, 'efy_drag', 'on'); $notify(3, 'Move - ON', 'You can order apps now') }
+    if (a.target.checked){ atb_all(b, 'efy_drag', 'on'); $notify('short', 'Move - ON', 'You can order apps now') }
     else { atb_all(b, 'efy_drag', '')}
 });
 

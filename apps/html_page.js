@@ -1,6 +1,6 @@
 const html_page = $('div[efy_content=html]');
 
-$add('p', {style: 'margin-bottom: 15rem', efy_searchable: ''}, 'Bellow you can see examples of simple, commonly used HTML styled by efy:', html_page);
+$add('p', {style: 'margin-bottom: 15rem', efy_searchable: ''}, 'Examples of HTML elements styled with efy:', html_page);
 
 $add('div', {efy_searchable: '', class: 'dc_grid'}, [
     ['div', {}, [
