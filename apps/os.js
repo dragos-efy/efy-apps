@@ -26,7 +26,6 @@ $add('div', {os_app: ''}, [
       $add('a', {efy_card: './xo.html', class: 'efy_trans_filter_off'}, [$add('i', {efy_icon: 'remove', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['X & O'])])]),
       $add('a', {efy_card: '', class: 'soon efy_trans_filter_off'}, [$add('i', {efy_icon: 'menu', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Text Editor'])])]),
       $add('a', {efy_card: './themes.html', class: 'soon efy_trans_filter_off'}, [$add('i', {efy_icon: 'heart', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Themes'])])]),
-      $add('a', {efy_card: '', class: 'soon efy_trans_filter_off'}, [$add('i', {efy_icon: 'play', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Video'])])]),
       $add('a', {efy_card: '', class: 'soon efy_trans_filter_off'}, [$add('i', {efy_icon: 'globe', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Injector'])])]),
       $add('a', {efy_card: '', class: 'soon efy_trans_filter_off'}, [$add('i', {efy_icon: 'key', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Passwords'])])]),
       $add('a', {efy_card: './planner.html#goals', class: 'efy_trans_filter_off'}, [$add('i', {efy_icon: 'check', class: 'efy_color'}), $add('div', {class: 'column_flex'}, [ $add('div', {class: 'name'}, ['Goals'])])]),
@@ -52,15 +51,14 @@ $add('div', {os_app: ''}, [
 /*Sidebar Menu*/ $add('details', {id: 'os_sidebar'}, [
   $add('summary', {}, [$add('i', {efy_icon: 'dots'}), $add('p', {}, ['OS']), $add('mark', {efy_lang: 'alpha'})]),
     $add('div', {efy_tabs: 'ms_menu', efy_select: ''}, [
-
-    $add('button', {efy_tab: 'grid', efy_lang: 'grid', efy_active: ''}),
-    $add('button', {efy_tab: 'effects', efy_lang: 'effects'}),
-    $add('button', {efy_tab: 'tags', efy_lang: 'tags'}),
-
+      ['div', {class: 'efy_tabs'}, [
+        ['button', {efy_tab: 'grid', efy_lang: 'grid', efy_active: ''}],
+        ['button', {efy_tab: 'effects', efy_lang: 'effects'}],
+        ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
+      ]],
     $add('div', {efy_content: 'effects', efy_select: '', id: 'ms_sidebar_speed'}, [
        $add('div', {efy_lang: 'soon'}, ['...'])
     ]),
-
     $add('div', {efy_content: 'grid', efy_select: '', id: 'bar_position', efy_active: ''}, [
       $add('p', {efy_lang: 'bar_position', style: 'margin-top: 0'}), $add('div', {}, [
         $add('input', {type: 'radio', id: 'bar_position_bottom', name: 'bar_position', checked: ''}), $add('label', {for: 'bar_position_bottom', efy_lang: 'down', style: 'display: flex; align-items: center; width: fit-content'}),

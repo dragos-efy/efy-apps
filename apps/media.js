@@ -68,11 +68,11 @@ $add('div', {ms_app: ''}, [
 $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
   ['summary', {}, [ ['i', {efy_icon: 'audio'}], ['p', {efy_lang: 'music_player'}], ['mark', {efy_lang: 'beta'}] ]],
     ['div', {efy_tabs: 'ms_menu', efy_select: ''}, [
-
-    ['button', {efy_tab: 'effects', efy_lang: 'effects', efy_active: ''}],
-    ['button', {efy_tab: 'grid', efy_lang: 'grid'}],
-    ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
-
+    ['div', {class: 'efy_tabs'}, [
+      ['button', {efy_tab: 'effects', efy_lang: 'effects', efy_active: ''}],
+      ['button', {efy_tab: 'grid', efy_lang: 'grid'}],
+      ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
+    ]],
     ['div', {efy_content: 'effects', efy_select: '', id: 'ms_sidebar_speed', efy_active: ''}, [
       ['div', {class: 'ms_flex'}, [
         ['input', {type: 'checkbox', id: 'ms_nature_status', name: 'ms_nature_status'}],

@@ -29,11 +29,11 @@ mn_table = {
 
     add_transaction(transaction, index){ const CSSClass = transaction.price > 0 ? 'income' : 'expense', price = format.currency(transaction.price);
         $add('tr', {class: 'mn_row', efy_searchable: ''}, [
-            $add('td', {class: 'description'}, [transaction.description]),
-            $add('td', {class: 'quantity'}, [transaction.quantity]),
-            $add('td', {class: CSSClass}, [price]),
-            $add('td', {class: 'date'}, [transaction.date]),
-            $add('td', {}, [ $add('button', {class: 'efy_square_btn', onClick: `Transaction.remove(${index})`}, [ $add('i', {efy_icon: 'remove'}) ]) ])
+            ['td', {class: 'description'}, transaction.description],
+            ['td', {class: 'quantity'}, transaction.quantity],
+            ['td', {class: CSSClass}, price],
+            ['td', {class: 'date'}, transaction.date],
+            ['td', {}, [['button', {class: 'efy_square_btn', onClick: `Transaction.remove(${index})`}, [['i', {efy_icon: 'remove'}]]]]]
         ], $('.mn_table tbody'));
     },
     update_balance() { let perc = ((Transaction.incomes() + Transaction.expenses()) / Transaction.incomes() * 100).toFixed(2);
@@ -94,25 +94,25 @@ App = {
 /*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
 $add('details', {id: 'mn_settings', class: 'eos_menu'}, [
-  $add('summary', {}, [$add('i', {efy_icon: 'group'}), $add('p', {efy_lang: 'money'}), $add('mark', {efy_lang: 'beta'})]),
-        $add('div', {efy_tabs: 'mn_menu', efy_select: ''}, [
-            /*Tabs*/
-            $add('button', {efy_tab: 'backup', efy_lang: 'backup', efy_active: ''}),
-            $add('button', {efy_tab: 'grid', efy_lang: 'grid'}),
-            $add('button', {efy_tab: 'tags', efy_lang: 'tags'}),
-            /*Content*/
-            $add('div', {efy_content: 'backup', efy_select: '', id: 'mn_backup', efy_active: ''}, [
-                $add('a', {role: 'button', class: 'mn_localstorage_export', efy_lang: 'save'}, [$add('i', {efy_icon: 'arrow_down'})]),
-                $add('label', {efy_upload: 'mn_localstorage_import, .json'}),
-                $add('button', {class: 'mn_localstorage_reset', efy_lang: 'reset'}, [$add('i', {efy_icon: 'reload'})])
-            ]),
-            $add('div', {efy_content: 'grid', efy_select: '', id: 'mn_grid'}, [
-                $add('div', {efy_lang: 'coming_soon'})
-            ]),
-            $add('div', {efy_content: 'tags', efy_select: '', id: 'mn_tags'}, [
-                $add('div', {efy_lang: 'coming_soon'})
-            ]),
-        ])
+    ['summary', {}, [['i', {efy_icon: 'group'}], ['p', {efy_lang: 'money'}], ['mark', {efy_lang: 'beta'}]]],
+        ['div', {efy_tabs: 'mn_menu', efy_select: ''}, [
+            ['div', {class: 'efy_tabs'}, [
+                ['button', {efy_tab: 'backup', efy_lang: 'backup', efy_active: ''}],
+                ['button', {efy_tab: 'grid', efy_lang: 'grid'}],
+                ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
+            ]],
+            ['div', {efy_content: 'backup', efy_select: '', id: 'mn_backup', efy_active: ''}, [
+                ['a', {role: 'button', class: 'mn_localstorage_export', efy_lang: 'save'}, [['i', {efy_icon: 'arrow_down'}]]],
+                ['label', {efy_upload: 'mn_localstorage_import, .json'}],
+                ['button', {class: 'mn_localstorage_reset', efy_lang: 'reset'}, [['i', {efy_icon: 'reload'}]]]
+            ]],
+            ['div', {efy_content: 'grid', efy_select: '', id: 'mn_grid'}, [
+                ['div', {efy_lang: 'coming_soon'}]
+            ]],
+            ['div', {efy_content: 'tags', efy_select: '', id: 'mn_tags'}, [
+                ['div', {efy_lang: 'coming_soon'}]
+            ]],
+        ]]
 ], $('#efy_sbtheme'), 'beforebegin');
 
 

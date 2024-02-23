@@ -2,9 +2,9 @@
 
 /*Sidebar Ready*/ $ready('#efy_sbtheme', ()=>{
 
-/*Icons*/ $ready('#dc_icons', ()=>{ let a = $('#dc_icons'); 'accessibility arrow arrow_down arrow_left arrow_up audio camera circle copy check chevron chevron_down chevron_left chevron_up dots edit fullscreen github globe group heart help key menu menu2 microphone move notify notify_active paste pause play plus reload remove search star zoom_in zoom_out user'.split(' ').map(b=>{ $add('div', {efy_card: ''}, [ $add('i', {efy_icon: b}), $add('p', {}, [b]) ], a)})}, 1);
+/*Icons*/ $ready('#dc_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera circle copy check chevron chevron_down chevron_left chevron_up dots edit fullscreen github globe group heart help key menu menu2 microphone move notify notify_active paste pause play plus reload remove search star zoom_in zoom_out user'.split(' ').map(b=> $add('div', {efy_card: ''}, [ $add('i', {efy_icon: b}), $add('p', {}, b) ], $('#dc_icons')) )}, 1);
 
-/* Hash Isolated Parts*/ let faq = [], docs = []; const hash = location.hash,
+/* Hash Isolated Parts*/ let faq = [], docs = []; const link = window.location, hash = link.hash, href = link.href, path = link.pathname,
 hash_fn =(a)=>{ a.scrollIntoView(); a.open = true; a.classList.add('hash_focus'); $wait(2, ()=> a.classList.remove('hash_focus')) },
 searchable =(a,b)=>{ $all(`[efy_content=${a}] [efy_searchable]`).forEach((c, i) => b[i] = c.getAttribute('efy_searchable') || b[i] )}; searchable('faq', faq); searchable('docs', docs);
 
@@ -25,11 +25,7 @@ searchable =(a,b)=>{ $all(`[efy_content=${a}] [efy_searchable]`).forEach((c, i) 
     }
 }});
 
-/*Live Auto Demo*/ let n = 0; const $root = document.documentElement,
-color = [
-    getComputedStyle($root).getPropertyValue('--efy_color'),
-    getComputedStyle($root).getPropertyValue('--efy_color_trans')
-],
+/*Live Auto Demo*/ let n = 0; const color = [$css_prop('--efy_color'), $css_prop('--efy_color_trans')],
 common = [
     'html[efy_mode=default]:not([efy_color_bgcol]) .efy_3d_back, html:is([efy_mode=default], [efy_mode*=light], [efy_mode*=dark]) .efy_3d_back {background: ',
     '!important} [efy_mode*=trans] .efy_3d_back {filter: none!important}'
@@ -101,16 +97,13 @@ $event($('#dc_notify_test'), 'click', ()=>{
     $notify('short', 'Short Notification', 'Disappears in 5s');
 });
 
-$event($('[efy_content=docs]'), 'click', (e)=>{ let x = e.target;
-    if (x.matches('.copy_url')){
-        let url = 'https://efy.ooo/#docs#' + $$(x.parentNode, '[efy_tab=preview]').textContent.toLowerCase().replaceAll(' ', '_'); navigator.clipboard.writeText(url);
-        if (efy.notify_clipboard != false){ $notify('short', 'Copied to clipboard', url)}
-    } else if (x.matches('#dc_icons [efy_card]')){
-        let icon = x.textContent; navigator.clipboard.writeText(icon);
-        if (efy.notify_clipboard != false){ $notify('short', 'Copied to clipboard', icon)}
-    }
-});
+/*Copy URL / Icon*/ $event($('[efy_content=docs]'), 'click', (e)=>{ const x = e.target, match = [x.matches('.copy_url'), x.matches('#dc_icons [efy_card]')];
+    if (match[0] || match[1]){ const text = match[0] ?
+        href.split(path)[0] + path + '#docs#' + $$(x.parentNode, '[efy_tab=preview]').textContent.toLowerCase().replaceAll(' ', '_') : x.textContent;
+        navigator.clipboard.writeText(text);
+        if (efy.notify_clipboard != false) $notify('short', 'Copied to clipboard', text);
+}});
 
-
+$('[efy_tabs=demo_color_picker] [efy_color] [efy_tab="1"]').click();
 
 }, 1);

@@ -136,11 +136,11 @@ App_goals.start(); App_notes.start(); App_links.start(); App_tags.start();
 $add('details', {id: 'pn_settings', class: 'eos_menu'}, [
   $add('summary', {}, [$add('i', {efy_icon: 'edit'}), $add('p', {}, ['Planner']), $add('mark', {efy_lang: 'alpha'})]),
         $add('div', {efy_tabs: 'pn_menu', efy_select: ''}, [
-            /*Tabs*/
-            $add('button', {efy_tab: 'theme', efy_lang: 'theme', efy_active: ''}),
-            $add('button', {efy_tab: 'backup', efy_lang: 'backup'}),
-            $add('button', {efy_tab: 'tags', efy_lang: 'tags'}),
-            /*Content*/
+            ['div', {class: 'efy_tabs'}, [
+                ['button', {efy_tab: 'theme', efy_lang: 'theme', efy_active: ''}],
+                ['button', {efy_tab: 'backup', efy_lang: 'backup'}],
+                ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
+            ]],
             $add('div', {efy_content: 'backup', efy_select: '', id: 'pn_backup'}, [
                 $add('a', {role: 'button', class: 'pn_localstorage_export', efy_lang: 'save'}, [$add('i', {efy_icon: 'arrow_down'})]),
                 $add('label', {efy_upload: 'pn_localstorage_import, .json'}),
@@ -148,7 +148,6 @@ $add('details', {id: 'pn_settings', class: 'eos_menu'}, [
             ]),
             $add('div', {efy_content: 'theme', efy_select: '', id: 'pn_theme', efy_active: ''}, [
                 $add('p', {efy_lang: 'priority', class: 'pn_title'}),
-                // $add('div', {efy_color: 'Normal, 0 100% 100%, pn_priority_0'}),
                 $add('div', {efy_color: 'low, 85 100% 40%, pn_priority_1, lang'}),
                 $add('div', {efy_color: 'medium, 50 100% 50%, pn_priority_2, lang'}),
                 $add('div', {efy_color: 'high, 0 100% 50%, pn_priority_3, lang'}),
