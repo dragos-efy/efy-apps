@@ -154,7 +154,8 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
 /* Move to efy.css soon */
 [efy_details] details {
     & > summary {padding-right: 32rem!important; border-radius: 0}
-    & > *:not(summary) {padding: 0 15rem 15rem 15rem}
+    & > pre {margin: 0 15rem 15rem 15rem}
+    & > *:not(summary, pre) {padding: 0 15rem 15rem 15rem}
     &[open] {padding: 0;
         & > summary {padding: 0 0 7rem 12rem; margin-bottom: 10rem; border-bottom: var(--efy_border);
             &:before {right: 12rem!important}

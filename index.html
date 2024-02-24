@@ -92,6 +92,26 @@
             <p>Or clear your browser's cache, try a different browser, device etc.</p>
         </details>
 
+        <details efy_searchable="piped_instance"><summary>Run your own Piped EFY Instance</summary>
+<p style="padding-bottom: 10rem">Thanks <a href="https://github.com/rubyowo">Ruby</a> for the instructions 👏</p><hr />
+            <pre efy_code="bash · linux" style="margin-bottom: 10rem">git clone --branch efy https://github.com/TeamPiped/Piped.git --recurse-submodules
+cd Piped
+echo '!.eslintrc.cjs' >> .dockerignore
+docker build . --tag piped-efy</pre>
+
+<p>Go to your piped docker-compose and change the image from <mark>1337kavin/piped-frontend</mark> to <mark>piped-efy</mark>. I recommend building with buildx because its faster:</p>
+
+<pre efy_code="bash · linux">docker buildx build . --tag piped-efy</pre>
+
+<hr style="padding-bottom: 10rem" />
+<p style="padding-bottom: 5rem">Public Instances:</p>
+<ul style="padding-bottom: 10rem">
+<li><a href="https://efy.piped.pages.dev">https://efy.piped.pages.dev</a></li>
+<li><a href="https://piped.rubyowo.me">https://piped.rubyowo.me</a></li>
+<li><a href="https://piped.winscloud.net">https://piped.winscloud.net</a></li>
+</ul>
+        </details>
+
         <details efy_searchable="bugs_ideas"><summary>How do I repport bugs or share my ideas?</summary><p>On <a href="https://github.com/dragos-efy/efy">Github</a> or <a href="https://matrix.to/#/#efy_ui:matrix.org">Matrix</a>. Try to specify how you encountered the bugs, on what device, browser etc. And for ideas, why they should be implemented and what use cases they have.</p></details>
 
     </div><div>
@@ -104,7 +124,7 @@
             <div><mark efy_lang="beta"></mark> - safer to use, less bugs</div>
         </div></details>
 
-        <details efy_searchable="name"><summary>What the name <code>efy</code> stands for</summary><p>Nothing. It's just a name, like Andy or Izzy.</p></details>
+        <details efy_searchable="name"><summary>What <code>efy</code> stands for</summary><p>Nothing. It's just a name, like Andy or Izzy.</p></details>
 
         <details efy_searchable="bg_image"><summary>Add a background image</summary>
         <p><mark>EFY</mark> <i efy_icon="chevron"></i><mark efy_lang="theme"></mark> <i efy_icon="chevron"></i><mark efy_lang="transparency"></mark> <i efy_icon="chevron"></i><mark efy_lang="mode"></mark> <i efy_icon="chevron"></i> <mark efy_lang="add_file"></mark></p>
@@ -202,9 +222,13 @@ $add(<code>'div'</code>, {}, [
                         <div efy_color="1 0.5 0.2 0 1, 2 0.7 0.2 100 1, 3 0.5 0.2 200 1, range:1-9"></div>
                     </div>
                     <div efy_content="code" class="efy_trans_filter_off">
-                        <pre efy_code="logic"><code>efy_color</code> = <code>id</code>, <code>HSL color</code> (default before the user changes it)<hr /><ul><li>It defaults to HSL and it can copy, paste and convert the color to HEX or RGB</li><li>Soon it will default to OKLCH because of more accurate colors and will support multiple tabs</li></pre>
-                        <pre efy_code="example · html">&lt;div <code>efy_color</code>=<code>"Color 1, 0 100% 50%"</code>&gt;&lt;/div&gt;
-&lt;div <code>efy_color</code>=<code>"Color 2, 160 100% 40%"</code>&gt;&lt;/div&gt;</pre>
+                        <pre efy_code="logic"><code>efy_color</code> = <code>color</code>, <code>range</code>:<code>min</code>-<code>max</code><hr style="margin: 5rem auto 10rem auto" /><ul><li>it uses the OKLCH format, which renders vibrant, human intuitive colors</li><li><code>color</code> = <code>name</code>, <code>lightness</code> (0 - 1), <code>chroma</code> (0 - 0.37), <code>hue</code> (0 - 360), <code>alpha</code> (0 - 1), <code>id</code> (optional)</li><li><code>range</code> (optional): <code>min</code> (0 - 100) - <code>max</code> (1 - 100)</li></pre>
+                        <pre efy_code="example · html">
+&lt;div <code>efy_color</code>=<code>"Demo 0.7 0.2 100 1"</code>&gt;&lt;/div&gt;
+&lt;div <code>efy_color</code>=<code>"1 0.5 0.2 0 1, 2 0.7 0.2 100 1, 3 0.5 0.2 200 1, range:1-9"</code>&gt;&lt;/div&gt;</pre>
+                        <pre efy_code="example · js">
+$add(<code>'div'</code>, {<code>efy_color</code>: <code>'Demo 0.7 0.2 100 1'</code>})
+$add(<code>'div'</code>, {<code>efy_color</code>: <code>'1 0.5 0.2 0 1, 2 0.7 0.2 100 1, 3 0.5 0.2 200 1, range:1-9'</code>})</pre>
                     </div>
                 </div>
                 <hr />
@@ -220,7 +244,7 @@ $add(<code>'div'</code>, {}, [
                     </div>
                     <div efy_content="code" class="efy_trans_filter_off">
                         <pre efy_code="logic · js">$notify('<code>time</code>', '<code>text</code>', '<code>text</code>', '<code>lang</code>', <code>function</code>)
-<hr /><code>lang</code> & <code>function</code> are optional
+<hr style="margin: 5rem auto" /><code>lang</code> & <code>function</code> are optional
 <code>time</code> = <code>short</code>, <code>long</code>, <code>infinite</code> or <code>seconds</code> (example: <code>3</code>)
 <code>lang</code> - use efy translation variables instead of normal text</pre>
                         <pre efy_code="example · js">$notify(<code>'short'</code>, <code>'Short'</code>, <code>'Disappears in 5s'</code>)
@@ -273,7 +297,7 @@ $add(<code>'div'</code>, {<code>efy_clock</code>: <code>'12hms'</code>})
                         <div efy_timer="efy_demo2,5,reverse"></div>
                     </div>
                     <div efy_content="code" class="efy_trans_filter_off">
-                        <pre efy_code="logic" efy_card><code>efy_timer</code> = <code>id</code>, <code>seconds</code> (until it stops), <code>reverse</code> (count backwards)<hr /><code>id</code>, <code>seconds</code>, <code>reverse</code> are optional</pre>
+                        <pre efy_code="logic" efy_card><code>efy_timer</code> = <code>id</code>, <code>seconds</code> (until it stops), <code>reverse</code> (count backwards)<hr style="margin: 5rem auto 10rem auto" /><code>id</code>, <code>seconds</code>, <code>reverse</code> are optional</pre>
                         <pre efy_code="example · html">&lt;div <code>efy_timer</code>&gt;&lt;/div&gt;
 &lt;div <code>efy_timer</code>="<code>efy_demo, 5, reverse</code>"&gt;&lt;/div&gt;</pre>
                         <pre efy_code="example · js">

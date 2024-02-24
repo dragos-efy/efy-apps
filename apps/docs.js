@@ -4,7 +4,7 @@
 
 /*Icons*/ $ready('#dc_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera circle copy check chevron chevron_down chevron_left chevron_up dots edit fullscreen github globe group heart help key menu menu2 microphone move notify notify_active paste pause play plus reload remove search star zoom_in zoom_out user'.split(' ').map(b=> $add('div', {efy_card: ''}, [ $add('i', {efy_icon: b}), $add('p', {}, b) ], $('#dc_icons')) )}, 1);
 
-/* Hash Isolated Parts*/ let faq = [], docs = []; const link = window.location, hash = link.hash, href = link.href, path = link.pathname,
+/* Hash Isolated Parts*/ let faq = [], docs = []; const link = window.location, hash = link.hash, href = link.href,
 hash_fn =(a)=>{ a.scrollIntoView(); a.open = true; a.classList.add('hash_focus'); $wait(2, ()=> a.classList.remove('hash_focus')) },
 searchable =(a,b)=>{ $all(`[efy_content=${a}] [efy_searchable]`).forEach((c, i) => b[i] = c.getAttribute('efy_searchable') || b[i] )}; searchable('faq', faq); searchable('docs', docs);
 
@@ -99,7 +99,7 @@ $event($('#dc_notify_test'), 'click', ()=>{
 
 /*Copy URL / Icon*/ $event($('[efy_content=docs]'), 'click', (e)=>{ const x = e.target, match = [x.matches('.copy_url'), x.matches('#dc_icons [efy_card]')];
     if (match[0] || match[1]){ const text = match[0] ?
-        href.split(path)[0] + path + '#docs#' + $$(x.parentNode, '[efy_tab=preview]').textContent.toLowerCase().replaceAll(' ', '_') : x.textContent;
+        href.replace(hash, '') + '#docs#' + $$(x.parentNode, '[efy_tab=preview]').textContent.toLowerCase().replaceAll(' ', '_') : x.textContent;
         navigator.clipboard.writeText(text);
         if (efy.notify_clipboard != false) $notify('short', 'Copied to clipboard', text);
 }});
