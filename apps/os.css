@@ -64,7 +64,7 @@ html, body {overflow: hidden}
 [efy_drag=on] > *.active {border: var(--efy_border_size) dashed var(--efy_text); background: transparent}
 #os_drag_toggle, #os_remove, :is([for=os_drag_toggle], [for=os_remove]):before, :is([for=os_drag_toggle], [for=os_remove]):after {display: none!important}
 
-/*Fix 2 BG Glitch*/ [for=os_drag_toggle] [efy_icon=move]:before, [os_drawer] [efy_card] [efy_icon=plus]:before { -webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
+/*Fix 2 BG Glitch*/ [for=os_drag_toggle] [efy_icon=move]:before, [os_drawer] [efy_card] [efy_icon=plus]:before {background-clip: text!important; background: var(--efy_color); color: transparent}
 [efy_color_buttoncol][efy_mode] [for=os_drag_toggle] [efy_icon=move]:before, [efy_color_buttoncol][efy_mode] [os_drawer] [efy_card] [efy_icon=plus]:before {background: hsla(var(--efy_color_buttoncol_var) / .7)}
 
 /*iFrames*/ [efy_frame*=iframe] {overflow: hidden!important}

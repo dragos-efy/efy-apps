@@ -105,7 +105,7 @@
 #pn_goals [pn_done=true] :is([pn_priority], summary .time, [efy_timer], .pn_fs) {display: none}
 #pn_goals [pn_done=true] .title {opacity: 0.5; text-decoration: line-through}
 #pn_goals [pn_done=true] .description {padding: 0; border-bottom: 0}
-#pn_goals [pn_done=true] .done_btn {background: var(--efy_color), var(--efy_color_trans); -webkit-text-fill-color: transparent; -webkit-background-clip: text, border-box !important; background-clip: text, border-box !important; background-origin: border-box!important}
+#pn_goals [pn_done=true] .done_btn {background: var(--efy_color), var(--efy_color_trans); -webkit-text-fill-color: transparent; background-clip: text, border-box !important; background-origin: border-box!important}
 
 :is(#pn_goals, #pn_notes, #pn_links) .title {width: fit-content}
 :is(#pn_goals, #pn_notes) .description2 {background: transparent; border: 0; resize: none; margin: 0; padding: 0; display: flex; cursor: unset; overflow: visible; border-radius: 0}
@@ -154,7 +154,7 @@ details:not(.pn_fs) .pn_tags button.pseudo {display: none}
 html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) {display: flex; gap: 8rem; align-items: center}
 html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {margin: 0}
 [for=pn_drag_toggle] [efy_icon=move] {margin-right: 4rem}
-[for=pn_drag_toggle] [efy_icon=move]:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
+[for=pn_drag_toggle] [efy_icon=move]:before {background-clip: text!important; background: var(--efy_color); color: transparent}
 [efy_color_buttoncol][efy_mode] [for=pn_drag_toggle] [efy_icon=move]:before {background: hsla(var(--efy_color_buttoncol_var) / .7)}
 
 #pn_theme {display: flex; flex-wrap: wrap; gap: var(--efy_gap0)}

@@ -54,4 +54,6 @@
 --goal: Goal;
 --note: Note;
 --goal_note: Goal / Note;
+--time: Time;
+--vibration: Vibration;
 }

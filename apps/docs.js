@@ -2,7 +2,7 @@
 
 /*Sidebar Ready*/ $ready('#efy_sbtheme', ()=>{
 
-/*Icons*/ $ready('#dc_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera circle copy check chevron chevron_down chevron_left chevron_up dots edit fullscreen github globe group heart help key menu menu2 microphone move notify notify_active paste pause play plus reload remove search star zoom_in zoom_out user'.split(' ').map(b=> $add('div', {efy_card: ''}, [ $add('i', {efy_icon: b}), $add('p', {}, b) ], $('#dc_icons')) )}, 1);
+/*Icons*/ $ready('#dc_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera circle copy check chevron chevron_down chevron_left chevron_up dots edit fullscreen github globe group heart help key menu menu2 microphone move notify notify_active paste pause play plus reload remove search star zoom_in zoom_out user'.split(' ').map(b=> $add('div', {efy_card: ''}, [['i', {efy_icon: b}], ['p', {}, b]], $('#dc_icons')) )}, 1);
 
 /* Hash Isolated Parts*/ let faq = [], docs = []; const link = window.location, hash = link.hash, href = link.href,
 hash_fn =(a)=>{ a.scrollIntoView(); a.open = true; a.classList.add('hash_focus'); $wait(2, ()=> a.classList.remove('hash_focus')) },
@@ -16,9 +16,9 @@ searchable =(a,b)=>{ $all(`[efy_content=${a}] [efy_searchable]`).forEach((c, i) 
     if (tab === 'docs'){ docs.forEach(q =>{
         if (hash.includes(`#${q}`)) hash_fn($(`[efy_content=docs] [efy_searchable="${q}"]`))
     })}
-    if (tab === 'apps' || tab === 'html'){ const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`);
-        $add('script', {src: `./apps/${tab}_page.js`}, [], $('head'));
-        $event($(`script[src="./apps/${tab}_page.js"]`), 'load', ()=>{
+    if (tab === 'apps' || tab === 'html'){ const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`), src = `./apps/${tab}_page.js`;
+        $add('script', {src: src}, [], $('head'));
+        $event($(`script[src="${src}"]`), 'load', ()=>{
             $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i')
             frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
         });
@@ -81,9 +81,10 @@ $event($('.dc_cta [efy_sidebar_btn]'), 'click', () =>{ counts = setInterval(auto
 
 ['apps', 'html'].map(tab =>{ const frame = $(`[efy_content=${tab}]:not(.loading)`);
     $event($(`[efy_tab=${tab}]`), 'click', () =>{ if (! frame.classList.contains('efy_dom')){
+        const src = `./apps/${tab}_page.js`;
         $(`[efy_content=${tab}] + .loading`).classList.remove('efy_hide_i');
-        $add('script', {src: `./apps/${tab}_page.js`}, [], $('head'));
-        $event($(`script[src="./apps/${tab}_page.js"]`), 'load', ()=>{
+        $add('script', {src: src}, [], $('head'));
+        $event($(`script[src="${src}"]`), 'load', ()=>{
             $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i')
             frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
         });

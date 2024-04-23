@@ -1,9 +1,20 @@
-:root{--efy_sidebar_button: right_top, on}
+:root {
+    --efy_body_padding: 0;
+}
+
 .efy_iframe :is(.efy_sidebar, [efy_sidebar_btn*=absolute]) {display: none}
 
-#app {display: flex; flex-wrap: wrap; gap: var(--efy_gap)}
+.nav {display: flex; gap: var(--efy_gap); place-content: space-between; padding: var(--efy_gap) var(--efy_gap) 0 var(--efy_gap);
+    > div {display: flex; gap: var(--efy_gap); flex-wrap: wrap; align-items: center;
+        h6 {display: flex; align-items: center; padding: var(--efy_padding); line-height: 1; height: var(--efy_size);
+            background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius);
+        }
+        p {display: flex; width: fit-content; padding: var(--efy_padding); border-radius: var(--efy_radius); font-weight: bold; background: var(--efy_text); color: var(--efy_text2)}
+    }
+}
+#app {display: flex; flex-wrap: wrap; gap: var(--efy_gap); padding: var(--efy_gap);}
 
-[efy_theme] {width: 168rem; background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius)}
+[efy_theme] {width: 172rem; background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius)}
 [efy_theme] [efy_preview] {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); align-items: center; padding: 10rem; background: var(--efy_bg); border-radius: 0 0 var(--efy_radius) var(--efy_radius)}
 [efy_theme] > p {padding: 5rem 10rem; border-bottom: var(--efy_border); border-radius: var(--efy_radius) var(--efy_radius) 0 0}
 [efy_theme] [efy_preview] > * {pointer-events: none}

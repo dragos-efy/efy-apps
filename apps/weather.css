@@ -1,0 +1,50 @@
+/*Weather Icons*/@font-face {font-family: 'efy_icons'; src: url('../efy/efy_weather.woff2') format('woff2'); font-weight: normal; font-style: normal; font-display: block}
+[efy_icon=sun]:before {content: "\e950"}
+[efy_icon=rain]:before {content: "\e951"}
+[efy_icon=flash]:before {content: "\e952"}
+[efy_icon=snow]:before {content: "\e953"}
+[efy_icon=cloud]:before {content: "\e954"}
+[efy_icon=moon]:before {content: "\e955"}
+
+body {display: flex; flex-direction: column; height: var(--efy_100vh)}
+
+.nav {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); justify-content: space-between; margin-bottom: var(--efy_gap);
+    .search_container{ display: flex; justify-content: center;
+        .search_box {display: flex; gap: var(--efy_gap0);
+            input {margin: 0}
+        }
+    }
+}
+.glance {display: grid; gap: var(--efy_gap); grid-template-columns: repeat(auto-fit,minmax(240rem,1fr));
+    .current {display: flex; justify-content: space-evenly; flex-wrap: wrap; align-items: center;
+        .day_night_temp {display: flex; flex-direction: column;
+            .temp {display: flex; flex-direction: column; font-size: 30rem}
+        }
+        .img_des {display: flex; align-items: center}
+    }
+    .weather_items, .sun_moon {display: flex; flex-direction: column; padding: 0; height: fit-content;
+        hr {margin: 10rem 0}
+        > div {display: flex; align-items: center; gap: 10rem; padding: 0 10rem;
+            &:first-of-type {padding-top: 10rem}
+            &:last-of-type {padding-bottom: 10rem}
+            i {margin: 0}
+            p {display: flex; gap: 10rem}
+        }
+    }
+}
+.graph {display: flex; gap: var(--efy_gap); width: 100%; height: 100%; align-items: end;
+    border: var(--efy_border); margin-top: var(--efy_gap); border-radius: var(--efy_radius);
+    background: var(--efy_bg1); padding: var(--efy_gap); overflow-x: scroll;
+    .bar {width: 100rem; min-width: 100rem; height: 100%; padding: 0; gap: var(--efy_gap);
+        display: flex; flex-direction: column; align-items: center; place-content: end; color: border: 0;
+        .level {background: var(--efy_color); border-radius: var(--efy_radius); width: 100%}
+        .title {font-size: 20rem; font-weight: bold; margin: 0 0 10rem 0; display: flex; gap: 10rem; align-items: center;
+            p {width: fit-content; white-space: nowrap; font-size: 20rem}
+        }
+        .time, .day, .temp {text-align: center; line-height: 1}
+        .time {margin-bottom: 5rem;
+            {display: inline-flex; align-items: center}
+        }
+        i {display: flex; font-size: 50rem; line-height: 1; margin: 10rem 0}
+    }
+}
