@@ -1,0 +1,30 @@
+#gamepads {
+  & > * {background: var(--efy_bg1); padding: var(--efy_gap); border: var(--efy_border); border-radius: var(--efy_radius); margin: 10rem 5rem 0 0}
+  & pre {white-space: pre-wrap}
+}
+.info {display: flex; flex-wrap: wrap; gap: var(--efy_gap);
+  > div {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); width: fit-content; padding: var(--efy_padding); background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius)}
+}
+.inputs {display: flex; gap: var(--efy_gap)}
+.map {display: flex; flex-wrap: wrap; gap: var(--efy_gap)}
+.buttons {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); place-content: start}
+.vibration {width: 100%}
+
+.button {display: flex; flex-direction: column; align-items: center; place-content: center; background: var(--efy_bg1);
+  color: var(--efy_text); border: var(--efy_border); border-radius: var(--efy_radius); aspect-ratio: 1;
+  &.active {background: var(--efy_color); color: var(--efy_text2);
+      hr {border-color: oklch(var(--efy_bg_var2) / var(--efy_border_alpha))}
+  }
+  p {line-height: 1; padding: var(--efy_padding)}
+  .index {font-size: 20rem; font-weight: bold; padding-bottom: 4rem}
+  hr {margin: 0}
+}
+.axes {display: flex; align-items: flex-start; gap: var(--efy_gap);
+  .circle {position: relative; border: var(--efy_border); background: var(--efy_bg1); border-radius: var(--efy_radius);
+    .grid {width: 110rem; height: 110rem; position: relative;}
+    .horizontal {width: 100%; height: 50%; border-bottom: var(--efy_border)}
+    .vertical {width: 50%; height: 100%; border-right: var(--efy_border); position: absolute; top: 0}
+    .axis {width: 12rem; height: 12rem; background: var(--efy_color); position: absolute; border-radius: var(--efy_radius0)}
+    .text {border-top: var(--efy_border); padding: var(--efy_padding2); text-align: center}
+  }
+}
