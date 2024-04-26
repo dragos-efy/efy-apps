@@ -11,7 +11,7 @@
 .vibration {width: 100%}
 
 .button {display: flex; flex-direction: column; align-items: center; place-content: center; background: var(--efy_bg1);
-  color: var(--efy_text); border: var(--efy_border); border-radius: var(--efy_radius); aspect-ratio: 1;
+  color: var(--efy_text); border: var(--efy_border); border-radius: var(--efy_radius); aspect-ratio: 1; background-origin: border-box!important;
   &.active {background: var(--efy_color); color: var(--efy_text2);
       hr {border-color: oklch(var(--efy_bg_var2) / var(--efy_border_alpha))}
   }

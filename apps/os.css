@@ -1,3 +1,13 @@
+/*Weather Icons*/@font-face {font-family: 'efy_icons'; src: url('../efy/efy_weather.woff2') format('woff2'); font-weight: normal; font-style: normal; font-display: block}
+[efy_icon=sun]:before {content: "\e950"}
+[efy_icon=rain]:before {content: "\e951"}
+[efy_icon=flash]:before {content: "\e952"}
+[efy_icon=snow]:before {content: "\e953"}
+[efy_icon=cloud]:before {content: "\e954"}
+[efy_icon=moon]:before {content: "\e955"}
+
+[os_drawer] [efy_card] [efy_icon=sun]:before {font-size: 40rem}
+
 :root {--efy_body_padding: 0; --os_thumb_height: 50rem}
 html, body {overflow: hidden}
 .efy_sidebar {overflow-x: hidden}

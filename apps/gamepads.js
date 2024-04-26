@@ -172,12 +172,12 @@ requestAnimationFrame(process);
   }}
 
   $event($('#vibration_intensity'), 'input', ()=>{
-    const intensity = this.value, duration = $('#vibration_duration').value;
+    const intensity = event.target.value, duration = $('#vibration_duration').value;
     test_gamepad_vibration(intensity, duration)
   });
 
   $event($('#vibration_duration'), 'input', ()=>{
-    const duration = this.value, intensity = $('#vibration_intensity').value;
+    const duration = event.target.value, intensity = $('#vibration_intensity').value;
     test_gamepad_vibration(intensity, duration)
   });
 
