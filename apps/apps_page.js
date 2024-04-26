@@ -73,7 +73,7 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'Store encrypted passwords, generate TOTP codes for 2FA, export and import files. Experiment',
         'productivity offline static'
     ), $app_card(
-        'Weather', '', 'help', 'soon',
+        'Weather', './weather.html', 'sun', 'alpha',
         'See the forecast for today or a few days in advance',
         'productivity offline static'
     ), $app_card(
@@ -93,8 +93,12 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         '1-4 player tic tac toe game with 3 - 8 columns and rows. Currently very basic and unstable',
         'game fun offline static'
     ), $app_card(
-        'Ping Pong', '', 'circle', 'soon',
+        'Ping Pong', 'ping_pong.html', 'circle', 'alpha',
         '1-4 player 2d ping pong game with effects and extra customization',
+        'game fun offline static'
+    ), $app_card(
+        'Gamepads', './gamepads.html', 'group', 'alpha',
+        'Test and remap your gamepads and use them to control efy apps',
         'game fun offline static'
     )
 
