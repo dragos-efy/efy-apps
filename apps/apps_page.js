@@ -98,7 +98,11 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'game fun offline static'
     ), $app_card(
         'Gamepads', './gamepads.html', 'group', 'alpha',
-        'Test and remap your gamepads and use them to control efy apps',
+        'Test and remap your gamepads or use them to control efy apps',
+        'game fun offline static'
+    ), $app_card(
+        'Torch', './torch.html', 'flash', 'alpha',
+        'Toggle the flashlight of your device or make your screen a color that imitates one',
         'game fun offline static'
     )
 
