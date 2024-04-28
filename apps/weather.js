@@ -87,7 +87,7 @@ time_convert = (unix, timezone = 0, format)=>{
             ]]
         ], graph);
     });
-
+    $all('.glance, .graph').forEach(a => a.classList.remove('efy_hide_i'));
 };
 
 },1);
