@@ -27,6 +27,7 @@ body:has(.glance.efy_hide_i) .nav {justify-content: center; align-items: center;
             p {display: flex; gap: 10rem}
         }
     }
+    .des {text-transform: capitalize}
 }
 .graph {display: flex; gap: var(--efy_gap); width: 100%; height: 100%; align-items: end;
     border: var(--efy_border); margin-top: var(--efy_gap); border-radius: var(--efy_radius);

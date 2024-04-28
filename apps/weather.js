@@ -1,14 +1,44 @@
 $ready('#efy_sbtheme', ()=>{
 
-    // Menu Entry for Metric / Feet, Celsius / Farenheit
-    // $add()
+$add('div', {class: 'nav'}, [
+    ['div', {class: 'search_container'}, [
+        ['div', {class: 'search_box'}, [
+            ['input', {type: 'text', id: 'search_input', placeholder: 'Enter City', autofocus: ''}],
+            ['button', {id: 'search_btn', class: 'efy_square_btn', type: 'submit'}, [['i', {efy_icon: 'search'}]]]
+        ]]
+    ]],
+    ['button', {class: 'efy_square_btn', efy_sidebar_btn: ''}, [['i', {efy_icon: 'menu'}]]]
+]);
+$add('div', {class: 'glance efy_hide_i'}, [
+    ['div', {efy_card: ''}, [
+        ['div', {}, [ ['i', {efy_icon: 'globe'}], ['p', {class: 'city', id: 'city'}] ]],
+        ['hr'],
+        ['div', {}, [ ['i', {efy_icon: 'arrow'}], ['p', {}, 'Now:'], ['p', {class: 'temp_now'}] ]],
+        ['hr'],
+        ['div', {class: 'img_des'}]
+    ]],
+    ['div', {efy_card: ''}, [
+        ['div', {}, [ ['i', {efy_icon: 'rain'}], ['p', {}, 'Humidity:'], ['div', {id: 'humidity'}] ]],
+        ['hr'],
+        ['div', {}, [ ['i', {efy_icon: 'arrow_up'}], ['p', {}, 'Pressure:'], ['div', {id: 'pressure'}] ]],
+        ['hr'],
+        ['div', {}, [ ['i', {efy_icon: 'cloud'}], ['p', {}, 'Wind Speed:'], ['div', {id: 'wind_speed'}] ]],
+    ]],
+    ['div', {efy_card: ''}, [
+        ['div', {}, [ ['i', {efy_icon: 'sun'}], ['p', {}, 'Sunrise:'], ['p', {id: 'sun'}] ]],
+        ['hr'],
+        ['div', {}, [ ['i', {efy_icon: 'moon'}], ['p', {}, 'Sunset:'], ['p', {id: 'moon'}] ]],
+        ['hr'],
+        ['div', {}, [ ['i', {efy_icon: 'group'}], ['p', {}, 'Feels Like:'], ['p', {id: 'feels_like'}] ]]
+    ]]
+]);
+$add('div', {class: 'graph efy_hide_i'});
 
-let metric = true, flag = 0; const apikey = atob('OTIxNTgyYzhkMDZhOGIyMzY4YzdmOGNiYTJmMTEyNDI='),
-graph = $('.graph'), search = $('#search_input'), search_btn = $('#search_btn'),
-city = $('#city'), imagedes = $('.img_des'), temp_now = $('.temp_now'), feels_like = $('.feels_like'),
-humidity = $('#humidity'), pressure = $('#pressure'), wind_speed = $('#wind_speed'),
-days = 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday'.split(' '),
-sun = $('#sun'), moon = $('#moon');
+let metric = true, flag = 0; const apikey = atob('OTIxNTgyYzhkMDZhOGIyMzY4YzdmOGNiYTJmMTEyNDI=');
+const graph = $('.graph'), search = $('#search_input'), search_btn = $('#search_btn'),
+city = $('#city'), imagedes = $('.img_des'), temp_now = $('.temp_now'), feels_like = $('#feels_like'),
+humidity = $('#humidity'), pressure = $('#pressure'), wind_speed = $('#wind_speed'), sun = $('#sun'),
+moon = $('#moon'), days = 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday'.split(' ');
 
 /*Get Current location*/
 // const geolocation =()=>{
@@ -46,27 +76,25 @@ time_convert = (unix, timezone = 0, format)=>{
 }},
 
 /*Fill Weather Details*/ details =(data)=>{ console.log(data);
-    imagedes.innerHTML = ''; graph.innerHTML = '';
+    /*Empty Before Updating Content*/ imagedes.innerHTML = ''; graph.innerHTML = '';
     const degrees = '°' + (metric ? 'C' : 'F');
-
-    city.innerHTML = `${data.city.name}, ${data.city.country}`;
-
     let dt = data.list.dt;
 
     /*Today*/
+
     const { id, description } = data.list[0].weather[0],
     timezone = data.city.timezone;
     $add('i', {efy_icon: vibe_icon(data.list[0])}, [], imagedes);
     $add('div', {class: 'des'}, description, imagedes);
 
-    humidity.innerHTML = data.list[0].main.humidity + '%';
-    pressure.innerHTML = data.list[0].main.pressure + '	hPa';
-    wind_speed.innerHTML = `${data.list[0].wind.speed} ${metric ? 'meter/sec' : 'miles/hour'}`;
-    temp_now.innerHTML = data.list[0].main.temp + degrees;
-    feels_like.innerHTML = data.list[0].main.feels_like + degrees;
-
-    sun.innerHTML = time_convert(data.city.sunrise, timezone);
-    moon.innerHTML = time_convert(data.city.sunset, timezone);
+    city.textContent = `${data.city.name}, ${data.city.country}`;
+    temp_now.textContent = data.list[0].main.temp + degrees;
+    humidity.textContent = data.list[0].main.humidity + '%';
+    pressure.textContent = data.list[0].main.pressure + '	hPa';
+    wind_speed.textContent = `${data.list[0].wind.speed} ${metric ? 'meter/sec' : 'miles/hour'}`;
+    sun.textContent = time_convert(data.city.sunrise, timezone);
+    moon.textContent = time_convert(data.city.sunset, timezone);
+    feels_like.textContent = data.list[0].main.feels_like + degrees;
 
     /*Update Hours & Days*/
 
