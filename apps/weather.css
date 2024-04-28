@@ -18,13 +18,7 @@ body {display: flex; flex-direction: column; height: var(--efy_100vh)}
 body:has(.glance.efy_hide_i) .nav {justify-content: center; align-items: center; height: var(--efy_100vh)}
 
 .glance {display: grid; gap: var(--efy_gap); grid-template-columns: repeat(auto-fit,minmax(240rem,1fr));
-    .current {display: flex; justify-content: space-evenly; flex-wrap: wrap; align-items: center;
-        .day_night_temp {display: flex; flex-direction: column;
-            .temp {display: flex; flex-direction: column; font-size: 30rem}
-        }
-        .img_des {display: flex; align-items: center}
-    }
-    .weather_items, .sun_moon {display: flex; flex-direction: column; padding: 0; height: fit-content;
+    [efy_card] {display: flex; flex-direction: column; padding: 0; height: fit-content;
         hr {margin: 10rem 0}
         > div {display: flex; align-items: center; gap: 10rem; padding: 0 10rem;
             &:first-of-type {padding-top: 10rem}

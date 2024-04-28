@@ -5,7 +5,7 @@ $ready('#efy_sbtheme', ()=>{
 
 let metric = true, flag = 0; const apikey = atob('OTIxNTgyYzhkMDZhOGIyMzY4YzdmOGNiYTJmMTEyNDI='),
 graph = $('.graph'), search = $('#search_input'), search_btn = $('#search_btn'),
-city = $('#city'), imagedes = $('.img_des'), daynighttemp = $('.day_night_temp'),
+city = $('#city'), imagedes = $('.img_des'), temp_now = $('.temp_now'), feels_like = $('.feels_like'),
 humidity = $('#humidity'), pressure = $('#pressure'), wind_speed = $('#wind_speed'),
 days = 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday'.split(' '),
 sun = $('#sun'), moon = $('#moon');
@@ -46,8 +46,8 @@ time_convert = (unix, timezone = 0, format)=>{
 }},
 
 /*Fill Weather Details*/ details =(data)=>{ console.log(data);
-    imagedes.innerHTML = ''; daynighttemp.innerHTML = '';
-    graph.innerHTML = '';
+    imagedes.innerHTML = ''; graph.innerHTML = '';
+    const degrees = '°' + (metric ? 'C' : 'F');
 
     city.innerHTML = `${data.city.name}, ${data.city.country}`;
 
@@ -62,6 +62,8 @@ time_convert = (unix, timezone = 0, format)=>{
     humidity.innerHTML = data.list[0].main.humidity + '%';
     pressure.innerHTML = data.list[0].main.pressure + '	hPa';
     wind_speed.innerHTML = `${data.list[0].wind.speed} ${metric ? 'meter/sec' : 'miles/hour'}`;
+    temp_now.innerHTML = data.list[0].main.temp + degrees;
+    feels_like.innerHTML = data.list[0].main.feels_like + degrees;
 
     sun.innerHTML = time_convert(data.city.sunrise, timezone);
     moon.innerHTML = time_convert(data.city.sunset, timezone);
@@ -83,7 +85,7 @@ time_convert = (unix, timezone = 0, format)=>{
                 ['div', {class: 'time'}, time_convert(dt, timezone)],
                 ['div', {class: 'day'}, time_convert(dt, timezone, 'day')],
                 ['i', {efy_icon: vibe_icon(day)}],
-                ['div', {class: 'temp'}, `${temp[i]}${metric ? '°C' : '°F'}`]
+                ['div', {class: 'temp'}, temp[i] + degrees]
             ]]
         ], graph);
     });
