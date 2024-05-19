@@ -15,7 +15,7 @@ body {display: flex; flex-direction: column; height: var(--efy_100vh)}
         }
     }
 }
-body:has(.glance.efy_hide_i) .nav {justify-content: center; align-items: center; height: var(--efy_100vh)}
+body:has(.glance.efy_hide_i) .nav {justify-content: center; align-items: center; height: var(--efy_100vh); width: 100%}
 
 .glance {display: grid; gap: var(--efy_gap); grid-template-columns: repeat(auto-fit,minmax(240rem,1fr));
     [efy_card] {display: flex; flex-direction: column; padding: 0; height: fit-content;

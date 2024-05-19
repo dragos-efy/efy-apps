@@ -22,6 +22,26 @@ body {padding:0px; margin: 0px; position: relative}
     > div {margin: 0 10rem; display: flex; gap: var(--efy_gap0)}
 }
 
-#pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh);
-    border-radius: 0!important; background-position: var(--efy_bg_x) var(--efy_bg_y)!important; pointer-events: none
-} [efy_mode*=light] #pn_confetti {filter: invert(1)}
+:is(body, html):has(#start_container) {margin: 0; padding: 0; display: flex}
+
+#start_container {margin: auto; width: fit-content; padding: 15rem 0;
+    h1 {line-height: 1}
+    hr {margin: 10rem auto}
+    > *:not(hr) {margin: 0 15rem}
+    li {display: flex; gap: 8rem; align-items: center; padding: 0 15rem; margin: 0;
+        i, .key {background: var(--efy_bg1); border-radius: var(--efy_radius0); padding: 2rem 6rem;
+            border: var(--efy_border); margin: 0; display: flex; aspect-ratio: 1; height: var(--efy_size0);
+            align-items: center; place-content: center;
+        }
+        .key {font-weight: bold; font-size: 18rem;
+            &.space {aspect-ratio: 2}
+        }
+    }
+    .efy_flex {margin-top: 5rem;
+        button {margin: 0}
+    }
+}
+
+#confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh);
+border-radius: 0!important; background-position: var(--efy_bg_x) var(--efy_bg_y)!important; pointer-events: none}
+[efy_mode*=light] #confetti {filter: invert(1)}

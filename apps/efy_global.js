@@ -7,8 +7,11 @@ $ready('#efy_sbtheme', ()=>{
  $ready('.efy_iframe .eos_menu', ()=>{ $('.efy_sidebar .eos_menu').open = true});
 
 /*On Storage Change*/ $event(window, 'storage', (event)=>{ if (event.key === 'efy'){ efy = JSON.parse(event.newValue);
-    $root.style.setProperty('--efy_radius', efy.radius);
-    $root.style.setProperty('--efy_color_text_var', efy.colorText)
+    ['radius', 'gap'].forEach(a =>{ const store = efy[a];
+        if (store) $root.style.setProperty(`--efy_${a}`, store);
+    });
+    if (efy.text) $root.style.setProperty(`--efy_color_text_var`, efy.text);
+    $root.toggleAttribute('efy_color_text', (efy.text_status === 'on'));
 }})};
 
 }, 1);

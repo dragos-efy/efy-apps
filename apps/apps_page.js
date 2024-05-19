@@ -1,7 +1,7 @@
 const $app_card =(title, href, icon, status, description, tags)=>{
     let tags_array = tags.split(' ').map(tag => ['p', {tag: ''}, tag] ),
     icon_array = (icon === 'piped' || icon === 'efydb') ? ['div', {class: 'logo'}, [ logos[icon] ]] : ['i', {efy_icon: icon}],
-    link_attributes = {role: 'button', efy_card: '', efy_searchable: ''};
+    link_attributes = {role: 'button', efy_card: '', efy_searchable: title.replaceAll(' ', '_')};
     if (href !== '') link_attributes.href = href;
 
     return ['a', link_attributes, [
@@ -53,7 +53,7 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'Web based operating system with efy apps inside. It has window tiling and it works regardless of your actual OS, but some features are limited compared to a real OS',
         'productivity offline static'
     ), $app_card(
-        'Text Editor', '', 'menu', 'soon',
+        'Text', '', 'menu', 'soon',
         'Edit text files, dynamic syntax highlighting, multiple tabs, split view, custom text colors. Mainly for simple use cases, not competing with complex text editors',
         'productivity offline static'
     ), $app_card(
@@ -89,11 +89,11 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'It would be cool to bring efy to social platforms like matrix (element), mastodon, lemmy etc',
         'social public server'
     ), $app_card(
-        'Tic Tac Toe', './xo.html', 'remove', 'alpha',
+        'X & O', './xo.html', 'remove', 'alpha',
         '1-4 player tic tac toe game with 3 - 8 columns and rows. Currently very basic and unstable',
         'game fun offline static'
     ), $app_card(
-        'Ping Pong', 'ping_pong.html', 'circle', 'alpha',
+        'Pong', 'pong.html', 'circle', 'alpha',
         '1-4 player 2d ping pong game with effects and extra customization',
         'game fun offline static'
     ), $app_card(
@@ -103,6 +103,14 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
     ), $app_card(
         'Torch', './torch.html', 'flash', 'alpha',
         'Toggle the flashlight of your device or make your screen a color that imitates one',
+        'game fun offline static'
+    ), $app_card(
+        'Keyboard', './keyboard.html', 'accessibility', 'alpha',
+        'Virtual keyboard for efy apps and potentially linux as well soon',
+        'productivity offline static dynamic'
+    ), $app_card(
+        'Shade', './shade.html', 'shade', 'alpha',
+        'Jump, go through objects, collect points, avoid enemies & find portals',
         'game fun offline static'
     )
 

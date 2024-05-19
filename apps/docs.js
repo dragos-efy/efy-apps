@@ -1,26 +1,32 @@
-/*Storage*/ let  efy_dc = {}, $dc_save =()=>{}; try { if (localStorage.efy_dc){ efy_dc = JSON.parse(localStorage.efy_dc)} $dc_save =()=>{localStorage.efy_dc = JSON.stringify(efy_dc)}} catch {}
+/*Storage*/ let  efy_dc = {}, $dc_save =()=>{}; try {
+    if (localStorage.efy_dc) efy_dc = JSON.parse(localStorage.efy_dc);
+    $dc_save =()=> localStorage.efy_dc = JSON.stringify(efy_dc);
+} catch {}
 
-/*Sidebar Ready*/ $ready('#efy_sbtheme', ()=>{
+/*Ready*/ $ready('#efy_sbtheme', ()=>{
 
 /*Icons*/ $ready('#dc_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera circle copy check chevron chevron_down chevron_left chevron_up dots edit fullscreen github globe group heart help key menu menu2 microphone move notify notify_active paste pause play plus reload remove search star zoom_in zoom_out user'.split(' ').map(b=> $add('div', {efy_card: ''}, [['i', {efy_icon: b}], ['p', {}, b]], $('#dc_icons')) )}, 1);
 
-/* Hash Isolated Parts*/ let faq = [], docs = []; const link = window.location, hash = link.hash, href = link.href,
-hash_fn =(a)=>{ a.scrollIntoView(); a.open = true; a.classList.add('hash_focus'); $wait(2, ()=> a.classList.remove('hash_focus')) },
-searchable =(a,b)=>{ $all(`[efy_content=${a}] [efy_searchable]`).forEach((c, i) => b[i] = c.getAttribute('efy_searchable') || b[i] )}; searchable('faq', faq); searchable('docs', docs);
+/* Hash Isolated Parts*/ let searchables = {faq: '', docs: '', apps: '', html: ''}; const link = window.location, hash = link.hash, href = link.href,
+hash_fn =(a,b)=>{ a = $(`[efy_content=${a}] [efy_searchable="${b}"]`);
+    a.scrollIntoView(); a.open = true; a.classList.add('hash_focus'); $wait(2, ()=> a.classList.remove('hash_focus')) },
+searchable =(a)=>{ let p = [];
+    $all(`[efy_content=${a}] [efy_searchable]`).forEach((x)=>{ p.push(x.getAttribute('efy_searchable')) } );
+    searchables[a] = p;
+};
 
 'faq html docs apps'.split(' ').forEach(tab =>{ if (hash.includes(`#${tab}`)){
     $(`[efy_tabs=dc] [efy_tab=${tab}]`).click();
-    if (tab === 'faq'){ faq.forEach(q =>{
-        if (hash.includes(`#${q}`)) hash_fn($(`[efy_content=faq] [efy_searchable="${q}"]`))
-    })}
-    if (tab === 'docs'){ docs.forEach(q =>{
-        if (hash.includes(`#${q}`)) hash_fn($(`[efy_content=docs] [efy_searchable="${q}"]`))
-    })}
-    if (tab === 'apps' || tab === 'html'){ const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`), src = `./apps/${tab}_page.js`;
+    if (('faq apps html docs'.includes(tab))){
+        const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`), src = `./apps/${tab}_page.js`;
         $add('script', {src: src}, [], $('head'));
         $event($(`script[src="${src}"]`), 'load', ()=>{
             $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i')
             frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
+            if (('faq apps docs'.includes(tab))){
+                searchable(tab);
+                searchables[tab].forEach(q =>{ if (hash.includes(`#${q}`)) hash_fn(tab, q) });
+            }
         });
     }
 }});
@@ -79,7 +85,7 @@ auto =()=>{ let m = n * 14;
 }}}; $add('style', {class: 'auto_demo'});
 $event($('.dc_cta [efy_sidebar_btn]'), 'click', () =>{ counts = setInterval(auto, 100) });
 
-['apps', 'html'].map(tab =>{ const frame = $(`[efy_content=${tab}]:not(.loading)`);
+['apps', 'html', 'faq'].map(tab =>{ const frame = $(`[efy_content=${tab}]:not(.loading)`);
     $event($(`[efy_tab=${tab}]`), 'click', () =>{ if (! frame.classList.contains('efy_dom')){
         const src = `./apps/${tab}_page.js`;
         $(`[efy_content=${tab}] + .loading`).classList.remove('efy_hide_i');
@@ -94,9 +100,6 @@ $event($('.dc_cta [efy_sidebar_btn]'), 'click', () =>{ counts = setInterval(auto
 $event($('.apps .more'), 'click', ()=>{
     $('[efy_tabs=dc] [efy_tab=apps]').dispatchEvent(new Event('click', {'bubbles': true }))
 });
-$event($('#dc_notify_test'), 'click', ()=>{
-    $notify('short', 'Short Notification', 'Disappears in 5s');
-});
 
 /*Copy URL / Icon*/ $event($('[efy_content=docs]'), 'click', (e)=>{ const x = e.target, match = [x.matches('.copy_url'), x.matches('#dc_icons [efy_card]')];
     if (match[0] || match[1]){ const text = match[0] ?
@@ -104,7 +107,5 @@ $event($('#dc_notify_test'), 'click', ()=>{
         navigator.clipboard.writeText(text);
         if (efy.notify_clipboard != false) $notify('short', 'Copied to clipboard', text);
 }});
-
-$('[efy_tabs=demo_color_picker] [efy_color] [efy_tab="1"]').click();
 
 }, 1);

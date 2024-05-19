@@ -6,6 +6,12 @@
 [efy_icon=cloud]:before {content: "\e954"}
 [efy_icon=moon]:before {content: "\e955"}
 
+[efy_icon=shade] {position: relative;
+    &:before {content: ''; width: 60rem; height: 60rem; background: var(--efy_text); border-radius: var(--efy_radius)}
+    &:after {content: '⦿⦿'; position: absolute; width: 100%; height: 100%; top: 0; left: 0; display: flex; font-size: 25rem;
+    align-items: center; place-content: center; color: var(--efy_text2); -webkit-text-fill-color: var(--efy_text2); letter-spacing: 1rem; font-weight: bold}
+}
+
 :root {--efy_body_padding: 0}
 
 html {overflow: hidden;
@@ -118,10 +124,10 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 [efy_content=faq] > div, [efy_content=docs] > .columns, .dc_separator > div {display: flex; gap: var(--efy_gap); flex-direction: column; width: 100%;
     hr {margin: 0 auto}
 }
-:is([efy_content=faq], [efy_content=docs] > .columns) details {margin: 0}
 
 [efy_content=docs] > .columns {flex-direction: row;
     & > div {width: calc(50% - (var(--efy_gap) / 2))}
+    details {margin: 0}
 }
 
 .hash_focus {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text)!important; border-radius: var(--efy_radius)}
@@ -159,11 +165,23 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
 	.piped_logo {width: 40rem!important; height: 50rem}
 }
 
+[efy_content=faq] {display: block; columns: 2; padding: 0 15rem; width: 100%;
+    details {break-inside: avoid; break-after: avoid-page;
+        :is(p, summary, li) > * {display: inline}
+    }
+    [efy_searchable=reset], [efy_searchable=status], [efy_searchable=bg_image] {
+        [efy_icon=chevron] {margin: 0 5rem}
+        p:not(p > p) {padding: 0 15rem 10rem 15rem}
+        p > p {padding: 0 8rem}
+    }
+}
+
 /* Move to efy.css soon */
 [efy_details] details {
     & > summary {padding-right: 32rem!important; border-radius: 0}
     & > pre {margin: 0 15rem 15rem 15rem}
-    & > *:not(summary, pre) {padding: 0 15rem 15rem 15rem}
+    hr {margin: 0 0 5rem 0}
+    & > *:not(summary, pre) {padding: 0 15rem 10rem 15rem}
     &[open] {padding: 0;
         & > summary {padding: 0 0 7rem 12rem; margin-bottom: 10rem; border-bottom: var(--efy_border);
             &:before {right: 12rem!important}
@@ -221,6 +239,7 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
         &:first-of-type {border-right: 0}
         &:not(:first-of-type) {padding-top: 0}
     }
+    [efy_content=faq] {columns: 1}
 }
 @container content0 (max-width: 425px){
     [efy_tabs=dc] > [efy_content=efy] {

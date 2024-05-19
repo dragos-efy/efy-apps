@@ -38,6 +38,8 @@
 <div efy_content="html" class="efy_trans_filter_off efy_hide_i"></div>
 <i efy_icon="reload" efy_content="html" class="loading efy_trans_filter_off efy_hide_i"></i>
 
+<div efy_content="faq" class="efy_trans_filter_off efy_hide_i" efy_details></div>
+<i efy_icon="reload" efy_content="faq" class="loading efy_trans_filter_off efy_hide_i"></i>
 
 <div efy_content="efy" efy_active class="efy_trans_filter_off">
 
@@ -45,7 +47,7 @@
         <h2 efy_lang="join_future" efy_searchable></h2><p efy_lang="sidebar_about_text" efy_searchable></p>
         <div efy_searchable id ="dc_buttons" class="dc_cta" efy_searchable>
             <button efy_sidebar_btn efy_lang="try_it"><i efy_icon="play"></i></button>
-            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter" title="Github"><p><i efy_icon="github"></i></p><p>61</p></a>
+            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter" title="Github"><p><i efy_icon="github"></i></p><p>62</p></a>
             <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>56</p></a>
         </div>
     </div>
@@ -59,82 +61,15 @@
             <a href="./calculator.html" role="button" efy_card><i efy_icon="plus"></i><div class="column_flex"><div>Calculator</div><mark efy_lang="alpha"></mark></div></a>
             <a href="./converter.html" role="button" efy_card><i efy_icon="reload"></i><div class="column_flex"><div>Converter</div><mark efy_lang="alpha"></mark></div></a>
             <a href="./os.html" role="button" efy_card><i efy_icon="dots"></i><div class="column_flex"><div>OS</div><mark efy_lang="alpha"></mark></div></a>
-            <a role="button" efy_card class="soon"><i efy_icon="menu"></i><div class="column_flex"><div>Text Editor</div><mark efy_lang="soon"></mark></div></a>
+            <a href="./weather.html" role="button" efy_card><i efy_icon="sun"></i><div class="column_flex"><div>Weather</div><mark efy_lang="alpha"></mark></div></a>
+            <a href="./pong.html" role="button" efy_card><i efy_icon="circle"></i><div class="column_flex"><div>Pong</div><mark efy_lang="alpha"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="heart"></i><div class="column_flex"><div>Themes</div><mark efy_lang="soon"></mark></div></a>
-            <a role="button" efy_card class="soon"><i efy_icon="globe"></i><div class="column_flex"><div>Injector</div><mark efy_lang="soon"></mark></div></a>
             <a role="button" efy_card class="soon"><i efy_icon="key"></i><div class="column_flex"><div>Passwords</div><mark efy_lang="soon"></mark></div></a>
             <a role="button" efy_card class="more"><i efy_icon="chevron"></i><div class="column_flex"><div>More</div><mark>Apps</mark></div></a>
         </div>
     </div>
 
 </div>
-
-<div efy_content="faq" efy_details class="efy_trans_filter_off">
-    <div>
-        <details efy_searchable="logic"><summary>The logic behind it</summary><ul>
-        <li>Minimalism - no dependencies, efficient code</li>
-        <li>Modularity - users are in control, billions of possible patterns</li>
-        <li>Accessible - not fully yet</li>
-        <li>Sounds &amp; 3D Layers - cinematic &amp; immersive experience</li>
-        <li>Touchscreen &amp; Convergence - works on (almost) all devices, hovering or using a cursor are not requirements for interracting with the ui, usually not fully taken into consideration by devs &amp; frameworks. Here it is!</li>
-        <li>Transparency - semitransparent multilayers, support for os integration with transparent windows</li>
-        <li>Searchable &amp; open on demand -  to reduce physical space and help you focus</li>
-        <li>Private - all data stays on your device</li>
-        <li>Supports both the <mark>https://</mark> and <mark>file:///</mark> protocols - most frameworks don't do that, we do, so you can use the apps statically &amp; offline too, without any server, compiling, nodejs etc. required.</li>
-        </ul></details>
-
-        <details efy_searchable="how_to_use"><summary>How do I use it on my own projects?</summary>
-        <p>In any way you want, as long as you keep it open source and follow the <a target="_blank" href="https://github.com/dragos-efy/efy/blob/main/LICENSE">AGPL 3.0 License here</a>. Propper documentation is coming soon</p>
-        </details>
-
-        <details efy_searchable="reset"><summary>I see glitches or errors. How do I reset it?</summary>
-            <p><mark>EFY</mark> <i efy_icon="chevron"></i><mark efy_lang="backup"></mark> <i efy_icon="chevron"></i><mark efy_lang="theme"></mark> or <mark efy_lang="efy_database"></mark> <i efy_icon="chevron"></i><mark efy_lang="reset"></mark></p>
-            <p>Or clear your browser's cache, try a different browser, device etc.</p>
-        </details>
-
-        <details efy_searchable="piped_instance"><summary>Run your own Piped EFY Instance</summary>
-<p style="padding-bottom: 10rem">Thanks <a href="https://github.com/rubyowo">Ruby</a> for the instructions 👏</p><hr />
-            <pre efy_code="bash · linux" style="margin-bottom: 10rem">git clone --branch efy https://github.com/TeamPiped/Piped.git --recurse-submodules
-cd Piped
-echo '!.eslintrc.cjs' >> .dockerignore
-docker build . --tag piped-efy</pre>
-
-<p>Go to your piped docker-compose and change the image from <mark>1337kavin/piped-frontend</mark> to <mark>piped-efy</mark>. I recommend building with buildx because its faster:</p>
-
-<pre efy_code="bash · linux">docker buildx build . --tag piped-efy</pre>
-
-<hr style="padding-bottom: 10rem" />
-<p style="padding-bottom: 5rem">Public Instances:</p>
-<ul style="padding-bottom: 10rem">
-<li><a href="https://efy.piped.pages.dev">https://efy.piped.pages.dev</a></li>
-<li><a href="https://piped.rubyowo.me">https://piped.rubyowo.me</a></li>
-<li><a href="https://piped.winscloud.net">https://piped.winscloud.net</a></li>
-</ul>
-        </details>
-
-        <details efy_searchable="bugs_ideas"><summary>How do I repport bugs or share my ideas?</summary><p>On <a href="https://github.com/dragos-efy/efy">Github</a> or <a href="https://matrix.to/#/#efy_ui:matrix.org">Matrix</a>. Try to specify how you encountered the bugs, on what device, browser etc. And for ideas, why they should be implemented and what use cases they have.</p></details>
-
-    </div><div>
-
-        <details efy_searchable="stable"><summary>Is it stable / production-ready?</summary><div>
-            <p>EFY is currently in Beta, so expect potential bugs. Features and apps that are unstable are usually marked this way:</p><br />
-            <p><mark efy_lang="soon"></mark> <i efy_icon="chevron"></i><mark efy_lang="alpha"></mark> <i efy_icon="chevron"></i><mark efy_lang="beta"></mark> <i efy_icon="chevron"></i><mark>Stable</mark></p><br />
-            <div><mark efy_lang="soon"></mark> - unavailable now, but expected to come up</div>
-            <div><mark efy_lang="alpha"></mark> - unsafe to use, lots of bugs</div>
-            <div><mark efy_lang="beta"></mark> - safer to use, less bugs</div>
-        </div></details>
-
-        <details efy_searchable="name"><summary>What <code>efy</code> stands for</summary><p>Nothing. It's just a name, like Andy or Izzy.</p></details>
-
-        <details efy_searchable="bg_image"><summary>Add a background image</summary>
-        <p><mark>EFY</mark> <i efy_icon="chevron"></i><mark efy_lang="theme"></mark> <i efy_icon="chevron"></i><mark efy_lang="transparency"></mark> <i efy_icon="chevron"></i><mark efy_lang="mode"></mark> <i efy_icon="chevron"></i> <mark efy_lang="add_file"></mark></p>
-        </details>
-
-        <details efy_searchable><summary>More coming soon...</summary><p>This is just the beginning...</p></details>
-    </div>
-
-</div>
-
 
     <div efy_content="docs" efy_details class="efy_trans_filter_off"><h5 efy_searchable>Learn how to use efy <mark efy_lang="soon"></mark></h5><hr /><div class="columns">
         <div style="display: flex; flex-direction: column; gap: var(--efy_gap)"><details efy_searchable="mode"><summary>[efy_mode]</summary><ul>
@@ -416,6 +351,7 @@ $add(<code>'div'</code>, {<code>efy_timer</code>: <code>'efy_demo, 5, reverse'</
 </div>
 
 </div>
+<i efy_icon="reload" efy_content="docs" class="loading efy_trans_filter_off efy_hide_i"></i>
 
 
 </body></html>

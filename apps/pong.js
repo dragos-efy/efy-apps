@@ -1,5 +1,57 @@
 $ready('#efy_sbtheme', ()=>{
 
+const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy_card: ''}, [
+    ['h1', {}, 'PONG · DEMO'],
+    ['hr'],
+    ['h6', {}, 'Rules'],
+    ['hr'],
+    ['li', {}, '• Score 3 points to win'],
+    ['li', {}, '• 2 players required, but it will be between 1-4 players soon'],
+    ['hr'],
+    ['h6', {}, 'Controls'],
+    ['hr'],
+    ['li', {}, [
+        ['p', {}, 'Player 1: '],
+        ['i', {efy_icon: 'arrow_left'}], ['i', {efy_icon: 'arrow'}]
+    ]],
+    ['hr'],
+    ['li', {}, [
+        ['p', {}, 'Player 2: '],
+        ['p', {class: 'key'}, 'A'], ['p', {class: 'key'}, 'D']
+    ]],
+    ['hr'],
+    ['li', {}, [ ['p', {}, 'Launch Ball: '], ['p', {class: 'key space'}, 'Space'] ]],
+    ['hr'],
+    ['div', {class: 'efy_flex'}, [
+        ['button', {id: 'start'}, 'Start'],
+        ['button', {class: 'efy_quick_fullscreen efy_square_btn'}, [['i', {efy_icon: 'fullscreen'}]] ]
+    ]]
+]);
+
+$event($$(start, 'button'), 'click', ()=>{ start.remove();
+
+const confetti = $add('video', {id: 'confetti', src: './apps/assets/confetti.webm'});
+
+$add('span', {id: 'body-container'}, [
+  ['div', {class: 'top-container'}, [
+    ['div', {class: 'scores'}, [
+      ['div', {score: '1'}, [['p', {}, 'P1'], ['p', {id: 'score-display1'}, '0']]],
+      ['div', {score: '2'}, [['p', {}, 'P2'], ['p', {id: 'score-display2'}, '0']]],
+      ['div', {score: '3'}, [['p', {}, 'P3'], ['p', {id: 'score-display3'}, '0']]],
+      ['div', {score: '4'}, [['p', {}, 'P4'], ['p', {id: 'score-display4'}, '0']]]
+    ]],
+    ['div', {class: 'new-game'}, [
+      ['button', {id: 'new-game-button', class: 'efy_square_btn'}, [['i',  {efy_icon: 'reload'}]]],
+      ['button', {efy_sidebar_btn: '', class: 'efy_square_btn'}, [['i',  {efy_icon: 'menu'}]]]
+    ]]
+  ]],
+  ['div', {class: 'container'}, [
+    ['div', {class: 'rod1'}],
+    ['div', {class: 'ball'}],
+    ['div', {class: 'rod2'}],
+  ]]
+]);
+
 const rod1 = $('.rod1'), rod2 = $('.rod2'), ball = $('.ball'),
 container = $('.container'), new_game_b = $('#new-game-button'),
 score_d1 = $('#score-display1'), score_d2 = $('#score-display2');
@@ -15,7 +67,7 @@ let audio = {}; 'touch touch2'.split(' ').forEach(x =>{
 });
 
 /*Add Menu*/ $add('details', {id: 'pg_settings'}, [
-  ['summary', {}, [['i', {efy_icon: 'play'}], ['p', {}, 'Ping Pong'], ['mark', {efy_lang: 'alpha'}]]],
+  ['summary', {}, [['i', {efy_icon: 'play'}], ['p', {}, 'Pong'], ['mark', {efy_lang: 'alpha'}]]],
         ['div', {efy_tabs: 'pn_menu', efy_select: ''}, [
             ['div', {class: 'efy_tabs'}, [
                 /*Tabs*/
@@ -40,7 +92,7 @@ let audio = {}; 'touch touch2'.split(' ').forEach(x =>{
         ]]
 ], $('#efy_modules'));
 
-$event(new_game_b, 'click', new_game);
+$event(new_game_b, 'click', ()=>{ location.reload()});
 $event(document, 'keydown', mode_rod);
 $event(document, 'keypress', launch_ball);
 $event(window, 'resize', set_game);
@@ -115,7 +167,7 @@ function set_ball_position(){
       clearInterval(id);
       if (!(lives1 == 0)){ currentRod = rod1; $audio_play(audio.error)}
       not_initial = false; set_game();
-      if (lives1 == 0){ $notify(5, 'Winner: Player 2', ''); let y = $('#pn_confetti'); y.currentTime = 0; y.play(); new_game()}
+      if (lives1 == 0){ $notify(5, 'Winner: Player 2', ''); let y = $('#confetti'); y.currentTime = 0; y.play(); new_game()}
       return;
     }
   }
@@ -127,7 +179,7 @@ function set_ball_position(){
       clearInterval(id);
       if (!(lives2 == 0)){ currentRod = rod2; $audio_play(audio.error)}
       not_initial = false; set_game();
-      if (lives2 == 0){ $notify(5, 'Winner: Player 1', ''); let y = $('#pn_confetti'); y.currentTime = 0; y.play(); new_game()}
+      if (lives2 == 0){ $notify(5, 'Winner: Player 1', ''); let y = $('#confetti'); y.currentTime = 0; y.play(); new_game()}
       return;
     }
   }
@@ -135,5 +187,7 @@ function set_ball_position(){
   ball.style.top = ball_top + "px"; ball.style.left = ball_left + "px";
   not_initial = true;
 }
+
+});
 
 }, 1);
