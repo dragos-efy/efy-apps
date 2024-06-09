@@ -37,6 +37,10 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         "An alternative privacy-friendly YouTube frontend which is efficient by design. Currently, only a few instances use efy and it's considered expiremental",
         'video fun server'
     ), $app_card(
+        'Planner Alpha', './planner2.html', 'check', 'alpha',
+        'Newest version of Planner, separated for testing, but unsafe to use normally currently',
+        'productivity offline static'
+    ), $app_card(
         'Planner', './planner.html', 'check', 'beta',
         'Organize your tasks, take notes, time-based reminders, track your progress and time',
         'productivity offline static'

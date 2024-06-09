@@ -66,12 +66,13 @@ $add('div', {ms_app: ''}, [
 ]);
 
 $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
-  ['summary', {}, [ ['i', {efy_icon: 'audio'}], ['p', {efy_lang: 'music_player'}], ['mark', {efy_lang: 'beta'}] ]],
+  ['summary', {}, [ ['i', {efy_icon: 'audio'}], ['p', {efy_lang: 'media'}], ['mark', {efy_lang: 'beta'}] ]],
     ['div', {efy_tabs: 'ms_menu', efy_select: ''}, [
     ['div', {class: 'efy_tabs'}, [
       ['button', {efy_tab: 'effects', efy_lang: 'effects', efy_active: ''}],
       ['button', {efy_tab: 'grid', efy_lang: 'grid'}],
       ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
+      ['button', {efy_tab: 'backup', efy_lang: 'storage'}]
     ]],
     ['div', {efy_content: 'effects', efy_select: '', id: 'ms_sidebar_speed', efy_active: ''}, [
       ['div', {class: 'ms_flex'}, [
@@ -87,7 +88,6 @@ $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
         ['input', {type: 'range', id: 'volume_music', class: 'volume_music', min: 0, max: 1, step: 0.05, value: 1}]
       ]]
     ]],
-
     ['div', {efy_content: 'grid', efy_select: '', id: 'bar_position'}, [
       ['p', {efy_lang: 'bar_position'}], ['div', {}, [
         ['input', {type: 'radio', id: 'bar_position_bottom', name: 'bar_position', checked: ''}],
@@ -95,20 +95,42 @@ $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
         ['input', {type: 'radio', id: 'bar_position_top', name: 'bar_position'}],
         ['label', {for: 'bar_position_top', efy_lang: 'up', style: 'display: flex; align-items: center; width: fit-content'}]
       ]],
-        ['div', {efy_range_text: 'Columns', efy_lang: 'columns'}, [
-          ['input', {type: 'range', id: 'ms_grid_columns', min: '1', max: '4', step: '1', value: '2'}]
-        ]]
-      ]],
-    ['div', {efy_content: 'tags', efy_select: '', id: 'items'}, [ ['div', {}, [
+      ['div', {efy_range_text: 'Columns', efy_lang: 'columns'}, [
+        ['input', {type: 'range', id: 'ms_grid_columns', min: '1', max: '4', step: '1', value: '2'}]
+      ]]
+    ]],
+    ['div', {efy_content: 'tags', efy_select: '', id: 'items'}, [
+      ['div', {}, [
         ['input', {type: 'checkbox', id: 'ms_song_info_image', name: 'song_info', checked: ''}], ['label', {for: 'ms_song_info_image', efy_lang: 'image'}],
         ['input', {type: 'checkbox', id: 'ms_song_info_artist', name: 'song_info', checked: ''}], ['label', {for: 'ms_song_info_artist', efy_lang: 'artist'}],
         ['input', {type: 'checkbox', id: 'ms_song_info_title', name: 'song_info', checked: ''}], ['label', {for: 'ms_song_info_title', efy_lang: 'title'}],
         ['input', {type: 'checkbox', id: 'ms_song_info_album', name: 'song_info', checked: ''}], ['label', {for: 'ms_song_info_album', efy_lang: 'album'}],
         ['input', {type: 'checkbox', id: 'ms_song_info_number', name: 'song_info'}], ['label', {for: 'ms_song_info_number', efy_lang: 'number'}],
-        ['div', {efy_range_text: 'Image Size', efy_lang: 'img_size'}, [['input', {type: 'range', id: 'ms_img_size', min: '25', max: '65', step: '1', value: '50'}]],
+        ['div', {efy_range_text: 'Image Size', efy_lang: 'img_size'}, [
+          ['input', {type: 'range', id: 'ms_img_size', min: '25', max: '65', step: '1', value: '50'}]
+        ]],
         ['p', {}, 'Custom Tags'],
-        ['input', {type: 'checkbox', id: 'custom_tags_mode', name: 'custom_tags'}], ['label', {for: 'custom_tags_mode', efy_lang: 'active'}]
-      ]] ]]]
+        ['input', {type: 'checkbox', id: 'custom_tags_mode', name: 'custom_tags'}],
+        ['label', {for: 'custom_tags_mode', efy_lang: 'active'}]
+      ]]
+    ]],
+    ['div', {efy_content: 'backup', efy_select: '', id: 'md_backup'}, [
+      ['div', {id: 'md_storage_api'}, [
+        ['input', {type: 'radio', id: 'file_reader', name: 'md_storage_api'}],
+        ['label', {for: 'file_reader'}, 'File Reader'],
+        ['input', {type: 'radio', id: 'filesystem_access', name: 'md_storage_api'}],
+        ['label', {for: 'filesystem_access'}, 'File System Access']
+      ]],
+      ['div', {class: 'api_options efy_hide_i'}, [
+        ['div', {class: 'efy_hr_div'}, [ ['p', {}, 'API Options'],  ['hr']]],
+        ['div', {class: 'efy_flex'}, [
+          ['input', {type: 'checkbox', id: 'md_storage_restore'}],
+          ['label', {for: 'md_storage_restore'}, 'Restore'],
+          ['input', {type: 'checkbox', id: 'filesystem_access_dir'}],
+          ['label', {for: 'filesystem_access_dir'}, 'Directory']
+        ]]
+      ]]
+    ]]
   ]]
 ], $('#efy_sbtheme'), 'beforebegin');
 
@@ -116,8 +138,10 @@ $add('style', {class: 'efy_3d_back_ms'}, [], $head);
 $add('div', {class: 'test_thumbs'});
 
 
-/*Variables*/ let audios = {}, audios_title = {}, audios_artist = {}, audios_album = {}, audios_image = {}, audios_type = {}, ms_track_id = 0, i = 0, ms_no_songs = true, img_time = 10, img_time_interval;
-const audio = $('.audio_html'), video_div = $('.vd_video_div'), ms_grid = $('[ms_grid]'), rate = $('#rate'), pitch = $('#pitch'), img_size = $('#ms_img_size');
+/*Variables*/ let audios = {}, audios_title = {}, audios_artist = {}, audios_album = {}, audios_image = {}, audios_type = {},
+ms_track_id = 0, i = 0, ms_no_songs = true, img_time = 10, img_time_interval;
+const audio = $('.audio_html'), video_div = $('.vd_video_div'), ms_grid = $('[ms_grid]'), ms_grid_box = $('.ms_grid_box'),
+songs = $('.songs'), rate = $('#rate'), pitch = $('#pitch'), img_size = $('#ms_img_size');
 
 /*Speed Indicator*/ $all('.ms_speed_text').forEach(b=>{
   b.addEventListener('click', ()=>{
@@ -183,36 +207,22 @@ $event($('#ms_grid_columns'), 'input', (a)=>{ let b = a.target.value;
 
 $event(img_size, 'input', (a)=>{ let b = a.target.value + 'rem'; $root.style.setProperty('--ms_thumb_height', b); efy_ms.img_size = b; $ms_save(); });
 
-
-/*Current Song Image as Background*/
-$add('label', {for: 'ms_song_bg', efy_lang: 'song_image'}, [], $('label[for="trans_window"]'), 'afterend');
-$add('input', {id: 'ms_song_bg', type: 'checkbox'}, [], $('label[for="trans_window"]'), 'afterend');
-
-if (efy_ms.song_bg == true){ $('#ms_song_bg').checked = true}
-
-$event($('#ms_song_bg'), 'change', ()=>{ let a = $('#ms_song_bg').checked; efy_ms.song_bg = a; $ms_save(); song_bg()});
-
-song_bg =()=>{ let a = $('.efy_3d_back_ms');
-  if ((efy_ms.song_bg == true) && (audios_image[ms_track_id] !== 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAA')){
-    a.textContent = `.efy_3d_back, html.trans_window .efy_3d_back {background: url(${audios_image[ms_track_id]})!important; background-repeat: no-repeat!important; background-size: cover!important}`;
-  }
-  else {a.textContent = ''}
-}
-
 /*Play & Pause*/ const play_pause =()=>{ if (audio.src){
   if ($('.player i').getAttribute('efy_icon') == 'play'){
     if (audios_type[ms_track_id] === 'image'){
       clearInterval(img_time_interval); img_time_interval = setInterval(next_song, img_time * 1000)
     }
     else { clearInterval(img_time_interval);
-      audio.playbackRate = $('#rate').value; let play = audio.play();
+      audio.playbackRate = efy_ms.speed || 1; let play = audio.play();
       if (play !== undefined){ play.catch(()=>{
         $all('.player i').forEach(a=>{ a.setAttribute('efy_icon', 'play') });
       });}
 
     }
     $all('.player i').forEach(a=>{ a.setAttribute('efy_icon', 'pause') });
-    $('.vd_video_div [ms_bar]').classList.add('efy_hide_i')
+    $wait(3, ()=>{
+      if ($('.player i').getAttribute('efy_icon') == 'play') $('.vd_video_div [ms_bar]').classList.add('efy_hide_i');
+    })
   }
   else { clearInterval(img_time_interval); audio.pause();
     $all('.player i').forEach(a=>{ a.setAttribute('efy_icon', 'play') });
@@ -223,17 +233,29 @@ duration_in_min =(dur, min = 0)=>{ if (dur < 60){ return dur < 10 ? `${min}:0${M
 
 
 /*Hightlight active audio*/ const hightlight_playing =(a)=>{ const i = a.getAttribute('ms_track_id'), type = audios_type[i];
-  if ($('.songs .song.playing') && $('.songs .song.playing').getAttribute('ms_track_id') !== i){ $('.songs .song.playing').classList.remove('playing')}
+  if ($('.songs .song.playing') && $('.songs .song.playing').getAttribute('ms_track_id') !== i){
+    $('.songs .song.playing').classList.remove('playing')
+  }
   a.classList.add('playing');
   if (type === 'video' || type === 'image'){
-    $('.vd_video_div').classList.remove('efy_hide_i'); $all('[ms_bar]')[1].classList.add('efy_hide_i')
-  } else {$('.vd_video_div').classList.add('efy_hide_i'); $all('[ms_bar]')[1].classList.remove('efy_hide_i')}
+    $('.vd_video_div').classList.remove('efy_hide_i');
+    $all('[ms_bar]')[1].classList.add('efy_hide_i');
+    ms_grid_box.scrollTo(0, 0);
+  } else {
+    $('.vd_video_div').classList.add('efy_hide_i');
+    $all('[ms_bar]')[1].classList.remove('efy_hide_i');
+    if (ms_grid_box.clientHeight < songs.scrollHeight - a.offsetTop){
+      const number = efy.gap ? Number(efy.gap.replace('rem', '')) * -1 : -15;
+      a.scrollIntoView(); ms_grid_box.scrollBy({top: number === -0 ? 0 : number});
+    }
+  }
 
   if (type === 'image'){
     [audio, video_div].forEach(a=> a.style.backgroundImage = `url(${audios[i]})`);
     audio.classList.add('image');
   } else {audio.classList.remove('image')}
 };
+
 
 
 const openDB =()=>{ return new Promise((resolve, reject)=>{
@@ -450,7 +472,8 @@ const $update_tag = (name, tagss, remove) => {
             canvas.width = img.width / img.height * 80; canvas.height = 80;
             canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
             let thumbnail = canvas.toDataURL('image/webp');
-            $add('div', {class: 'image efy_shadow_trans', style: `background: url(${thumbnail})`, title: 'Song image'}, [], info, 'afterbegin')
+            $add('div', {class: 'image efy_shadow_trans', style: `background: url(${thumbnail})`, title: 'Song image'}, [], info, 'afterbegin');
+            audios_image[i] = thumbnail;
           };
         } catch { $add('div', {class: 'ms_empty image efy_shadow_trans'}, [ $add('i', {efy_icon: 'audio'}) ], info, 'afterbegin') }
       }
@@ -500,7 +523,7 @@ const $update_tag = (name, tagss, remove) => {
     else {
       [audio, video_div].forEach(a=> a.style.backgroundImage = '');
       audio.classList.remove('image');
-      audio.src = url; audio.playbackRate = $('#rate').value; audio.play();
+      audio.src = url; audio.playbackRate = efy_ms.speed || 1; audio.play();
     }
 
     $all('.player i').forEach(a=>{ a.setAttribute('efy_icon', 'pause') });
@@ -547,7 +570,7 @@ $event($('[ms_app]'), 'click', function(e){ let target = e.target,
 });
 
       /*Play 1st song*/ if (ms_no_songs == true){ ms_track_id = 1;
-          audio.setAttribute('src', audios[1]); audio.playbackRate = $('#rate').value; play_pause(); hightlight_playing($('.songs .song')); ms_no_songs = false; song_bg() }
+          audio.setAttribute('src', audios[1]); audio.playbackRate = efy_ms.speed || 1; play_pause(); hightlight_playing($('.songs .song')); ms_no_songs = false; song_bg() }
     },
         { tags: ["artist", "title", "album", "picture"], dataReader: FileAPIReader(file) });
   }
@@ -575,49 +598,61 @@ $event($('[ms_app]'), 'click', function(e){ let target = e.target,
     };
 
     getAllRequest.onerror =(event)=>{ console.error(event.target.error)};
-  }; if (efy_ms.restore == true){
-    restore_songs();
-  }
+  };
 
 /*Load Files*/ const load_audio = async (file) => {
   let filesToUse = []; $('.ms_loading').classList.remove('efy_hide_i');
 
-  if (efy_ms.filesystem == true) {
-    if (efy_ms.filesystem_dir == true) {
+  if (efy_ms.filesystem){
+    if (efy_ms.filesystem === 'directory'){
       const dirHandle = await window.showDirectoryPicker();
-      for await (const entry of dirHandle.values()) {
-        if (entry.kind === 'file') { filesToUse.push(await entry.getFile())}
+      for await (const entry of dirHandle.values()){
+        if (entry.kind === 'file'){ filesToUse.push(await entry.getFile())}
       }
     } else {
       const fileHandles = await window.showOpenFilePicker({ multiple: true });
       filesToUse = await Promise.all(fileHandles.map(fileHandle => fileHandle.getFile()));
     }
-
-    const db = await openDB();
-    // await clearDB(db);
-    for (const file of filesToUse) { // process each file...
-      await addFileToDB(db, file);
-    }
-
-  } else { filesToUse = [file] }
-
-  for (const file of filesToUse) { // process each file
-    process_song(file);
+    const db = await openDB(); /*await clearDB(db)*/
+    for (const file of filesToUse){ await addFileToDB(db, file)}
   }
+  else { filesToUse = [file]}
+  for (const file of filesToUse){ process_song(file)}
   $('.ms_loading').classList.add('efy_hide_i');
 },
 
 
 read_files = async (a)=>{ for (let i = 0; i < a.length; i++) { await load_audio(a[i])}};
 
-if (efy_ms.filesystem == true){ $ready('.ms_filesystem', (b)=>{
+if (efy_ms.restore == true){
+  restore_songs(); $('#md_storage_restore').checked = true;
+}
+
+if (efy_ms.filesystem){ $ready('.ms_filesystem', (b)=>{
+    $('#filesystem_access').checked = true;
+    $('.api_options').classList.remove('efy_hide_i');
     $all('[efy_upload*=ms_upload]').forEach(a=>{ a.classList.add('efy_hide_i')});
     b.classList.remove('efy_hide_i');
     $event(b, 'click', async ()=>{ load_audio()})
-})} else { console.log('file reader mode'); $wait(1, ()=>{
-  $all('#ms_upload').forEach(a=>{ $event(a, 'change', async (event)=>{ read_files(event.target.files)})}); });
-}
+    if (efy_ms.filesystem === 'directory') $('#filesystem_access_dir').checked = true;
+})} else { $wait(1, ()=>{
+  $all('#ms_upload').forEach(a=>{
+    $event(a, 'change', async (event)=>{ read_files(event.target.files)})
+  });
+  $('#file_reader').checked = true;
+})}
 
+$event($('#md_storage_restore'), 'change', (event)=>{
+  (event.target.checked === true) ? efy_ms.restore = true : delete efy_ms.restore;
+  $ms_save(); location.reload();
+});
+
+$event($('[efy_tabs=ms_menu] [efy_content=backup]'), 'change', (event)=>{ target = event.target;
+  if ($('#filesystem_access').checked && $('#filesystem_access_dir').checked) efy_ms.filesystem = 'directory'
+  else if ($('#filesystem_access').checked) efy_ms.filesystem = 'files';
+  else if ($('#file_reader').checked) delete efy_ms.filesystem;
+  $ms_save(); location.reload();
+});
 
 const prev_next =(i)=>{
   if (audios_type[i] === 'image'){
@@ -628,7 +663,7 @@ const prev_next =(i)=>{
   else { clearInterval(img_time_interval);
     [audio, video_div].forEach(a=> a.style.backgroundImage = '');
     audio.classList.remove('image');
-    audio.src = audios[i]; audio.playbackRate = rate.value; audio.play();
+    audio.src = audios[i]; audio.playbackRate = efy_ms.speed || 1; audio.play();
   }
   if ($('.player i').getAttribute('efy_icon') == 'play'){ play_pause()}
   hightlight_playing($(`.song[ms_track_id="${i}"]`)); song_bg()
@@ -713,7 +748,105 @@ $event($('#ms_nature_status'), 'change', (e)=>{
 
 $all('.vd_gestures div').forEach(a =>{ $event(a, 'click', ()=>{ play_pause() }) });
 $event($('.vd_gestures .middle'), 'dblclick', ()=>{ if (document.fullscreenElement){ document.exitFullscreen()} else {$('.vd_video_div').requestFullscreen()} });
-$event($('.vd_gestures .left'), 'dblclick', ()=>{ console.log(audio.currentTime); audio.currentTime = Math.round(audio.currentTime - 10) });
-$event($('.vd_gestures .right'), 'dblclick', ()=>{ console.log(audio.currentTime); audio.currentTime = Math.round(audio.currentTime + 10) });
+$event($('.vd_gestures .left'), 'dblclick', ()=>{ audio.currentTime = Math.round(audio.currentTime - 10) });
+$event($('.vd_gestures .right'), 'dblclick', ()=>{ audio.currentTime = Math.round(audio.currentTime + 10) });
+
+/*Video Player - Click & Hover Events*/
+
+$event(document, 'pointermove', (event)=>{
+  if ($('.vd_video_div').contains(event.target)){
+    $('.vd_video_div [ms_bar]').classList.remove('efy_hide_i');
+  }
+});
+
+$event(document, 'pointerup', (event)=>{
+  if ($('.vd_video_div').contains(event.target)){
+    $wait(2, ()=> $('.vd_video_div [ms_bar]').classList.add('efy_hide_i'));
+  }
+});
+
+let player_focused = false,
+keys = {ArrowDown: false, ArrowLeft: false, ArrowRight: false, ArrowUp: false};
+
+function handleKeydown(event){ keys[event.key] = true}
+function handleKeyup(event){ keys[event.key] = false}
+document.addEventListener('keydown', handleKeydown);
+document.addEventListener('keyup', handleKeyup);
+
+const speed_arrows =(multiply)=>{
+  speed = (audio.playbackRate + (0.05 * multiply)).toFixed(2);
+  audio.playbackRate = speed; rate.value = speed; efy_ms.speed = speed; $ms_save();
+  $all('.ms_speed_text').forEach(c => c.textContent = speed + 'X');
+  $('[efy_range_text="Speed"] .efy_range_text_p').value = speed;
+};
+
+function checkSimultaneousKeys(event){
+  event.preventDefault();
+  if (keys.ArrowDown && keys.ArrowLeft){ prev_song()}
+  else if (keys.ArrowDown && keys.ArrowRight){ next_song()}
+  else if (keys.ArrowUp && keys.ArrowLeft){ if (audio.playbackRate > 0.25) speed_arrows(-1)}
+  else if (keys.ArrowUp && keys.ArrowRight){ if (audio.playbackRate < 2) speed_arrows(1)}
+
+  else if (keys.ArrowDown){ if (audio.volume > 0) audio.volume = (audio.volume - 0.05).toFixed(2)}
+  else if (keys.ArrowUp){ if (audio.volume < 1) audio.volume = (audio.volume + 0.05).toFixed(2)}
+  else if (keys.ArrowLeft){
+    if (audio.classList.contains('image')){ prev_song()}
+    else { audio.currentTime = (audio.currentTime < 10) ? 0 : Math.round(audio.currentTime - 10)}
+  }
+  else if (keys.ArrowRight){
+    if (audio.classList.contains('image')){ next_song()}
+    else { (audio.currentTime < (audio.duration - 10)) ? audio.currentTime = Math.round(audio.currentTime + 10) : next_song()}
+  }
+}
+
+$event(document, 'click', (event)=>{ const target = event.target;
+  player_focused = $('[ms_app]').contains(target)
+});
+
+$event(document, 'keydown', (event) =>{
+    if (player_focused){
+      switch (event.key){
+          case ' ': event.preventDefault(); play_pause(); break;
+          case 'ArrowDown': checkSimultaneousKeys(event); break;
+          case 'ArrowUp': checkSimultaneousKeys(event); break;
+          case 'ArrowLeft': checkSimultaneousKeys(event); break;
+          case 'ArrowRight': checkSimultaneousKeys(event); break;
+          case 'f':
+            event.preventDefault();
+            let final = 'on', d = $root.getAttribute('efy_sidebar'), e = '';
+            if ($root.hasAttribute('efy_sidebar')){
+              if (['left', 'right'].some(s => d.includes(s))) e = d.replace('on_', '');
+              final = d.includes('on') ? e : 'on_' + e;
+            };
+            $root.setAttribute('efy_sidebar', final); $('.efy_sidebar #ms_search').focus();
+            player_focused = false;
+          break;
+          default: break;
+      }
+    }
+    else {
+      if (event.key === ' '){
+        $root.setAttribute('efy_sidebar', '');
+        $('[efy_sidebar_btn]').focus();
+      }
+    }
+}, false);
+
+/*Current Song Image as Background*/
+$add('label', {for: 'ms_song_bg', efy_lang: 'song_image'}, [], $('label[for="trans_window"]'), 'afterend');
+$add('input', {id: 'ms_song_bg', type: 'checkbox'}, [], $('label[for="trans_window"]'), 'afterend');
+
+if (efy_ms.song_bg == true){ $('#ms_song_bg').checked = true}
+
+$event($('#ms_song_bg'), 'change', ()=>{ let a = $('#ms_song_bg').checked; efy_ms.song_bg = a; $ms_save(); song_bg()});
+
+song_bg =()=>{ let a = $('.efy_3d_back_ms');
+    console.log(audios_image[ms_track_id]);
+    console.log(audios_image);
+  if ((efy_ms.song_bg === true) && (audios_image[ms_track_id] !== 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAA')){
+    a.textContent = `.efy_3d_bg, html.trans_window .efy_3d_bg {background: url(${audios_image[ms_track_id]})!important; background-repeat: no-repeat!important; background-size: cover!important}`;
+  }
+  else {a.textContent = ''}
+}
 
 }, 1);

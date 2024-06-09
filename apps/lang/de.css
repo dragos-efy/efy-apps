@@ -1,5 +1,4 @@
 [efy_lang]{
---music_player:Music Player;
 --text_editor:Text Editor;
 --img_size:Image Size;
 --bar_position:Bar Position;
@@ -56,4 +55,6 @@
 --goal_note: Goal / Note;
 --time: Time;
 --vibration: Vibration;
+--contacts: Contacts;
+--storage: Storage;
 }
