@@ -4,10 +4,10 @@ $add('div', {class: 'nav'}, [
     ['div', {class: 'search_container'}, [
         ['div', {class: 'search_box'}, [
             ['input', {type: 'text', id: 'search_input', placeholder: 'Enter City', autofocus: ''}],
-            ['button', {id: 'search_btn', class: 'efy_square_btn', type: 'submit'}, [['i', {efy_icon: 'search'}]]]
+            ['button', {id: 'search_btn', class: 'efy_square_btn', type: 'submit', title: 'search'}, [['i', {efy_icon: 'search'}]]]
         ]]
     ]],
-    ['button', {class: 'efy_square_btn', efy_sidebar_btn: ''}, [['i', {efy_icon: 'menu'}]]]
+    ['button', {class: 'efy_square_btn', efy_sidebar_btn: '', title: 'menu'}, [['i', {efy_icon: 'menu'}]]]
 ]);
 $add('div', {class: 'glance efy_hide_i'}, [
     ['div', {efy_card: ''}, [
