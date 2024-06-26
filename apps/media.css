@@ -98,9 +98,20 @@ html, body {overflow: hidden}
     :is(label, input) {margin: 0}
     label {margin-bottom: 5rem}
 }
-:is([efy_content=effects], [efy_content=tags]) [type=range] {margin-top: 5rem!important}
-[efy_content=effects] [efy_range_text=Speed], [efy_content=tags] > div {margin-bottom: -5rem}
+[efy_content=effects] [efy_range_text=Speed] {margin-bottom: -5rem}
 [efy_content=grid] p:first-of-type {margin: -5rem 0 5rem 0}
+
+[efy_content=tags] {
+    .efy_flex {gap: var(--efy_gap0)}
+    [efy_range_text] {margin: 6rem 0 -8rem 0}
+}
+[efy_tabs=ms_menu] [efy_content=backup] {padding: 0;
+    label {margin: 0}
+    #md_storage_api, .api_options .efy_flex {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); padding: var(--efy_gap)}
+    .efy_hr_div {padding: 0 0 0 var(--efy_gap); gap: 8rem; line-height: 1;
+        * {margin: 0}
+    }
+}
 
 /*Filter*/ .ms_filter {display: flex; /*flex-direction: column;*/ padding: var(--efy_gap) var(--efy_gap) 0 var(--efy_gap); gap: var(--efy_gap0);
     .bar {display: flex; gap: var(--efy_gap0)}
@@ -155,14 +166,6 @@ html, body {overflow: hidden}
 }
 .test_thumbs {line-height: 200px;
     img {width: 200px; height: 200px; object-fit: cover; max-width: 200px; max-height: 200px; padding: 5px; vertical-align: middle; text-align: center}
-}
-
-[efy_tabs=ms_menu] [efy_content=backup] {padding: 0;
-    label {margin: 0}
-    #md_storage_api, .api_options .efy_flex {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); padding: var(--efy_gap)}
-    .efy_hr_div {padding: 0 0 0 var(--efy_gap); gap: 8rem; line-height: 1;
-        * {margin: 0}
-    }
 }
 
 

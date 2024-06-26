@@ -37,7 +37,7 @@ body {padding:0px; margin: 0px; position: relative}
             &.space {aspect-ratio: 2}
         }
     }
-    .efy_flex {margin-top: 5rem;
+    .efy_flex {margin-top: 15rem;
         button {margin: 0}
     }
 }

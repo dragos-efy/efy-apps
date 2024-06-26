@@ -1,4 +1,5 @@
 :root {overflow-x: hidden; --efy_body_padding: 0}
+body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 
 [pn_priority], .priority_color details:has([pn_priority]) button {background: var(--efy_text)!important}
 [pn_priority*=low], .priority_color details:has([pn_priority*=low]) button {background: oklch(var(--pn_tag_color_low))!important}
@@ -218,7 +219,7 @@ html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {margin: 0}
 
 #pn_theme {display: flex; flex-wrap: wrap; gap: var(--efy_gap0);
     .pn_title {line-height: 1; margin: 0; width: 100%}
-    :is([efy_color_preview], label) {margin: 0}
+    label {margin: 0}
 }
 
 #pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh);

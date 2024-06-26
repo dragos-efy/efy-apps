@@ -4,7 +4,7 @@ $add('div', {class: 'tc_container'}, [
   ['button', {efy_sidebar_btn: '', class: 'efy_square_btn'}, [['i', {efy_icon: 'flash'}]]]
 ]);
 
-$add('div', {id: 'torch_bg_color', efy_color: 'Background .6 .37 127 1', efy_tabs: 'torch_bg', efy_select: '', efy_card: ''}, '', $('#efy_modules'));
+$add('div', {id: 'torch_bg_color', efy_color: 'Background .6 .37 127 1 torch_bg', efy_tabs: 'torch_bg', efy_select: '', efy_card: ''}, '', $('#efy_modules'));
 
 $wait(.3, ()=>{
 const container = [$('#torch_bg_color .efy_tabs'), 'afterbegin'];
@@ -13,16 +13,11 @@ $add('label', {for: 'torch_switch'}, 'Torch', ...container);
 $add('input', {type: 'checkbox', id: 'torch_switch'}, '', ...container);
 $add('button', {class: 'fullscreen efy_square_btn'}, [['i', {efy_icon: 'fullscreen'}]], ...container);
 
-
-$event($('#torch_bg_color [efy_tab]'), 'click', (a)=>{
-  $('#torch_bg_color [efy_content]').toggleAttribute('efy_active');
+$event($('#torch_bg_color'), 'input', ()=>{
+  $css_prop('--torch_bg', $('#torch_bg_color #torch_bg + label').style.background);
 });
 
-$event($('#torch_bg_color'), 'input', (a)=>{
-  $css_prop('--torch_bg', $('#torch_bg_color [efy_tab="1"]').style.background);
-});
-
-$event($('#torch_bg_color .fullscreen'), 'click', (a)=>{
+$event($('#torch_bg_color .fullscreen'), 'click', ()=>{
   document.fullscreenElement ? document.exitFullscreen() : $('html').requestFullscreen()
 });
 

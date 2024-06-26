@@ -53,7 +53,7 @@ $add('div', {os_app: ''}, [
     ['div', {class: 'os_buttons'}, [
       ['div', {}, [ ['div', {efy_clock: ''}] ]],
     ]],
-    ['div', {class: 'os_buttons'}, [ ['div', {efy_select: ''}, [
+    ['div', {class: 'os_buttons'}, [ ['div', {efy_select: 'margin0'}, [
         ['button', {class: 'efy_square_btn', title: 'Apps', efy_toggle: '[efy_frames], [os_drawer]', style: 'display: flex; align-items: center; place-content: center'}, [ ['i', {efy_icon: 'dots', style: 'font-size: 18rem'}] ]],
         ['input', {id: 'os_drag_toggle', type: 'checkbox'}], ['label', {for: 'os_drag_toggle', class: 'efy_square_btn', title: 'Move'}, [ ['i', {efy_icon: 'move'}] ]],
         ['input', {id: 'os_remove', type: 'checkbox'}], ['label', {for: 'os_remove', class: 'efy_square_btn', title: 'Remove', efy_audio_mute: 'ok'}, [['i', {efy_icon: 'remove'}]]]
@@ -68,14 +68,17 @@ $add('div', {os_app: ''}, [
   ['summary', {}, [['i', {efy_icon: 'dots'}], ['p', {}, 'OS'], ['mark', {efy_lang: 'alpha'}]]],
     ['div', {efy_tabs: 'ms_menu', efy_select: ''}, [
       ['div', {class: 'efy_tabs'}, [
-        ['button', {efy_tab: 'grid', efy_lang: 'grid', efy_active: ''}],
-        ['button', {efy_tab: 'effects', efy_lang: 'effects'}],
-        ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
+        ['input', {type:'radio', id: 'os_tab_grid', efy_tab: 'grid', efy_active: ''}],
+        ['label', {for: 'os_tab_grid', efy_lang: 'grid'}],
+        ['input', {type:'radio', id: 'os_tab_effects', efy_tab: 'effects'}],
+        ['label', {for: 'os_tab_effects', efy_lang: 'effects'}],
+        ['input', {type:'radio', id: 'os_tab_tags', efy_tab: 'tags'}],
+        ['label', {for: 'os_tab_tags', efy_lang: 'tags'}]
       ]],
     ['div', {efy_content: 'effects', efy_select: '', id: 'ms_sidebar_speed'}, [
        ['div', {efy_lang: 'soon'}, '...']
     ]],
-    ['div', {efy_content: 'grid', efy_select: '', id: 'bar_position', efy_active: ''}, [
+    ['div', {efy_content: 'grid', efy_select: 'margin0', id: 'bar_position', efy_active: ''}, [
       ['p', {efy_lang: 'bar_position', style: 'margin-top: 0'}], ['div', {}, [
         ['input', {type: 'radio', id: 'bar_position_bottom', name: 'bar_position', checked: ''}], ['label', {for: 'bar_position_bottom', efy_lang: 'down', style: 'display: flex; align-items: center; width: fit-content'}],
         ['input', {type: 'radio', id: 'bar_position_top', name: 'bar_position'}], ['label', {for: 'bar_position_top', efy_lang: 'up', style: 'display: flex; align-items: center; width: fit-content'}],

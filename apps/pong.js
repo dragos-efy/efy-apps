@@ -67,15 +67,16 @@ let audio = {}; 'touch touch2'.split(' ').forEach(x =>{
 });
 
 /*Add Menu*/ $add('details', {id: 'pg_settings'}, [
-  ['summary', {}, [['i', {efy_icon: 'play'}], ['p', {}, 'Pong'], ['mark', {efy_lang: 'alpha'}]]],
+  ['summary', {}, [['i', {efy_icon: 'circle'}], ['p', {}, 'Pong'], ['mark', {efy_lang: 'alpha'}]]],
         ['div', {efy_tabs: 'pn_menu', efy_select: ''}, [
             ['div', {class: 'efy_tabs'}, [
-                /*Tabs*/
-                ['button', {efy_tab: 'theme', efy_lang: 'theme', efy_active: ''}],
-                ['button', {efy_tab: 'backup', efy_lang: 'backup'}],
-                ['button', {efy_tab: 'tags', efy_lang: 'tags'}]
+                ['input', {type:'radio', id: 'pg_tab_theme', efy_tab: 'theme', efy_active: ''}],
+                ['label', {for: 'pg_tab_theme', efy_lang: 'theme'}],
+                ['input', {type:'radio', id: 'pg_tab_backup', efy_tab: 'backup'}],
+                ['label', {for: 'pg_tab_backup', efy_lang: 'backup'}],
+                ['input', {type:'radio', id: 'pg_tab_tags', efy_tab: 'tags'}],
+                ['label', {for: 'pg_tab_tags', efy_lang: 'tags'}]
             ]],
-            /*Content*/
             ['div', {efy_content: 'backup', efy_select: '', id: 'pn_backup'}, [
                 ['div', {efy_lang: 'coming_soon'}]
             ]],

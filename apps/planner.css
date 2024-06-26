@@ -1,4 +1,5 @@
 :root {overflow-x: hidden; --pn_priority_0: var(--efy_text); --pn_priority_1: 85 100% 40%; --pn_priority_2: 50 100% 50%; --pn_priority_3: 0 100% 50%; --efy_body_padding: 0}
+body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 
 [pn_priority], #pn_goals.priority_color [pn_has] button, [efy_color*=pn_priority_0] [efy_color_preview] {background: var(--efy_text)!important}
 [pn_priority=low], #pn_goals.priority_color [pn_has=low] button, [efy_color*=pn_priority_1] [efy_color_preview] {background: hsl(var(--pn_priority_1))!important}
@@ -51,7 +52,7 @@
 
 .modal_grid .input-group details {width: 100%; margin: 0}
 
-.input-group.actions {padding: var(--efy_gap)}
+.input-group.actions {padding: var(--efy_gap) var(--efy_gap) var(--efy_gap00) var(--efy_gap)}
 .input-group.actions, .input-group.actions .buttons {display: flex; justify-content: space-between; align-items: center; gap: var(--efy_gap0)}
 .input-group.actions button {width: 100%; margin: 0}
 .input-group.actions button i {margin: 0}

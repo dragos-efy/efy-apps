@@ -220,9 +220,12 @@ $add('details', {id: 'pn_settings', class: 'eos_menu'}, [
     ]],
     ['div', {efy_tabs: 'pn_menu', efy_select: ''}, [
         ['div', {class: 'efy_tabs'}, [
-            ['button', {efy_tab: 'theme', efy_lang: 'theme', efy_active: ''}],
-            ['button', {efy_tab: 'backup', efy_lang: 'backup'}],
-            ['button', {efy_tab: 'tags', efy_lang: 'tags'}]
+            ['input', {type:'radio', id: 'pn_tab_theme', efy_tab: 'theme', efy_active: ''}],
+            ['label', {for: 'pn_tab_theme', efy_lang: 'theme'}],
+            ['input', {type:'radio', id: 'pn_tab_backup', efy_tab: 'backup'}],
+            ['label', {for: 'pn_tab_backup', efy_lang: 'backup'}],
+            ['input', {type:'radio', id: 'pn_tab_tags', efy_tab: 'tags'}],
+            ['label', {for: 'pn_tab_tags', efy_lang: 'tags'}]
         ]],
         ['div', {efy_content: 'backup', efy_select: '', id: 'pn_backup'}, [
             ['a', {role: 'button', class: 'pn_localstorage_export', efy_lang: 'save'}, [['i', {efy_icon: 'arrow_down'}]]],
@@ -250,7 +253,7 @@ $event($('#pn_theme'), 'input', ()=>{
         });
         content.push(`${values[2]} ${values[1]} ${values[0]} ${values[3]}`);
     });
-    $all('#pn_theme [efy_tab]').forEach((tag, i) =>{
+    $all('#pn_theme [efy_tab] + label').forEach((tag, i) =>{
         final.push(`${tag.textContent} ${content[i]}`);
     });
     efy_pn.tag_colors = String(final);

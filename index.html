@@ -22,11 +22,16 @@
 
 <div efy_tabs="dc" class="dc_nav efy_shadow_trans_off"><div class="dc_nav_div">
 <div class="dc_left efy_button_text_off">
-    <button efy_tab="efy" class="efy_trans_filter_off" efy_active>EFY</button>
-    <button efy_tab="faq" class="efy_trans_filter_off">FAQ</button>
-    <button efy_tab="apps" class="efy_trans_filter_off">Apps</button>
-    <button efy_tab="html" class="efy_trans_filter_off">HTML</button>
-    <button efy_tab="docs" class="efy_trans_filter_off">Docs</button>
+    <input id="dc_left_efy" type="radio" efy_tab="efy" name="dc_left" efy_active />
+    <label for="dc_left_efy" class="efy_trans_filter_off">EFY</label>
+    <input id="dc_left_faq" type="radio" efy_tab="faq" name="dc_left" />
+    <label for="dc_left_faq" class="efy_trans_filter_off">FAQ</label>
+    <input id="dc_left_apps" type="radio" efy_tab="apps" name="dc_left" />
+    <label for="dc_left_apps" class="efy_trans_filter_off">Apps</label>
+    <input id="dc_left_html" type="radio" efy_tab="html" name="dc_left" />
+    <label for="dc_left_html" class="efy_trans_filter_off">HTML</label>
+    <input id="dc_left_docs" type="radio" efy_tab="docs" name="dc_left" />
+    <label for="dc_left_docs" class="efy_trans_filter_off">Docs</label>
 </div><div class="dc_right">
     <label class="dc_search"><i efy_icon="search"></i><input type="text" efy_search_input placeholder="Search..." name="efy_name" /></label>
     <button efy_sidebar_btn class="efy_square_btn efy_trans_filter_off" title="Menu"><i efy_icon="menu"></i></button>
@@ -46,26 +51,59 @@
     <div class="dash_hide">
         <h2 efy_lang="join_future" efy_searchable></h2><p efy_lang="sidebar_about_text" efy_searchable></p>
         <div efy_searchable id ="dc_buttons" class="dc_cta" efy_searchable>
-            <button efy_sidebar_btn efy_lang="try_it"><i efy_icon="play"></i></button>
-            <a href="https://github.com/dragos-efy/efy" role="button" class="efy_btn_split efy_trans_filter" title="Github"><p><i efy_icon="github"></i></p><p>61</p></a>
-            <a href="https://matrix.to/#/#efy_ui:matrix.org" role="button" class="efy_btn_split efy_trans_filter"><p>Matrix</p><p>56</p></a>
+            <button efy_sidebar_btn efy_lang="try_it" tabindex="-1">
+                <input type="radio" name="dc_cta" />
+                <i efy_icon="play"></i>
+            </button>
+            <a href="https://github.com/dragos-efy/efy" tabindex="-1" role="button" class="efy_btn_split efy_trans_filter" title="Github">
+                <input type="radio" name="dc_cta" />
+                <p><i efy_icon="github"></i></p><p>61</p>
+            </a>
+            <a href="https://matrix.to/#/#efy_ui:matrix.org" tabindex="-1" role="button" class="efy_btn_split efy_trans_filter">
+                <input type="radio" name="dc_cta" />
+                <p>Matrix</p><p>58</p>
+            </a>
         </div>
     </div>
     <div>
 
         <div id ="dc_buttons" class="apps" efy_searchable>
-            <a href="./media.html" role="button" efy_card><i efy_icon="audio"></i><div class="column_flex"><div>Media</div><mark efy_lang="beta"></mark></div></a>
-            <a href="./planner.html" role="button" efy_card><i efy_icon="edit"></i><div class="column_flex"><div>Planner</div><mark efy_lang="beta"></mark></div></a>
-            <a href="https://efy.piped.pages.dev" role="button" efy_card><div class="logo"><svg class="piped_logo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 508 819" width="496" height="800"><path d="m0.4 27.8c0 0 7.3-5.4 20.3-12.7 7.3-3.1 16.4-6.4 26.8-9.3 10.9-2.2 23.1-4 35.6-4.9 12.8 0 25.8 0.8 38 2.4 12.1 2.4 23.3 5.6 32.7 8.9 18.2 8.5 29.6 15.6 29.6 15.6v749.9h-183z" /><path d="m242.1 163.5c0 0 0-9.7-0.1-22.3-0.2-5.6-0.4-11.9-0.6-18.2-0.2-6.3-0.4-13-0.6-19.9-0.1-7.4-0.1-15.5 0-23.8 0.3-9.3 0.7-19 1.2-28.2 1.3-21.2 2.6-37.7 2.6-37.7 0 0 14.6-1.2 39.3-1.4 5.9 0.4 12.4 1 19.4 1.8 6.9 0.9 14.3 2 22.1 3.5q11.3 2.9 23.4 7.1c8 2.8 16.3 6 24.7 9.7q12 6.5 24.1 14.5 12.1 8 24 17.6 11.3 10.3 22.1 22.1c6.8 8.2 13.4 16.8 19.7 25.9q8.9 14.1 16.8 29.3c4.8 10.4 9.2 21 13.2 32 3.5 11.1 6.6 22.4 9.2 33.9 2.1 11.6 3.7 23.3 4.8 35q1 17.6 0.3 35c-0.9 11.6-2.4 23-4.4 34.2q-0.9 4.1-1.9 8.2-1 4.1-2.1 8.1-1.2 4.1-2.4 8.1-1.2 4-2.5 8-1.5 3.8-3 7.6-1.6 3.8-3.3 7.5-1.6 3.8-3.4 7.4-1.7 3.7-3.6 7.4-2 3.4-4 6.8-2.1 3.4-4.2 6.7-2.2 3.4-4.4 6.6-2.3 3.3-4.6 6.5-2.4 3-4.9 6-2.5 2.9-5.1 5.8-2.6 2.8-5.2 5.6-2.7 2.8-5.4 5.6-2.9 2.4-5.8 4.8-2.9 2.4-5.9 4.7-3 2.3-6 4.6-3.1 2.2-6.2 4.4c-8.1 5.6-16.3 10.8-24.6 15.4-8.9 4-17.8 7.6-26.5 10.7-8.8 3.1-17.3 5.8-25.7 8.1-8.7 1.7-17.2 3.2-25.1 4.4-8 1.1-15.5 2-22.4 2.6-14.5 0.4-26.2 0.5-34.2 0.4-8 0-12.4-0.2-12.4-0.2 0 0 0.3-9.6 0.8-23.1 0.1-6.4 0.3-13.8 0.5-21.6 0.1-7.8 0.1-16.3 0.1-25.1-0.1-9.2-0.2-19-0.5-28.8-0.3-10.5-0.7-21.1-1.2-30.8-1.1-21.5-2.1-37.5-2.1-37.5 0 0 6.9 0.4 18.6 0.5 5.5-0.2 12.1-0.7 19.3-1.6 7-1.3 14.4-3 22-5.3 7.1-2.7 14.3-6.1 21.2-10.1q4.9-3.2 9.4-7 4.3-3.8 8.2-8.2 3.5-4.4 6.6-9.2 2.7-4.9 4.8-10.2 1.8-5.3 3-10.7 0.8-5.6 0.9-11.2-0.2-5.6-1.1-11.2-1.3-5.6-3.2-11-2.2-5.4-5-10.5-3.2-5.1-6.9-9.8-4-4.6-8.4-8.8-4.6-4.1-9.6-7.7c-7.2-4.5-14.5-8.4-21.9-11.7-7.8-2.9-15.5-5.2-22.6-7-7.5-1.5-14.3-2.5-20-3.2-12.1-0.9-19.3-1.1-19.3-1.1z" /><path d="m92 819c-50.9 0-92-16.5-92-37 0-20.5 41.1-37 92-37 50.9 0 92 16.5 92 37 0 20.5-41.1 37-92 37z" /><path d="m248.4 165c-22.5 0-40.7-34.1-40.7-76.3 0-42.1 18.2-76.2 40.7-76.2 22.4 0 40.6 34.1 40.6 76.3 0 42.1-18.2 76.2-40.6 76.2z" /><path d="m249.9 486c-22.5 0-40.6-37.5-40.6-84 0-46.5 18.1-84 40.6-84 22.5 0 40.6 37.6 40.6 84 0 46.5-18.1 84-40.6 84z" /></svg></div><div class="column_flex"><div>Piped</div><mark efy_lang="beta"></mark></div></a>
-            <a href="./money.html" role="button" efy_card><i efy_icon="group"></i><div class="column_flex"><div>Money</div><mark efy_lang="beta"></mark></div></a>
-            <a href="./calculator.html" role="button" efy_card><i efy_icon="plus"></i><div class="column_flex"><div>Calculator</div><mark efy_lang="alpha"></mark></div></a>
-            <a href="./converter.html" role="button" efy_card><i efy_icon="reload"></i><div class="column_flex"><div>Converter</div><mark efy_lang="alpha"></mark></div></a>
-            <a href="./os.html" role="button" efy_card><i efy_icon="dots"></i><div class="column_flex"><div>OS</div><mark efy_lang="alpha"></mark></div></a>
-            <a href="./weather.html" role="button" efy_card><i efy_icon="sun"></i><div class="column_flex"><div>Weather</div><mark efy_lang="alpha"></mark></div></a>
-            <a href="./pong.html" role="button" efy_card><i efy_icon="circle"></i><div class="column_flex"><div>Pong</div><mark efy_lang="alpha"></mark></div></a>
-            <a role="button" efy_card class="soon"><i efy_icon="heart"></i><div class="column_flex"><div>Themes</div><mark efy_lang="soon"></mark></div></a>
-            <a role="button" efy_card class="soon"><i efy_icon="key"></i><div class="column_flex"><div>Passwords</div><mark efy_lang="soon"></mark></div></a>
-            <a role="button" efy_card class="more"><i efy_icon="chevron"></i><div class="column_flex"><div>More</div><mark>Apps</mark></div></a>
+            <a href="./media.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="audio"></i><div class="column_flex"><div>Media</div><mark efy_lang="beta"></mark></div>
+            </a>
+            <a href="./planner.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="edit"></i><div class="column_flex"><div>Planner</div><mark efy_lang="beta"></mark></div>
+            </a>
+            <a href="https://efy.piped.pages.dev" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <div class="logo"><svg class="piped_logo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 508 819" width="496" height="800"><path d="m0.4 27.8c0 0 7.3-5.4 20.3-12.7 7.3-3.1 16.4-6.4 26.8-9.3 10.9-2.2 23.1-4 35.6-4.9 12.8 0 25.8 0.8 38 2.4 12.1 2.4 23.3 5.6 32.7 8.9 18.2 8.5 29.6 15.6 29.6 15.6v749.9h-183z" /><path d="m242.1 163.5c0 0 0-9.7-0.1-22.3-0.2-5.6-0.4-11.9-0.6-18.2-0.2-6.3-0.4-13-0.6-19.9-0.1-7.4-0.1-15.5 0-23.8 0.3-9.3 0.7-19 1.2-28.2 1.3-21.2 2.6-37.7 2.6-37.7 0 0 14.6-1.2 39.3-1.4 5.9 0.4 12.4 1 19.4 1.8 6.9 0.9 14.3 2 22.1 3.5q11.3 2.9 23.4 7.1c8 2.8 16.3 6 24.7 9.7q12 6.5 24.1 14.5 12.1 8 24 17.6 11.3 10.3 22.1 22.1c6.8 8.2 13.4 16.8 19.7 25.9q8.9 14.1 16.8 29.3c4.8 10.4 9.2 21 13.2 32 3.5 11.1 6.6 22.4 9.2 33.9 2.1 11.6 3.7 23.3 4.8 35q1 17.6 0.3 35c-0.9 11.6-2.4 23-4.4 34.2q-0.9 4.1-1.9 8.2-1 4.1-2.1 8.1-1.2 4.1-2.4 8.1-1.2 4-2.5 8-1.5 3.8-3 7.6-1.6 3.8-3.3 7.5-1.6 3.8-3.4 7.4-1.7 3.7-3.6 7.4-2 3.4-4 6.8-2.1 3.4-4.2 6.7-2.2 3.4-4.4 6.6-2.3 3.3-4.6 6.5-2.4 3-4.9 6-2.5 2.9-5.1 5.8-2.6 2.8-5.2 5.6-2.7 2.8-5.4 5.6-2.9 2.4-5.8 4.8-2.9 2.4-5.9 4.7-3 2.3-6 4.6-3.1 2.2-6.2 4.4c-8.1 5.6-16.3 10.8-24.6 15.4-8.9 4-17.8 7.6-26.5 10.7-8.8 3.1-17.3 5.8-25.7 8.1-8.7 1.7-17.2 3.2-25.1 4.4-8 1.1-15.5 2-22.4 2.6-14.5 0.4-26.2 0.5-34.2 0.4-8 0-12.4-0.2-12.4-0.2 0 0 0.3-9.6 0.8-23.1 0.1-6.4 0.3-13.8 0.5-21.6 0.1-7.8 0.1-16.3 0.1-25.1-0.1-9.2-0.2-19-0.5-28.8-0.3-10.5-0.7-21.1-1.2-30.8-1.1-21.5-2.1-37.5-2.1-37.5 0 0 6.9 0.4 18.6 0.5 5.5-0.2 12.1-0.7 19.3-1.6 7-1.3 14.4-3 22-5.3 7.1-2.7 14.3-6.1 21.2-10.1q4.9-3.2 9.4-7 4.3-3.8 8.2-8.2 3.5-4.4 6.6-9.2 2.7-4.9 4.8-10.2 1.8-5.3 3-10.7 0.8-5.6 0.9-11.2-0.2-5.6-1.1-11.2-1.3-5.6-3.2-11-2.2-5.4-5-10.5-3.2-5.1-6.9-9.8-4-4.6-8.4-8.8-4.6-4.1-9.6-7.7c-7.2-4.5-14.5-8.4-21.9-11.7-7.8-2.9-15.5-5.2-22.6-7-7.5-1.5-14.3-2.5-20-3.2-12.1-0.9-19.3-1.1-19.3-1.1z" /><path d="m92 819c-50.9 0-92-16.5-92-37 0-20.5 41.1-37 92-37 50.9 0 92 16.5 92 37 0 20.5-41.1 37-92 37z" /><path d="m248.4 165c-22.5 0-40.7-34.1-40.7-76.3 0-42.1 18.2-76.2 40.7-76.2 22.4 0 40.6 34.1 40.6 76.3 0 42.1-18.2 76.2-40.6 76.2z" /><path d="m249.9 486c-22.5 0-40.6-37.5-40.6-84 0-46.5 18.1-84 40.6-84 22.5 0 40.6 37.6 40.6 84 0 46.5-18.1 84-40.6 84z" /></svg></div><div class="column_flex"><div>Piped</div><mark efy_lang="beta"></mark></div>
+            </a>
+            <a href="./money.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="group"></i><div class="column_flex"><div>Money</div><mark efy_lang="beta"></mark></div>
+            </a>
+            <a href="./calculator.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="plus"></i><div class="column_flex"><div>Calculator</div><mark efy_lang="alpha"></mark></div>
+            </a>
+            <a href="./converter.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="reload"></i><div class="column_flex"><div>Converter</div><mark efy_lang="alpha"></mark></div>
+            </a>
+            <a href="./os.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="dots"></i><div class="column_flex"><div>OS</div><mark efy_lang="alpha"></mark></div>
+            </a>
+            <a href="./weather.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="sun"></i><div class="column_flex"><div>Weather</div><mark efy_lang="alpha"></mark></div>
+            </a>
+            <a href="./pong.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="circle"></i><div class="column_flex"><div>Pong</div><mark efy_lang="alpha"></mark></div>
+            </a>
+            <a href="./xo.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="remove"></i><div class="column_flex"><div>X & O</div><mark efy_lang="alpha"></mark></div>
+            </a>
+            <a href="./gamepads.html" efy_card tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="group"></i><div class="column_flex"><div>Gamepads</div><mark efy_lang="alpha"></mark></div>
+            </a>
+            <button efy_card class="more" tabindex="-1"><input type="radio" name="dc_apps">
+                <i efy_icon="chevron"></i><div class="column_flex"><div>More</div><mark>Apps</mark></div>
+            </button>
         </div>
     </div>
 
@@ -290,17 +328,22 @@ $add(<code>'div'</code>, {<code>efy_timer</code>: <code>'efy_demo, 5, reverse'</
 
                         <div efy_tabs="dc2">
                             <div class="efy_tabs">
-                                <button efy_tab="c4_1">1</button>
-                                <button efy_tab="c4_2" efy_active>2</button>
-                                <button efy_tab="c4_3">3</button>
+                                <input efy_tab="c4_1" type="radio" id="c4_1" name="c4" />
+                                <label for="c4_1">1</label>
+                                <input efy_tab="c4_2" type="radio" id="c4_2" name="c4" efy_active />
+                                <label for="c4_2">2</label>
+                                <input efy_tab="c4_3" type="radio" id="c4_3" name="c4" />
+                                <label for="c4_3">3</label>
                             </div>
                             <div efy_content="c4_1">1</div>
                             <div efy_content="c4_2" efy_active>2</div>
                             <div efy_content="c4_3">
                                 <div efy_tabs="dc3">
                                     <div class="efy_tabs" style="margin-top: 5rem">
-                                        <button efy_tab="e_1">4</button>
-                                        <button efy_tab="e_2" efy_active>5</button>
+                                        <input efy_tab="e_1" type="radio" id="e_1" name="e_" />
+                                        <label for="e_1">4</label>
+                                        <input efy_tab="e_2" type="radio" id="e_2" name="e_" efy_active />
+                                        <label for="e_2">5</label>
                                     </div>
                                     <div efy_content="e_1">4</div>
                                     <div efy_content="e_2" efy_active>5</div>
@@ -310,24 +353,21 @@ $add(<code>'div'</code>, {<code>efy_timer</code>: <code>'efy_demo, 5, reverse'</
 
                 </div>
                 <div efy_content="code" class="efy_trans_filter_off">
-                    <pre efy_code="logic"><ul><li>Add <code>efy_tabs</code> to a <code>div</code>. Inside, an <code>efy_tabs</code> class with nested <code>efy_tab</code> buttons and <code>efy_content</code> divs (where you can add your html)</li><li>Add <code>efy_active</code> to the <code>efy_tab</code> and <code>efy_content</code> you want open by default</li><li>The matching <code>efy_tab</code> and <code>efy_content</code> should have the same name and <code>efy_tabs</code> should have an unique name, unless you want to control a duplicate set of tabs</li><li>You can nest tabs if you add them inside an <code>efy_content</code> div</li></pre>
+                    <pre efy_code="logic"><ul><li>Add <code>efy_tabs</code> to a <code>div</code>. Inside, an <code>efy_tabs</code> class with nested <code>efy_tab</code> inputs + labels and <code>efy_content</code> divs (where you can add your html)</li><li>Add <code>efy_active</code> to the <code>efy_tab</code> and <code>efy_content</code> you want open by default</li><li>The matching <code>efy_tab</code> and <code>efy_content</code> should have the same name and <code>efy_tabs</code> should have an unique name, unless you want to control a duplicate set of tabs</li><li>You can nest tabs if you add them inside an <code>efy_content</code> div</li><li>We use <mark>input + label</mark> instead of <mark>button</mark> for tab names cuz they're more accessible & navigable with arrow keys</li></pre>
                     <pre efy_code="example · html" style="margin: 0">&lt;div <code>efy_tabs</code>=<code>"demo"</code>&gt;
-    &lt;div class=<code>"efy_tabs"</code>&gt;
-        &lt;button <code>efy_tab</code>=<code>"tab1"</code> <code>efy_active</code>&gt;Tab 1&lt;/button&gt;
-        &lt;button <code>efy_tab</code>=<code>"tab2"</code>&gt;Tab 2&lt;/button&gt;
-    &lt;/div&gt;
+    &lt;div class=<code>"efy_tabs"</code>&gt;<hr />        &lt;input <code>efy_tab</code>=<code>"tab1"</code> type="radio" <code>id</code>=<code>"tab_1"</code> <code>efy_active</code> /&gt;
+        &lt;label <code>for</code>=<code>"tab_1"</code>&gt;Tab 1&lt;/label&gt;<hr />        &lt;input <code>efy_tab</code>=<code>"tab2"</code> type="radio" <code>id</code>=<code>"tab_2"</code> /&gt;
+        &lt;label <code>for</code>=<code>"tab_2"</code>&gt;Tab 2&lt;/label&gt;<hr />    &lt;/div&gt;
     &lt;div <code>efy_content</code>=<code>"tab1"</code> <code>efy_active</code>&gt;Your HTML 1&lt;/div&gt;
     &lt;div <code>efy_content</code>=<code>"tab2"</code>&gt;Your HTML 2&lt;/div&gt;
 &lt;/div&gt;</pre>
                     <pre efy_code="example · js" style="margin: 0">$add('div', {<code>efy_tabs</code>: <code>'demo'</code>}, [
-    ['div', {class: <code>'efy_tabs'</code>}, [
-        ['button', {<code>efy_tab</code>: <code>'tab1'</code>, <code>efy_active</code>: ''}, 'Tab 1'],
-        ['button', {<code>efy_tab</code>: <code>'tab2'</code>}, 'Tab 2']
-    ]],
+    ['div', {class: <code>'efy_tabs'</code>}, [<hr />        ['input', {<code>efy_tab</code>: <code>'tab1'</code>, type: 'radio', <code>id</code>: <code>'tab_1'</code>, <code>efy_active</code>: ''}],
+        ['label', {<code>for</code>: <code>'tab1'</code>}, 'Tab 1'],<hr />        ['input', {<code>efy_tab</code>: <code>'tab2'</code>, type: 'radio', <code>id</code>: <code>'tab_2'</code>}],
+        ['label', {<code>for</code>: <code>'tab2'</code>}, 'Tab 2']<hr />    ]],
     ['div', {<code>efy_content</code>: <code>'tab1'</code>, <code>efy_active</code>: ''}, 'Your HTML 1'],
     ['div', {<code>efy_content</code>: <code>'tab2'</code>}, 'Your HTML 2']
 ])</pre>
-
                 </div>
             </div>
 

@@ -67,12 +67,16 @@ $add('div', {ms_app: ''}, [
 
 $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
   ['summary', {}, [ ['i', {efy_icon: 'audio'}], ['p', {efy_lang: 'media'}], ['mark', {efy_lang: 'beta'}] ]],
-    ['div', {efy_tabs: 'ms_menu', efy_select: ''}, [
+    ['div', {efy_tabs: 'ms_menu', efy_select: 'efy_select, margin0'}, [
     ['div', {class: 'efy_tabs'}, [
-      ['button', {efy_tab: 'effects', efy_lang: 'effects', efy_active: ''}],
-      ['button', {efy_tab: 'grid', efy_lang: 'grid'}],
-      ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
-      ['button', {efy_tab: 'backup', efy_lang: 'storage'}]
+        ['input', {type:'radio', id: 'md_tab_effects', efy_tab: 'effects', efy_active: ''}],
+        ['label', {for: 'md_tab_effects', efy_lang: 'effects'}],
+        ['input', {type:'radio', id: 'md_tab_grid', efy_tab: 'grid'}],
+        ['label', {for: 'md_tab_grid', efy_lang: 'grid'}],
+        ['input', {type:'radio', id: 'md_tab_tags', efy_tab: 'tags'}],
+        ['label', {for: 'md_tab_tags', efy_lang: 'tags'}],
+        ['input', {type:'radio', id: 'md_tab_backup', efy_tab: 'backup'}],
+        ['label', {for: 'md_tab_backup', efy_lang: 'storage'}]
     ]],
     ['div', {efy_content: 'effects', efy_select: '', id: 'ms_sidebar_speed', efy_active: ''}, [
       ['div', {class: 'ms_flex'}, [
@@ -101,17 +105,23 @@ $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
     ]],
     ['div', {efy_content: 'tags', efy_select: '', id: 'items'}, [
       ['div', {}, [
-        ['input', {type: 'checkbox', id: 'ms_song_info_image', name: 'song_info', checked: ''}], ['label', {for: 'ms_song_info_image', efy_lang: 'image'}],
-        ['input', {type: 'checkbox', id: 'ms_song_info_artist', name: 'song_info', checked: ''}], ['label', {for: 'ms_song_info_artist', efy_lang: 'artist'}],
-        ['input', {type: 'checkbox', id: 'ms_song_info_title', name: 'song_info', checked: ''}], ['label', {for: 'ms_song_info_title', efy_lang: 'title'}],
-        ['input', {type: 'checkbox', id: 'ms_song_info_album', name: 'song_info', checked: ''}], ['label', {for: 'ms_song_info_album', efy_lang: 'album'}],
-        ['input', {type: 'checkbox', id: 'ms_song_info_number', name: 'song_info'}], ['label', {for: 'ms_song_info_number', efy_lang: 'number'}],
+        ['div', {class: 'efy_flex'}, [
+          ['input', {type: 'checkbox', id: 'ms_song_info_image', name: 'song_info', checked: ''}],
+          ['label', {for: 'ms_song_info_image', efy_lang: 'image'}],
+          ['input', {type: 'checkbox', id: 'ms_song_info_artist', name: 'song_info', checked: ''}],
+          ['label', {for: 'ms_song_info_artist', efy_lang: 'artist'}],
+          ['input', {type: 'checkbox', id: 'ms_song_info_title', name: 'song_info', checked: ''}],
+          ['label', {for: 'ms_song_info_title', efy_lang: 'title'}],
+          ['input', {type: 'checkbox', id: 'ms_song_info_album', name: 'song_info', checked: ''}],
+          ['label', {for: 'ms_song_info_album', efy_lang: 'album'}],
+          ['input', {type: 'checkbox', id: 'ms_song_info_number', name: 'song_info'}],
+          ['label', {for: 'ms_song_info_number', efy_lang: 'number'}],
+          ['input', {type: 'checkbox', id: 'ms_song_info_custom_tags', name: 'song_info'}],
+          ['label', {for: 'ms_song_info_custom_tags', efy_lang: 'tags'}],
+        ]],
         ['div', {efy_range_text: 'Image Size', efy_lang: 'img_size'}, [
           ['input', {type: 'range', id: 'ms_img_size', min: '25', max: '65', step: '1', value: '50'}]
-        ]],
-        ['p', {}, 'Custom Tags'],
-        ['input', {type: 'checkbox', id: 'custom_tags_mode', name: 'custom_tags'}],
-        ['label', {for: 'custom_tags_mode', efy_lang: 'active'}]
+        ]]
       ]]
     ]],
     ['div', {efy_content: 'backup', efy_select: '', id: 'md_backup'}, [
@@ -156,7 +166,7 @@ if (efy_ms.pitch){ let a = efy_ms.pitch; pitch.checked = a; audio.preservesPitch
 if (efy_ms.bar_position){ let a = efy_ms.bar_position; $('[ms_app]').setAttribute('ms_app', a); $(`#bar_position_${a}`).checked = true}
 if (efy_ms.img_size){ let a = efy_ms.img_size; img_size.value = a.replace('rem', ''); $root.style.setProperty('--ms_thumb_height', a) }
 
-'image artist title album number'.split(' ').map(a=>{
+'image artist title album number custom_tags'.split(' ').map(a=>{
   if (typeof efy_ms[`tag_${a}`] !== 'undefined'){ $(`#ms_song_info_${a}`).checked = efy_ms[`tag_${a}`]}
 });
 
@@ -503,7 +513,7 @@ const $update_tag = (name, tagss, remove) => {
       }
 
       /*Tags - Checked*/
-      for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
+      for (let a = 'image artist title album number custom_tags'.split(' '), i = 0; i < a.length; i++){
         if ($(`#ms_song_info_${a[i]}`).checked){
           $all(c_track + ` .${a[i]}`).forEach(b=>{ b.classList.remove('efy_hide_i') })
         } else {
@@ -729,7 +739,7 @@ $all('.player').forEach(a=>{ $event(a, 'click', play_pause) });
 $body.setAttribute('id','ms_app'); $body.setAttribute('efy_search','.songs > .song');
 
 
-for (let a = 'image artist title album number'.split(' '), i = 0; i < a.length; i++){
+for (let a = 'image artist title album number custom_tags'.split(' '), i = 0; i < a.length; i++){
   $event($(`.efy_sidebar #ms_song_info_${a[i]}`), 'click', ()=>{ let b = $(`#ms_song_info_${a[i]}`), c = $all(`.songs .song .${a[i]}`);
     if (b.checked){ c.forEach((a)=>{ a.classList.remove('efy_hide_i') }) }
     else { c.forEach((a)=>{ a.classList.add('efy_hide_i') }) }

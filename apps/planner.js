@@ -137,9 +137,12 @@ $add('details', {id: 'pn_settings', class: 'eos_menu'}, [
   $add('summary', {}, [$add('i', {efy_icon: 'edit'}), $add('p', {}, ['Planner']), $add('mark', {efy_lang: 'alpha'})]),
         $add('div', {efy_tabs: 'pn_menu', efy_select: ''}, [
             ['div', {class: 'efy_tabs'}, [
-                ['button', {efy_tab: 'theme', efy_lang: 'theme', efy_active: ''}],
-                ['button', {efy_tab: 'backup', efy_lang: 'backup'}],
-                ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
+                ['input', {type:'radio', id: 'pn_tab_theme', efy_tab: 'theme', efy_active: ''}],
+                ['label', {for: 'pn_tab_theme', efy_lang: 'theme'}],
+                ['input', {type:'radio', id: 'pn_tab_backup', efy_tab: 'backup'}],
+                ['label', {for: 'pn_tab_backup', efy_lang: 'backup'}],
+                ['input', {type:'radio', id: 'pn_tab_tags', efy_tab: 'tags'}],
+                ['label', {for: 'pn_tab_tags', efy_lang: 'tags'}]
             ]],
             $add('div', {efy_content: 'backup', efy_select: '', id: 'pn_backup'}, [
                 $add('a', {role: 'button', class: 'pn_localstorage_export', efy_lang: 'save'}, [$add('i', {efy_icon: 'arrow_down'})]),
@@ -147,10 +150,6 @@ $add('details', {id: 'pn_settings', class: 'eos_menu'}, [
                 $add('button', {class: 'pn_localstorage_reset', efy_lang: 'reset'}, [$add('i', {efy_icon: 'reload'})]),
             ]),
             $add('div', {efy_content: 'theme', efy_select: '', id: 'pn_theme', efy_active: ''}, [
-                $add('p', {efy_lang: 'priority', class: 'pn_title'}),
-                $add('div', {efy_color: 'low, 85 100% 40%, pn_priority_1, lang'}),
-                $add('div', {efy_color: 'medium, 50 100% 50%, pn_priority_2, lang'}),
-                $add('div', {efy_color: 'high, 0 100% 50%, pn_priority_3, lang'}),
                 $add('input', {type: 'checkbox', name: 'pn_priority_custom', id: 'pn_priority_custom'}),
                 $add('label', {for: 'pn_priority_custom', efy_lang: 'inside_goal'})
             ]),
@@ -275,7 +274,6 @@ $pn_save_edits =()=>{ let goals = [], notes = [], links = [];
 
 /*Custom Colors*/ for (let i=1; i <= 3; i++){ let a = `priority_${i}`, b = `[efy_color*="${a}"]`, c = `pn_${a}`;
     if (efy_pn[a]){ $root.style.setProperty(`--${c}`, efy_pn[a])}
-    $event($(b), 'input', ()=>{ let d = $(`${b} .efy_color_picker_hsl`).value; $root.style.setProperty(`--${c}`, d); efy_pn[a] = d; $pn_save() });
 }
 $event($('#pn_priority_custom'), 'change', (a)=>{ $('#pn_goals').classList.toggle('priority_color'); efy_pn.priority_match = a.target.checked; $pn_save() });
 if (efy_pn.priority_match == true){ $('#pn_goals').classList.add('priority_color'); $('#pn_priority_custom').checked = true}

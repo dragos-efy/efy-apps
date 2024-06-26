@@ -57,7 +57,7 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'Web based operating system with efy apps inside. It has window tiling and it works regardless of your actual OS, but some features are limited compared to a real OS',
         'productivity offline static'
     ), $app_card(
-        'Text', '', 'menu', 'soon',
+        'Text', './text.html', 'menu', 'alpha',
         'Edit text files, dynamic syntax highlighting, multiple tabs, split view, custom text colors. Mainly for simple use cases, not competing with complex text editors',
         'productivity offline static'
     ), $app_card(
@@ -116,6 +116,14 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'Shade', './shade.html', 'shade', 'alpha',
         'Jump, go through objects, collect points, avoid enemies & find portals',
         'game fun offline static'
+    ), $app_card(
+        'Cubes', './cubes.html', 'square', 'alpha',
+        'Test experimental 3D objects in EFY',
+        '3d fun offline static'
+    ), $app_card(
+        'Empty', './empty.html', '', 'stable',
+        'Test efy on an empty page',
+        'productivity offline static'
     )
 
 ], $('div[efy_content=apps]'));

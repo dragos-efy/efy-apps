@@ -49,11 +49,14 @@ html, body {overflow: hidden}
 .os_grid_box {width: 100%; height: 100%; overflow-y: auto; border-radius: var(--efy_radius)}
 
 :is(.efy_sidebar details details):not([open]) {padding: 0 12rem}
+[efy_tabs=ms_menu] [efy_content=grid] p:first-of-type {line-height: 1; margin: 0 0 10rem 0}
 
-#bar_position div {display: flex; gap: var(--efy_gap0); flex-wrap: wrap}
-#bar_position div label {margin: 0}
-
-#bar_position [efy_range_text="Columns"] {margin-top: var(--efy_gap0); gap: 0}
+#bar_position {
+    div {display: flex; gap: var(--efy_gap0); flex-wrap: wrap;
+        label {margin: 0}
+    }
+    [efy_range_text="Columns"] {margin-top: var(--efy_gap0); gap: 0}
+}
 
 [os_bar] .mobile {display: none}
 [os_bar] .desktop {display: flex}

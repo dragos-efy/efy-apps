@@ -97,9 +97,12 @@ $add('details', {id: 'mn_settings', class: 'eos_menu'}, [
     ['summary', {}, [['i', {efy_icon: 'group'}], ['p', {efy_lang: 'money'}], ['mark', {efy_lang: 'beta'}]]],
         ['div', {efy_tabs: 'mn_menu', efy_select: ''}, [
             ['div', {class: 'efy_tabs'}, [
-                ['button', {efy_tab: 'backup', efy_lang: 'backup', efy_active: ''}],
-                ['button', {efy_tab: 'grid', efy_lang: 'grid'}],
-                ['button', {efy_tab: 'tags', efy_lang: 'tags'}],
+                ['input', {type:'radio', id: 'mn_tab_backup', efy_tab: 'backup', efy_active: ''}],
+                ['label', {for: 'mn_tab_backup', efy_lang: 'backup'}],
+                ['input', {type:'radio', id: 'mn_tab_grid', efy_tab: 'grid'}],
+                ['label', {for: 'mn_tab_grid', efy_lang: 'grid'}],
+                ['input', {type:'radio', id: 'mn_tab_tags', efy_tab: 'tags'}],
+                ['label', {for: 'mn_tab_tags', efy_lang: 'tags'}]
             ]],
             ['div', {efy_content: 'backup', efy_select: '', id: 'mn_backup', efy_active: ''}, [
                 ['a', {role: 'button', class: 'mn_localstorage_export', efy_lang: 'save'}, [['i', {efy_icon: 'arrow_down'}]]],

@@ -1,0 +1,36 @@
+
+:root {--efy_color_0deg: var(--efy_color); --efy_color_trans_0deg: var(--efy_color)}
+
+.view_3d {perspective: 400rem; height: calc(var(--efy_100vh) - var(--efy_gap2))}
+.cube {top: 50%; left: 25%; transform-style: preserve-3d; font-size: 8vmin;
+    transform: rotate3d(var(--i, -7), var(--j, 8), -2, var(--a, 45deg)) var(--p,  );
+    &, .face {position: absolute;}
+    .face {--i: 0; --j: 1; margin: -64rem; width: 128rem; height: 128rem;
+        transform: rotate3d(var(--i), var(--j), 0, var(--a)) translateZ(64rem);
+        background: var(--efy_color_0deg); background-origin: border-box;
+        backface-visibility: hidden; border: var(--efy_border);
+        &:nth-child(n + 5) {--i: 1; --j: 0}
+        &:nth-child(1) {--a: 0deg}
+        &:nth-child(2) {--a: 90deg}
+        &:nth-child(3) {--a: 180deg}
+        &:nth-child(4) {--a: 270deg}
+        &:nth-child(5) {--a: 90deg; background: var(--efy_color_last)}
+        &:nth-child(6) {--a: -90deg; background: var(--efy_color_first)}
+    }
+    &.trans {left: 50%;
+        .face {background: var(--efy_color_trans_0deg);
+            &:nth-child(5) {background: var(--efy_color_trans_last)}
+            &:nth-child(6) {background: var(--efy_color_trans_first)}
+        }
+    }
+    &.bg1 {left: 75%;
+        .face {background: var(--efy_bg1)}
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .cube {top: 20%; left: 50%;
+        &.trans {top: 50%}
+        &.bg1 {top: 80%; left: 50%}
+    }
+}

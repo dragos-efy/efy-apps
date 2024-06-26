@@ -97,7 +97,7 @@ $add('details', {efy_searchable: 'status'}, [
         ['mark', {efy_lang: 'soon'}], ['i', {efy_icon: 'chevron'}],
         ['mark', {efy_lang: 'alpha'}], ['i', {efy_icon: 'chevron'}],
         ['mark', {efy_lang: 'beta'}], ['i', {efy_icon: 'chevron'}],
-        ['mark', {}, 'Stable']
+        ['mark', {efy_lang: 'stable'}]
     ]], ['hr', {style: 'margin: 0'}],
     ['p', {}, [['mark', {efy_lang: 'soon'}], ['p', {}, '- unavailable, expected']]],
     ['p', {}, [['mark', {efy_lang: 'alpha'}], ['p', {}, '- unsafe, lots of bugs']]],
