@@ -52,6 +52,7 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
         }
         #dc_buttons.apps {max-width: 1000rem; place-content: center}
     }
+    [efy_content=apps]:not([efy_active]) {display: none}
     [efy_color] :is([type=number], [efy_number]) {margin-bottom: 10rem}
 }
 
