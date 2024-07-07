@@ -1,0 +1,64 @@
+/*Dynamic Font Loading*/
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_latin.woff2') format('woff2'); font-weight: normal; unicode-range: U+0000-007F}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_latin_a.woff2') format('woff2'); font-weight: normal; unicode-range: U+0100-017F}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_latin_b.woff2') format('woff2'); font-weight: normal; unicode-range: U+0180-024F}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_latin_1s.woff2') format('woff2'); font-weight: normal; unicode-range: U+00A0-00FF}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_latin_additional.woff2') format('woff2'); font-weight: normal; unicode-range: U+001E00-001EFF}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_cyrillic.woff2') format('woff2'); font-weight: normal; unicode-range: U+00400-0052F}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_extra.woff2') format('woff2'); font-weight: normal; unicode-range: U+00250-003FF}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_extra2.woff2') format('woff2'); font-weight: normal; unicode-range: U+002000-00FB4F}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_bold_latin.woff2') format('woff2'); font-weight: bold; unicode-range: U+0000-007F}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_bold_latin_a.woff2') format('woff2'); font-weight: bold; unicode-range: U+0100-017F}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_bold_latin_b.woff2') format('woff2'); font-weight: bold; unicode-range: U+0180-024F}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_bold_latin_1s.woff2') format('woff2'); font-weight: bold; unicode-range: U+00A0-00FF}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_bold_latin_additional.woff2') format('woff2'); font-weight: bold; unicode-range: U+001E00-001EFF}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_bold_cyrillic.woff2') format('woff2'); font-weight: bold; unicode-range: U+00400-0052F}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_bold_extra.woff2') format('woff2'); font-weight: bold; unicode-range: U+00250-003FF}
+@font-face {font-family: 'nunito'; src: url('../efy/fonts/nunito_bold_extra.woff2') format('woff2'); font-weight: bold; unicode-range: U+002000-00FB4F}
+
+/*Defaults*/ :root {
+    --efy_color: .7 .37 165 1, .8 .15 290 1, .75 .37 80 1;
+    /*No JS Fallback*/ --efy_color1_var: 70 100% 40%; --efy_color2_var: 110 100% 30%;
+    --efy_color_angle: 165deg;
+    --efy_radius: 12rem;
+    --efy_border_size: 1.5rem;
+    --efy_gap: 15rem;
+    --efy_sidebar_button: right_top, off;
+    --efy_body_width: 100%;
+    --efy_body_padding: var(--efy_gap);
+    --efy_font_family: 'nunito', sans-serif, emoji;
+    --efy_folder: ./efy;
+    --efy_audio_folder: ./efy/audio;
+    --efy_lang_folder: ./lang;
+    --efy_lang_code: en;
+    --efy_modules: efy_quick, efy_filters, efy_backup, efy_accessibility, efy_language, efy_audio, efy_extra;
+    --efy_protocol: file;
+}
+/*Default Mode*/ [efy_mode=default] {
+    --efy_scheme: dark;
+    --efy_bg_var: 1 0 0;
+    --efy_bg_var2: 0 0 0;
+    --efy_bg: oklch(0 0 0);
+    --efy_text: oklch(.9 0 0);
+
+    :is(.efy_sidebar, body) {background: transparent!important}
+    .efy_sidebar {backdrop-filter: blur(50rem); -webkit-backdrop-filter: blur(50rem)}
+}
+html[efy_mode=default]:not([efy_color_bgcol]) .efy_3d_bg {
+    background: linear-gradient(350deg, oklch(0.1 0 0 / 1), oklch(0.3 0.02 85 / 1))!important
+}
+
+/*View Transitions API*/ @keyframes vt_in {from {opacity: 0}} @keyframes vt_out {to { opacity: 0}}
+@keyframes vt_in_scale {from {transform: scale(0.1)}} @keyframes vt_out_scale {to { transform: scale(0.1)}}
+::view-transition-old(root) {animation: 90ms cubic-bezier(0.4, 0, 1, 1) both vt_out, 300ms cubic-bezier(0.4, 0, 0.2, 1) both vt_out_scale}
+::view-transition-new(root) {animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both vt_in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both vt_in_scale}
+
+/*EFY OS iFrames*/
+html.efy_iframe:not([eos=app]) {
+    &, :is(body, .efy_3d_bg) {background: transparent!important}
+    :is(.efy_3d_front, .efy_3d_back) {display: none}
+}
+.efy_iframe:not([eos=app]) {
+    .efy_sidebar :is(#efy_sbtheme, #efy_vfilters, #efy_backup, #efy_language, #efy_accessibility, #efy_audio, #efy_nature), .efy_sidebar > details > summary {display: none}
+    .efy_sidebar > details {background: transparent; padding: 0; border: 0; margin: 0; box-shadow: none!important}
+}

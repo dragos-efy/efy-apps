@@ -57,4 +57,7 @@
 --vibration: Vibration;
 --contacts: Contacts;
 --storage: Storage;
+--clear: Clear;
+--undo: Undo;
+--redo: Redo;
 }

@@ -5,8 +5,10 @@ const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy
     ['hr'],
     ['h6', {}, 'Rules'],
     ['hr'],
-    ['li', {}, '• Score 3 points to win'],
-    ['li', {}, '• 2 players required, but it will be between 1-4 players soon'],
+    ['div', {class: 'rules'}, [
+      ['li', {}, 'Score 3 points to win'],
+      ['li', {}, '2 players required, but it will be between 1-4 players soon']
+    ]],
     ['hr'],
     ['h6', {}, 'Controls'],
     ['hr'],
@@ -30,7 +32,7 @@ const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy
 
 $event($$(start, 'button'), 'click', ()=>{ start.remove();
 
-const confetti = $add('video', {id: 'confetti', src: './apps/assets/confetti.webm'});
+const confetti = $add('video', {id: 'confetti', src: './assets/confetti.webm'});
 
 $add('span', {id: 'body-container'}, [
   ['div', {class: 'top-container'}, [
@@ -60,7 +62,7 @@ let currentRod = rod2, size = 30, score1 = 0 , score2 = 0, game_start = false, d
 lives = 3, [lives1, lives2] = [lives, lives], not_initial = true , id;
 
 let audio = {}; 'touch touch2'.split(' ').forEach(x =>{
-  audio[x] = new Audio(`./apps/assets/${x}.webm`); audio[x].volume = 1
+  audio[x] = new Audio(`./assets/${x}.webm`); audio[x].volume = 1
 });
 'error'.split(' ').forEach(x => {
   audio[x] = new Audio(`./efy/audio/${x}.webm`); audio[x].volume = 1

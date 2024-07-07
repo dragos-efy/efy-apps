@@ -65,7 +65,7 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         "Experimental static file manager that allows you to create, read, update and delete files on your actual OS. Only works in chromium browsers (chrome, brave, edge, vivaldi etc). Very buggy currently, only use it for testing",
         'productivity offline static'
     ), $app_card(
-        'Injector', '', 'edit', 'soon',
+        'Injector', '', 'globe', 'soon',
         "Inject efy into normal websites and apps that don't have it. It won't work in all cases",
         'fun extension dynamic'
     ), $app_card(
@@ -124,6 +124,10 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
         'Empty', './empty.html', '', 'stable',
         'Test efy on an empty page',
         'productivity offline static'
+    ), $app_card(
+        'Draw', './draw.html', 'edit', 'alpha',
+        'Unleash your creativity with this simple drawing app',
+        'fun productivity offline static'
     )
 
 ], $('div[efy_content=apps]'));

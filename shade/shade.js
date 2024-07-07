@@ -8,8 +8,10 @@ const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy
     ['hr'],
     ['h6', {}, 'Rules'],
     ['hr'],
-    ['li', {}, '• Find the portal & collect points to increase your score'],
-    ['li', {}, '• Touching enemies kills you, so avoid them'],
+    ['div', {class: 'rules'}, [
+        ['li', {}, 'Find the portal & collect points to increase your score'],
+        ['li', {}, 'Touching enemies kills you, so avoid them'],
+    ]],
     ['hr'],
     ['h6', {}, 'Controls'],
     ['hr'],
@@ -29,7 +31,7 @@ const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy
 ]);
 
 $event($$(start, 'button'), 'click', ()=>{ start.remove();
-const confetti = $add('video', {id: 'confetti', src: './apps/assets/confetti.webm'});
+const confetti = $add('video', {id: 'confetti', src: './assets/confetti.webm'});
 
 
 /*Level File Loaded*/ $ready('.shade_level', (shade_level)=>{ shade_level.onload =()=>{
@@ -133,7 +135,7 @@ let keysPressed = {};
 document.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'r': resetLevel(); break;
-        case 'n' : $add('script', {class: 'shade_level', src: './apps/shade/level2.js'}); break;
+        case 'n' : $add('script', {class: 'shade_level', src: './shade/level2.js'}); break;
         case 'ArrowLeft': event.preventDefault(); break;
         case 'ArrowRight': event.preventDefault(); break;
         case 'ArrowUp': event.preventDefault(); break;
@@ -343,9 +345,9 @@ requestAnimationFrame(process);
 
 } });
 
-$add('script', {class: 'shade_level', src: './apps/shade/level1.js'});
+$add('script', {class: 'shade_level', src: './shade/level1.js'});
 
-console.log('test')
+console.log('shade: fully loaded')
 
 });
 

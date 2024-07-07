@@ -1,72 +1,13 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EFY Media</title><meta name="description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><link rel="icon" type="image/png" href="./icon.png"><link rel="apple-touch-icon" sizes="180x180" href="./icon.png"><meta property="og:type" content="website"><meta property="og:url" content="https://efy.ooo"><meta property="og:title" content="EFY Media"><meta property="og:description" content="Customizable, convergent, transparent, modular, futuristic css / js framework that can be added to your own html, web, local apps and websites"><meta name="robots" content="noindex, nofollow"><meta name="view-transition" content="same-origin" />
 
 <link rel="stylesheet" href="./efy/efy.min.css">
-<link rel="stylesheet" href="./apps/efy_global.css">
+<link rel="stylesheet" href="./global/efy_global.css">
 <script src="./efy/efy_local.min.js"></script>
-<link rel="stylesheet" href="./apps/media.css">
-<script src="./apps/efy_global.js"></script>
-<script src="./apps/music_tags.js"></script>
-<script src="./apps/media.js"></script>
+<link rel="stylesheet" href="./media/media.css">
+<script src="./global/efy_global.js"></script>
+<script src="./global/music_tags.js"></script>
+<script src="./media/media.js"></script>
 
 </head><body><noscript><p style="background: #000; color:#fff; border-radius: 16rem; padding: 16rem;">Please enable JavaScript to load the page properly and enjoy extra features</p><br></noscript>
-
-<script>$wait(2, ()=>{
-
-$all('#ms_upload').forEach(a=>{ a.addEventListener('change', function(event) {
-  var file = event.target.files[0];
-  var fileReader = new FileReader();
-  if (file.type.match('image')) {
-    fileReader.onload = function() {
-      var img = document.createElement('img');
-      img.src = fileReader.result;
-      $('.test_thumbs').appendChild(img);
-    };
-    fileReader.readAsDataURL(file);
-  } else {
-    fileReader.onload = function() {
-      var blob = new Blob([fileReader.result], {type: file.type});
-      var url = URL.createObjectURL(blob);
-      var video = document.createElement('video');
-      var timeupdate = function() {
-        if (snapImage()) {
-          video.removeEventListener('timeupdate', timeupdate);
-          video.pause();
-        }
-      };
-      video.addEventListener('loadeddata', function() {
-        if (snapImage()) {
-          video.removeEventListener('timeupdate', timeupdate);
-        }
-      });
-      var snapImage = function() {
-        var canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-        var image = canvas.toDataURL();
-        var success = image.length > 100000;
-        if (success) {
-          var img = document.createElement('img');
-          img.src = image;
-          $('.test_thumbs').appendChild(img);
-          URL.revokeObjectURL(url);
-        }
-        return success;
-      };
-      video.addEventListener('timeupdate', timeupdate);
-      video.preload = 'metadata';
-      video.src = url;
-       // document.querySelector('.vid').src = url;   <-- video url
-      // Load video in Safari / IE11
-      video.muted = true;
-      video.playsInline = true;
-      video.play();
-    };
-    fileReader.readAsArrayBuffer(file);
-  }
-}); });
-
-});
-</script>
 
 </body></html>
