@@ -6,27 +6,9 @@
 <script src="./efy/efy_local.min.js"></script>
 <script src="./global/efy_global.js"></script>
 
+<link rel="stylesheet" href="./keyboard/keyboard.css">
+<script src="./keyboard/keyboard.js"></script>
+
 </head><body><noscript><p style="background: #000; color:#fff; border-radius: 16rem; padding: 16rem;">Please enable JavaScript to load the page properly and enjoy extra features</p><br></noscript>
-
-<div class="kb_textarea">
-    <textarea id="kb_textarea" placeholder="Type something..."></textarea>
-</div>
-
-<style>
-body {height: var(--efy_100vh); display: flex; flex-direction: column}
-[efy_keyboard] {width: 100%;
-    [efy_key]:not(.efy_active):hover {background: var(--efy_text); -webkit-text-fill-color: var(--efy_text2)}
-}
-.kb_textarea {height: 100%; position: relative;
-    textarea {height: 100%; position: absolute}
-}
-</style>
-
-<script>
-$ready('[efy_keyboard]', (x)=>{
-    x.classList.remove('efy_hide_i');
-    $('body').setAttribute('efy_kb', '');
-});
-</script>
 
 </body></html>

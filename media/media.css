@@ -170,10 +170,10 @@ html, body {overflow: hidden}
 
 
 /*Convergence*/
- @media (max-width: 767.9px){
+@media (max-width: 767.9px){
     [ms_grid] {grid-template-columns: 1fr}
     #bar_position :is(#ms_grid_columns, [efy_range_text="Columns"]), [ms_bar] .desktop {display: none}
     [ms_bar] .mobile {display: flex}
     .audio_seeker {max-width: 100%}
     .ms_buttons {justify-content: space-between; width: 100%}
- }
+}

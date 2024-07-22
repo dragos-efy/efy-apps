@@ -33,7 +33,7 @@ mn_table = {
             ['td', {class: 'quantity'}, transaction.quantity],
             ['td', {class: CSSClass}, price],
             ['td', {class: 'date'}, transaction.date],
-            ['td', {}, [['button', {class: 'efy_square_btn', onClick: `Transaction.remove(${index})`}, [['i', {efy_icon: 'remove'}]]]]]
+            ['td', [['button', {class: 'efy_square_btn', onClick: `Transaction.remove(${index})`}, [['i', {efy_icon: 'remove'}]]]]]
         ], $('.mn_table tbody'));
     },
     update_balance() { let perc = ((Transaction.incomes() + Transaction.expenses()) / Transaction.incomes() * 100).toFixed(2);
@@ -94,7 +94,7 @@ App = {
 /*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
 $add('details', {id: 'mn_settings', class: 'eos_menu'}, [
-    ['summary', {}, [['i', {efy_icon: 'group'}], ['p', {efy_lang: 'money'}], ['mark', {efy_lang: 'beta'}]]],
+    ['summary', [['i', {efy_icon: 'group'}], ['p', {efy_lang: 'money'}], ['mark', {efy_lang: 'beta'}]]],
         ['div', {efy_tabs: 'mn_menu', efy_select: ''}, [
             ['div', {class: 'efy_tabs'}, [
                 ['input', {type:'radio', id: 'mn_tab_backup', efy_tab: 'backup', efy_active: ''}],

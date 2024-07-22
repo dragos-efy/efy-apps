@@ -5,9 +5,9 @@ const gamepads_selector = $add('div', {id: 'gamepads'}), gamepads_by_index = {};
 function add_gamepad(gamepad){
   const map = $add('div', {class: 'map'}, [
     ['div', {class: 'info'}, [
-      ['div', {}, [['div', {class: 'index'}], ['div', {class: 'id'}]]],
-      ['div', {}, [['div', {class: 'label'}, 'connected:'], ['span', {class: 'connected'}]]],
-      ['div', {}, [['div', {class: 'label'}, 'mapping:'], ['span', {class: 'mapping'}]]]
+      ['div', [['div', {class: 'index'}], ['div', {class: 'id'}]]],
+      ['div', [['div', {class: 'label'}, 'connected:'], ['span', {class: 'connected'}]]],
+      ['div', [['div', {class: 'label'}, 'mapping:'], ['span', {class: 'mapping'}]]]
     ]],
     ['div', {class: 'inputs'}, [['div', {class: 'axes'}], ['div', {class: 'buttons'}]]]
   ], gamepads_selector);

@@ -25,7 +25,7 @@ $event($('#folder_picker'), 'click', async () => {
             else if (entry.name.includes('.svg')){ icon = 'star'}
         } else { icon = 'dots'}
         $add('li', {efy_card: ''}, [
-            ['i', {efy_icon: icon}], ['p', {}, entry.name]
+            ['i', {efy_icon: icon}], ['p', entry.name]
         ], fileList);
     }
 });

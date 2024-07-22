@@ -5,9 +5,12 @@ $add('div', {id: 'cc_calculator', class: 'efy_trans_filter'}, [
     ['div', {id: 'buttons', class: 'cc_buttons'}]
 ]);
 
-for (let a = '% / * - + 7 8 9 ( ) 4 5 6 x² √ 1 2 3 π CE . 0 = C'.split(' '), b = 'pct div mul sub add 7 8 9 ptleft ptright 4 5 6 exp sqrt 1 2 3 pi bksp period 0 equal del'.split(' '), i = 0; i < a.length; i++){
+for (let a = '% / * - + 1 2 3 ( ) 4 5 6 x² √ 7 8 9 CE C . 0 π ='.split(' '),
+  b = 'pct div mul sub add 1 2 3 ptleft ptright 4 5 6 exp sqrt 7 8 9 del bksp period 0 pi equal'.split(' '),
+  i = 0; i < a.length; i++){
     $add('button', {id: b[i]}, [a[i]], $('#cc_calculator .cc_buttons'));
-} $add('button', {id: 'expand'}, [['i', {efy_icon: 'arrow_down'}]], $('#cc_calculator .cc_buttons #equal'), 'beforebegin');
+}
+$add('button', {efy_sidebar_btn: ''}, [['i', {efy_icon: 'dots'}]], $('#cc_calculator .cc_buttons #equal'), 'afterend');
 
 
 const display = $('#display'),

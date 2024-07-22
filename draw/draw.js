@@ -1,24 +1,24 @@
 $ready('#efy_sbtheme', ()=>{
 
 const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy_card: ''}, [
-    ['h1', {}, 'DRAW · DEMO'],
+    ['h1', 'DRAW · DEMO'],
     ['hr'],
     ['div', {class: 'rules'}, [
-      ['li', {}, 'Expect bugs! Custom background & zoom levels are coming soon...'],
-      ['li', {}, 'You can choose multiple main brush colors, sizes & shapes']
+      ['li', 'Expect bugs! Custom background & zoom levels are coming soon...'],
+      ['li', 'You can choose multiple main brush colors, sizes & shapes']
     ]],
     ['hr'],
-    ['h6', {}, 'Controls'],
+    ['h6', 'Controls'],
     ['hr'],
-    ['li', {}, [ ['p', {}, 'Draw: '], ['p', {class: 'key fit'}, 'Left Click'], ['p', {}, 'or'], ['p', {class: 'key fit'}, 'Touchscreen'] ]],
+    ['li', [ ['p', 'Draw: '], ['p', {class: 'key fit'}, 'Left Click'], ['p', 'or'], ['p', {class: 'key fit'}, 'Touchscreen'] ]],
     ['hr'],
-    ['li', {}, [ ['p', {}, 'Undo: '], ['p', {class: 'key fit'}, 'CTRL'], ['p', {}, '+'], ['p', {class: 'key'}, 'Z'] ]],
+    ['li', [ ['p', 'Undo: '], ['p', {class: 'key fit'}, 'CTRL'], ['p', '+'], ['p', {class: 'key'}, 'Z'] ]],
     ['hr'],
-    ['li', {}, [ ['p', {}, 'Redo: '], ['p', {class: 'key fit'}, 'CTRL'], ['p', {}, '+'], ['p', {class: 'key'}, 'X'] ]],
+    ['li', [ ['p', 'Redo: '], ['p', {class: 'key fit'}, 'CTRL'], ['p', '+'], ['p', {class: 'key'}, 'X'] ]],
     ['hr'],
-    ['li', {}, [ ['p', {}, 'Reset Canvas: '], ['p', {class: 'key fit'}, 'CTRL'], ['p', {}, '+'], ['p', {class: 'key'}, 'E'] ]],
+    ['li', [ ['p', 'Reset Canvas: '], ['p', {class: 'key fit'}, 'CTRL'], ['p', '+'], ['p', {class: 'key'}, 'E'] ]],
     ['hr'],
-    ['li', {}, [ ['p', {}, 'Save File: '], ['p', {class: 'key fit'}, 'CTRL'], ['p', {}, '+'], ['p', {class: 'key'}, 'S'] ]],
+    ['li', [ ['p', 'Save File: '], ['p', {class: 'key fit'}, 'CTRL'], ['p', '+'], ['p', {class: 'key'}, 'S'] ]],
     ['hr'],
     ['div', {class: 'efy_flex'}, [
         ['button', {id: 'start'}, 'Start'],
@@ -36,7 +36,7 @@ $add('div', {class: 'dw_color_menu', efy_card: ''}, [
     ['button', {id: 'clear', efy_lang: 'clear'}, [['i', {efy_icon: 'reload'}]]],
     ['button', {id: 'download', efy_lang: 'save', title: 'Ctrl + E'}, [['i', {efy_icon: 'arrow_down'}]]]
   ]],
-  ['div', {class: 'efy_hr_div'}, [['p', {}, 'Shapes'], ['hr']]],
+  ['div', {class: 'efy_hr_div'}, [['p', 'Shapes'], ['hr']]],
   ['div', {class: 'dw_shapes'}, [
     ['div', {id: 'pencil', class: 'dt-tools-container efy_square_btn', title: 'Brush'}, [['i', {efy_icon: 'edit'}]]],
     ['div', {id: 'highlighter', class: 'dt-tools-container efy_square_btn', title: 'Highlighter'}, [['i', {efy_icon: 'square'}]]],
@@ -64,7 +64,8 @@ let efy_dw = {
   brushSize: 2,
   fullSize: false, fullWidth: true, fullHeight: true,
   scale: 1,
-  lineCap: "round", lineJoin: "round"
+  lineCap: "round", lineJoin: "round",
+  pen_pressure: 1
 };
 
 
@@ -72,7 +73,8 @@ let efy_dw = {
 
   constants = {DATA_KEY: "paths"},
   isDrawing = false, paths = [], redo = [],
-  brushType = type.pencil;
+  brushType = type.pencil,
+  pressureValues = [];
 
   const initializeCanvasSize =()=>{
     canvas.width = $('#efy_dw').clientWidth;
@@ -81,12 +83,32 @@ let efy_dw = {
 
   clearOnlyScreen =()=>{ ctx.clearRect(0, 0, canvas.width, canvas.height)},
 
+  pen_pressure =(event)=>{
+    if (event.pressure !== undefined) efy_dw.pen_pressure = event.pressure.toFixed(2);
+    efy_dw.pointer_type = event.pointerType;
+  },
+
   drawPath =()=>{
     for (let i = 0; i < paths.length; i++) {
       const line = paths[i];
       const startPath = line[0];
       ctx.lineWidth = startPath[2].brushSize;
+
+      try { if (efy_dw.pointer_type === 'pen') {
+
+        for (let j = 0; j < line.length; j++) { pressureValues.push(efy_dw.pen_pressure)}
+
+        let gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+
+        for (let k = 0; k < pressureValues.length; k++){
+          gradient.addColorStop(k / (pressureValues.length - 1), `rgba(255, 0, 0, ${pressureValues[k]})`);
+        }
+
+        startPath[2].color = gradient;
+        console.log(startPath[2])
+      }} catch (error) {console.log(error.message)}
       ctx.strokeStyle = startPath[2].color;
+
       ctx.beginPath();
       ctx.moveTo(...startPath);
       for (let j = 0; j < line.length; j++) {
@@ -119,6 +141,7 @@ let efy_dw = {
   handleEnd =()=>{
     if (isDrawing){ save()}
     isDrawing = false;
+    pressureValues = [];
   },
 
   handleResize =()=>{
@@ -161,13 +184,13 @@ let efy_dw = {
     };
   },
 
-  brushColor =(color)=>{
+  brushColor =(color, pressure = 1)=>{
     let oklch = [], oklch1 = [];
     const color1 = $('.dw_color_menu [efy_color] [efy_content][efy_active]') || $('.dw_color_menu [efy_color] [efy_content]');
     oklch1.push($$(color1, '.lightness').value * 100);
     oklch1.push($$(color1, '.chroma').value * 100);
     oklch1.push($$(color1, '.hue').value);
-    const alpha1 = $$(color1, '.alpha').value;
+    const alpha1 = $$(color1, '.alpha').value * pressure;
     efy_dw.color = `rgb(${oklch2rgb(oklch1).join(', ')}, ${alpha1})`;
     $css_prop('--dw_current_color', efy_dw.color);
   },
@@ -237,6 +260,9 @@ $event(document, 'mouseup', handleEnd);
 $event(canvas, 'touchstart', handleStart);
 $event(canvas, 'touchmove', handleMove);
 $event(document, 'touchend', handleEnd);
+
+$event(canvas, 'pointermove', pen_pressure);
+// $event(canvas, 'pointerup', ()=> brushColor($('.dw_color_menu [efy_color]').value));
 
 $event(document, 'keydown', (event)=>{
   if (event.ctrlKey){ switch (event.key){

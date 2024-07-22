@@ -9,20 +9,29 @@
 
 :root {--efy_body_padding: 0}
 
+button :is(p,i) {pointer-events: none}
+
 html {overflow: hidden;
     [efy_tabs=dc] {
         & > [efy_content][efy_active] {background: transparent; width: 100%; border: 0;
             padding: 0 15rem 15rem 15rem; backdrop-filter: none!important; -webkit-backdrop-filter: none!important
         }
         & > [efy_content=docs][efy_active] {padding: 0;
-            .dc_separator [efy_tabs]:not([efy_tabs="dc2"], [efy_tabs="dc3"], [efy_color]), .columns, & h5 {padding: 0 var(--efy_gap);
-                &:last-of-type {padding-bottom: var(--efy_gap)}
+            .dc_separator [efy_tabs]:not([efy_tabs="dc2"], [efy_tabs="dc3"], [efy_color]), .columns {padding: 0 var(--efy_gap)}
+            h5 {padding: 10rem var(--efy_gap); margin: 15rem 0;
+                &:first-of-type {margin-top: 0}
+                &:last-of-type {margin-bottom: 0}
+                &:not(:first-of-type){ border-top: var(--efy_border)}
+                &:not(:last-of-type){ border-bottom: var(--efy_border);}
             }
             [efy_tabs="dc2"], [efy_tabs="dc3"] {margin: 0; width: 100%}
             [efy_tabs="dc3"] {padding: 0}
             [efy_tabs="dc3"] .efy_tabs {margin-top: 0 !important}
             [efy_tabs=demo_color_picker] [efy_content=preview] {display: block}
-}}}
+            details :is(li, pre, summary, p) *:not(.efy_bar, .efy_bar *) {display: inline}
+        }
+        .dc_separator pre *:not(.efy_bar, .efy_bar *, ul, li, hr) {display: inline}
+}}
 
 body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 #efy_docs {container: content0 / inline-size}
@@ -49,7 +58,9 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 }
 
 .dc_nav, .dc_nav_div {display: flex; justify-content: space-between; width: 100%}
-.dc_nav {flex-wrap: wrap; gap: var(--efy_gap)}
+.dc_nav {flex-wrap: wrap; gap: var(--efy_gap);
+    &:has([efy_content=docs][efy_active]){gap: unset}
+}
 .dc_nav_div {align-items: start; border-bottom: var(--efy_border); padding: var(--efy_gap0)}
 .dc_search {width: fit-content; height: fit-content; position: relative;
     & i {position: absolute; z-index: 2; 	width: fit-content; height: 100%; padding: calc(10rem + var(--efy_border_size))}
@@ -125,7 +136,7 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 .dc_grid {display:grid; gap: var(--efy_gap); grid-template-columns: 1fr 1fr}
 
 [efy_content=faq], [efy_content=docs] > .columns, .dc_separator {display: flex; gap: var(--efy_gap); flex-direction: row}
-[efy_content=faq] > div, [efy_content=docs] > .columns, .dc_separator > div {display: flex; gap: var(--efy_gap); flex-direction: column; width: 100%;
+[efy_content=faq] > div, [efy_content=docs] > .columns, .dc_separator > div {display: flex; flex-direction: column; width: 100%;
     hr {margin: 0 auto}
 }
 
@@ -136,7 +147,9 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 
 [efy_tabs=demo_select_menu] [efy_select] label {margin: calc(var(--efy_gap0) / 2) var(--efy_gap0) calc(var(--efy_gap0) / 2) 0}
 
-.hash_focus {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text)!important; border-radius: var(--efy_radius)}
+.hash_focus {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text)!important; border-radius: var(--efy_radius);
+    &.dc_code_preview {box-shadow: inset 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text)!important}
+}
 [efy_shadow*=trans] .hash_focus {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text), var(--efy_shadow_trans)!important}
 
 div:is([efy_content=apps], [efy_content=html]) + .loading {
@@ -193,7 +206,8 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
             &:before {right: 12rem!important}
 }}}
 
-.dc_code_preview {display: flex; gap: var(--efy_gap); flex-wrap: wrap; flex-direction: column; margin: 0;
+.dc_code_preview {display: flex; gap: var(--efy_gap); flex-direction: column; margin: 0;
+    border-bottom: var(--efy_border); padding: var(--efy_gap)!important;
     .tabs {display: flex; align-items: center; place-content: start;
         & button:not([efy_active]){background: linear-gradient(var(--efy_bg1), var(--efy_bg1))!important; -webkit-text-fill-color: var(--efy_text)!important}
         [efy_active]{background: linear-gradient(var(--efy_text), var(--efy_text)), linear-gradient(var(--efy_text_trans), var(--efy_text_trans))!important}
@@ -208,13 +222,15 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
         }
         & > button {margin: 0}
     }
+    hr {height: 0}
+    .new_line {display: none!important}
 }
+
 [efy_tabs=demo_color_picker] [efy_content=preview] {display: block}
 
 .dc_separator {gap: 0; border-top: var(--efy_border);
-    & > div {padding-top: var(--efy_gap);
-        &:first-of-type {border-right: var(--efy_border)}
-}}
+    & > div:first-of-type {border-right: var(--efy_border)}
+}
 
 /*Convergence*/
 @container content0 (max-width: 1100px){
@@ -238,7 +254,7 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
             & > h2 {margin-top: 10rem; font-size: 11.1cqw}
             & > p {font-size: 20rem}
     }}
-    .dc_right .dc_search, .dc_show_tablet {display: none!important}
+    .dc_right .dc_search {display: none!important}
     [efy_content=faq], [efy_content=docs] > .columns, .dc_separator {flex-direction: column}
     [efy_tabs=dc] [efy_content=docs] > .columns > div {width: 100%}
     .dc_separator > div {
@@ -253,10 +269,6 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
         :is(#dc_buttons, #dc_buttons.apps) {place-content: start}
     }
     div:is([efy_content=apps], [efy_content=html]) + .loading {min-height: calc(var(--efy_100vh) - (var(--efy_size) * 2 + var(--efy_gap) * 3))}
-}
-@container content0 (min-width: 767.9px){
-    .dc_hide_tablet {display: none}
-    [efy_tabs="demo_tabs"] {padding-bottom: 0!important}
 }
 @media screen and (max-width: 767.9px){
     [efy_tabs=dc] > [efy_content=efy], .dc_grid {grid-template-columns: 1fr}

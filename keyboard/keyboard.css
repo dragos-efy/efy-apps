@@ -1,0 +1,7 @@
+body {height: var(--efy_100vh); display: flex; flex-direction: column}
+[efy_keyboard] {width: 100%;
+    [efy_key]:not(.efy_active):hover {background: var(--efy_text); -webkit-text-fill-color: var(--efy_text2)}
+}
+.kb_textarea {height: 100%; position: relative;
+    textarea {height: 100%; position: absolute}
+}

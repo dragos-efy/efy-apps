@@ -11,17 +11,17 @@ $add('div', {id: 'builder'}, [
         ]],
         ['div', {efy_tabs: 'components'}, [
             ['div', {class: 'efy_tabs'}, [
-                ['button', {efy_tab: 'basic', efy_active: ''}, [['i', {efy_icon: 'dots'}], ['p', {}, 'Basic']] ],
-                ['button', {efy_tab: 'extra'}, [['i', {efy_icon: 'star'}], ['p', {}, 'Extra']] ],
-                ['button', {efy_tab: 'custom'}, [['i', {efy_icon: 'heart'}], ['p', {}, 'Custom']] ]
+                ['button', {efy_tab: 'basic', efy_active: ''}, [['i', {efy_icon: 'dots'}], ['p', 'Basic']] ],
+                ['button', {efy_tab: 'extra'}, [['i', {efy_icon: 'star'}], ['p', 'Extra']] ],
+                ['button', {efy_tab: 'custom'}, [['i', {efy_icon: 'heart'}], ['p', 'Custom']] ]
             ]],
             ['div', {efy_content: 'basic', efy_active: ''}, [
-                ['button', {id: 'clockButton'}, [['i', {efy_icon: 'globe'}], ['p', {}, 'Clock']] ],
-                ['button', {id: 'rectangleButton'}, [['i', {efy_icon: 'play'}], ['p', {}, 'Button']] ],
-                ['button', {id: 'image'}, [['i', {efy_icon: 'audio'}], ['p', {}, 'Audio']] ],
-                ['button', {id: 'calendar'}, [['i', {efy_icon: 'dots'}], ['p', {}, 'Calendar']] ],
-                ['button', {id: 'image'}, [['i', {efy_icon: 'menu'}], ['p', {}, 'Text']] ],
-                ['button', {id: 'calendar'}, [['i', {efy_icon: 'circle'}], ['p', {}, 'Color Picker']] ]
+                ['button', {id: 'clockButton'}, [['i', {efy_icon: 'globe'}], ['p', 'Clock']] ],
+                ['button', {id: 'rectangleButton'}, [['i', {efy_icon: 'play'}], ['p', 'Button']] ],
+                ['button', {id: 'image'}, [['i', {efy_icon: 'audio'}], ['p', 'Audio']] ],
+                ['button', {id: 'calendar'}, [['i', {efy_icon: 'dots'}], ['p', 'Calendar']] ],
+                ['button', {id: 'image'}, [['i', {efy_icon: 'menu'}], ['p', 'Text']] ],
+                ['button', {id: 'calendar'}, [['i', {efy_icon: 'circle'}], ['p', 'Color Picker']] ]
             ]]
         ]]
     ]],
@@ -54,7 +54,7 @@ $event(add_clock, 'click', ()=>{
 });
 
 $event(add_rectangle, 'click', ()=>{
-    const clock = $add('div', {id: 'rectangle'}, [['p', {}, 'Button']], preview);
+    const clock = $add('div', {id: 'rectangle'}, [['p', 'Button']], preview);
     addComponent(rectangle);
 });
 

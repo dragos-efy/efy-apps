@@ -11,25 +11,25 @@ $add('div', {class: 'nav'}, [
 ]);
 $add('div', {class: 'glance efy_hide_i'}, [
     ['div', {efy_card: ''}, [
-        ['div', {}, [ ['i', {efy_icon: 'globe'}], ['p', {class: 'city', id: 'city'}] ]],
+        ['div', [ ['i', {efy_icon: 'globe'}], ['p', {class: 'city', id: 'city'}] ]],
         ['hr'],
-        ['div', {}, [ ['i', {efy_icon: 'arrow'}], ['p', {}, 'Now:'], ['p', {class: 'temp_now'}] ]],
+        ['div', [ ['i', {efy_icon: 'arrow'}], ['p', 'Now:'], ['p', {class: 'temp_now'}] ]],
         ['hr'],
         ['div', {class: 'img_des'}]
     ]],
     ['div', {efy_card: ''}, [
-        ['div', {}, [ ['i', {efy_icon: 'rain'}], ['p', {}, 'Humidity:'], ['div', {id: 'humidity'}] ]],
+        ['div', [ ['i', {efy_icon: 'rain'}], ['p', 'Humidity:'], ['div', {id: 'humidity'}] ]],
         ['hr'],
-        ['div', {}, [ ['i', {efy_icon: 'arrow_up'}], ['p', {}, 'Pressure:'], ['div', {id: 'pressure'}] ]],
+        ['div', [ ['i', {efy_icon: 'arrow_up'}], ['p', 'Pressure:'], ['div', {id: 'pressure'}] ]],
         ['hr'],
-        ['div', {}, [ ['i', {efy_icon: 'cloud'}], ['p', {}, 'Wind Speed:'], ['div', {id: 'wind_speed'}] ]],
+        ['div', [ ['i', {efy_icon: 'cloud'}], ['p', 'Wind Speed:'], ['div', {id: 'wind_speed'}] ]],
     ]],
     ['div', {efy_card: ''}, [
-        ['div', {}, [ ['i', {efy_icon: 'sun'}], ['p', {}, 'Sunrise:'], ['p', {id: 'sun'}] ]],
+        ['div', [ ['i', {efy_icon: 'sun'}], ['p', 'Sunrise:'], ['p', {id: 'sun'}] ]],
         ['hr'],
-        ['div', {}, [ ['i', {efy_icon: 'moon'}], ['p', {}, 'Sunset:'], ['p', {id: 'moon'}] ]],
+        ['div', [ ['i', {efy_icon: 'moon'}], ['p', 'Sunset:'], ['p', {id: 'moon'}] ]],
         ['hr'],
-        ['div', {}, [ ['i', {efy_icon: 'group'}], ['p', {}, 'Feels Like:'], ['p', {id: 'feels_like'}] ]]
+        ['div', [ ['i', {efy_icon: 'group'}], ['p', 'Feels Like:'], ['p', {id: 'feels_like'}] ]]
     ]]
 ]);
 $add('div', {class: 'graph efy_hide_i'});
@@ -39,15 +39,6 @@ const graph = $('.graph'), search = $('#search_input'), search_btn = $('#search_
 city = $('#city'), imagedes = $('.img_des'), temp_now = $('.temp_now'), feels_like = $('#feels_like'),
 humidity = $('#humidity'), pressure = $('#pressure'), wind_speed = $('#wind_speed'), sun = $('#sun'),
 moon = $('#moon'), days = 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday'.split(' ');
-
-/*Get Current location*/
-// const geolocation =()=>{
-//     if (navigator.geolocation) navigator.geolocation.getCurrentPosition(geolocation_success);
-// },
-// geolocation_success =(position)=>{
-//     let {latitude, longitude} = position.coords;
-//     api_call(latitude, longitude);
-// };
 
 const send_wether_request =()=>{
     if (search.value != ''){ flag = 1; api_call(search.value)}
@@ -78,7 +69,7 @@ time_convert = (unix, timezone = 0, format)=>{
 /*Fill Weather Details*/ details =(data)=>{ console.log(data);
     /*Empty Before Updating Content*/ imagedes.innerHTML = ''; graph.innerHTML = '';
     const degrees = '°' + (metric ? 'C' : 'F');
-    let dt = data.list.dt;
+    let dt = data.list.dt, day_container;
 
     /*Today*/
 
@@ -106,16 +97,21 @@ time_convert = (unix, timezone = 0, format)=>{
     data.list.forEach((day, i)=> temp.push(day.main.temp));
     const normalized = normalize(temp);
 
-    normalized.forEach((a,i)=>{ const day = data.list[i], dt = day.dt;
+    normalized.forEach((a,i)=>{
+        const day = data.list[i], dt = day.dt, hour = time_convert(dt, timezone);
+        if ((i === 0) || (hour === '00:00') || (hour === '01:00') || (hour === '02:00')){
+            day_container = $add('div', {class: 'day_container'}, [
+                ['p', time_convert(dt, timezone, 'day')]
+            ], graph);
+        }
         $add('div', {class: 'bar'}, [
             ['div', {class: 'level', style: `height: calc(${a}% - 154.6rem)`}],
             ['div', {efy_card: ''}, [
-                ['div', {class: 'time'}, time_convert(dt, timezone)],
-                ['div', {class: 'day'}, time_convert(dt, timezone, 'day')],
+                ['div', {class: 'time'}, hour],
                 ['i', {efy_icon: vibe_icon(day)}],
                 ['div', {class: 'temp'}, temp[i] + degrees]
             ]]
-        ], graph);
+        ], day_container);
     });
     $all('.glance, .graph').forEach(a => a.classList.remove('efy_hide_i'));
 };

@@ -4,25 +4,25 @@ $ready('#efy_sbtheme', ()=>{
 
 
 const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy_card: ''}, [
-    ['h1', {}, 'SHADE · DEMO'],
+    ['h1', 'SHADE · DEMO'],
     ['hr'],
-    ['h6', {}, 'Rules'],
+    ['h6', 'Rules'],
     ['hr'],
     ['div', {class: 'rules'}, [
-        ['li', {}, 'Find the portal & collect points to increase your score'],
-        ['li', {}, 'Touching enemies kills you, so avoid them'],
+        ['li', 'Find the portal & collect points to increase your score'],
+        ['li', 'Touching enemies kills you, so avoid them'],
     ]],
     ['hr'],
-    ['h6', {}, 'Controls'],
+    ['h6', 'Controls'],
     ['hr'],
-    ['li', {}, [
-        ['p', {}, 'Move & Jump: '],
+    ['li', [
+        ['p', 'Move & Jump: '],
         ['i', {efy_icon: 'arrow_left'}], ['i', {efy_icon: 'arrow_down'}], ['i', {efy_icon: 'arrow'}], ['i', {efy_icon: 'arrow_up'}]
     ]],
     ['hr'],
-    ['li', {}, [ ['p', {}, 'Reset: '], ['p', {class: 'key'}, 'R'] ]],
+    ['li', [ ['p', 'Reset: '], ['p', {class: 'key'}, 'R'] ]],
     ['hr'],
-    ['li', {}, [ ['p', {}, 'Next Level: '], ['p', {class: 'key'}, 'N'] ]],
+    ['li', [ ['p', 'Next Level: '], ['p', {class: 'key'}, 'N'] ]],
     ['hr'],
     ['div', {class: 'efy_flex'}, [
         ['button', {id: 'start'}, 'Start'],

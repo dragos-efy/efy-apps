@@ -20,7 +20,7 @@ const player_bar = ['div', {ms_bar: '', class: 'efy_trans_filter efy_shadow_tran
     ['div', {class: 'audio_seeker'}, [
       ['canvas'],
       ['input', {type: 'range', max: '100', id: 'seeker_slider', value: '0'}],
-      ['div', {class: 'ms_time_text', efy_card: ''}, [ ['p', {class: 'seeker-start-value'}, '0:00'], ['p', {}, '/'], ['p', {class: 'seeker-end-value'}, '0:00'] ]]
+      ['div', {class: 'ms_time_text', efy_card: ''}, [ ['p', {class: 'seeker-start-value'}, '0:00'], ['p', '/'], ['p', {class: 'seeker-end-value'}, '0:00'] ]]
     ]],
     ['div', {class: 'desktop ms_buttons2'}, [
       ['button', {class: 'ms_speed_text efy_button_text_off', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, '1X'],
@@ -66,7 +66,7 @@ $add('div', {ms_app: ''}, [
 ]);
 
 $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
-  ['summary', {}, [ ['i', {efy_icon: 'audio'}], ['p', {efy_lang: 'media'}], ['mark', {efy_lang: 'beta'}] ]],
+  ['summary', [ ['i', {efy_icon: 'audio'}], ['p', {efy_lang: 'media'}], ['mark', {efy_lang: 'beta'}] ]],
     ['div', {efy_tabs: 'ms_menu', efy_select: 'efy_select, margin0'}, [
     ['div', {class: 'efy_tabs'}, [
         ['input', {type:'radio', id: 'md_tab_effects', efy_tab: 'effects', efy_active: ''}],
@@ -93,7 +93,7 @@ $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
       ]]
     ]],
     ['div', {efy_content: 'grid', efy_select: '', id: 'bar_position'}, [
-      ['p', {efy_lang: 'bar_position'}], ['div', {}, [
+      ['p', {efy_lang: 'bar_position'}], ['div', [
         ['input', {type: 'radio', id: 'bar_position_bottom', name: 'bar_position', checked: ''}],
         ['label', {for: 'bar_position_bottom', efy_lang: 'down', style: 'display: flex; align-items: center; width: fit-content'}],
         ['input', {type: 'radio', id: 'bar_position_top', name: 'bar_position'}],
@@ -104,7 +104,7 @@ $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
       ]]
     ]],
     ['div', {efy_content: 'tags', efy_select: '', id: 'items'}, [
-      ['div', {}, [
+      ['div', [
         ['div', {class: 'efy_flex'}, [
           ['input', {type: 'checkbox', id: 'ms_song_info_image', name: 'song_info', checked: ''}],
           ['label', {for: 'ms_song_info_image', efy_lang: 'image'}],
@@ -132,7 +132,7 @@ $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
         ['label', {for: 'filesystem_access'}, 'File System Access']
       ]],
       ['div', {class: 'api_options efy_hide_i'}, [
-        ['div', {class: 'efy_hr_div'}, [ ['p', {}, 'API Options'],  ['hr']]],
+        ['div', {class: 'efy_hr_div'}, [ ['p', 'API Options'],  ['hr']]],
         ['div', {class: 'efy_flex'}, [
           ['input', {type: 'checkbox', id: 'md_storage_restore'}],
           ['label', {for: 'md_storage_restore'}, 'Restore'],

@@ -1,5 +1,28 @@
+/*Storage*/ let  efy_xo = {}, $xo_save =()=>{};
+try {
+    if (localStorage.efy_xo){ efy_xo = JSON.parse(localStorage.efy_xo)}
+    else { efy_xo = {X: 'X', O: 'O'}}
+    $xo_save =()=>{ localStorage.efy_xo = JSON.stringify(efy_xo)}
+} catch {}
+
 $ready('#efy_sbtheme', ()=>{
 
+$add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
+  ['summary', [ ['i', {efy_icon: 'play'}], ['p', 'XO'], ['mark', {efy_lang: 'alpha'}] ]],
+  ['hr'],
+  ['div', {class: 'xo_menu'}, [
+    ['p', 'Player Icons'],
+    ['input', {id: 'xo_rename_x', type: 'text', maxlength: 2, value: efy_xo.X}],
+    ['input', {id: 'xo_rename_o', type: 'text', maxlength: 2, value: efy_xo.O}]
+  ]]
+], $('#efy_modules'));
+
+$event($('.xo_menu'), 'input', (event)=>{
+  const target = event.target, value = target.value;
+  if (target.matches('#xo_rename_x') && value !== ''){ efy_xo.X = value}
+  else if (target.matches('#xo_rename_o') && value !== ''){ efy_xo.O = value}
+  $xo_save();
+})
 
 $add('div', {class: 'xo_body'}, [
   ['div', {ttt: '', efy_select: ''}, [
@@ -25,7 +48,7 @@ let a = $all('.cells div'); for (let i = 0; i < a.length; i++){ a[i].setAttribut
 
 function ttt(cellIndex){
   if (gameState[cellIndex] === '' && gameActive){
-    gameState[cellIndex] = currentPlayer; $all('.cells div')[cellIndex].innerText = currentPlayer;
+    gameState[cellIndex] = currentPlayer; $all('.cells div')[cellIndex].innerText = efy_xo[currentPlayer];
     if (checkWin() || checkDraw()){ gameActive = false; $('#result').innerText = 'Game Over'; let y = $('#pn_confetti'); y.currentTime = 0; y.play()}
     else { currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
       if (gameActive && currentPlayer === "O" && !$('#players').checked){ makeAutomatedMove()}
@@ -55,7 +78,7 @@ function makeAutomatedMove(){ /*Find an empty cell for the move*/ let emptyCells
     if (gameState[i] === ''){ emptyCells.push(i)}
   }
   /*Choose a random empty cell*/ const randomIndex = Math.floor(Math.random() * emptyCells.length), cellIndex = emptyCells[randomIndex];
-  /*Move AI Player*/ gameState[cellIndex] = currentPlayer; $all('.cells div')[cellIndex].innerText = currentPlayer;
+  /*Move AI Player*/ gameState[cellIndex] = currentPlayer; $all('.cells div')[cellIndex].innerText = efy_xo[currentPlayer];
   if (checkWin() || checkDraw()){ gameActive = false; $('#result').innerText = 'Game Over'}
   else {/*Switch back to human player*/ currentPlayer = currentPlayer === 'X' ? 'O' : 'X'}
 }

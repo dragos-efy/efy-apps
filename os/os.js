@@ -51,7 +51,7 @@ $add('div', {os_app: ''}, [
     ]]]],
   /*Dock*/ ['div', {os_bar: '', class: 'efy_trans_filter efy_shadow_trans'}, [
     ['div', {class: 'os_buttons'}, [
-      ['div', {}, [ ['div', {efy_clock: ''}] ]],
+      ['div', [ ['div', {efy_clock: ''}] ]],
     ]],
     ['div', {class: 'os_buttons'}, [ ['div', {efy_select: 'margin0'}, [
         ['button', {class: 'efy_square_btn', title: 'Apps', efy_toggle: '[efy_frames], [os_drawer]', style: 'display: flex; align-items: center; place-content: center'}, [ ['i', {efy_icon: 'dots', style: 'font-size: 18rem'}] ]],
@@ -65,7 +65,7 @@ $add('div', {os_app: ''}, [
 ]]], $body);
 
 /*Sidebar Menu*/ $add('details', {id: 'os_sidebar'}, [
-  ['summary', {}, [['i', {efy_icon: 'dots'}], ['p', {}, 'OS'], ['mark', {efy_lang: 'alpha'}]]],
+  ['summary', [['i', {efy_icon: 'dots'}], ['p', 'OS'], ['mark', {efy_lang: 'alpha'}]]],
     ['div', {efy_tabs: 'ms_menu', efy_select: ''}, [
       ['div', {class: 'efy_tabs'}, [
         ['input', {type:'radio', id: 'os_tab_grid', efy_tab: 'grid', efy_active: ''}],
@@ -79,13 +79,13 @@ $add('div', {os_app: ''}, [
        ['div', {efy_lang: 'soon'}, '...']
     ]],
     ['div', {efy_content: 'grid', efy_select: 'margin0', id: 'bar_position', efy_active: ''}, [
-      ['p', {efy_lang: 'bar_position', style: 'margin-top: 0'}], ['div', {}, [
+      ['p', {efy_lang: 'bar_position', style: 'margin-top: 0'}], ['div', [
         ['input', {type: 'radio', id: 'bar_position_bottom', name: 'bar_position', checked: ''}], ['label', {for: 'bar_position_bottom', efy_lang: 'down', style: 'display: flex; align-items: center; width: fit-content'}],
         ['input', {type: 'radio', id: 'bar_position_top', name: 'bar_position'}], ['label', {for: 'bar_position_top', efy_lang: 'up', style: 'display: flex; align-items: center; width: fit-content'}],
         ['input', {type: 'radio', id: 'bar_position_left', name: 'bar_position'}], ['label', {for: 'bar_position_left', efy_lang: 'left', style: 'display: flex; align-items: center; width: fit-content'}],
         ['input', {type: 'radio', id: 'bar_position_right', name: 'bar_position'}], ['label', {for: 'bar_position_right', efy_lang: 'right', style: 'display: flex; align-items: center; width: fit-content'}]
       ]],
-      ['p', {efy_lang: 'gap'}], ['div', {}, [
+      ['p', {efy_lang: 'gap'}], ['div', [
         ['input', {type: 'radio', id: 'grid_gap_default', name: 'grid_gap', checked: ''}], ['label', {for: 'grid_gap_default', efy_lang: 'default'}],
         ['input', {type: 'radio', id: 'grid_gap_small', name: 'grid_gap'}], ['label', {for: 'grid_gap_small'}, 'Small'],
         ['input', {type: 'radio', id: 'grid_gap_none', name: 'grid_gap'}], ['label', {for: 'grid_gap_none'}, 'None']

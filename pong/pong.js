@@ -1,28 +1,28 @@
 $ready('#efy_sbtheme', ()=>{
 
 const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy_card: ''}, [
-    ['h1', {}, 'PONG · DEMO'],
+    ['h1', 'PONG · DEMO'],
     ['hr'],
-    ['h6', {}, 'Rules'],
+    ['h6', 'Rules'],
     ['hr'],
     ['div', {class: 'rules'}, [
-      ['li', {}, 'Score 3 points to win'],
-      ['li', {}, '2 players required, but it will be between 1-4 players soon']
+      ['li', 'Score 3 points to win'],
+      ['li', '2 players required, but it will be between 1-4 players soon']
     ]],
     ['hr'],
-    ['h6', {}, 'Controls'],
+    ['h6', 'Controls'],
     ['hr'],
-    ['li', {}, [
-        ['p', {}, 'Player 1: '],
+    ['li', [
+        ['p', 'Player 1: '],
         ['i', {efy_icon: 'arrow_left'}], ['i', {efy_icon: 'arrow'}]
     ]],
     ['hr'],
-    ['li', {}, [
-        ['p', {}, 'Player 2: '],
+    ['li', [
+        ['p', 'Player 2: '],
         ['p', {class: 'key'}, 'A'], ['p', {class: 'key'}, 'D']
     ]],
     ['hr'],
-    ['li', {}, [ ['p', {}, 'Launch Ball: '], ['p', {class: 'key space'}, 'Space'] ]],
+    ['li', [ ['p', 'Launch Ball: '], ['p', {class: 'key space'}, 'Space'] ]],
     ['hr'],
     ['div', {class: 'efy_flex'}, [
         ['button', {id: 'start'}, 'Start'],
@@ -37,10 +37,10 @@ const confetti = $add('video', {id: 'confetti', src: './assets/confetti.webm'});
 $add('span', {id: 'body-container'}, [
   ['div', {class: 'top-container'}, [
     ['div', {class: 'scores'}, [
-      ['div', {score: '1'}, [['p', {}, 'P1'], ['p', {id: 'score-display1'}, '0']]],
-      ['div', {score: '2'}, [['p', {}, 'P2'], ['p', {id: 'score-display2'}, '0']]],
-      ['div', {score: '3'}, [['p', {}, 'P3'], ['p', {id: 'score-display3'}, '0']]],
-      ['div', {score: '4'}, [['p', {}, 'P4'], ['p', {id: 'score-display4'}, '0']]]
+      ['div', {score: '1'}, [['p', 'P1'], ['p', {id: 'score-display1'}, '0']]],
+      ['div', {score: '2'}, [['p', 'P2'], ['p', {id: 'score-display2'}, '0']]],
+      ['div', {score: '3'}, [['p', 'P3'], ['p', {id: 'score-display3'}, '0']]],
+      ['div', {score: '4'}, [['p', 'P4'], ['p', {id: 'score-display4'}, '0']]]
     ]],
     ['div', {class: 'new-game'}, [
       ['button', {id: 'new-game-button', class: 'efy_square_btn'}, [['i',  {efy_icon: 'reload'}]]],
@@ -69,7 +69,7 @@ let audio = {}; 'touch touch2'.split(' ').forEach(x =>{
 });
 
 /*Add Menu*/ $add('details', {id: 'pg_settings'}, [
-  ['summary', {}, [['i', {efy_icon: 'circle'}], ['p', {}, 'Pong'], ['mark', {efy_lang: 'alpha'}]]],
+  ['summary', [['i', {efy_icon: 'circle'}], ['p', 'Pong'], ['mark', {efy_lang: 'alpha'}]]],
         ['div', {efy_tabs: 'pn_menu', efy_select: ''}, [
             ['div', {class: 'efy_tabs'}, [
                 ['input', {type:'radio', id: 'pg_tab_theme', efy_tab: 'theme', efy_active: ''}],

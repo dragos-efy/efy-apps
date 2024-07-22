@@ -13,3 +13,8 @@
 }
 #pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh); border-radius: 0!important; background-position: var(--efy_bg_x) var(--efy_bg_y)!important; pointer-events: none}
 [efy_mode*=light] #pn_confetti {filter: invert(1)}
+
+.xo_menu {display: flex; flex-wrap: wrap; gap: var(--efy_gap);
+  p {width: 100%; line-height: 1}
+  input {width: 4ch; margin: 0}
+}

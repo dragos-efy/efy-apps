@@ -37,7 +37,7 @@ Tag ={ all: pn_storage.get('tags'),
 ////
 
 pn_notes ={ add_note(note, index){ let now = 'pn_note_' + Date.now(), date = note.date.split('/'), month = month_name[date[1]];
-    $add('details', {efy_searchable: '', 'data-value': index, id: now, pn_date: note.date}, [ $add('summary', {}, [ $add('div', {class: 'title'}, [note.text]) ]),
+    $add('details', {efy_searchable: '', 'data-value': index, id: now, pn_date: note.date}, [ $add('summary', [ $add('div', {class: 'title'}, [note.text]) ]),
         $add('div', {class: 'description'}, [ $add('textarea', {class: 'description2 efy_trans_filter_off efy_shadow_trans_off', readonly: ''}, [note.description]) ]),
         $add('div', {class: 'pn_tags'}, [
             $add('div', {class: 'date efy_shadow_trans'}, [ month +', '+ date[0] ]),
@@ -50,7 +50,7 @@ pn_notes ={ add_note(note, index){ let now = 'pn_note_' + Date.now(), date = not
 
 pn_goals ={ add_goal(goal, index){ let now = 'pn_goal_' + Date.now(), date = goal.date.split('/'), month = month_name[date[1]], this_details = `#pn_goals [data-value="${index}"]`; /* if (goal.done == 'true'){ where = $('#pn_goals [efy_drag]')} */
 
-    $add('details', {efy_searchable: '', 'data-value': index, id: now, pn_date: goal.date, pn_done: goal.done, /*remove when firefox supports :has*/ pn_has: goal.priority}, [ $add('summary', {}, [$add('div', {pn_priority: goal.priority}), $add('div', {class: 'title'}, [goal.text]), $add('div', {class: 'time'}, [$sec_time(goal.time)])]),
+    $add('details', {efy_searchable: '', 'data-value': index, id: now, pn_date: goal.date, pn_done: goal.done, /*remove when firefox supports :has*/ pn_has: goal.priority}, [ $add('summary', [$add('div', {pn_priority: goal.priority}), $add('div', {class: 'title'}, [goal.text]), $add('div', {class: 'time'}, [$sec_time(goal.time)])]),
         $add('div', {class: 'description'}, [$add('div', {efy_timer: `${now},${goal.time},reverse` })]),
         $add('div', {class: 'pn_tags'}, [
             $add('div', {class: 'date efy_shadow_trans'}, [ month +', '+ date[0] ]),
@@ -134,7 +134,7 @@ App_goals.start(); App_notes.start(); App_links.start(); App_tags.start();
 /*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
 $add('details', {id: 'pn_settings', class: 'eos_menu'}, [
-  $add('summary', {}, [$add('i', {efy_icon: 'edit'}), $add('p', {}, ['Planner']), $add('mark', {efy_lang: 'alpha'})]),
+  $add('summary', [$add('i', {efy_icon: 'edit'}), $add('p', 'Planner'), $add('mark', {efy_lang: 'alpha'})]),
         $add('div', {efy_tabs: 'pn_menu', efy_select: ''}, [
             ['div', {class: 'efy_tabs'}, [
                 ['input', {type:'radio', id: 'pn_tab_theme', efy_tab: 'theme', efy_active: ''}],

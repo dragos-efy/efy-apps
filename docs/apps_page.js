@@ -5,8 +5,8 @@ const $app_card =(title, href, icon, status, description, tags)=>{
     if (href !== '') link_attributes.href = href;
 
     return ['a', link_attributes, [
-        ['div', {class: 'top'}, [ icon_array, ['div', { class: 'column_flex'}, [
-            ['p', {}, title], ['hr'], ['p', {efy_lang: status, class: 'efy_btn_trans'}]
+        ['div', {class: 'top'}, [ icon_array, ['div', {class: 'column_flex'}, [
+            ['p', title], ['hr'], ['p', {efy_lang: status, class: 'efy_btn_trans'}]
         ]]]],
         ['div', {class: 'description'}, description], ['div', {tags: ''}, tags_array]
     ]];
@@ -107,7 +107,7 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
     ), $app_card(
         'Torch', './torch.html', 'flash', 'alpha',
         'Toggle the flashlight of your device or make your screen a color that imitates one',
-        'game fun offline static'
+        'productivity fun offline static'
     ), $app_card(
         'Keyboard', './keyboard.html', 'accessibility', 'alpha',
         'Virtual keyboard for efy apps and potentially linux as well soon',
@@ -127,6 +127,10 @@ $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [
     ), $app_card(
         'Draw', './draw.html', 'edit', 'alpha',
         'Unleash your creativity with this simple drawing app',
+        'fun productivity offline static'
+    ), $app_card(
+        'Emoji', './emoji.html', 'snow', 'alpha',
+        'Search & copy emojis',
         'fun productivity offline static'
     )
 

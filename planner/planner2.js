@@ -105,7 +105,7 @@ App_goals ={
                             ['div', {class: 'buttons'}, [
                                 ['div', {class: 'numbers efy_trans_filter_off_all'}, [
                                     ['input', {type: 'number', class: 'value', value: score[1]}],
-                                    ['p', {}, '/'],
+                                    ['p', '/'],
                                     ['input', {type: 'number', class: 'max', value: score[2]}]
                                 ]],
                                 ['button', {class: 'efy_square_btn remove'}, [['i', {efy_icon: 'remove'}]]]
@@ -117,19 +117,19 @@ App_goals ={
                 scores_div = ['div', {class: 'scores'}, scores];
             }
             if (goal.email){ email_div = ['p', {class: 'email efy_trans_filter_off efy_shadow_trans_off'}, [
-                ['p', {}, 'Email'], ['a', {href: `mailto:${goal.email}`}, goal.email]
+                ['p', 'Email'], ['a', {href: `mailto:${goal.email}`}, goal.email]
             ]]};
             if (goal.phone){ phone_div = ['p', {class: 'phone efy_trans_filter_off efy_shadow_trans_off'}, [
-                ['p', {}, 'Phone'], ['a', {href: `tel:${goal.phone}`}, goal.phone]
+                ['p', 'Phone'], ['a', {href: `tel:${goal.phone}`}, goal.phone]
             ]]};
             if (goal.birthday){ birthday_div = ['p', {class: 'birthday efy_trans_filter_off efy_shadow_trans_off'}, [
-                ['p', {}, 'Birthday'], ['p', {}, goal.birthday]
+                ['p', 'Birthday'], ['p', goal.birthday]
             ]]};
             if (goal.price){ price_div = ['p', {class: 'price efy_trans_filter_off efy_shadow_trans_off'}, [
-                ['p', {}, 'Price'], ['p', {}, format.currency(goal.price)]
+                ['p', 'Price'], ['p', format.currency(goal.price)]
             ]]};
             if (goal.quantity){ quantity_div = ['p', {class: 'quantity efy_trans_filter_off efy_shadow_trans_off'}, [
-                ['p', {}, 'Quantity'], ['p', {}, String(goal.quantity)]
+                ['p', 'Quantity'], ['p', String(goal.quantity)]
             ]]};
 
             const start_pause = {onClick: `
@@ -173,7 +173,7 @@ App_goals ={
 
 
             $add('details', {efy_searchable: '', 'data-value': index, id: now, ...pn_date, pn_done: goal.done}, [
-                ['summary', {}, [
+                ['summary', [
                     ['div', {pn_priority: goal.tags}],
                     ['div', {class: 'title'}, goal.name],
                     time_div
@@ -213,9 +213,9 @@ const set_tag_colors =(colors = tag_colors)=>{
 }; set_tag_colors();
 
 $add('details', {id: 'pn_settings', class: 'eos_menu'}, [
-    ['summary', {}, [
+    ['summary', [
         ['i', {efy_icon: 'edit'}],
-        ['p', {}, 'Planner'],
+        ['p', 'Planner'],
         ['mark', {efy_lang: 'alpha'}]
     ]],
     ['div', {efy_tabs: 'pn_menu', efy_select: ''}, [

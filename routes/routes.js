@@ -3,15 +3,18 @@ let apps = [], rm_listeners = {};
 const file_map = {
     /*Global*/ efy: ['global/efy_global.js'], empty: ['global/empty.css'], routes: ['routes/routes2.js'],
     builder: ['builder/builder.css', 'builder/builder.js'],
-    calculator: ['calculator/calculator.css', 'global/empty.css', 'calculator/calculator.js'],
+    calculator: ['calculator/calculator.css', 'calculator/calculator.js'],
     converter: ['converter/converter.css', 'global/empty.css', 'converter/converter.js'],
     cubes: ['cubes/cubes.css', 'global/empty.css', 'cubes/cubes.js'],
     draw: ['draw/draw.css', 'global/start_info.css', 'global/empty.css', 'draw/draw.js'],
+    emoji: ['emoji/emoji.css', 'emoji/emoji.js'],
     files: ['files/files.css', 'files/files.js'],
     gamepads: ['gamepads/gamepads.css', 'global/empty.css', 'gamepads/gamepads.js'],
-    // keyboard: ['keyboard/keyboard.css', 'keyboard/keyboard.js'],
+    keyboard: ['keyboard/keyboard.css', 'keyboard/keyboard.js'],
     media: ['media/media.css', 'global/music_tags.js', 'media/media.js'],
+    // money: ['money/money.css', 'money/money.js'],
     // os: ['os/os.css', 'os/os.js'],
+    // planner: ['planner/planner.css', 'planner/planner.js'],
     pong: ['pong/pong.css', 'global/start_info.css', 'pong/pong.js'],
     // recorder: ['recorder/recorder.css', 'recorder/recorder.js'],
     shade: ['shade/shade.css', 'global/start_info.css', 'global/empty.css', 'shade/shade.js'],
@@ -61,5 +64,3 @@ load_files('efy');
 apps.forEach(app => load_files(app));
 
 $event(window, 'hashchange', ()=> location.reload());
-
-// Needs HTML Conversion: Money, Recorder, OS, Planner (ignore), Planner2, Keyboard
