@@ -75,7 +75,8 @@ function process_gamepad(info){
   const {map, gamepad, axes, buttons} = info, lines = [`gamepad  : ${gamepad.index}`];
   for (const key of keys){ info[key].textContent = gamepad[key]}
   axes.forEach(({axis, value}, ndx)=>{
-    const off = ndx * 2;
+    // TODO: Wiimotion requires a factor of 1 whereas usually 2 is the way to go.
+    const off = ndx * 1;
     axis.style.left = `calc(${gamepad.axes[off].toFixed(2) * 50}% + 50% - 6rem)`;
     axis.style.top = `calc(${gamepad.axes[off + 1].toFixed(2) * 50}% + 50% - 6rem)`;
     value.textContent = `${gamepad.axes[off].toFixed(2).padStart(5)},${gamepad.axes[off + 1].toFixed(2).padStart(5)}`;
@@ -91,15 +92,20 @@ function process_gamepad(info){
   function run_buttons(){
     const current_time = Date.now();
     if (current_time - last_execution_time >= 1000){ // Check if at least 1 second has passed since the last execution
-      if (gamepad.buttons[0].pressed){ next_focus(); last_execution_time = current_time} //B
-      //DPad
-      if (gamepad.buttons[12].pressed){ next_focus(-1); last_execution_time = current_time} //Up
-      if (gamepad.buttons[13].pressed){ next_focus(1); last_execution_time = current_time} //Down
-      //Left Stick
-      if (gamepad.axes[1] < -0.3){ next_focus(-1); last_execution_time = current_time} //Up
-      if (gamepad.axes[1] > 0.3){next_focus(1); last_execution_time = current_time} //Down
-      if (gamepad.axes[0] < -0.3){ next_focus('left'); last_execution_time = current_time} //Left
-      if (gamepad.axes[0] > 0.3){next_focus('right'); last_execution_time = current_time} //Right
+      // Non-button activation through motion sensors might not have initialised buttons yet
+      if (gamepad.buttons.length) {
+        if (gamepad.buttons[0].pressed){ next_focus(); last_execution_time = current_time} //B
+        if (gamepad.buttons.length >= 12) {
+          // Wiimotion sometimes don't have these buttons of a DPad
+          if (gamepad.buttons[12].pressed){ next_focus(-1); last_execution_time = current_time} //Up
+          if (gamepad.buttons[13].pressed){ next_focus(1); last_execution_time = current_time} //Down
+        }
+        //Left Stick
+        if (gamepad.axes[1] < -0.3){ next_focus(-1); last_execution_time = current_time} //Up
+        if (gamepad.axes[1] > 0.3){next_focus(1); last_execution_time = current_time} //Down
+        if (gamepad.axes[0] < -0.3){ next_focus('left'); last_execution_time = current_time} //Left
+        if (gamepad.axes[0] > 0.3){next_focus('right'); last_execution_time = current_time} //Right
+      }
     }
   }; run_buttons();
 }
