@@ -1,22 +1,22 @@
 :root {
-    --efy_body_padding: 0;
+    ---body_padding: 0;
 }
 
 .efy_iframe :is(.efy_sidebar, [efy_sidebar_btn*=absolute]) {display: none}
 
-.nav {display: flex; gap: var(--efy_gap); place-content: space-between; padding: var(--efy_gap) var(--efy_gap) 0 var(--efy_gap);
-    > div {display: flex; gap: var(--efy_gap); flex-wrap: wrap; align-items: center;
-        h6 {display: flex; align-items: center; padding: var(--efy_padding); line-height: 1; height: var(--efy_size);
-            background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius);
+.nav {display: flex; gap: var(---gap); place-content: space-between; padding: var(---gap) var(---gap) 0 var(---gap);
+    > div {display: flex; gap: var(---gap); flex-wrap: wrap; align-items: center;
+        h6 {display: flex; align-items: center; padding: var(---padding); line-height: 1; height: var(---size);
+            background: var(---bg1); border: var(---border); border-radius: var(---radius);
         }
-        p {display: flex; width: fit-content; padding: var(--efy_padding); border-radius: var(--efy_radius); font-weight: bold; background: var(--efy_text); color: var(--efy_text2)}
+        p {display: flex; width: fit-content; padding: var(---padding); border-radius: var(---radius); font-weight: bold; background: var(---text); color: var(---text2)}
     }
 }
-#app {display: flex; flex-wrap: wrap; gap: var(--efy_gap); padding: var(--efy_gap);}
+#app {display: flex; flex-wrap: wrap; gap: var(---gap); padding: var(---gap);}
 
-[efy_theme] {width: 172rem; background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius)}
-[efy_theme] [efy_preview] {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); align-items: center; padding: 10rem; background: var(--efy_bg); border-radius: 0 0 var(--efy_radius) var(--efy_radius)}
-[efy_theme] > p {padding: 5rem 10rem; border-bottom: var(--efy_border); border-radius: var(--efy_radius) var(--efy_radius) 0 0}
+[efy_theme] {width: 172rem; background: var(---bg1); border: var(---border); border-radius: var(---radius)}
+[efy_theme] [efy_preview] {display: flex; flex-wrap: wrap; gap: var(---gap0); align-items: center; padding: 10rem; background: var(---bg); border-radius: 0 0 var(---radius) var(---radius)}
+[efy_theme] > p {padding: 5rem 10rem; border-bottom: var(---border); border-radius: var(---radius) var(---radius) 0 0}
 [efy_theme] [efy_preview] > * {pointer-events: none}
 [efy_theme] [efy_preview] * {backdrop-filter: none!important}
 [efy_theme] [efy_preview] progress {width: calc(100% - 26rem)}
@@ -24,25 +24,25 @@
 [efy_theme] [efy_preview] mark {line-height: 1.5}
 [efy_theme] [efy_preview] :is(i, p) {line-height: 1}
 [efy_theme] [efy_preview] [efy_card] {padding: 2rem 7rem; width: fit-content}
-[efy_theme] [efy_preview] [efy_card].bg {background: var(--efy_bg)}
+[efy_theme] [efy_preview] [efy_card].bg {background: var(---bg)}
 
-[efy_theme=new] [efy_preview] { --efy_bg_var: 0 0% 100%;
-    --efy_color_bgcol_var: 170 100% 10%; --efy_bg: hsl(var(--efy_color_bgcol_var)); --efy_bg1: hsla(var(--efy_bg_var) / .07);
+[efy_theme=new] [efy_preview] { ---bg_var: 0 0% 100%;
+    ---color_bgcol_var: 170 100% 10%; ---bg: hsl(var(---color_bgcol_var)); ---bg1: hsla(var(---bg_var) / .07);
 }
-[efy_theme=new] [efy_preview] * { --efy_color: linear-gradient(var(--efy_color_angle), hsl(170 100% 50%), hsl(170 100% 50%));
-    --efy_color_trans: linear-gradient(var(--efy_color_angle), hsla(170 100% 50% / .3), hsla(170 100% 50% / .3));
-    --efy_color_text_var: 170 100% 90%; --efy_text: hsl(var(--efy_color_text_var)); --efy_text2: var(--efy_bg);
-    --efy_radius: 0; --efy_radius0: 0; --efy_radius00: 0;
-    --efy_border: var(--efy_border_size) solid hsla(var(--efy_bg_var) / var(--efy_border_alpha));
-} [efy_theme=new] [efy_preview] :is([efy_card], i) {color: var(--efy_text)}
+[efy_theme=new] [efy_preview] * { ---color: linear-gradient(var(---color_angle), hsl(170 100% 50%), hsl(170 100% 50%));
+    ---color_trans: linear-gradient(var(---color_angle), hsla(170 100% 50% / .3), hsla(170 100% 50% / .3));
+    ---color_text_var: 170 100% 90%; ---text: hsl(var(---color_text_var)); ---text2: var(---bg);
+    ---radius: 0; ---radius0: 0; ---radius00: 0;
+    ---border: var(---border_size) solid hsla(var(---bg_var) / var(---border_alpha));
+} [efy_theme=new] [efy_preview] :is([efy_card], i) {color: var(---text)}
 
 
-[efy_theme=new2] [efy_preview] { background: var(--efy_bg1); --efy_bg_var: 0 0% 0%;
-    --efy_color_bgcol_var: 270 100% 90%; --efy_bg: hsl(var(--efy_color_bgcol_var)); --efy_bg1: hsla(var(--efy_bg_var) / .07);
+[efy_theme=new2] [efy_preview] { background: var(---bg1); ---bg_var: 0 0% 0%;
+    ---color_bgcol_var: 270 100% 90%; ---bg: hsl(var(---color_bgcol_var)); ---bg1: hsla(var(---bg_var) / .07);
 }
-[efy_theme=new2] [efy_preview] * { --efy_color: linear-gradient(0, hsl(258.09deg 100% 50%), hsl(284.68deg 100% 28.66%), hsl(180.55deg 100% 17.01%), hsl(171.69deg 100% 50%));
-    --efy_color_trans: linear-gradient(0, hsla(258.09deg 100% 50% / .3), hsla(284.68deg 100% 28.66% / .3), hsla(180.55deg 100% 17.01% / .3), hsla(171.69deg 100% 50% / .3));
-    --efy_color_text_var: 0 0% 0%; --efy_text: hsl(var(--efy_color_text_var)); --efy_text2: var(--efy_bg);
-    --efy_radius: 25rem; --efy_radius0: 12.5rem; --efy_radius00: 6.25rem;
-    --efy_border: var(--efy_border_size) solid hsla(var(--efy_bg_var) / var(--efy_border_alpha));
-} [efy_theme=new2] [efy_preview] :is([efy_card], i) {color: var(--efy_text)}
+[efy_theme=new2] [efy_preview] * { ---color: linear-gradient(0, hsl(258.09deg 100% 50%), hsl(284.68deg 100% 28.66%), hsl(180.55deg 100% 17.01%), hsl(171.69deg 100% 50%));
+    ---color_trans: linear-gradient(0, hsla(258.09deg 100% 50% / .3), hsla(284.68deg 100% 28.66% / .3), hsla(180.55deg 100% 17.01% / .3), hsla(171.69deg 100% 50% / .3));
+    ---color_text_var: 0 0% 0%; ---text: hsl(var(---color_text_var)); ---text2: var(---bg);
+    ---radius: 25rem; ---radius0: 12.5rem; ---radius00: 6.25rem;
+    ---border: var(---border_size) solid hsla(var(---bg_var) / var(---border_alpha));
+} [efy_theme=new2] [efy_preview] :is([efy_card], i) {color: var(---text)}

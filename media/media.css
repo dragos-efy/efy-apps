@@ -1,53 +1,53 @@
-:root {--efy_body_padding: 0; --ms_thumb_height: 50rem}
+:root {---body_padding: 0; --ms_thumb_height: 50rem}
 
-[ms_app] {width: 100%; height: var(--efy_100vh); max-height: var(--efy_100vh); display: flex; flex-direction: column; margin: 0; overflow: hidden}
+[ms_app] {width: 100%; height: var(---100vh); max-height: var(---100vh); display: flex; flex-direction: column; margin: 0; overflow: hidden}
 [ms_app*=top] {flex-direction: column-reverse}
 
 .prev {position: relative;
     i {transform: rotate(-180deg)!important}
 }
 
-.ms_loader { position: fixed; top: 15rem; left: 15rem; width: 300rem; height: 100rem; bottom: 0; background: #0003; z-index: 10; backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; border-radius: var(--efy_radius)}
+.ms_loader { position: fixed; top: 15rem; left: 15rem; width: 300rem; height: 100rem; bottom: 0; background: #0003; z-index: 10; backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; border-radius: var(---radius)}
 
-[ms_bar] {width: calc(100% - var(--efy_gap2)); margin: var(--efy_gap) 0 var(--efy_gap) var(--efy_gap); display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(--efy_gap0); border: var(--efy_border); border-radius: var(--efy_radius2); background: var(--efy_bg1); align-items: center;
+[ms_bar] {width: calc(100% - var(---gap2)); margin: var(---gap) 0 var(---gap) var(---gap); display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(---gap0); border: var(---border); border-radius: var(---radius2); background: var(---bg1); align-items: center;
     .mobile {display: none}
     .desktop {display: flex}
 }
 [ms_bar] :is(button, input, label), .player i, table, :is(.seeker-start-value, .seeker-end-value) p {margin: 0}
 
-.audio_seeker {display: flex; align-items: center; /*justify-content: center; */font-weight: bold; width: 100%; max-width: 50%; height: var(--efy_size); position: relative;
-    canvas {width: calc(100% - 95rem); height: var(--efy_size); padding-top: 8rem; position: absolute; border-radius: var(--efy_radius) 0 0 var(--efy_radius); z-index: -1}
+.audio_seeker {display: flex; align-items: center; /*justify-content: center; */font-weight: bold; width: 100%; max-width: 50%; height: var(---size); position: relative;
+    canvas {width: calc(100% - 95rem); height: var(---size); padding-top: 8rem; position: absolute; border-radius: var(---radius) 0 0 var(---radius); z-index: -1}
 }
-.ms_time_text {padding: 0 10rem 0 8rem !important; height: var(--efy_size)!important; border-radius: 0 var(--efy_radius) var(--efy_radius) 0; border-left: 0}
-#seeker_slider {border-radius: var(--efy_radius) 0 0 var(--efy_radius); width: 100%; height: var(--efy_size)!important;
-    &::-webkit-slider-thumb {width: var(--efy_size)!important; height: var(--efy_size)!important}
+.ms_time_text {padding: 0 10rem 0 8rem !important; height: var(---size)!important; border-radius: 0 var(---radius) var(---radius) 0; border-left: 0}
+#seeker_slider {border-radius: var(---radius) 0 0 var(---radius); width: 100%; height: var(---size)!important;
+    &::-webkit-slider-thumb {width: var(---size)!important; height: var(---size)!important}
 }
 
 .ms_buttons, .ms_buttons > div.efy_color {display: flex;}
-.ms_buttons > div.efy_color {border-radius: var(--efy_radius);
-    button {aspect-ratio: 1; height: calc(var(--efy_size) - var(--efy_border_size2)); align-items: center;
+.ms_buttons > div.efy_color {border-radius: var(---radius);
+    button {aspect-ratio: 1; height: calc(var(---size) - var(---border_size2)); align-items: center;
         justify-content: center; background: transparent!important; border-radius: 0; border: 0;
-        border-right: var(--efy_border_size) solid oklch(var(--efy_bg_var2) / .3);
-        &, &:first-of-type {width: calc(var(--efy_size) - var(--efy_border_size))}
-        &:first-of-type {border-radius: var(--efy_radius) 0 0 var(--efy_radius)}
-        &:last-of-type {border-radius: 0 var(--efy_radius) var(--efy_radius) 0; width: calc(var(--efy_size) - var(--efy_border_size2)); border-right: 0}
+        border-right: var(---border_size) solid oklch(var(---bg_var2) / .3);
+        &, &:first-of-type {width: calc(var(---size) - var(---border_size))}
+        &:first-of-type {border-radius: var(---radius) 0 0 var(---radius)}
+        &:last-of-type {border-radius: 0 var(---radius) var(---radius) 0; width: calc(var(---size) - var(---border_size2)); border-right: 0}
         i {margin: 0}
     }
 }
 
-.ms_speed_text, .ms_time_text {display: flex; gap: 5rem; align-items: center; width: fit-content; height: var(--efy_size); padding: 7rem 10rem; font-weight: bold; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text)}
+.ms_speed_text, .ms_time_text {display: flex; gap: 5rem; align-items: center; width: fit-content; height: var(---size); padding: 7rem 10rem; font-weight: bold; color: var(---text); -webkit-text-fill-color: var(---text)}
 .ms_speed_text {aspect-ratio: unset!important}
-.ms_speed_menu {position: absolute; display: flex; flex-wrap: wrap; gap: 10rem; width: fit-content; top: -115rem; right: 0; margin: calc(-1 * var(--efy_gap)) var(--efy_gap) 0 0}
+.ms_speed_menu {position: absolute; display: flex; flex-wrap: wrap; gap: 10rem; width: fit-content; top: -115rem; right: 0; margin: calc(-1 * var(---gap)) var(---gap) 0 0}
 
-[ms_grid] {width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: var(--efy_gap); padding: var(--efy_gap)}
+[ms_grid] {width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: var(---gap); padding: var(---gap)}
 [ms_grid="1"] {grid-template-columns: 1fr} [ms_grid="3"] {grid-template-columns: 1fr 1fr 1fr} [ms_grid="4"] {grid-template-columns: 1fr 1fr 1fr 1fr}
 
-.ms_grid_box {width: 100%; height: 100%; overflow-y: auto; border-radius: var(--efy_radius)}
+.ms_grid_box {width: 100%; height: 100%; overflow-y: auto; border-radius: var(---radius)}
 .ms_song_info {display: flex; gap: 15rem}
 
 .songs {
-    .song {display: flex; flex-direction: column; justify-content: space-between; height: fit-content; background: var(--efy_bg1);
-        border-radius: var(--efy_radius); border: var(--efy_border); padding: 0; color: var(--efy_text); cursor: pointer;
+    .song {display: flex; flex-direction: column; justify-content: space-between; height: fit-content; background: var(---bg1);
+        border-radius: var(---radius); border: var(---border); padding: 0; color: var(---text); cursor: pointer;
         .info {display: flex; gap: 10rem; justify-content: flex-start; align-items: center; flex-wrap: nowrap}
         .number {min-width: fit-content}
         :is(.delete, :empty):not(img, i) {display: none}
@@ -57,23 +57,23 @@
             .efy_hide_i:not(.title) + .separator {display: none!important}
         }
         &.nature {flex-direction: unset; justify-content: flex-start; align-items: center; flex-wrap: nowrap; text-transform: capitalize;
-            justify-content: space-between; gap: 15rem; padding: var(--efy_gap0) var(--efy_gap) var(--efy_gap0) var(--efy_gap0);
+            justify-content: space-between; gap: 15rem; padding: var(---gap0) var(---gap) var(---gap0) var(---gap0);
             :is(.image, .volume) {margin: 0}
             .left {display: flex; gap: 15rem; align-items: center; place-content: center}
             .text {display: flex; gap: 5rem}
         }
-        .image {display: flex!important; height: var(--ms_thumb_height); aspect-ratio: 1; border-radius: var(--efy_radius); align-items: center; justify-content: center; margin: var(--efy_gap0) 0 var(--efy_gap0) var(--efy_gap0);
-            &:is(.ms_empty) {background: var(--efy_bg1); border: var(--efy_border)}
+        .image {display: flex!important; height: var(--ms_thumb_height); aspect-ratio: 1; border-radius: var(---radius); align-items: center; justify-content: center; margin: var(---gap0) 0 var(---gap0) var(---gap0);
+            &:is(.ms_empty) {background: var(---bg1); border: var(---border)}
             i {margin: 0; font-size: calc(var(--ms_thumb_height) / 2); letter-spacing: 0!important}
             &:not(.ms_empty) {background-size: cover!important; background-position: center!important; background-repeat: no-repeat!important}
         }
-        :is(&.playing, &:hover) {background: var(--efy_color_trans); color: var(--efy_color); background-origin: border-box; box-shadow: var(--efy_shadow_button_trans) !important;
-            p {background: var(--efy_color); background-clip: text; -webkit-background-clip: text; -moz-background-clip: text; -webkit-text-fill-color: transparent}
-            .image.ms_empty i {background: var(--efy_color); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent}
+        :is(&.playing, &:hover) {background: var(---color_trans); color: var(---color); background-origin: border-box; box-shadow: var(---shadow_button_trans) !important;
+            p {background: var(---color); background-clip: text; -webkit-background-clip: text; -moz-background-clip: text; -webkit-text-fill-color: transparent}
+            .image.ms_empty i {background: var(---color); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent}
         }
 }}
 
-.ms_flex {display: flex; align-items: center; flex-wrap: wrap; gap: var(--efy_gap0);
+.ms_flex {display: flex; align-items: center; flex-wrap: wrap; gap: var(---gap0);
     label {display: flex; align-items: center; width: fit-content}
 }
 
@@ -81,14 +81,14 @@
 :is(.efy_sidebar details details):not([open]) {padding: 0 12rem}
 
 #bar_position {
-    div {display: flex; gap: var(--efy_gap0); flex-wrap: wrap;
+    div {display: flex; gap: var(---gap0); flex-wrap: wrap;
         label {margin: 0}
     }
-    [efy_range_text="Columns"] {margin-top: var(--efy_gap0); gap: 0}
+    [efy_range_text="Columns"] {margin-top: var(---gap0); gap: 0}
 }
 
-.ms_buttons2 {align-items: center; gap: var(--efy_gap0)}
-.ms_filesystem {width: var(--efy_size); height: var(--efy_size);	display: flex;	align-items: center; place-content: center}
+.ms_buttons2 {align-items: center; gap: var(---gap0)}
+.ms_filesystem {width: var(---size); height: var(---size);	display: flex;	align-items: center; place-content: center}
 
 
 .efy_sidebar {overflow-x: hidden}
@@ -102,59 +102,64 @@ html, body {overflow: hidden}
 [efy_content=grid] p:first-of-type {margin: -5rem 0 5rem 0}
 
 [efy_content=tags] {
-    .efy_flex {gap: var(--efy_gap0)}
+    .efy_flex {gap: var(---gap0)}
     [efy_range_text] {margin: 6rem 0 -8rem 0}
 }
 [efy_tabs=ms_menu] [efy_content=backup] {padding: 0;
     label {margin: 0}
-    #md_storage_api, .api_options .efy_flex {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); padding: var(--efy_gap)}
-    .efy_hr_div {padding: 0 0 0 var(--efy_gap); gap: 8rem; line-height: 1;
+    #md_storage_api, .api_options .efy_flex {display: flex; flex-wrap: wrap; gap: var(---gap0); padding: var(---gap)}
+    .efy_hr_div {padding: 0 0 0 var(---gap); gap: 8rem; line-height: 1;
         * {margin: 0}
     }
 }
 
-/*Filter*/ .ms_filter {display: flex; /*flex-direction: column;*/ padding: var(--efy_gap) var(--efy_gap) 0 var(--efy_gap); gap: var(--efy_gap0);
-    .bar {display: flex; gap: var(--efy_gap0)}
-    [tags] {display: flex; gap: var(--efy_gap0); border-top: none !important; padding: 0 !important;
-        [tag] {color: var(--efy_text); -webkit-text-fill-color: unset; padding: var(--efy_padding); font-weight: normal; cursor: pointer; height: var(--efy_size)}
+/*Filter*/ .ms_filter {display: flex; /*flex-direction: column;*/ padding: var(---gap) var(---gap) 0 var(---gap); gap: var(---gap0);
+    .bar {display: flex; gap: var(---gap0)}
+    [tags] {display: flex; gap: var(---gap0); border-top: none !important; padding: 0 !important;
+        [tag] {color: var(---text); -webkit-text-fill-color: unset; padding: var(---padding); font-weight: normal; cursor: pointer; height: var(---size)}
         .tab { display: flex; gap: 8rem;
-            &:not(.active) {background: var(--efy_color), var(--efy_color_trans); background-clip: text, border-box; -webkit-background-clip: text, border-box; background-origin: border-box; -webkit-text-fill-color: transparent; box-shadow: var(--efy_shadow_button_trans) !important}
+            &:not(.active) {background: var(---color), var(---color_trans); background-clip: text, border-box;
+                -webkit-background-clip: text, border-box; background-origin: border-box;
+                -webkit-text-fill-color: transparent; box-shadow: var(---shadow_button_trans) !important;
+                i:before {-webkit-background-clip: text!important; background-clip: text!important;
+                    background: var(---color); color: transparent;
+                }
+            }
         }
     }
-    #custom_tags_add {width: fit-content; height: var(--efy_size)}
+    #custom_tags_add {width: fit-content; height: var(---size)}
     :is(.bar, [tags]) * {margin: 0 !important}
 }
 /*Custom Tags*/
-.song .custom_tags, .ms_filter [tags] {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); border-top: var(--efy_border); padding: var(--efy_gap0);
-    [tag] {display: flex; align-items: center; place-content: center; background: var(--efy_bg1); border-radius: var(--efy_radius0); border: var(--efy_border); line-height: 1;
-        &.active {background: var(--efy_text_trans); color: var(--efy_text);}
+.song .custom_tags, .ms_filter [tags] {display: flex; flex-wrap: wrap; gap: var(---gap0); border-top: var(---border); padding: var(---gap0);
+    [tag] {display: flex; align-items: center; place-content: center; background: var(---bg1); border-radius: var(---radius0); border: var(---border); line-height: 1;
+        &.active {background: var(---text_trans); color: var(---text);}
     }
 }
 .song .custom_tags {
-    [tag] {height: calc(var(--efy_size0) - 5.5rem); padding: 5rem 7rem;
-        &:is(.add, .remove) {width: calc(var(--efy_size0) - 5.5rem);
-            &.active {background: var(--efy_color); border-style: hidden;
-                i {background: transparent; -webkit-text-fill-color: var(--efy_text2)}
+    [tag] {height: calc(var(---size0) - 5.5rem); padding: 5rem 7rem;
+        &:is(.add, .remove) {width: calc(var(---size0) - 5.5rem);
+            &.active {background: var(---color); border-style: hidden;
+                i {background: transparent; -webkit-text-fill-color: var(---text2)}
             }
             i {margin: 0; &:before {font-size: 12rem}}
 }}}
 
-:is(.song:hover, .song.playing) .custom_tags [tag] {background: var(--efy_color), var(--efy_bg1); background-clip: text, border-box; -webkit-background-clip: text, border-box; -webkit-text-fill-color: transparent;
-    i:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
+:is(.song:hover, .song.playing) .custom_tags [tag] {background: var(---color), var(---bg1); background-clip: text, border-box; -webkit-background-clip: text, border-box; -webkit-text-fill-color: transparent;
+    i:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(---color); color: transparent}
 }
-.ms_filter .tab:not(.active) i:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
 
 
-.vd_video_div { display: flex; width: calc(100% - var(--efy_gap2)); position: relative; margin: var(--efy_gap) var(--efy_gap) 0 var(--efy_gap); border-radius: var(--efy_radius); background-size: cover;
-    video {max-height: calc(100vh - var(--efy_gap2)); border: var(--efy_border); background-size: contain; background-repeat: no-repeat; background-position: center; backdrop-filter: blur(100px) brightness(0.7)}
-    [ms_bar] {width: calc(100% - (var(--efy_gap2))); z-index: 999999; position: absolute; bottom: 0; left: 0; backdrop-filter: blur(30px) brightness(0.7)!important;
+.vd_video_div { display: flex; width: calc(100% - var(---gap2)); position: relative; margin: var(---gap) var(---gap) 0 var(---gap); border-radius: var(---radius); background-size: cover;
+    video {max-height: calc(100vh - var(---gap2)); border: var(---border); background-size: contain; background-repeat: no-repeat; background-position: center; backdrop-filter: blur(100px) brightness(0.7)}
+    [ms_bar] {width: calc(100% - (var(---gap2))); z-index: 999999; position: absolute; bottom: 0; left: 0; backdrop-filter: blur(30px) brightness(0.7)!important;
     }
 }
 [efy_mode*=light] .vd_video_div {
     [ms_bar] {
-        button, [efy_upload] {-webkit-text-fill-color: var(--efy_text)}
-        :is(.ms_time_text, .ms_speed_text) {background: #fff1; border: var(--efy_border_size) solid #fff1;
-            &, p {-webkit-text-fill-color: var(--efy_bg)}
+        button, [efy_upload] {-webkit-text-fill-color: var(---text)}
+        :is(.ms_time_text, .ms_speed_text) {background: #fff1; border: var(---border_size) solid #fff1;
+            &, p {-webkit-text-fill-color: var(---bg)}
         }
     }
 }

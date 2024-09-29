@@ -2,25 +2,25 @@ body {display: flex}
 
 #cc_calculator {max-width: 600rem;
     input {margin: 0}
-    .cc_buttons {display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: var(--efy_gap); margin-top: var(--efy_gap); user-select: none;
+    .cc_buttons {display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: var(---gap); margin-top: var(---gap); user-select: none;
         button {width: 100%; min-width: 50rem; min-height: 50rem; aspect-ratio: 1; margin: 0;
-            &:not(#equal, #del, #bksp, [efy_sidebar_btn]){background: var(--efy_bg1); color: var(--efy_text!important); -webkit-text-fill-color: var(--efy_text)}
+            &:not(#equal, #del, #bksp, [efy_sidebar_btn]){background: var(---bg1); color: var(---text!important); -webkit-text-fill-color: var(---text)}
             &:is(#pct, #div, #mul, #sub, #add, #ptleft, #ptright, #exp, #sqrt) {
-                background: var(--efy_color), var(--efy_color_trans); background-clip: text, border-box;
+                background: var(---color), var(---color_trans); background-clip: text, border-box;
                 background-origin: border-box; -webkit-text-fill-color: transparent
             }
             i {margin: 0}
         }
         #equal {font-size: 200%}
     }
-    &.full {max-width: 100%; width: 100%; height: calc(var(--efy_100vh) - var(--efy_gap2)); backdrop-filter: none!important;
-        .cc_buttons {height: calc(100% - var(--efy_size) - var(--efy_gap));
+    &.full {max-width: 100%; width: 100%; height: calc(var(---100vh) - var(---gap2)); backdrop-filter: none!important;
+        .cc_buttons {height: calc(100% - var(---size) - var(---gap));
             button {height: 100%; font-size: 200%}
             #equal {font-size: 50rem}
             [efy_sidebar_btn] i {font-size: 25rem}
         }
     }
-    &:not(.full) {margin: auto; background: var(--efy_bg1); padding: var(--efy_gap); border: var(--efy_border); border-radius: var(--efy_radius)}
+    &:not(.full) {margin: auto; background: var(---bg1); padding: var(---gap); border: var(---border); border-radius: var(---radius)}
 }
 
 .efy_iframe :is(.efy_sidebar, [efy_sidebar_btn*=absolute]) {display: none}
@@ -28,7 +28,8 @@ body {display: flex}
 /*Convergence*/
 @media (max-width: 480px){
     body {display: block}
-    #cc_calculator {margin: unset; background: unset!important; padding: unset!important; border: unset!important;
+    #cc_calculator {display: flex; flex-direction: column; place-content: end; height: calc(var(---100vh) - var(---size0));
+        background: unset!important; margin: unset; padding: unset!important; border: unset!important;
         border-radius: unset!important; backdrop-filter: none!important;
         .cc_buttons button {min-width: 40rem; min-height: 40rem}
     }

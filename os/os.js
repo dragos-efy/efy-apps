@@ -31,18 +31,18 @@ $add('div', {os_app: ''}, [
       ]],
         ['div', {class: 'column_flex'}, [['div', {class: 'name'}, 'Piped']]]
       ]],
-      ['a', {efy_card: './media.html', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'audio', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Media']]]]],
+      ['a', {efy_card: './index.html#media', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'audio', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Media']]]]],
       ['a', {efy_card: './planner.html', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'edit', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Planner']]]]],
       ['a', {efy_card: './money.html', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'group', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Money']]]]],
-      ['a', {efy_card: './calculator.html', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'remove', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Calculator']]]]],
-      ['a', {efy_card: './recorder.html', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'circle', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Recorder']]]]],
-      ['a', {efy_card: './converter.html', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'reload', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Converter']]]]],
-      ['a', {efy_card: './pong.html', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'circle', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Pong']]]]],
-      ['a', {efy_card: './weather.html', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'sun', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Weather']]]]],
-      ['a', {efy_card: './xo.html', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'remove', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'X & O']]]]],
-      ['a', {efy_card: './gamepads.html', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'group', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Gamepads']]]]],
+      ['a', {efy_card: './index.html#calculator', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'remove', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Calculator']]]]],
+      ['a', {efy_card: './index.html#recorder', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'circle', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Recorder']]]]],
+      ['a', {efy_card: './index.html#converter', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'reload', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Converter']]]]],
+      ['a', {efy_card: './index.html#pong', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'circle', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Pong']]]]],
+      ['a', {efy_card: './index.html#weather', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'sun', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Weather']]]]],
+      ['a', {efy_card: './index.html#xo', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'remove', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'X & O']]]]],
+      ['a', {efy_card: './index.html#gamepads', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'group', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Gamepads']]]]],
       ['a', {efy_card: '', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'menu', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Text']]]]],
-      ['a', {efy_card: './themes.html', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'heart', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Themes']]]]],
+      ['a', {efy_card: './index.html#themes', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'heart', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Themes']]]]],
       ['a', {efy_card: '', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'globe', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Injector']]]]],
       ['a', {efy_card: '', class: 'soon efy_trans_filter_off'}, [ ['i', {efy_icon: 'key', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Passwords']]]]],
       ['a', {efy_card: './planner.html#goals', class: 'efy_trans_filter_off'}, [ ['i', {efy_icon: 'check', class: 'efy_color'}], ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Goals']]]]],
@@ -125,7 +125,7 @@ if (efy_os.grid_gap){ let a = efy_os.grid_gap; $('[os_app]').setAttribute('os_gr
 });
 /*Close Apps*/ $all('#os_remove').forEach(a=>{ $event(a, 'change', ()=>{ let b = $all('[efy_frames] [efy_frame]');
   if (b.length == 0){ a.checked = false}
-  else if (b.length == 1){ let c = b[0]; c.classList.add('efy_anim_remove'); $wait($css_prop('--efy_anim_speed') * 0.05, ()=>{ c.remove(); if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)} }); a.checked = false}
+  else if (b.length == 1){ let c = b[0]; c.classList.add('efy_anim_remove'); $wait($css_prop('---anim_speed') * 0.05, ()=>{ c.remove(); if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)} }); a.checked = false}
   else {
     if (a.checked){ $('[efy_frames]').classList.add('remove')}
     else { $('[efy_frames]').classList.remove('remove')}
@@ -134,7 +134,7 @@ if (efy_os.grid_gap){ let a = efy_os.grid_gap; $('[os_app]').setAttribute('os_gr
 
 $event($('[efy_frames]'), 'click', ()=>{ let a = event.target;
     if (a.matches('[efy_frames].remove [efy_frame]')){ let c = $all('[efy_frames] [efy_frame]').length;
-      a.classList.add('efy_anim_remove'); $wait($css_prop('--efy_anim_speed') * 0.05, ()=>{ a.remove(); if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}});
+      a.classList.add('efy_anim_remove'); $wait($css_prop('---anim_speed') * 0.05, ()=>{ a.remove(); if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}});
       if (c <= 2){ $('[efy_frames]').classList.remove('remove'); $('#os_remove').checked = false}
     columns()}
 }); /*Close Apps - End*/

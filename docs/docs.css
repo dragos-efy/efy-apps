@@ -1,13 +1,13 @@
-[efy_icon=shade] {position: relative;
-    &:before {content: ''; width: 60rem; height: 60rem; background: var(--efy_text); border-radius: var(--efy_radius)}
-    &:after {content: '⦿⦿'; position: absolute; width: 100%; height: 100%; top: 0; left: 0; display: flex; font-size: 25rem;
-    align-items: center; place-content: center; color: var(--efy_text2); -webkit-text-fill-color: var(--efy_text2); letter-spacing: 1rem; font-weight: bold}
+:root {---body_padding: 0; ---dc_icon_size_nr: 45; ---dc_icon_size: calc(var(---dc_icon_size_nr) * 1rem)}
+
+[efy_icon=shade], [efy_icon=square_full] {position: relative;
+    &:before {content: ''; width: var(---dc_icon_size); height: var(---dc_icon_size); background: var(---text); border-radius: calc(var(---radius) * (var(---dc_icon_size_nr) / 45))}
 }
-[efy_icon=square] {position: relative;
-    &:before {content: ''; width: 60rem; height: 60rem; background: var(--efy_text); border-radius: var(--efy_radius)}
+[efy_icon=shade]:after {content: '\e978 \e978'; position: absolute; width: 100%; height: 100%; top: 0; left: calc(var(---dc_icon_size) / 45); display: flex;
+    font-size: calc(var(---dc_icon_size) / 3); align-items: center; place-content: center; color: var(---text2);
+    -webkit-text-fill-color: var(---text2); letter-spacing: calc(var(---dc_icon_size) / 22.5);
 }
 
-:root {--efy_body_padding: 0}
 
 button :is(p,i) {pointer-events: none}
 
@@ -17,12 +17,12 @@ html {overflow: hidden;
             padding: 0 15rem 15rem 15rem; backdrop-filter: none!important; -webkit-backdrop-filter: none!important
         }
         & > [efy_content=docs][efy_active] {padding: 0;
-            .dc_separator [efy_tabs]:not([efy_tabs="dc2"], [efy_tabs="dc3"], [efy_color]), .columns {padding: 0 var(--efy_gap)}
-            h5 {padding: 10rem var(--efy_gap); margin: 15rem 0;
+            .dc_separator [efy_tabs]:not([efy_tabs="dc2"], [efy_tabs="dc3"], [efy_color]) {padding: 0 var(---gap)}
+            h5 {padding: 10rem var(---gap); margin: 15rem 0;
                 &:first-of-type {margin-top: 0}
                 &:last-of-type {margin-bottom: 0}
-                &:not(:first-of-type){ border-top: var(--efy_border)}
-                &:not(:last-of-type){ border-bottom: var(--efy_border);}
+                &:not(:first-of-type){ border-top: var(---border)}
+                &:not(:last-of-type){ border-bottom: var(---border);}
             }
             [efy_tabs="dc2"], [efy_tabs="dc3"] {margin: 0; width: 100%}
             [efy_tabs="dc3"] {padding: 0}
@@ -33,44 +33,86 @@ html {overflow: hidden;
         .dc_separator pre *:not(.efy_bar, .efy_bar *, ul, li, hr) {display: inline}
 }}
 
-body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
+body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
 #efy_docs {container: content0 / inline-size}
 
-[efy_tabs=dc] {display:flex; flex-wrap: wrap; gap: var(--efy_gap); justify-content: space-between;
+[efy_tabs=dc] {display:flex; flex-wrap: wrap; gap: var(---gap); justify-content: space-between;
     & > [efy_content] {flex-basis: 100%}
     & > input {width: fit-content; flex-basis: auto}
-    :is(.dc_right, .dc_left) {display:flex; flex-wrap: wrap; gap: var(--efy_gap0); align-items: center; height: fit-content}
+    :is(.dc_right, .dc_left) {display:flex; flex-wrap: wrap; gap: var(---gap0); align-items: center; height: fit-content}
     :is(.dc_right, .dc_left, .dc_left:last-of-type) *, :is(table, figcaption, input, textarea, select, section, [efy_number]) {margin: 0}
     .dc_right {flex-wrap: nowrap;
         [efy_sidebar_btn] {align-items: center; place-content: center}
     }
-    [efy_content=efy] {display: grid; gap: var(--efy_gap); min-height: calc(var(--efy_100vh) - var(--efy_gap) * 6); align-items: center; place-content: space-evenly;
+    [efy_content=efy] {display: grid; gap: var(---gap); min-height: calc(var(---100vh) - var(---gap) * 6); align-items: center; place-content: space-evenly;
         & > div {display: flex; flex-direction: column; place-content: center; align-items: center; text-align: center}
         & h2 {text-transform: uppercase}
         & > div:first-of-type {
             & > h2 {line-height: 1; margin-bottom: 15rem; font-size: 62rem}
             & > p {font-size: 28rem}
         }
-        #dc_buttons.apps {max-width: 1000rem; place-content: center}
+        #dc_buttons.apps {max-width: 1000rem; place-content: center;
+            [efy_card] {width: fit-content; margin: 0}
+        }
     }
-    [efy_content=apps]:not([efy_active]) {display: none}
+    [efy_content=apps] {display: grid; grid-template-columns: 1fr 1fr; gap: var(---gap); padding: 0!important;
+        &:has(.current_app.efy_hide_i) {grid-template-columns: 1fr}
+        &:not([efy_active]) {display: none}
+        .current_app {display: flex; flex-direction: column; padding: 0; scale: 1; height: fit-content; margin: 0 var(---gap);
+            min-height: calc(var(---100vh) - var(---size) - var(---gap0)* 5 - var(---border_size));
+            *:not(i) {margin: 0}
+            .s1 {display: grid; grid-template-columns: 200rem 1fr; height: 200rem}
+            .logo {---dc_icon_size_nr: 100; ---dc_icon_size: calc(var(---dc_icon_size_nr) * 1rem);
+                display: flex; flex-direction: column; align-items: center; place-content: center; height: 200rem;
+                min-width: 200rem; border-right: var(---border); font-size: var(---dc_icon_size); line-height: 1;
+            }
+            .actions {display: flex; flex-direction: column; gap: var(---gap); place-content: space-between;
+                .info {display: flex; flex-direction: column}
+            }
+            .title {font-size: 30rem; font-weight: bold; line-height: 1}
+            .start {height: var(---size);
+                &:not([href]) {display: none}
+            }
+            .title_container {display: flex; gap: 10rem; align-items: center; border-bottom: var(---border); padding: 15rem;
+                .status {padding: 4rem 8rem; display: flex; align-items: center; place-content: center; line-height: 1;
+                    border-radius: var(---radius0);
+                }
+            }
+            .description {padding: 15rem}
+            .buttons {display: flex; gap: var(---gap0); padding: var(---gap); border-top: var(---border)}
+            .tags {display: flex; flex-direction: column; border-top: var(---border);
+                .efy_hr_div p {margin: calc(var(---gap0) / 2) var(---gap0) calc(var(---gap0) / 2) 0}
+                [tags] {display: flex; flex-wrap: wrap; gap: var(---gap0); place-content: start; padding: var(---gap); border-bottom: var(---border);
+                    [tag] {border-radius: var(---radius0); padding: 5rem 6rem; height: fit-content; line-height: 1;
+                        display: flex; align-items: center; place-content: center; border: var(---border); background: var(---bg1);
+                        &[tag=title] {padding-right: 0; padding-left: 0; border: 0; background: transparent}
+                    }
+                }
+            }
+        }
+        .apps_page {padding: 0 var(---gap)}
+        [app] {position: absolute; opacity: 0; scale: 0;
+            &, & + label * {pointer-events: none}
+            &:focus + label:is([efy_outline] label) {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text)!important}
+        }
+    }
     [efy_color] :is([type=number], [efy_number]) {margin-bottom: 10rem}
 }
 
 .dc_nav, .dc_nav_div {display: flex; justify-content: space-between; width: 100%}
-.dc_nav {flex-wrap: wrap; gap: var(--efy_gap);
+.dc_nav {flex-wrap: wrap; gap: var(---gap);
     &:has([efy_content=docs][efy_active]){gap: unset}
 }
-.dc_nav_div {align-items: start; border-bottom: var(--efy_border); padding: var(--efy_gap0)}
+.dc_nav_div {align-items: start; border-bottom: var(---border); padding: var(---gap0)}
 .dc_search {width: fit-content; height: fit-content; position: relative;
-    & i {position: absolute; z-index: 2; 	width: fit-content; height: 100%; padding: calc(10rem + var(--efy_border_size))}
+    & i {position: absolute; z-index: 2; 	width: fit-content; height: 100%; padding: calc(10rem + var(---border_size))}
     & input:focus {width: 170rem; padding-left: 35rem}
     & :not(input:focus, i), & :not(input:focus)::placeholder {color: transparent}
     &:not(&:focus-within) {display: flex; place-content: center}
 }
-.dc_search input, .dc_right [efy_sidebar_btn] {width: var(--efy_size); height: var(--efy_size); cursor: pointer}
+.dc_search input, .dc_right [efy_sidebar_btn] {width: var(---size); height: var(---size); cursor: pointer}
 
-#dc_headings, #dc_buttons, #dc_lists {display: flex; flex-wrap: wrap; gap: var(--efy_gap); align-items: center; margin: var(--efy_gap) 0 var(--efy_gap) 0}
+#dc_headings, #dc_buttons, #dc_lists {display: flex; flex-wrap: wrap; gap: var(---gap); align-items: center; margin: var(---gap) 0 var(---gap) 0}
 #dc_headings {
     * {margin: 0; line-height: 1}
     :is(mark, kbd) {line-height: unset!important}
@@ -82,106 +124,93 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 
 #dc_buttons {margin: 0;
     &.dc_cta {flex-direction: row; margin: 20rem 0 10rem 0; padding: 0}
-    *:not([efy_sidebar_btn] i) {margin: 0; width: fit-content}
-    [efy_card] {display: flex; align-items: center; height: fit-content; color: var(--efy_text); -webkit-text-fill-color: var(--efy_text); padding: 0;
+    *:not([efy_sidebar_btn] i, [efy_content="efy"] *) {margin: 0; width: 100%}
+    [efy_card] {display: flex; align-items: center; height: fit-content; color: var(---text); -webkit-text-fill-color: var(---text); padding: 0;
         &.more {flex-direction: row-reverse;
             * {pointer-events: none}
-            i {border-right: 0; border-left: var(--efy_border); border-radius: 0 var(--efy_radius) var(--efy_radius) 0}
+            i {border-right: 0; border-left: var(---border); border-radius: 0 var(---radius) var(---radius) 0; margin: 0}
             .column_flex div {line-height: 1}
-            mark {-webkit-text-fill-color: var(--efy_text); border: 0; padding-top: 3px}
+            mark {-webkit-text-fill-color: var(---text); border: 0; padding-top: 3px}
         }
-        & mark {display: flex; background: transparent; color: var(--efy_text_trans)!important; -webkit-text-fill-color: var(--efy_text_trans);
-            padding: 6px 10rem 0 10rem; line-height: 1; border-top: var(--efy_border); width: 100%; margin: 0!important; border-radius: 0}
-        :is(i, .logo) {padding: 15rem; border-radius: var(--efy_radius) 0 0 var(--efy_radius); display: flex; align-items: center;
-            justify-content: center; height: 63rem; width: 63rem; border-right: var(--efy_border); font-size: 30rem;
-            &:is([efy_icon=plus]):before {font-size: 22rem}
+        & mark {display: flex; background: transparent; color: var(---text_trans)!important; -webkit-text-fill-color: var(---text_trans);
+            padding: 6px 10rem 0 10rem; line-height: 1; border-top: var(---border); width: 100%; margin: 0!important; border-radius: 0}
+        :is(i, .logo) {padding: 15rem; border-radius: var(---radius) 0 0 var(---radius); display: flex; align-items: center;
+            justify-content: center; height: 63rem; width: 63rem; border-right: var(---border); font-size: 30rem; margin: 0;
         }
         .column_flex {display: flex; flex-direction: column; margin: 0!important; padding: 0!important;
             div {padding: 0px 12rem 4px 10rem}
         }
     }
-    &.apps [efy_card] {background: var(--efy_bg1)}
+    &.apps [efy_card] {background: var(---bg1)}
     &:is(.apps, .dc_cta) :is([efy_card], a, button) {cursor: pointer!important;
-        &:focus-within {outline: calc(var(--efy_border_size) + 2rem) solid var(--efy_text)!important}
+        &:focus-within {outline: calc(var(---border_size) + 2rem) solid var(---text)!important}
         input {opacity: 0; position: absolute; width: 0; height: 0; pointer-events: none}
     }
     &.dc_cta :is(a, button):focus-within {outline-offset: 4rem}
 }
 
-/*Tabs*/ .dc_left [efy_tab]:not([efy_active]) + label {background: transparent; border: 0; -webkit-text-fill-color: var(--efy_text)}
+/*Tabs*/ .dc_left [efy_tab]:not([efy_active]) + label {background: transparent; border: 0; -webkit-text-fill-color: var(---text)}
 
 /*Split Buttons*/
-.efy_btn_split {padding: 0; background: var(--efy_color), var(--efy_color_trans); -webkit-background-clip: text, border-box; background-clip: text, border-box;
-    background-origin: border-box;  -webkit-text-fill-color: transparent; height: var(--efy_size);
-    & p {padding: var(--efy_padding); height: calc(var(--efy_size) - var(--efy_border_size2)); display: flex; align-items: center; line-height: 1;
-        --size: calc(6.5rem + var(--efy_border_size));
-        &:first-of-type {border-right: var(--efy_border); padding-right: var(--size)}
+.efy_btn_split {padding: 0; background: var(---color), var(---color_trans); -webkit-background-clip: text, border-box; background-clip: text, border-box;
+    background-origin: border-box;  -webkit-text-fill-color: transparent; height: var(---size);
+    & p {padding: var(---padding); height: calc(var(---size) - var(---border_size2)); display: flex; align-items: center; line-height: 1;
+        --size: calc(6.5rem + var(---border_size));
+        &:first-of-type {border-right: var(---border); padding-right: var(--size)}
         &:last-of-type {padding-left: var(--size)}
 }}
 .dc_cta [efy_sidebar_btn] {display: flex; align-items: center}
 
-.piped_logo {width: 20rem!important; height: 34rem; margin-right: -3rem!important;
-    & path {fill: var(--efy_text)}
-}
-
-#dc_icons {display: flex; flex-wrap: wrap; gap: var(--efy_gap);
+#dc_icons {display: flex; flex-wrap: wrap; gap: var(---gap);
     & > div {display: flex; align-items: center; width: fit-content; padding: 0;
-        & > p {border-left: var(--efy_border); padding: var(--efy_padding); pointer-events: none}
+        & > p {border-left: var(---border); padding: var(---padding); pointer-events: none}
         & > i {padding: 8rem 4rem 8rem 12rem; line-height: 1}
     }
 }
 
 [efy_content=docs] :is([efy_tabs=dc2], pre, p.mb), .dc_grid {margin-bottom: 15rem}
 
-.dc_grid {display:grid; gap: var(--efy_gap); grid-template-columns: 1fr 1fr}
+.dc_grid {display:grid; gap: var(---gap); grid-template-columns: 1fr 1fr}
 
-[efy_content=faq], [efy_content=docs] > .columns, .dc_separator {display: flex; gap: var(--efy_gap); flex-direction: row}
-[efy_content=faq] > div, [efy_content=docs] > .columns, .dc_separator > div {display: flex; flex-direction: column; width: 100%;
+[efy_content=faq], .dc_separator {display: flex; gap: var(---gap); flex-direction: row}
+[efy_content=faq] > div, .dc_separator > div {display: flex; flex-direction: column; width: 100%;
     hr {margin: 0 auto}
 }
 
-[efy_content=docs] > .columns {flex-direction: row;
-    & > div {width: calc(50% - (var(--efy_gap) / 2))}
-    details {margin: 0}
-}
+[efy_tabs=demo_select_menu] [efy_select] label {margin: calc(var(---gap0) / 2) var(---gap0) calc(var(---gap0) / 2) 0}
 
-[efy_tabs=demo_select_menu] [efy_select] label {margin: calc(var(--efy_gap0) / 2) var(--efy_gap0) calc(var(--efy_gap0) / 2) 0}
-
-.hash_focus {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text)!important; border-radius: var(--efy_radius);
-    &.dc_code_preview {box-shadow: inset 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text)!important}
+.hash_focus {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text)!important; border-radius: var(---radius);
+    &.dc_code_preview {box-shadow: inset 0 0 0 calc(var(---border_size) + 2rem) var(---text)!important}
 }
-[efy_shadow*=trans] .hash_focus {box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text), var(--efy_shadow_trans)!important}
+[efy_shadow*=trans] .hash_focus {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text), var(---shadow_trans)!important}
 
 div:is([efy_content=apps], [efy_content=html]) + .loading {
-    min-height: calc(var(--efy_100vh) - (var(--efy_size) + var(--efy_gap) * 2.5)); padding: 0!important; display: flex; align-items: center;
+    min-height: calc(var(---100vh) - (var(---size) + var(---gap) * 2.5)); padding: 0!important; display: flex; align-items: center;
     justify-content: center; width: 100%; background: transparent!important; animation: loading 2s linear infinite;
     &.efy_hide_i {animation: none; display: none}
 }
 @keyframes loading {0% {rotate: 0deg} 50% {scale: 2} 100% {rotate: 360deg}}
 
-#dc_buttons.apps_page {display: block; columns: 240rem; gap: var(--efy_gap); max-width: unset;
-	& *:not([efy_sidebar_btn] i) {width: 100%}
-	[efy_card] {flex-direction: column; break-inside: avoid;
-		& + [efy_card] {margin-top: var(--efy_gap)}
-		.top {display: flex; height: 100rem; border-bottom: var(--efy_border)}
-		.column_flex {place-content: space-evenly;
-			& p {line-height: 1; width: fit-content; margin-left: 10rem}
-			& p:nth-of-type(1) {font-size: 20rem}
-			& p:nth-of-type(2) {background: var(--efy_color), var(--efy_color_trans); background-clip: text, border-box; -webkit-background-clip: text, border-box;
-				-webkit-text-fill-color: transparent; padding: 4rem 8rem; border-radius: var(--efy_radius0); border: var(--efy_border); background-origin: border-box}
-			& p[efy_lang=soon] {background: var(--efy_bg1); -webkit-text-fill-color: var(--efy_text)}
+#dc_buttons.apps_page {display: grid; grid-template-columns: repeat(auto-fill, minmax(100rem, 1fr)); gap: var(---gap);
+    place-content: start; height: calc(var(---100vh) - var(---size) - var(---gap0)* 5 - var(---border_size)); overflow: auto;
+	[efy_card] {aspect-ratio: 0.8; height: unset;
+        &:is(.active + label, input:hover + label) {background: var(---color), var(---color_trans); background-clip: text, border-box; -webkit-text-fill-color: transparent; background-origin: border-box;}
+		.top {display: flex; flex-direction: column; align-items: center; place-content: space-between; height: 100%}
+		.column_flex {display: flex; flex-direction: column; align-items: center; margin: 0 !important; padding: 8rem 0 8rem 0 !important; width: 100%; border-top: var(---border);
+			& p {line-height: 1; width: fit-content; font-weight: normal; font-size: 14rem;}
 		}
-		:is(i, .logo) {height: 100rem; width: 140rem; font-size: 50rem;
-			&.efydb svg {height: 50rem; fill: var(--efy_text)}
+		:is(i, .logo) {padding: 15rem; border-radius: var(---radius); display: flex; align-items: center; line-height: 1;
+            justify-content: center; width: 100%; height: 100%; font-size: var(---dc_icon_size); margin: 0; border: 0;
 		}
-		.description {font-weight: normal; padding: 10rem; text-align: start}
-		[tags] {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); align-items: start; padding: var(--efy_gap0); border-top: var(--efy_border);
-			[tag] {background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius0); width: fit-content; padding: 3rem 6rem; line-height: 1; font-weight: normal;}
-		}
-		[efy_icon=plus]:before {font-size: 35rem}
-		[efy_icon=circle]{font-size: 40rem}
+        &:is(.active + label, input:hover + label) {
+            [efy_icon=plus]:before {
+                background: var(---color); background-clip: text; -webkit-text-fill-color: transparent;
+            }
+            :is([efy_icon=shade], [efy_icon=square_full]):before {
+                background: var(---color);
+            }
+        }
 	}
-	.piped_logo {width: 40rem!important; height: 50rem}
 }
 
 [efy_content=faq] {display: block; columns: 2; padding: 0 15rem; width: 100%;
@@ -195,6 +224,12 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
     }
 }
 
+[efy_content=docs] .columns2 {display: block; columns: 2; padding: 0 15rem; width: 100%;
+    details {break-inside: avoid; break-after: avoid-page; margin-bottom: var(---gap);
+        :is(p, summary, li) > * {display: inline}
+    }
+}
+
 /* Move to efy.css soon */
 [efy_details] details {
     & > summary {padding-right: 32rem!important; border-radius: 0}
@@ -202,23 +237,23 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
     hr {margin: 0 0 5rem 0}
     & > *:not(summary, pre) {padding: 0 15rem 10rem 15rem}
     &[open] {padding: 0;
-        & > summary {padding: 0 0 7rem 12rem; margin-bottom: 10rem; border-bottom: var(--efy_border);
+        & > summary {padding: 0 0 7rem 12rem; margin-bottom: 10rem; border-bottom: var(---border);
             &:before {right: 12rem!important}
 }}}
 
-.dc_code_preview {display: flex; gap: var(--efy_gap); flex-direction: column; margin: 0;
-    border-bottom: var(--efy_border); padding: var(--efy_gap)!important;
+.dc_code_preview {display: flex; gap: var(---gap); flex-direction: column; margin: 0;
+    border-bottom: var(---border); padding: var(---gap)!important;
     .tabs {display: flex; align-items: center; place-content: start;
-        & button:not([efy_active]){background: linear-gradient(var(--efy_bg1), var(--efy_bg1))!important; -webkit-text-fill-color: var(--efy_text)!important}
-        [efy_active]{background: linear-gradient(var(--efy_text), var(--efy_text)), linear-gradient(var(--efy_text_trans), var(--efy_text_trans))!important}
-        & button {border-radius: 0; height: var(--efy_size); margin: 0!important;
-            &:first-of-type {border-radius: var(--efy_radius) 0 0 var(--efy_radius)}
-            &:last-of-type {border-radius: 0 var(--efy_radius) var(--efy_radius) 0; border-left: 0}
+        & button:not([efy_active]){background: linear-gradient(var(---bg1), var(---bg1))!important; -webkit-text-fill-color: var(---text)!important}
+        [efy_active]{background: linear-gradient(var(---text), var(---text)), linear-gradient(var(---text_trans), var(---text_trans))!important}
+        & button {border-radius: 0; height: var(---size); margin: 0!important;
+            &:first-of-type {border-radius: var(---radius) 0 0 var(---radius)}
+            &:last-of-type {border-radius: 0 var(---radius) var(---radius) 0; border-left: 0}
         }
     }
-    [efy_content]:not(:is([efy_tabs="dc2"], [efy_color]) [efy_content]) {display: flex; flex-wrap: wrap; gap: var(--efy_gap); padding: 0!important; background: none; margin: 0; padding: 0; border: 0;
+    [efy_content]:not(:is([efy_tabs="dc2"], [efy_color]) [efy_content]) {display: flex; flex-wrap: wrap; gap: var(---gap); padding: 0!important; background: none; margin: 0; padding: 0; border: 0;
         & pre {width: 100%; margin: 0;
-            & mark {background: var(--efy_bg1); color: var(--efy_text); border: var(--efy_border)}
+            & mark {background: var(---bg1); color: var(---text); border: var(---border)}
         }
         & > button {margin: 0}
     }
@@ -228,8 +263,13 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
 
 [efy_tabs=demo_color_picker] [efy_content=preview] {display: block}
 
-.dc_separator {gap: 0; border-top: var(--efy_border);
-    & > div:first-of-type {border-right: var(--efy_border)}
+.dc_separator {gap: 0; border-top: var(---border);
+    & > div:first-of-type {border-right: var(---border)}
+}
+
+.dc_colors {display: flex; flex-wrap: wrap; gap: var(---gap);
+    div {padding: var(---padding); border-radius: var(---radius); -webkit-text-fill-color: var(---text)!important; background-origin: border-box!important; margin: 0!important}
+    #dc_colors1, #dc_colors3, #dc_colors5 {-webkit-text-fill-color: var(---bg)!important;}
 }
 
 /*Convergence*/
@@ -254,21 +294,28 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
             & > h2 {margin-top: 10rem; font-size: 11.1cqw}
             & > p {font-size: 20rem}
     }}
+    [efy_tabs=dc] > [efy_content=apps] {grid-template-columns: 1fr;
+        .current_app {height: fit-content; min-height: fit-content;
+            .s1 {grid-template-columns: 100rem 1fr;height: fit-content;}
+            .logo {---dc_icon_size_nr: 50;
+                height: auto;min-width: 100rem;
+            }
+        }
+    }
     .dc_right .dc_search {display: none!important}
-    [efy_content=faq], [efy_content=docs] > .columns, .dc_separator {flex-direction: column}
-    [efy_tabs=dc] [efy_content=docs] > .columns > div {width: 100%}
+    [efy_content=faq], .dc_separator {flex-direction: column}
     .dc_separator > div {
         &:first-of-type {border-right: 0}
         &:not(:first-of-type) {padding-top: 0}
     }
-    [efy_content=faq] {columns: 1}
+    [efy_content=faq], [efy_content=docs] > .columns2 {columns: 1}
 }
 @container content0 (max-width: 425px){
     [efy_tabs=dc] > [efy_content=efy] {
         & > div {text-align: left; align-items: start}
         :is(#dc_buttons, #dc_buttons.apps) {place-content: start}
     }
-    div:is([efy_content=apps], [efy_content=html]) + .loading {min-height: calc(var(--efy_100vh) - (var(--efy_size) * 2 + var(--efy_gap) * 3))}
+    div:is([efy_content=apps], [efy_content=html]) + .loading {min-height: calc(var(---100vh) - (var(---size) * 2 + var(---gap) * 3))}
 }
 @media screen and (max-width: 767.9px){
     [efy_tabs=dc] > [efy_content=efy], .dc_grid {grid-template-columns: 1fr}

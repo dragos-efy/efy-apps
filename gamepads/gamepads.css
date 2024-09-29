@@ -1,30 +1,94 @@
-#gamepads {
-  & > * {background: var(--efy_bg1); padding: var(--efy_gap); border: var(--efy_border); border-radius: var(--efy_radius); margin: 10rem 5rem 0 0}
-  & pre {white-space: pre-wrap}
+[efy_content=gamepads], [efy_content=mappings] {display: flex; gap: var(---gap); background: transparent!important; border-radius: 0;
+  padding: var(---gap) var(---gap) 0 var(---gap)!important; border: 0!important; height: calc(var(---100vh) - (var(---gap) * 4));
+  align-items: center; place-content: center; overflow: auto;
+  & > * {background: var(---bg1); padding: var(---gap); border: var(---border); border-radius: var(---radius)}
+  .empty {max-width: 600rem; padding: 0;
+    h5, ol {padding: var(---gap)}
+    h5 {line-height: 1}
+    hr {margin: 0}
+  }
+  &:has(.map) { align-items: unset; place-content: unset; padding: var(---gap)!important;
+    .empty {display: none}
+  }
 }
-.info {display: flex; flex-wrap: wrap; gap: var(--efy_gap);
-  > div {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); width: fit-content; padding: var(--efy_padding); background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius)}
+
+[efy_content=gamepads] {flex-direction: column}
+
+[efy_content=mappings] {width: 100%;
+  .map {flex-wrap: nowrap; flex-direction: column; padding: 0; background: unset; gap: 0; height: fit-content;
+    min-width: 180rem;
+    &:first-of-type {width: fit-content; min-width: unset}
+    > div {display: flex; height: var(---size); align-items: center; place-content: center; padding: 10rem 0;
+      &:nth-of-type(odd) {background: var(---bg1)}
+      &:first-of-type {border-radius: var(---radius) var(---radius) 0 0}
+      &:last-of-type {border-radius: 0 0 var(---radius) var(---radius)}
+      p {display: flex; width: 100%; align-items: center; place-content: center; font-weight: bold;
+        &:last-of-type {border-left: var(---border)}
+        i {margin: 0; font-weight: normal; line-height: 1; min-width: 26rem; min-height: 26rem}
+        [efy_icon=copy] {scale: -1 1; rotate: 180deg}
+      }
+    }
+    .sticks {display: flex; gap: 8rem}
+  }
 }
-.inputs {display: flex; gap: var(--efy_gap)}
-.map {display: flex; flex-wrap: wrap; gap: var(--efy_gap)}
-.buttons {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); place-content: start}
+
+.info {display: flex; flex-wrap: wrap; gap: var(---gap);
+  > div {display: flex; flex-wrap: wrap; gap: var(---gap0); width: fit-content; padding: var(---padding); background: var(---bg1); border: var(---border); border-radius: var(---radius)}
+}
+.inputs {display: flex; gap: var(---gap)}
+.map {display: flex; flex-wrap: wrap; gap: var(---gap)}
+.buttons {display: flex; flex-wrap: wrap; gap: var(---gap0); place-content: start}
 .vibration {width: 100%}
 
-.button {display: flex; flex-direction: column; align-items: center; place-content: center; background: var(--efy_bg1);
-  color: var(--efy_text); border: var(--efy_border); border-radius: var(--efy_radius); aspect-ratio: 1; background-origin: border-box!important;
-  &.active {background: var(--efy_color); color: var(--efy_text2);
-      hr {border-color: oklch(var(--efy_bg_var2) / var(--efy_border_alpha))}
+.button {display: flex; flex-direction: column; align-items: center; place-content: center; background: var(---bg1);
+  color: var(---text); border: var(---border); border-radius: var(---radius); aspect-ratio: 1; background-origin: border-box!important;
+  &.active {background: var(---color); color: var(---text2);
+      hr {border-color: oklch(var(---bg_var2) / var(---border_alpha))}
   }
-  p {line-height: 1; padding: var(--efy_padding)}
+  p {line-height: 1; padding: var(---padding)}
   .index {font-size: 20rem; font-weight: bold; padding-bottom: 4rem}
   hr {margin: 0}
 }
-.axes {display: flex; align-items: flex-start; gap: var(--efy_gap);
-  .circle {position: relative; border: var(--efy_border); background: var(--efy_bg1); border-radius: var(--efy_radius);
+.axes {display: flex; align-items: flex-start; gap: var(---gap);
+  .circle {position: relative; border: var(---border); background: var(---bg1); border-radius: var(---radius);
     .grid {width: 110rem; height: 110rem; position: relative;}
-    .horizontal {width: 100%; height: 50%; border-bottom: var(--efy_border)}
-    .vertical {width: 50%; height: 100%; border-right: var(--efy_border); position: absolute; top: 0}
-    .axis {width: 12rem; height: 12rem; background: var(--efy_color); position: absolute; border-radius: var(--efy_radius0)}
-    .text {border-top: var(--efy_border); padding: var(--efy_padding2); text-align: center}
+    .horizontal {width: 100%; height: 50%; border-bottom: var(---border)}
+    .vertical {width: 50%; height: 100%; border-right: var(---border); position: absolute; top: 0}
+    .axis {width: 12rem; height: 12rem; background: var(---color); position: absolute; border-radius: var(---radius0)}
+    .text {border-top: var(---border); padding: var(---padding2); text-align: center}
   }
 }
+
+body {height: var(---100vh); overflow: hidden; padding: 0}
+#efy_docs {container: content0 / inline-size}
+
+[efy_tabs=dc] {display:flex; flex-wrap: wrap; justify-content: space-between; gap: 0;
+    :is(.dc_right, .dc_left) {display:flex; gap: var(---gap0); align-items: center; height: fit-content}
+    :is(.dc_right, .dc_left, .dc_left:last-of-type) *, :is(table, figcaption, input, textarea, select, section, [efy_number]) {margin: 0}
+    .dc_left {flex-wrap: wrap}
+    .dc_right {flex-wrap: nowrap}
+    [efy_content=efy] {display: grid; gap: var(---gap); min-height: calc(var(---100vh) - var(---gap) * 6); align-items: center; place-content: space-evenly;
+        & > div {display: flex; flex-direction: column; place-content: center; align-items: center; text-align: center}
+        & h2 {text-transform: uppercase}
+        & > div:first-of-type {
+            & > h2 {line-height: 1; margin-bottom: 15rem; font-size: 62rem}
+            & > p {font-size: 28rem}
+        }
+        #dc_buttons.apps {max-width: 1000rem; place-content: center}
+    }
+    [efy_content=apps]:not([efy_active]) {display: none}
+    [efy_color] :is([type=number], [efy_number]) {margin-bottom: 10rem}
+}
+
+.dc_nav, .dc_nav_div {display: flex; justify-content: space-between; width: 100%}
+.dc_nav_div {align-items: start; border-bottom: var(---border); padding: var(---gap0)}
+.dc_search {width: fit-content; height: fit-content; position: relative;
+    & i {position: absolute; z-index: 2; 	width: fit-content; height: 100%; padding: calc(10rem + var(---border_size))}
+    & input:focus {width: 170rem; padding-left: 35rem}
+    & :not(input:focus, i), & :not(input:focus)::placeholder {color: transparent}
+    &:not(&:focus-within) {display: flex; place-content: center}
+}
+.dc_search input, .dc_right [efy_sidebar_btn] {width: var(---size); height: var(---size); cursor: pointer}
+
+.scroll_btn {position: absolute; pointer-events: none; width: 0; height: 0; opacity: 0}
+[efy_content=mappings]:has(.scroll_btn:focus) {box-shadow: inset 0 0 0 calc(var(---border_size) + 1rem) var(---text_trans)!important}

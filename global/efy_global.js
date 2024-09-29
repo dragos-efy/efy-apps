@@ -8,9 +8,9 @@ $ready('#efy_sbtheme', ()=>{
 
 /*On Storage Change*/ $event(window, 'storage', (event)=>{ if (event.key === 'efy'){ efy = JSON.parse(event.newValue);
     ['radius', 'gap'].forEach(a =>{ const store = efy[a];
-        if (store) $root.style.setProperty(`--efy_${a}`, store);
+        if (store) $root.style.setProperty(`---${a}`, store);
     });
-    if (efy.text) $root.style.setProperty(`--efy_color_text_var`, efy.text);
+    if (efy.text) $root.style.setProperty(`---color_text_var`, efy.text);
     $root.toggleAttribute('efy_color_text', (efy.text_status === 'on'));
 }})};
 

@@ -1,16 +1,16 @@
 body {padding:0px; margin: 0px; position: relative}
-#body-container {display: flex; flex-direction: column; justify-content: space-between; height: var(--efy_100vh); width: 100%}
+#body-container {display: flex; flex-direction: column; justify-content: space-between; height: var(---100vh); width: 100%}
 
-.container {display: flex; flex-direction: column; justify-content:space-between; position: fixed; width: var(--efy_bg_width); height: calc(100% - 50rem - var(--efy_gap) * 2); margin: calc(var(--efy_gap) + 50rem) 0 0 0}
+.container {display: flex; flex-direction: column; justify-content:space-between; position: fixed; width: var(---bg_width); height: calc(100% - 50rem - var(---gap) * 2); margin: calc(var(---gap) + 50rem) 0 0 0}
 
-.scores {display: flex; gap: var(--efy_gap0); --c: 0 0% 0%}
-[score] {display: flex; background: var(--efy_bg); padding: 0 8rem; border-radius: var(--efy_radius0); color: var(--efy_text2);
+.scores {display: flex; gap: var(---gap0); --c: 0 0% 0%}
+[score] {display: flex; background: var(---bg); padding: 0 8rem; border-radius: var(---radius0); color: var(---text2);
     p:first-of-type {padding-right: 4rem}
-    p:last-of-type{ border-left: var(--efy_border_size) solid hsla(var(--c) / 0.3); padding-left: 4rem}
+    p:last-of-type{ border-left: var(---border_size) solid hsla(var(--c) / 0.3); padding-left: 4rem}
 }
 
-.ball {background: var(--efy_text); width: 20rem; height: 20rem; border-radius: var(--efy_radius); position: absolute; align-self: center}
-.rod1, .rod2 {display: flex; width: 20vmin; height: 20rem; position: relative; left: 45%; border-radius: var(--efy_radius0)}
+.ball {background: var(---text); width: 20rem; height: 20rem; border-radius: var(---radius); position: absolute; align-self: center}
+.rod1, .rod2 {display: flex; width: 20vmin; height: 20rem; position: relative; left: 45%; border-radius: var(---radius0)}
 .center-rod {left:45%}
 .rod1, [score="1"] {background: linear-gradient(165deg, #00c7fff0, #ff00e7)}
 .rod2, [score="2"] {background: linear-gradient(165deg, #f90, #ff00a2f0)}
@@ -18,12 +18,12 @@ body {padding:0px; margin: 0px; position: relative}
 .rod4, [score="4"] {background: linear-gradient(165deg, #FFEB3B, #FF5722)}
 .rod3, [score="3"], .rod4, [score="4"] {display: none}
 
-.top-container {display: flex; justify-content: space-between; height: 50rem; align-items: center; border-bottom: var(--efy_border);
-    > div {margin: 0 10rem; display: flex; gap: var(--efy_gap0)}
+.top-container {display: flex; justify-content: space-between; height: 50rem; align-items: center; border-bottom: var(---border);
+    > div {margin: 0 10rem; display: flex; gap: var(---gap0)}
 }
 
 :is(body, html):has(#start_container) {margin: 0; padding: 0; display: flex}
 
-#confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh);
-border-radius: 0!important; background-position: var(--efy_bg_x) var(--efy_bg_y)!important; pointer-events: none}
+#confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(---100vh);
+border-radius: 0!important; background-position: var(---bg_x) var(---bg_y)!important; pointer-events: none}
 [efy_mode*=light] #confetti {filter: invert(1)}

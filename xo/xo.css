@@ -1,20 +1,25 @@
-:root{--efy_sidebar_button: right_top, on}
+:root{---sidebar_button: right_top, on}
 .efy_iframe :is(.efy_sidebar, [efy_sidebar_btn*=absolute]) {display: none}
 
-[ttt] {display: flex; flex-direction: column; align-items: center; place-content: center; height: calc(var(--efy_100vh) - (var(--efy_gap) * 2));
-  .cells {display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--efy_gap);
-    & div {background: var(--efy_bg1); border-radius: var(--efy_radius); border: var(--efy_border); display: flex; align-items: center; justify-content: center; font-size: 50rem; font-weight: bold; cursor: pointer; height: 100rem; aspect-ratio: 1}
+[ttt] {display: flex; flex-direction: column; align-items: center; place-content: center; height: calc(var(---100vh) - (var(---gap) * 2));
+  .cells {display: grid; grid-template-columns: repeat(3, 1fr); gap: var(---gap);
+    :is([name=xo_cells], [name=xo_cells]:checked) + label {background: var(---bg1); border-radius: var(---radius); border: var(---border);
+      display: flex; align-items: center; justify-content: center; font-size: 50rem; font-weight: bold;
+      cursor: pointer; height: 100rem; aspect-ratio: 1; -webkit-text-fill-color: unset!important; margin: 0!important;
+      color: var(---text)!important;
+      &:before, &:after {display: none}
+    }
   }
   #result {display: none; text-align: center; margin-top: 15rem}
-  & button {display: block; margin: 0 auto; margin-top: 15rem}
+  button {display: block; margin: 0 auto; margin-top: 15rem}
 }
-.control {display: flex; gap: var(--efy_gap0); align-items: center; margin-top: calc(var(--efy_gap) + 15rem);
-  :is(button, label) {margin: 0; height: var(--efy_size); display: flex; align-items: center; place-content: center; line-height: 1}
+.control {display: flex; gap: var(---gap0); align-items: center; margin-top: calc(var(---gap) + 15rem);
+  :is(button, label) {margin: 0; height: var(---size); display: flex; align-items: center; place-content: center; line-height: 1}
 }
-#pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh); border-radius: 0!important; background-position: var(--efy_bg_x) var(--efy_bg_y)!important; pointer-events: none}
+#pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(---100vh); border-radius: 0!important; background-position: var(---bg_x) var(---bg_y)!important; pointer-events: none}
 [efy_mode*=light] #pn_confetti {filter: invert(1)}
 
-.xo_menu {display: flex; flex-wrap: wrap; gap: var(--efy_gap);
+.xo_menu {display: flex; flex-wrap: wrap; gap: var(---gap);
   p {width: 100%; line-height: 1}
   input {width: 4ch; margin: 0}
 }

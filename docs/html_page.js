@@ -5,12 +5,12 @@ $add('p', {style: 'margin-bottom: 15rem', efy_searchable: ''}, 'Examples of HTML
 $add('div', {efy_searchable: '', class: 'dc_grid'}, [
     ['div', [
         ['figure', [
-            ['img', { 'src': './assets/image.webp', 'alt': 'image', 'loading': 'lazy' }],
+            ['img', { 'src': './assets/image.avif', 'alt': 'image', 'loading': 'lazy' }],
             ['figcaption', 'image + figcaption']
         ]]
     ]],
     ['div', [
-        ['video', { 'src': './assets/efy_video.mp4', 'controls': '', 'loading': 'lazy' }]
+        ['video', { 'src': './assets/efy_video.webm', 'controls': '', 'loading': 'lazy' }]
     ]]
 ], html_page);
 
@@ -66,7 +66,7 @@ $add('div', { 'efy_searchable': '', 'class': 'dc_grid' }, [
             ['p', 'Content'],
             ['details', [ ['summary', 'Summary'], ['p', 'content'] ]]
         ]],
-        ['audio', {'src': './assets/efy_audio.mp4', 'controls': '', 'loading': 'lazy'}],
+        ['audio', {'src': './assets/dreamy.webm', 'controls': '', 'loading': 'lazy'}],
         ['div', { 'efy_searchable': '' }, [
             ['h6', 'Progress & Meter'],
             ['progress', { 'value': '40', 'max': '100' }, '40%'],

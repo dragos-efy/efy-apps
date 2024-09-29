@@ -1,15 +1,45 @@
-body {display: flex; flex-direction: column; height: var(--efy_100vh)}
+body {display: flex; flex-direction: column; height: var(---100vh)}
+body:has(.wt_suggestions:not(.efy_hide_i)) {height: calc(var(---100vh) + 150rem); max-height: var(---100vh); width: 100%;
+    &:has(.glance:not(.efy_hide_i)) {max-height: unset}
+}
 
-.nav {display: flex; flex-wrap: wrap; gap: var(--efy_gap0); justify-content: space-between; margin-bottom: var(--efy_gap);
+.nav:not([efy_alerts] .nav) {display: flex; flex-wrap: wrap; gap: var(---gap0); justify-content: space-between; margin-bottom: var(---gap);
     .search_container{ display: flex; justify-content: center;
-        .search_box {display: flex; gap: var(--efy_gap0);
+        .search_box {display: flex; gap: var(---gap0);
             input {margin: 0}
         }
     }
+    .wt_suggestions {display: flex; flex-direction: column; width: 100%; padding: 0;
+        .options {display: flex; align-items: center; place-content: space-between; gap: var(---gap0); flex-wrap: wrap;
+            width: 100%; border-bottom: var(---border);
+            .efy_flex {gap: var(---gap0)}
+            h5 {line-height: 1}
+            h5, p, button {margin: 0}
+            label {margin: 0!important;
+                &:before, &:after {display: none!important}
+            }
+            button * {pointer-events: none}
+        }
+        .locations {display: flex; gap: var(---gap0); flex-wrap: wrap;
+            label {margin: 0!important;
+                &:not(input:checked + label) {background: var(---bg1); -webkit-text-fill-color: var(---text)}
+                &:before, &:after {display: none!important}
+            }
+            &.remove label {background: transparent!important; border-color: var(---text); border-style: dashed}
+            &:empty {display: none}
+        }
+        > div {padding: var(---gap)}
+        &:has(.locations:empty) :is(#remove_locations, [for=remove_locations]) {display: none}
+    }
 }
-body:has(.glance.efy_hide_i) .nav {justify-content: center; align-items: center; height: var(--efy_100vh); width: 100%}
+body:has(.glance.efy_hide_i) {align-items: center;
+    .nav:not([efy_alerts] .nav) {place-content: center; align-items: center; height: var(---100vh); width: 100%; max-width: 400rem;
+        .search_container {width: calc(100% - var(---size) - var(---gap0))}
+        .search_container :is(.search_box, input) {width: 100%}
+    }
+}
 
-.glance {display: grid; gap: var(--efy_gap); grid-template-columns: repeat(auto-fit,minmax(240rem,1fr));
+.glance {display: grid; gap: var(---gap); grid-template-columns: repeat(auto-fit,minmax(240rem,1fr));
     [efy_card] {display: flex; flex-direction: column; padding: 0; height: fit-content;
         hr {margin: 10rem 0}
         > div {display: flex; align-items: center; gap: 10rem; padding: 0 10rem;
@@ -21,11 +51,11 @@ body:has(.glance.efy_hide_i) .nav {justify-content: center; align-items: center;
     }
     .des {text-transform: capitalize}
 }
-.graph {display: flex; gap: var(--efy_gap); width: 100%; height: 100%; align-items: end; margin-top: var(--efy_gap);
-    border-radius: var(--efy_radius); overflow-x: scroll; padding-bottom: var(--efy_gap0);
-    .bar {width: 100rem; min-width: 100rem; height: 100%; padding: 0; gap: var(--efy_gap);
+.graph {display: flex; gap: var(---gap); width: 100%; height: 100%; align-items: end; margin-top: var(---gap);
+    border-radius: var(---radius); overflow-x: scroll; padding-bottom: var(---gap0);
+    .bar {width: 100rem; min-width: 100rem; height: 100%; padding: 0; gap: var(---gap); border-radius: var(---radius);
         display: flex; flex-direction: column; align-items: center; place-content: end; border: 0;
-        .level {background: var(--efy_color); border-radius: var(--efy_radius); width: 100%}
+        .level {background: var(---color); border-radius: var(---radius); width: 100%}
         .title {font-size: 20rem; font-weight: bold; margin: 0 0 10rem 0; display: flex; gap: 10rem; align-items: center;
             p {width: fit-content; white-space: nowrap; font-size: 20rem}
         }
@@ -35,10 +65,13 @@ body:has(.glance.efy_hide_i) .nav {justify-content: center; align-items: center;
         }
         i {display: flex; font-size: 50rem; line-height: 1; margin: 10rem 0}
     }
-    .day_container {border-right: var(--efy_border); height: 100%; position: relative; display: flex; gap: var(--efy_gap);
-        background: var(--efy_bg1); border-radius: var(--efy_radius); padding: var(--efy_gap); border: var(--efy_border);
-        p {background: var(--efy_bg1); position: absolute; padding: 6rem 8rem; border-radius: var(--efy_radius0);
-            border: var(--efy_border); line-height: 1;
+    .day_container {border-right: var(---border); height: 100%; position: relative; display: flex; gap: var(---gap);
+        background: var(---bg1); border-radius: var(---radius); padding: var(---gap); border: var(---border);
+        p {background: var(---bg1); position: absolute; padding: 6rem 8rem; border-radius: var(---radius0);
+            border: var(---border); line-height: 1;
+        }
+        input {opacity: 0; position: absolute; width: 0; height: 0; pointer-events: none;
+            &:focus + label {box-shadow: 0 0 0 var(---border_size) var(---text)}
         }
     }
 }
@@ -46,5 +79,5 @@ body:has(.glance.efy_hide_i) .nav {justify-content: center; align-items: center;
 /*Convergence*/
 @media (max-width: 767.9px){
     body {height: fit-content}
-    .graph {height: 50vh}
+    .graph {height: 70vh}
 }

@@ -1,21 +1,44 @@
-body {display: flex}
+body {display: flex;
+    &:has(#start_container) {padding: var(---gap);
+        [efy_sidebar_btn=absolute] {display: none}
+    }
+}
 
-#start_container {margin: auto; width: fit-content; padding: 15rem 0;
-    h1 {line-height: 1}
+#start_container {margin: auto; width: fit-content; padding: 10rem 0; gap: 0; border-radius: var(---radius2);
+    h1 {line-height: 1; font-size: 40rem}
     hr {margin: 10rem auto}
-    > *:not(hr) {margin: 0 15rem}
+    > *:not(hr) {margin: 0 10rem}
     li:not(.rules li) {display: flex; gap: 8rem; align-items: center; padding: 0 15rem; margin: 0;
-        i, .key {background: var(--efy_bg1); border-radius: var(--efy_radius0); padding: 2rem 6rem;
-            border: var(--efy_border); margin: 0; display: flex; aspect-ratio: 1; height: var(--efy_size0);
+        i, .key {background: var(---bg1); border-radius: var(---radius0); padding: 2rem 6rem;
+            border: var(---border); margin: 0; display: flex; aspect-ratio: 1; height: var(---size0);
             align-items: center; place-content: center;
         }
+        i:before {height: unset}
         .key {font-weight: bold; font-size: 18rem;
             &.space {aspect-ratio: 2}
             &.fit {aspect-ratio: unset; padding: 2rem 8rem}
         }
     }
     .rules li {margin: 0; list-style-type: '• '}
-    .efy_flex {margin-top: 15rem;
-        button {margin: 0}
+    .efy_flex {gap: var(---gap0);
+        button {margin: 0; width: 100%}
+    }
+    [efy_content] {background: unset; border: 0; padding: 0; margin: 0; backdrop-filter: unset!important; box-shadow: unset!important;
+        &:empty:before {content: 'Coming soon...'; padding: 15rem}
+    }
+    [efy_tab] + label {background: linear-gradient(var(---bg1), var(---bg1))!important; -webkit-text-fill-color: var(---text) !important;}
+    [efy_tab][efy_active] + label {background: linear-gradient(var(---text), var(---text))!important; -webkit-text-fill-color: var(---bg) !important;}
+}
+
+/*Convergence*/
+@media (min-width: 480px){
+    #start_container {
+        :is(.efy_flex, .efy_tabs) {display: flex; flex-wrap: nowrap!important}
+    }
+}
+@media (max-width: 480px){
+    #start_container {
+        [efy_tab] + label {width: 100%!important}
+        .efy_flex button {width: calc(50% - var(---gap00))!important}
     }
 }

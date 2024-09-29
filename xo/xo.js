@@ -24,11 +24,13 @@ $event($('.xo_menu'), 'input', (event)=>{
   $xo_save();
 })
 
+let cells_dom = []; for (let i = 0; i < 9; i++){
+  cells_dom.push(['input', {type: 'radio', name: 'xo_cells', id: `cell_${i}`}], ['label', {for: `cell_${i}`, class: 'efy_shadow_trans'}]);
+}
+
 $add('div', {class: 'xo_body'}, [
   ['div', {ttt: '', efy_select: ''}, [
-    ['div', {class: 'cells'}, [
-        ['div'], ['div'], ['div'], ['div'], ['div'], ['div'], ['div'], ['div'], ['div']
-    ]],
+    ['div', {class: 'cells'}, cells_dom],
     ['div', {id: 'result'}],
     ['div', {class: 'control'}, [
         ['button', {class: 'reset', efy_lang: 'reset'}, [['i', {efy_icon: 'reload'}]]],
@@ -42,13 +44,14 @@ $add('div', {class: 'xo_body'}, [
 
 let gameActive = true, currentPlayer = "X", gameState = ['', '', '', '', '', '', '', '', ''], i = 0;
 
-let a = $all('.cells div'); for (let i = 0; i < a.length; i++){ a[i].setAttribute('efy_card', '');
-  $event(a[i], 'click', ()=> ttt(i));
-};
+$event($('.cells'), 'click', (event)=>{ const target = event.target;
+  if (target.matches('[name=xo_cells]')) ttt(Number(target.id.replace('cell_', '')));
+});
+
 
 function ttt(cellIndex){
   if (gameState[cellIndex] === '' && gameActive){
-    gameState[cellIndex] = currentPlayer; $all('.cells div')[cellIndex].innerText = efy_xo[currentPlayer];
+    gameState[cellIndex] = currentPlayer; $all('.cells [name=xo_cells] + label')[cellIndex].innerText = efy_xo[currentPlayer];
     if (checkWin() || checkDraw()){ gameActive = false; $('#result').innerText = 'Game Over'; let y = $('#pn_confetti'); y.currentTime = 0; y.play()}
     else { currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
       if (gameActive && currentPlayer === "O" && !$('#players').checked){ makeAutomatedMove()}
@@ -68,7 +71,7 @@ function checkWin(){ const winningCombinations = [
 function checkDraw(){ return !gameState.includes('')}
 
 function restartGame(){ gameActive = true; currentPlayer = 'X'; gameState = ['', '', '', '', '', '', '', '', ''];
-  const cells = $all('.cells div');
+  const cells = $all('.cells [name=xo_cells] + label');
   for (let cell of cells){ cell.innerText = ''}
   $('#result').innerText = '';
 }
@@ -78,7 +81,7 @@ function makeAutomatedMove(){ /*Find an empty cell for the move*/ let emptyCells
     if (gameState[i] === ''){ emptyCells.push(i)}
   }
   /*Choose a random empty cell*/ const randomIndex = Math.floor(Math.random() * emptyCells.length), cellIndex = emptyCells[randomIndex];
-  /*Move AI Player*/ gameState[cellIndex] = currentPlayer; $all('.cells div')[cellIndex].innerText = efy_xo[currentPlayer];
+  /*Move AI Player*/ gameState[cellIndex] = currentPlayer; $all('.cells [name=xo_cells] + label')[cellIndex].innerText = efy_xo[currentPlayer];
   if (checkWin() || checkDraw()){ gameActive = false; $('#result').innerText = 'Game Over'}
   else {/*Switch back to human player*/ currentPlayer = currentPlayer === 'X' ? 'O' : 'X'}
 }

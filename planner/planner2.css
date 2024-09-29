@@ -1,31 +1,31 @@
-:root {overflow-x: hidden; --efy_body_padding: 0}
-body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
+:root {overflow-x: hidden; ---body_padding: 0}
+body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
 
-[pn_priority], .priority_color details:has([pn_priority]) button {background: var(--efy_text)!important}
+[pn_priority], .priority_color details:has([pn_priority]) button {background: var(---text)!important}
 [pn_priority*=low], .priority_color details:has([pn_priority*=low]) button {background: oklch(var(--pn_tag_color_low))!important}
 [pn_priority*=medium], .priority_color details:has([pn_priority*=medium]) button {background: oklch(var(--pn_tag_color_medium))!important}
 [pn_priority*=high], .priority_color details:has([pn_priority*=high]) button {background: oklch(var(--pn_tag_color_high))!important}
 
 #pn_menu [efy_color] {width: 100%}
 
-.pn_nav {display: flex; justify-content: space-between; align-items: center; margin-bottom: 5rem; border-bottom: var(--efy_border); padding: var(--efy_gap0);
-    :is(button, a[role=button], label) {margin: 0; white-space: nowrap; height: var(--efy_size)}
-    .pn_toggles {display: flex; gap: var(--efy_gap0)}
+.pn_nav {display: flex; justify-content: space-between; align-items: center; margin-bottom: 5rem; border-bottom: var(---border); padding: var(---gap0);
+    :is(button, a[role=button], label) {margin: 0; white-space: nowrap; height: var(---size)}
+    .pn_toggles {display: flex; gap: var(---gap0)}
 }
 
-.pn_tags {display: flex; gap: var(--efy_gap0); flex-wrap: wrap}
+.pn_tags {display: flex; gap: var(---gap0); flex-wrap: wrap}
 
 .pn_search {width: fit-content; height: fit-content; position: relative;
-    input {width: var(--efy_size); height: var(--efy_size); margin: 0}
-    i {position: absolute; z-index: 2; width: fit-content; height: 100%; padding: calc(10rem + var(--efy_border_size))}
+    input {width: var(---size); height: var(---size); margin: 0}
+    i {position: absolute; z-index: 2; width: fit-content; height: 100%; padding: calc(10rem + var(---border_size))}
     input:focus {width: 170rem; padding-left: 35rem}
     :not(input:focus, i), :not(input:focus)::placeholder {color: transparent}
 }
 
 .buttons :is(.cancel, .pn_submit) {display: flex; justify-content: center; align-items: center}
 
-.modal-overlay {display: none; padding: calc(var(--efy_gap0) / 2) var(--efy_gap) var(--efy_gap) var(--efy_gap);
-    border-bottom: var(--efy_border); margin: 10rem 0 5rem 0;
+.modal-overlay {display: none; padding: calc(var(---gap0) / 2) var(---gap) var(---gap) var(---gap);
+    border-bottom: var(---border); margin: 10rem 0 5rem 0;
     &.active {display: block}
 }
 #form {max-width: 500px;
@@ -37,9 +37,9 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 }
 
 .modal_grid {display: flex; flex-direction: column; gap: 0;
-    .grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); gap: var(--efy_gap); border-top: var(--efy_border); padding: var(--efy_gap)}
+    .grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); gap: var(---gap); border-top: var(---border); padding: var(---gap)}
     :is(input, [efy_number]) {margin: 0}
-    #info {margin: 0 var(--efy_gap) var(--efy_gap) var(--efy_gap); width: calc(100% - var(--efy_gap) * 2)}
+    #info {margin: 0 var(---gap) var(---gap) var(---gap); width: calc(100% - var(---gap) * 2)}
 }
 
 .time {
@@ -48,38 +48,38 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
 }
 
 .modal_grid .input-group {display: flex;
-    label:not(details label) {display: flex; padding: var(--efy_padding); background: var(--efy_bg1);
-        border-radius: var(--efy_radius) 0 0 var(--efy_radius); border: var(--efy_border); border-right: 0}
-    :is(input, select) {border-radius: 0 var(--efy_radius) var(--efy_radius) 0; height: 100%; line-height: 1; margin: 0}
+    label:not(details label) {display: flex; padding: var(---padding); background: var(---bg1);
+        border-radius: var(---radius) 0 0 var(---radius); border: var(---border); border-right: 0}
+    :is(input, select) {border-radius: 0 var(---radius) var(---radius) 0; height: 100%; line-height: 1; margin: 0}
     [efy_number] {width: 100%}
     &:focus-within :is(label:not(details label), input:not(input:focus)) {
-        box-shadow: 0 0 0 calc(var(--efy_border_size) + 2rem) var(--efy_text_trans2); border-color: var(--efy_text_trans2)}
-    &:focus-within {gap: calc(var(--efy_border_size) + 2rem)}
+        box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text_trans2); border-color: var(---text_trans2)}
+    &:focus-within {gap: calc(var(---border_size) + 2rem)}
     details {width: 100%; margin: 0}
 }
 
-.input-group.actions {padding: var(--efy_gap);
-    &, .buttons {display: flex; justify-content: space-between; align-items: center; gap: var(--efy_gap0)}
+.input-group.actions {padding: var(---gap);
+    &, .buttons {display: flex; justify-content: space-between; align-items: center; gap: var(---gap0)}
     button {margin: 0;
         i {margin: 0}
 }}
 
-#pn_backup {display: flex; flex-wrap: wrap; gap: var(--efy_gap0);
+#pn_backup {display: flex; flex-wrap: wrap; gap: var(---gap0);
     > :is(a, label, button) {margin: 0}
 }
 
-[pn_planner] {display: grid; gap: calc(var(--efy_gap) /2.5) var(--efy_gap);
-    grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); padding: 0 var(--efy_gap) var(--efy_gap) var(--efy_gap);
-    .header {display: flex; justify-content: start; gap: var(--efy_gap0); align-items: center; margin: 5rem 0 10rem 0;
-        mark {padding: 5rem 7rem; background: var(--efy_bg1); color: var(--efy_text); line-height: 1; font-size: 18rem;
-            border: var(--efy_border); align-items: center; display: flex; justify-content: center; min-width: 30rem}
+[pn_planner] {display: grid; gap: calc(var(---gap) /2.5) var(---gap);
+    grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); padding: 0 var(---gap) var(---gap) var(---gap);
+    .header {display: flex; justify-content: start; gap: var(---gap0); align-items: center; margin: 5rem 0 10rem 0;
+        mark {padding: 5rem 7rem; background: var(---bg1); color: var(---text); line-height: 1; font-size: 18rem;
+            border: var(---border); align-items: center; display: flex; justify-content: center; min-width: 30rem}
     }
     h5 {line-height: 1; margin: 0}
     .pn_full {padding: 7rem 0!important;
         i {margin-right: 0; font-size: 14rem}
     }
-    [efy_timer] {margin: var(--efy_gap0)}
-    .time {border: var(--efy_border); line-height: 1; padding: 3rem 5rem; background: var(--efy_bg1); border-radius: var(--efy_radius0); display: flex; align-items: center}
+    [efy_timer] {margin: var(---gap0)}
+    .time {border: var(---border); line-height: 1; padding: 3rem 5rem; background: var(---bg1); border-radius: var(---radius0); display: flex; align-items: center}
     :is(details, #priority)[open] {padding: 0;
         summary {padding: 0 0 0 12rem; margin-bottom: 7rem;
             &:before {right: 9rem}
@@ -90,17 +90,17 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
     word-break: break-all; overflow-wrap: anywhere; width: fit-content;
         &[contenteditable=true] {-webkit-line-clamp: 3; line-height: 20rem}
     }
-    .info {white-space: pre-wrap; text-wrap: wrap; border-top: var(--efy_border); border-bottom: var(--efy_border); resize: none;
-        .email, .phone, .birthday, .price, .quantity {display: flex; align-items: center; border-bottom: var(--efy_border);
-            &:last-of-type {border-radius: 0 0 var(--efy_radius0) var(--efy_radius0); border-bottom: none}
-            > * {padding: var(--efy_padding)}
-            p:first-of-type {border-right: var(--efy_border); min-width: 30%}
-            a {-webkit-text-fill-color: var(--efy_text); font-weight: normal}
+    .info {white-space: pre-wrap; text-wrap: wrap; border-top: var(---border); border-bottom: var(---border); resize: none;
+        .email, .phone, .birthday, .price, .quantity {display: flex; align-items: center; border-bottom: var(---border);
+            &:last-of-type {border-radius: 0 0 var(---radius0) var(---radius0); border-bottom: none}
+            > * {padding: var(---padding)}
+            p:first-of-type {border-right: var(---border); min-width: 30%}
+            a {-webkit-text-fill-color: var(---text); font-weight: normal}
         }
     }
     .info[readonly]:focus {box-shadow: none!important}
-    .info .info {display: flex; margin: 0; background: none; border: 0; border-top: var(--efy_border); border-radius: 0}
-    .date {background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius); padding: 6rem 8rem; width: fit-content;}
+    .info .info {display: flex; margin: 0; background: none; border: 0; border-top: var(---border); border-radius: 0}
+    .date {background: var(---bg1); border: var(---border); border-radius: var(---radius); padding: 6rem 8rem; width: fit-content;}
     .pn_tags {padding: 10rem}
     [pn_done=true] {
         [pn_priority], .time, [efy_timer], .pn_fs {display: none}
@@ -108,13 +108,13 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
         .title {text-decoration: line-through}
         .info .info {border-top: none}
         [efy_timer], .time {display: none}
-        .done_btn {background: var(--efy_color), var(--efy_color_trans); -webkit-text-fill-color: transparent;
+        .done_btn {background: var(---color), var(---color_trans); -webkit-text-fill-color: transparent;
         background-clip: text, border-box !important; background-origin: border-box!important}
     }
     &.priority_color {
         ::-webkit-progress-bar {background: transparent}
-        progress {background: var(--efy_text_trans)}
-        ::-webkit-progress-value {background: var(--efy_text)}
+        progress {background: var(---text_trans)}
+        ::-webkit-progress-value {background: var(---text)}
         details:has([pn_priority*=low]) {
             progress {background: oklch(var(--pn_tag_color_alpha_low))}
             ::-webkit-progress-value {background: oklch(var(--pn_tag_color_low))}
@@ -128,26 +128,26 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
             ::-webkit-progress-value {background: oklch(var(--pn_tag_color_high))}
         }
         [pn_done=true] {
-            .done_btn {background: var(--efy_text_trans)!important; -webkit-text-fill-color: var(--efy_text)}
+            .done_btn {background: var(---text_trans)!important; -webkit-text-fill-color: var(---text)}
             &:has([pn_priority*=low]) .done_btn {background: oklch(var(--pn_tag_color_alpha_low))!important; -webkit-text-fill-color: oklch(var(--pn_tag_color_low))}
             &:has([pn_priority*=medium]) .done_btn {background: oklch(var(--pn_tag_color_alpha_medium))!important; -webkit-text-fill-color: oklch(var(--pn_tag_color_medium))}
             &:has([pn_priority*=high]) .done_btn {background: oklch(var(--pn_tag_color_alpha_high))!important; -webkit-text-fill-color: oklch(var(--pn_tag_color_high))}
         }
     }
     &:not(.pn_fs) .info {max-height: 385rem; overflow: visible}
-    :is(:is(.title, .name, .url)[contenteditable=true], .info .info:not([readonly])) {border: var(--efy_border_size) dashed var(--efy_text_trans2); border-radius: calc(var(--efy_radius0) * 0.75); padding: 0 5rem}
-    :is(:is(.title, .name, .url)[contenteditable=true], .info .info:not([readonly])):focus {border: var(--efy_border_size) solid var(--efy_text); box-shadow: 0 0 0 var(--efy_border_size) var(--efy_text)}
+    :is(:is(.title, .name, .url)[contenteditable=true], .info .info:not([readonly])) {border: var(---border_size) dashed var(---text_trans2); border-radius: calc(var(---radius0) * 0.75); padding: 0 5rem}
+    :is(:is(.title, .name, .url)[contenteditable=true], .info .info:not([readonly])):focus {border: var(---border_size) solid var(---text); box-shadow: 0 0 0 var(---border_size) var(---text)}
     &:has([contenteditable=true]:focus) :is(details, a) {pointer-events: none; box-shadow: none!important}
-    .scores {display: flex; flex-direction: column; gap: var(--efy_gap0); padding: var(--efy_gap0); border-bottom: var(--efy_border);
-        .score {display: flex; flex-direction: column; gap: var(--efy_gap0); align-items: center;
-            .top {display: flex; gap: var(--efy_gap0); align-items: center; justify-content: space-between; width: 100%;
-                .buttons {display: flex; gap: var(--efy_gap0);
-                    .numbers {display: flex; align-items: center; background: var(--efy_bg1); border-radius: var(--efy_radius0); border: var(--efy_border); padding: 0 3rem;
+    .scores {display: flex; flex-direction: column; gap: var(---gap0); padding: var(---gap0); border-bottom: var(---border);
+        .score {display: flex; flex-direction: column; gap: var(---gap0); align-items: center;
+            .top {display: flex; gap: var(---gap0); align-items: center; justify-content: space-between; width: 100%;
+                .buttons {display: flex; gap: var(---gap0);
+                    .numbers {display: flex; align-items: center; background: var(---bg1); border-radius: var(---radius0); border: var(---border); padding: 0 3rem;
                         * {margin: 0}
-                        [type=number] {width: 2ch; padding: 3rem; background: none; border: 0; border-radius: var(--efy_radius00)}
+                        [type=number] {width: 2ch; padding: 3rem; background: none; border: 0; border-radius: var(---radius00)}
                         p {margin-right: 3rem}
                     }
-                    .remove {width: 30rem; height: 30rem; border-radius: var(--efy_radius0);
+                    .remove {width: 30rem; height: 30rem; border-radius: var(---radius0);
                         i:before {font-size: 14rem!important}
                     }
                 }
@@ -158,36 +158,36 @@ body {min-height: var(--efy_100vh); height: var(--efy_100vh); overflow: auto}
     }
 }
 
-#priority[open] > div {border-top: var(--efy_border);  padding: 10rem; display: flex; flex-wrap: wrap; gap: var(--efy_gap0)}
+#priority[open] > div {border-top: var(---border);  padding: 10rem; display: flex; flex-wrap: wrap; gap: var(---gap0)}
 #priority[open] > div label {margin: 0}
 
-[efy_drag] {display: flex; gap: var(--efy_gap0); flex-wrap: wrap;
+[efy_drag] {display: flex; gap: var(---gap0); flex-wrap: wrap;
     > * {width: 100%; margin: 0}
-    > div {background: var(--efy_bg1); border: var(--efy_border); border-radius: var(--efy_radius); padding: var(--efy_padding)}
+    > div {background: var(---bg1); border: var(---border); border-radius: var(---radius); padding: var(---padding)}
     a:not(:is(.email, .phone, .birthday, .price, .quantity) a) {
-        padding: var(--efy_padding); background: var(--efy_bg1)!important; -webkit-text-fill-color: var(--efy_text)!important;
+        padding: var(---padding); background: var(---bg1)!important; -webkit-text-fill-color: var(---text)!important;
     }
 }
 [efy_drag=on] {
     * {cursor: move!important}
     * > * {pointer-events: none}
-    > *.active {border: var(--efy_border_size) dashed var(--efy_text); background: transparent}
+    > *.active {border: var(---border_size) dashed var(---text); background: transparent}
 }
 [efy_drag_cursor] {display: none}
 
 
 [efy_tabs=pn_form] :is([efy_tab], [efy_tab]:last-of-type) {margin: 0}
 [efy_tabs=pn_form] [efy_content] {padding: 0; border: none; background: transparent}
-[efy_tabs=pn_form] .pn_tabs {display: flex; align-items: center; gap: var(--efy_gap0)}
+[efy_tabs=pn_form] .pn_tabs {display: flex; align-items: center; gap: var(---gap0)}
 
 [pn_priority] {width: 10rem; height: 10rem; border-radius: 50%; padding: 5rem}
 
-/*Pseudo Fullscreen*/ html.pn_fs {padding-top: var(--efy_100vh); overflow: hidden!important}
-details.pn_fs {position: absolute; z-index: 9; inset: 0; margin: 0; border-radius: 0; border: 0; background: var(--efy_bg)}
+/*Pseudo Fullscreen*/ html.pn_fs {padding-top: var(---100vh); overflow: hidden!important}
+details.pn_fs {position: absolute; z-index: 9; inset: 0; margin: 0; border-radius: 0; border: 0; background: var(---bg)}
 :is([efy_mode=default], [efy_mode*=trans]) details.pn_fs {background: transparent}
 details.pn_fs:active, details.pn_fs .info2 {transform: unset!important}
 details.pn_fs summary {pointer-events: none}
-#pn_goals details.pn_fs .info {overflow: unset!important; height: calc(var(--efy_100vh) - 120rem)!important; max-height: unset}
+#pn_goals details.pn_fs .info {overflow: unset!important; height: calc(var(---100vh) - 120rem)!important; max-height: unset}
 #pn_goals details.pn_fs :not(.efy_sidebar) [efy_timer] {width: 100%; height: 100%; background: transparent; border: 0; justify-content: center; box-shadow: none}
 #pn_goals .pn_fs [efy_timer] {
     [efy_text] {font-size: 20vmin; padding: 3rem 10rem; line-height: 1}
@@ -202,10 +202,10 @@ details:not(.pn_fs) .pn_tags button.pseudo {display: none}
 .pn_tags [efy_start].pseudo:before { content: "\e90a"}
 .pn_tags [efy_start].pseudo[efy_active]:before { content: "\e90b"}
 
-#pn_links [efy_drag] {display: grid; gap: var(--efy_gap0); grid-template-columns: 1fr 1fr; height: fit-content}
+#pn_links [efy_drag] {display: grid; gap: var(---gap0); grid-template-columns: 1fr 1fr; height: fit-content}
 #pn_links .url:not([contenteditable=true]), #pn_links .pn_tags:not(.active) {display: none}
-#pn_links .url {margin-top: var(--efy_gap0); line-break: anywhere}
-#pn_links .pn_tags {padding: var(--efy_gap0) 0 0 0; margin: var(--efy_gap0) 0 0 0; border-top: var(--efy_border)}
+#pn_links .url {margin-top: var(---gap0); line-break: anywhere}
+#pn_links .pn_tags {padding: var(---gap0) 0 0 0; margin: var(---gap0) 0 0 0; border-top: var(---border)}
 #pn_links .title {max-width: 100%}
 
 .pn_toggles label:before, .pn_toggles label:after {display: none!important}
@@ -214,16 +214,16 @@ details:not(.pn_fs) .pn_tags button.pseudo {display: none}
 html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) {display: flex; gap: 8rem; align-items: center}
 html :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {margin: 0}
 [for=pn_drag_toggle] [efy_icon=move] {margin-right: 4rem}
-[for=pn_drag_toggle] [efy_icon=move]:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(--efy_color); color: transparent}
-[efy_color_buttoncol][efy_mode] [for=pn_drag_toggle] [efy_icon=move]:before {background: hsla(var(--efy_color_buttoncol_var) / .7)}
+[for=pn_drag_toggle] [efy_icon=move]:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(---color); color: transparent}
+[efy_color_buttoncol][efy_mode] [for=pn_drag_toggle] [efy_icon=move]:before {background: hsla(var(---color_buttoncol_var) / .7)}
 
-#pn_theme {display: flex; flex-wrap: wrap; gap: var(--efy_gap0);
+#pn_theme {display: flex; flex-wrap: wrap; gap: var(---gap0);
     .pn_title {line-height: 1; margin: 0; width: 100%}
     label {margin: 0}
 }
 
-#pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(--efy_100vh);
-    border-radius: 0!important; background-position: var(--efy_bg_x) var(--efy_bg_y)!important; pointer-events: none;
+#pn_confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(---100vh);
+    border-radius: 0!important; background-position: var(---bg_x) var(---bg_y)!important; pointer-events: none;
 } [efy_mode*=light] #pn_confetti {filter: invert(1)}
 
 /*Convergence*/

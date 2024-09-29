@@ -1,17 +1,17 @@
-/*Weather Icons*/ @font-face {font-family: 'efy_icons'; src: url('../efy/efy_weather.woff2') format('woff2'); font-weight: normal; font-style: normal; font-display: block}
+/*Weather Icons*/ @font-face {font-family: 'efy_icons'; src: url('../efy/fonts/efy_weather.woff2') format('woff2'); font-weight: normal; font-style: normal; font-display: block}
 [efy_icon=flash]:before {content: "\e952"}
 
-:root {--efy_body_padding: 0; --torch_bg: transparent}
+:root {---body_padding: 0; --torch_bg: transparent}
 .efy_sidebar {border-radius: 0}
 
-.tc_container {display: flex; align-items: center; place-content: center; width: 100%; height: var(--efy_100vh); background: var(--torch_bg)!important;
-    button {background: transparent; border: calc(var(--efy_border_size) * 2) solid var(--efy_text);
-        width: calc(var(--efy_size)* 1.5); height: calc(var(--efy_size)* 1.5); -webkit-text-fill-color: var(--efy_text);
+.tc_container {display: flex; align-items: center; place-content: center; width: 100%; height: var(---100vh); background: var(--torch_bg)!important;
+    button {background: transparent; border: calc(var(---border_size) * 2) solid var(---text);
+        width: calc(var(---size)* 1.5); height: calc(var(---size)* 1.5); -webkit-text-fill-color: var(---text);
         i {font-size: 30rem}
 }}
-#torch_bg_color {margin-bottom: var(--efy_gap);
+#torch_bg_color {margin-bottom: var(---gap);
     :is(.efy_copy, .efy_paste) {display: none}
     .efy_tabs {
-        * {margin: 0; height: var(--efy_size)}
+        * {margin: 0; height: var(---size)}
         input {display: none!important}
 }}

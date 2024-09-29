@@ -39,7 +39,7 @@ const player_bar = ['div', {ms_bar: '', class: 'efy_trans_filter efy_shadow_tran
 
 $add('div', {ms_app: ''}, [
   ['div', {class: 'ms_loading efy_hide_i'}, 'Loading...'],
-  ['div', {class: 'ms_grid_box'}, [
+  ['div', {class: 'ms_grid_box gamepad_scroll'}, [
     ['div', {class: 'vd_video_div efy_hide_i'}, [
       ['div', {class: 'vd_gestures'}, [
           ['div', {class: 'left'}], ['div', {class: 'middle'}], ['div', {class: 'right'}]

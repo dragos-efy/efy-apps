@@ -1,9 +1,9 @@
 const docs_page = $('div[efy_content=docs]'), [comma, comma2, colon, hr, nl] = [['p', ' , '], ['p', ', '], ['p', ': '], ['hr', '\n'], ['p', {class: 'new_line'}, '\n']];
 
-$add('h5', {efy_searchable: ''}, 'Learn how to use efy', docs_page);
+$add('h5', {efy_searchable: ''}, 'How to use EFY', docs_page);
 
-$add('div', {class: 'columns'}, [
-    ['div', {style: 'display: flex; flex-direction: column; gap: var(--efy_gap)'}, [
+$add('div', {class: 'columns2'}, [
+    // ['div', {style: 'display: flex; flex-direction: column; gap: var(---gap)'}, [
         ['details', {efy_searchable: 'mode'}, [['summary', '[efy_mode]'],
             ['ul', [
                 ['li', ['It sets the mode, the default value is ', ['code', 'default']]],
@@ -87,11 +87,50 @@ $add('div', {class: 'columns'}, [
                     comma2, ['code', "'2'"], ['p', ']\n])']
                 ]]
             ]]
-        ]]
-    ]],
-    ['div', [
+        ]],
+        ['details', {efy_searchable: 'colors'}, [['summary', 'Colors'],
+            ['ul', [
+                ['li', 'As few colors as possible so they reuse each other with different alpha levels']
+            ]],
+            ['h4', 'CSS Variables'],
+            ['ul', [
+                ['li', 'text'],
+                ['li', 'var(---color)'],
+            ]],
+            ['div', {class: 'dc_colors', efy_select: ''}, [
+                ['div', {id: 'dc_colors1', style: 'background: var(---color)'}, 'color'],
+                ['div', {id: 'dc_colors2', style: 'background: var(---color_trans)'}, 'color_trans'],
+            ]],
+            ['div', {class: 'dc_colors', efy_select: ''}, [
+                ['div', {id: 'dc_colors3', style: 'background: var(---text)'}, 'text'],
+                ['div', {id: 'dc_colors4', style: 'background: var(---text_trans)'}, 'text_trans'],
+                ['div', {id: 'dc_colors5', style: 'background: var(---text_trans2)'}, 'text_trans2'],
+            ]],
+            ['div', {class: 'dc_colors', efy_select: ''}, [
+                ['div', {id: 'dc_colors6', style: 'background: var(---bg)'}, 'bg'],
+                ['div', {id: 'dc_colors7', style: 'background: var(---bg1)'}, 'bg1'],
+                ['div', {id: 'dc_colors8', style: 'background: var(---bg2)'}, 'bg2'],
+            ]],
+            ['div', {class: 'dc_colors', efy_select: ''}, [
+                ['div', {id: 'dc_colors9', style: 'background: var(---border-color)'}, 'border_color']
+            ]],
+            ['h4', 'Structure'], ['ul', [
+                ['li', 'text'],
+                ['li', 'text'],
+            ]],
+            ['h4', 'Examples'], ['div', {style: 'display:grid; gap: 10rem'}, [
+                ['p', 'Specific mode:'],
+                ['pre', {efy_code: 'css'}, [['code', '[efy_mode=light,sepia]'], ['p', ' { your css }']]],
+                ['p', 'All light modes:'],
+                ['pre', {efy_code: 'css'}, [['code', '[efy_mode*=light]'], ['p', ' { your css }']]],
+                ['p', 'Not this specific mode:'],
+                ['pre', {efy_code: 'css'}, [['code', ':not([efy_mode=light,sepia])'], ['p', ' { your css }']]],
+                ['p', 'Remove selector if any light mode is on:'],
+                ['pre', {efy_code: 'js'}, [['code', "$('[efy_mode*=light] #your_selector')"], ['p', '.remove()']]]
+            ]]
+        ]],
         ['details', {efy_searchable: 'soon'}, [['summary', 'More coming soon...'], ['p', 'This is just the beginning...']]]
-    ]]
+    // ]]
 ], docs_page);
 
 $add('h5', {efy_searchable: ''}, 'Components', docs_page);
@@ -105,8 +144,8 @@ $add('div', {class: 'dc_separator'}, [
                 ['button', {class: 'copy_url efy_square_btn', title: 'Copy URL'}, [['i', {efy_icon: 'globe'}]]]
             ]],
             ['div', {efy_content: 'preview', class: 'efy_trans_filter_off', efy_active: ''}, [
-                ['div', {style: 'display: flex; gap: var(--efy_gap); width: 100%;'}, [
-                    ['div', {class: 'efy_square_btn', style: 'background: var(--efy_bg1); height: 100%; width: unset; aspect-ratio: 1; border-radius: var(--efy_radius); border: var(--efy_border)'}, [
+                ['div', {style: 'display: flex; gap: var(---gap); width: 100%;'}, [
+                    ['div', {class: 'efy_square_btn efy_trans_filter', style: 'background: var(---bg1); height: 100%; width: unset; aspect-ratio: 1; border-radius: var(---radius); border: var(---border)'}, [
                         ['i', {efy_icon: 'star', style: 'font-size: 40rem'}]
                     ]],
                     ['pre', {efy_code: 'example · html', style: 'margin: 0'}, [
@@ -181,7 +220,7 @@ $add('div', {class: 'dc_separator'}, [
                     ['p', ')\n$notify('], ['code', "'long'"], comma2, ['code', "'Long'"], comma2, ['code', "'Disappears in 30s'"],
                     ['p', ')\n$notify('], ['code', "'infinite'"], comma2, ['code', "'Infinite'"], comma2, ['code', "'Never disappears'"], ['p', ')'],
                     hr,
-                    ['span', {style: 'color: var(--efy_text_trans)'}, '// Attach it to a click event\n'],
+                    ['span', {style: 'color: var(---text_trans)'}, '// Attach it to a click event\n'],
                     ['p', '$event('], ['code', 'selector'], comma2, ['code', "'click'"], ['p', ', ()=> '],
                     ['code', '$notify'], ['p', '('], ['code', "'short'"], comma2, ['code', "'Test'"], comma2, ['code', "'Test'"], ['p', '))']
                 ]]
@@ -384,7 +423,7 @@ $add('div', {class: 'dc_separator'}, [
 ], docs_page);
 
 
-/*Icons*/ $ready('#dc_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera check chevron chevron_down chevron_left chevron_up circle cloud copy dots edit flash fullscreen github globe group heart help key menu menu2 microphone moon move notify notify_active paste pause play plus rain reload remove screen search snow star sun user zoom_in zoom_out'.split(' ').map(b=> $add('div', {efy_card: ''}, [['i', {efy_icon: b}], ['p', b]], $('#dc_icons')) )}, 1);
+/*Icons*/ $ready('#dc_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera check chevron chevron_down chevron_left chevron_up circle circle2 circle3 circle4 cloud copy dots edit flash fullscreen gamepad github globe group heart help home key location menu menu2 menu3 microphone moon move notify notify_active paste pause play plus rain reload remove rocket screen search snow square star sun triangle user zoom_in zoom_out'.split(' ').map(b=> $add('div', {efy_card: ''}, [['i', {efy_icon: b}], ['p', b]], $('#dc_icons')) )}, 1);
 
 /*Copy URL / Icon*/ $event($('[efy_content=docs]'), 'click', (e)=>{
     const x = e.target, match = [x.matches('.copy_url'), x.matches('#dc_icons [efy_card]')];

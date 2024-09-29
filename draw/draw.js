@@ -261,7 +261,7 @@ $event(canvas, 'touchstart', handleStart);
 $event(canvas, 'touchmove', handleMove);
 $event(document, 'touchend', handleEnd);
 
-$event(canvas, 'pointermove', pen_pressure);
+// Uncomment When Pen Support Works $event(canvas, 'pointermove', pen_pressure);
 // $event(canvas, 'pointerup', ()=> brushColor($('.dw_color_menu [efy_color]').value));
 
 $event(document, 'keydown', (event)=>{

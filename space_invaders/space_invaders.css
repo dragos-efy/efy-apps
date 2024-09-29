@@ -1,0 +1,27 @@
+body {flex-direction: column; align-items: center; place-content: start; padding: 0}
+
+.nav {display: flex; gap: var(---gap); align-items: center; place-content: space-between;
+	width: 100%; height: 50rem; border-bottom: var(---border); padding: var(---gap0); margin-bottom: var(---gap);
+}
+
+.grid {
+	---factor: 20; ---cell: calc((var(---grid_size) - 80rem - var(---gap2)) / var(---factor)); ---total: calc(var(---cell) * var(---factor));
+	---cell_5th: calc(var(---cell) - var(---cell) / 6); ---cell_3rd: calc(var(---cell) - var(---cell) / 1.5);
+
+	display: flex; flex-wrap: wrap; box-sizing: content-box; width: var(---total); height: var(---total);
+
+	div {display: flex; align-items: center; place-content: center; font-family: efy_icons; width: var(---cell); height: var(---cell)}
+	.invader {font-size: var(---cell_5th); border-radius: var(---radius);
+		&:before {content: "\e970"}
+	}
+	.player {font-size: var(---cell);
+		&:before {content: "\e972";}
+	}
+	.laser:before {content: "\e951"; font-size: var(---cell_3rd); rotate: 180deg}
+	.boom:before {content: "\e970"; font-size: var(---cell_5th)}
+	:is(.player, .laser, .boom):before {background: var(---color); background-clip: text; -webkit-text-fill-color: transparent}
+}
+
+#confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(---100vh);
+border-radius: 0!important; background-position: var(---bg_x) var(---bg_y)!important; pointer-events: none}
+[efy_mode*=light] #confetti {filter: invert(1)}

@@ -1,3 +1,56 @@
+$add('div', {rc_app: ''}, [
+  ['div', {'class': 'video_grid'}, [
+	['video', {autoplay: '', class: 'camera efy_trans_filter efy_shadow_trans'}],
+	['video', {autoplay: '', class: 'screen_sharing efy_trans_filter efy_shadow_trans efy_hide'}]
+  ]],
+  ['div', {rc_bar: '', class: 'efy_trans_filter efy_shadow_trans'}, [
+    ['div', {class: 'efy_flex', efy_select: 'margin0'}, [
+      ['select', {id: 'mediaSelect', title: 'Media Type'}, [
+          ['option', {value: 'video'}, 'Video'],
+          ['option', {value: 'image'}, 'Image'],
+          ['option', {value: 'audio'}, 'Audio']
+      ]]
+    ]],
+
+    ['div', {class: 'efy_flex', 'efy_select': 'margin0'}, [
+        ['input', {type: 'checkbox', id: 'recordToggle', checked: ''}],
+        ['label', {class: 'efy_square_btn', for: 'recordToggle', title: 'Record Toggle'}],
+        ['div', {class: 'source_input'}, [
+            ['input', {type: 'checkbox', id: 'microphoneToggle'}],
+            ['label', {for: 'microphoneToggle', title: 'Microphone'}, [['i', {efy_icon: 'microphone'}]]],
+            ['div', {class: 'select_icon'}, [
+                ['select', {id: 'audioSource', title: 'Microphone Devices'}],
+                ['i', {efy_icon: 'chevron'}]
+            ]]
+        ]],
+        ['div', {class: 'source_input'}, [
+            ['input', {type: 'checkbox', id: 'cameraToggle'}],
+            ['label', {for: 'cameraToggle', title: 'Camera'}, [['i', {efy_icon: 'camera'}]]],
+            ['div', {class: 'select_icon'}, [
+                ['select', {id: 'videoSource', title: 'Camera Devices'}],
+                ['i', {efy_icon: 'chevron'}]
+            ]]
+        ]],
+        ['div', {class: 'source_input'}, [
+            ['input', {type: 'checkbox', id: 'screenShareToggle'}],
+            ['label', {for: 'screenShareToggle', title: 'Screen Share'}, [['i', {efy_icon: 'screen'}]]]
+        ]]
+    ]],
+
+    ['div', {class: 'efy_flex', efy_select: 'margin0'}, [
+      ['select', {title: 'Timer', class: 'efy_hide'}, [
+        ['option', {value: 'video'}, '0'],
+        ['option', {value: 'image'}, '10'],
+        ['option', {value: 'audio'}, '30']
+      ]],
+      ['input', {type: 'checkbox', id: 'fullscreen'}],
+      ['label', {for: 'fullscreen', title: 'Fullscreen'}, [['i', {efy_icon: 'fullscreen'}]]],
+      ['button', {efy_sidebar_btn: '', class: 'efy_square_btn', title: 'Menu'}, [['i', {efy_icon: 'menu'}]]]
+    ]]
+
+  ]]
+]);
+
 const video_grid = $('.video_grid'), videoElement = $('video.camera'), videoSelect = $('#videoSource'),
 audioSelect = $('#audioSource'), mediaSelect = $('#mediaSelect'),
 recordToggle = $('#recordToggle'), cameraToggle = $('#cameraToggle'), microphoneToggle = $('#microphoneToggle');

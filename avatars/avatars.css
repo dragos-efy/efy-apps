@@ -1,0 +1,170 @@
+@font-face {font-family: 'efy_poses'; src: url('../assets/efy_poses.ttf') format('woff2');
+    font-weight: normal; font-style: normal;
+}
+[efy_pose] {align-items: center; place-content: center; font-family: 'efy_poses'!important; speak: never; font-style: normal;
+    font-weight: normal; font-variant: normal; text-transform: none; vertical-align: middle; background: var(---color);
+    background-clip: text; -webkit-text-fill-color: transparent; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    &, &:before {display: inline-flex}
+}
+[efy_pose=arm]:before {content: '\e900'}
+[efy_pose=chest]:before {content: '\e901'}
+[efy_pose=hair_long0]:before {content: '\e950'; background: unset; color: red}
+
+.icon_container:has([efy_pose=seated_forward_bend]) {rotate: -90deg}
+
+/*Temporary*/
+.container:is(.img, .img2) {display: none}
+.warning {display: flex; flex-wrap: wrap; gap: var(---gap); align-items: center; width: fit-content; padding: 6rem 12rem;}
+
+body {display: flex; flex-wrap: wrap; flex-direction: column; gap: var(---gap)!important; align-items: center; place-content: center;}
+.controls {display: grid!important; grid-template-columns: repeat(auto-fill, minmax(150rem, 1fr));
+  width: 100%!important; max-width: 500rem; margin: 0!important;
+  label {width: 100%!important; height: var(---size)!important}
+}
+[efy_cursor], #gamepads {display: none!important}
+
+.container{position: relative; background: var(---bg1); border: var(---border); width: 300rem; height: 300rem; border-radius: var(---radius); display: inline-flex;
+  &.img .human .head {background-image: url(./face.webp)!important; background-size: 105%; background-position: -1rem -1rem;
+    .eye1, .eye2, .mouth {display: none}
+  }
+  .human {
+    --eyes_width: 5rem; --eyes_height: 5rem; --eyes_distance: 10rem; --eyes_top: 15rem;
+    --mouth_width: 10rem; --mouth_height: 3rem; --mouth_top: 30rem;
+    ---human_speed: calc(var(---anim_status) * var(---anim_speed) * .4s) ease-in-out;
+
+    height: 150rem; width: 50rem; top: -50rem; transition: all var(---human_speed);
+    .head, .neck, .body, .arm_left, .arm_left2, .arm_left3, .arm_right, .arm_right2, .arm_right3, .leg_left, .leg_left2,
+    .leg_right, .leg_right2, .boob_left, .boob_right, .shirt_neck, .shirt_chest, .shirt_left, .shirt_right, .underwear,
+    .skirt, .support {
+      background: oklch(var(---skin_bg)); transition: all var(---human_speed); /*box-shadow: 0 0 30rem oklch(var(---bg_var2) / .5)*/
+    }
+    &, .head, .body {position: relative}
+    &, .head {margin: auto}
+    .arm_left, .arm_right {height: 62rem; z-index: 1}
+    .arm_left2, .arm_right2 {bottom: -35rem; height: 50rem}
+    .arm_left3, .arm_right3 {display: none; bottom: -10rem; height: 25rem}
+    .arm_left, .arm_left2, .arm_right, .arm_right2, .arm_left3, .arm_right3 {width: 20rem; border-radius: var(---radius0); position: absolute; transform-origin: 10rem 10rem}
+    .leg_left, .leg_left2, .leg_right, .leg_right2 {height: 68rem; width: 20rem; position: absolute; bottom: -50rem; border-radius: var(---radius); transform-origin: 10rem 10rem}
+
+    .head {height: 50rem; width: 40rem; border-radius: var(---radius2); z-index: 1}
+
+    .eye1, .eye2 {width: var(--eyes_width); height: var(--eyes_height); top: var(--eyes_top); background: oklch(var(---eye_bg));
+      box-shadow: 0 0 0 2rem oklch(var(---eye2_bg)); border-radius: var(---radius00); position: absolute;
+    }
+    .eye1 {left: var(--eyes_distance)}
+    .eye2 {right: var(--eyes_distance)}
+
+    &.eyes2 {--eyes_width: 10rem; --eyes_height: 10rem; --eyes_distance: 8rem; --eyes_top: 12rem;
+      :is(.eye1, .eye2) {background: var(---bg); box-shadow: unset}
+    }
+
+    .mouth {width: var(--mouth_width); height: var(--mouth_height); top: var(--mouth_top); left: 14rem;
+      box-shadow: 0 0 0 2rem oklch(var(---mouth_bg)); border-radius: var(---radius00); position: absolute;
+    }
+
+    .neck {height: 20rem; width: 18rem; position: absolute; top: 41rem; left: 16rem; z-index: 0!important;
+      clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%); box-shadow: inset 0 10rem 2rem #0003;
+    }
+    .body {height: 100rem; width: 50rem; margin-top: 10rem; border-radius: 0 0 var(---radius) var(---radius)}
+    .arm_left {left:-8rem; rotate: 90deg}
+    .arm_right {right:-8rem; rotate: -90deg}
+    .leg_right {right:0}
+    [efy_pose]:not([efy_pose*=hair]):before {background: var(---color); background-clip: text; -webkit-text-fill-color: transparent}
+    [efy_pose=hair_long0]:before {background: oklch(var(---hair_bg)); font-size: 60rem; background-clip: text; position: absolute; top: -28rem; left: -5rem}
+    .body {font-size: 40rem;
+      &:before {font-size: 100rem}
+    }
+    .boob_left, .boob_right {width: 26rem; height: 26rem; position: absolute; top: 15rem; z-index: 1;
+      background: oklch(var(---shirt_bg)); box-shadow: inset 0 -5rem 3rem #0002; border-radius: 8rem 8rem 50% 50%;
+    }
+    .boob_left {left: -1rem}
+    .boob_right {right: -1rem}
+    .shirt_chest {height: 70rem; background: oklch(var(---shirt_bg))}
+    .shirt_neck {height: 10%; width: 50%; border-radius: 0 0 var(---radius) var(---radius); top: 0; left: 25%; z-index: 1;
+      background: oklch(var(---skin_bg)); position: absolute; box-shadow: 0 0 0 0.2rem oklch(var(---skin_bg));
+    }
+    .shirt_left, .shirt_right {height: 20rem; width: 20rem; background: oklch(var(---shirt_bg));
+      box-shadow: 0 0 0 0.2rem oklch(var(---shirt_bg)); border-radius: var(---radius) var(---radius) 0 0;
+    }
+    .underwear {height: 30rem; width: 51rem; background: black; z-index: 0; position: absolute;
+      clip-path: polygon(0% 0%, 100% 0%, 60% 100%, 39% 100%); background: oklch(var(---underwear_bg));
+    }
+    .skirt {clip-path: polygon(10rem 0%, 60rem 0%, 100% 100%, 0% 100%); height: 40rem; width: 70rem;
+      position: absolute; left: -10rem; bottom: -10rem; background: oklch(var(---skirt_bg));
+      border-radius: var(---radius00); transition: all var(---human_speed), background 0s;
+    }
+    .support {opacity: 0; scale: 0; border-radius: var(---radius); width: 70rem; height: 98rem;
+      background: var(---bg1); border: var(---border); left: 79rem; bottom: -110rem; position: absolute;
+      display: flex; align-items: center; place-content: center;
+      &:before {content: "\e90c"; rotate: 45deg; font-family: efy_icons; font-size: 25rem; color: var(---bg1)}
+    }
+
+    &.girl {
+      --eyes_distance: 11rem; --eyes_width: 4rem; --eyes_height: 4rem; --eyes_top: 18rem;
+      --mouth_width: 5rem; --mouth_height: 2rem; --mouth_top: 36rem;
+      .mouth {left: 17rem}
+    }
+    &:not([boobs]) :is(.boob_left, .boob_right) {display: none}
+
+    &[pose=pose2]{
+      .head {translate: 0 -9rem}
+      .body {translate: 0 -15rem}
+      .arm_left {rotate: 110deg}
+      .arm_left2 {rotate: -90deg}
+      .arm_right {rotate: -110deg}
+      .arm_right2 {rotate: 90deg}
+      .leg_left {rotate: 110deg}
+      .leg_left2 {rotate: -90deg}
+      .leg_right {rotate: -110deg}
+      .leg_right2 {rotate: 90deg}
+      .skirt {clip-path: polygon(15rem 0%, 65rem 0%, 100% 100%, 0% 100%); translate: -5rem 0; width: 80rem}
+    }
+    &[pose=mountain]{
+      .arm_left, .arm_right {rotate: 0deg}
+    }
+    &[pose=side_stretch], &[pose=side_stretch_flex]{translate: -35rem 0;
+      .arm_left {rotate: 30deg}
+      .arm_left2 {rotate: -80deg}
+      .arm_right {rotate: -30deg}
+      .arm_right2 {rotate: 80deg}
+      .leg_right {rotate: -90deg}
+      .skirt {width: 81rem; clip-path: polygon(10rem 0%, 60rem 0%, 100% 31%, 0% 155%)}
+      .support {opacity: 1; scale: 1}
+    }
+    &[pose=side_stretch_flex] {scale: -1 1; translate: 35rem 0}
+    &[pose=star] {
+      .leg_left {rotate: 35deg}
+      .leg_right {rotate: -35deg}
+      .underwear {clip-path: polygon(0% 0%, 100% 0%, 66% 100%, 33% 100%)}
+      .skirt {clip-path: polygon(15rem 0%, 65rem 0%, 100% 100%, 0% 100%); translate: -5rem 0; width: 80rem}
+    }
+    &[pose=triangle] {rotate: 90deg; translate: 25rem 60rem;
+      .head, .neck {translate: -12rem 0}
+      .body {width: 25rem; height: 86rem}
+      .arm_left, .arm_right {height: 50rem}
+      .leg_left {rotate: -51deg}
+      .leg_right {rotate: -130deg; right: 5rem; bottom: -52rem; height: 72rem}
+      .shirt_neck {width: 80%; left: 12%}
+      .skirt {clip-path: polygon(25rem 0%, /*25rem 9%, 27rem 3%, 30rem 0%,*/ 50rem 0%, 100% 100%, 0% 100%);
+        translate: -11rem -1rem; rotate: -88deg; width: 80rem;
+      }
+    }
+    &[pose=half_moon] {rotate: 90deg; translate: 40rem 60rem;
+      .head {translate: -13rem 0}
+      .neck {left: 4rem}
+      .body {width: 25rem; height: 86rem}
+      .leg_left {rotate: 20deg}
+      .leg_right {rotate: -90deg}
+      .leg_right2 {bottom: -37rem}
+      .shirt_neck {width: 80%; left: 12%}
+      .skirt {clip-path: polygon(40rem 0%, 68rem 0%, 100% 100%, 0% 100%);
+        translate: -22rem 0rem; rotate: -29deg; width: 103rem;
+      }
+    }
+  }
+}
+.controls {margin-top: var(---gap); width: fit-content; display: flex; gap: var(---gap0);
+  label {margin: 0!important;
+    &:before, &:after {display: none!important}
+  }
+}
