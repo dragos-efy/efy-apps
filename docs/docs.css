@@ -294,13 +294,14 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
             & > h2 {margin-top: 10rem; font-size: 11.1cqw}
             & > p {font-size: 20rem}
     }}
-    [efy_tabs=dc] > [efy_content=apps] {grid-template-columns: 1fr;
-        .current_app {height: fit-content; min-height: fit-content;
+    [efy_tabs=dc] > [efy_content=apps] {grid-template-columns: 1fr; gap: unset;
+        .current_app {height: fit-content; min-height: fit-content; width: calc(100% - var(---gap2));
             .s1 {grid-template-columns: 100rem 1fr;height: fit-content;}
             .logo {---dc_icon_size_nr: 50;
-                height: auto;min-width: 100rem;
+                height: auto; min-width: 100rem;
             }
         }
+        .apps_page {height: fit-content!important; padding: var(---gap)}
     }
     .dc_right .dc_search {display: none!important}
     [efy_content=faq], .dc_separator {flex-direction: column}
