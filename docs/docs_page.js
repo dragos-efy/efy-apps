@@ -423,7 +423,7 @@ $add('div', {class: 'dc_separator'}, [
 ], docs_page);
 
 
-/*Icons*/ $ready('#dc_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera check chevron chevron_down chevron_left chevron_up circle circle2 circle3 circle4 cloud copy dots edit flash fullscreen gamepad github globe group heart help home key location menu menu2 menu3 microphone moon move notify notify_active paste pause play plus rain reload remove rocket screen search snow square star sun triangle user zoom_in zoom_out'.split(' ').map(b=> $add('div', {efy_card: ''}, [['i', {efy_icon: b}], ['p', b]], $('#dc_icons')) )}, 1);
+/*Icons*/ $ready('#dc_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera car check chevron chevron_down chevron_left chevron_up circle circle2 circle3 circle4 cloud copy dots edit flash fullscreen gamepad github globe group heart help home key location menu menu2 menu3 microphone moon move notify notify_active paste pause play plus rain reload remove rocket screen search snow square star sun triangle user zoom_in zoom_out'.split(' ').map(b=> $add('div', {efy_card: ''}, [['i', {efy_icon: b}], ['p', b]], $('#dc_icons')) )}, 1);
 
 /*Copy URL / Icon*/ $event($('[efy_content=docs]'), 'click', (e)=>{
     const x = e.target, match = [x.matches('.copy_url'), x.matches('#dc_icons [efy_card]')];

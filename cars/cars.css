@@ -1,0 +1,45 @@
+:root {
+    ---body_padding: 0;
+}
+
+body:has(.carGame) {padding: 0!important}
+
+.hide, .game_over.efy_hide_i + hr {display: none;}
+.carGame {width: 100%; height: var(---100vh)}
+.car {background: var(---color)}
+.enemyCar {background: var(---text); rotate: 180deg}
+.car, .enemyCar{
+    width: 60rem;
+    font-size: 70rem;
+    height: 70rem;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: absolute;
+    bottom: 120rem;
+}
+.roadLines{
+    width: 10rem;
+    height: 100rem;
+    position: absolute;
+    background: var(---bg1);
+    border-radius: var(---radius0);
+    margin-left: 195rem;   /* center = (gameArea.width / 2) - (roadLines.width / 2) */
+}
+.gameArea {width: 400rem; height: var(---100vh); background: var(---bg1); margin: auto; position: relative; overflow: hidden}
+.score {position: absolute; top: var(---gap); left: var(---gap); background: var(---bg1); border-radius: var(---radius);
+    padding: var(---padding); border: var(---border);
+}
+.startScreen{
+    position: absolute;
+    background: var(---bg);
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    border: var(---border);
+    border-radius: var(---radius);
+    padding: 15rem;
+    margin: auto;
+    width: fit-content;
+    cursor: pointer;
+}

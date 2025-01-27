@@ -50,44 +50,36 @@ const hash_fn =(a,b)=>{ const x = $(`[efy_content="${a}"] [efy_searchable="${b}"
 searchable =(a)=>{ let p = [];
     $all(`[efy_content=${a}] [efy_searchable]`).forEach((x)=>{ p.push(x.getAttribute('efy_searchable')) } );
     searchables[a] = p;
-};
-
-'faq html docs apps'.split(' ').forEach(tab =>{
-    if (hash.includes(`#${tab}`)){
-        const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`), src = `./docs/${tab}_page.js`;
-        $add('script', {src: src}, [], $('head'));
+},
+tab_load_fn =(tab, click = false)=>{
+    const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`), src = `./docs/${tab}_page.js`,
+    loading = $(`[efy_content=${tab}] + .loading`); let apps_unlisted = true;
+    if ((tab === 'apps') && apps_unlisted){
+        $add('script', {src: `./global/apps_list.js`}, [], $('head'));
+        apps_unlisted = false;
+    }
+    const wait_time = apps_unlisted ? '0' : '0.1';
+    loading.classList.remove('efy_hide_i');
+    $wait(wait_time, ()=>{
+        $add('script', {src: src}, [], $('head'))
         $event($(`script[src="${src}"]`), 'load', ()=>{
-            $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i')
-            frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
-            $(`[efy_tabs=dc] [efy_tab=${tab}]`).click();
+            loading.classList.add('efy_hide_i'); frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
+            if (click) $(`[efy_tabs=dc] [efy_tab=${tab}]`).click();
             if (('faq apps docs'.includes(tab))){
                 searchable(tab);
                 searchables[tab].forEach(q =>{ if ((q !== '') && (hash.includes(`#${q}`))) hash_fn(tab, q) });
             }
-        });
-    }
-});
-if (hash === ''){ const tab = 'efy';
-    const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`), src = `./docs/${tab}_page.js`;
-    $add('script', {src: src}, [], $('head'));
-    $event($(`script[src="${src}"]`), 'load', ()=>{
-        $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i');
-        frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
-        $(`[efy_tabs=dc] [efy_tab=${tab}]`).click()
+        })
+    });
+};
+
+if (hash === '') tab_load_fn('efy', true);
+for (const tab of ['efy', 'apps', 'faq', 'html', 'docs']){
+    if (hash.includes(`#${tab}`)) tab_load_fn(tab, true);
+    const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`);
+    $event($(`[efy_tabs=dc] [efy_tab=${tab}]`), 'click', ()=>{
+        if (!frame.classList.contains('efy_dom')) tab_load_fn(tab);
     });
 }
-
-['apps', 'html', 'faq', 'docs', 'efy'].map(tab =>{
-    const frame = $(`[efy_content=${tab}]:not(.loading)`);
-    $event($(`[efy_tab=${tab}]`), 'click', () =>{ if (! frame.classList.contains('efy_dom')){
-        const src = `./docs/${tab}_page.js`;
-        $(`[efy_content=${tab}] + .loading`).classList.remove('efy_hide_i');
-        $add('script', {src: src}, [], $('head'));
-        $event($(`script[src="${src}"]`), 'load', ()=>{
-            $(`[efy_content=${tab}] + .loading`).classList.add('efy_hide_i')
-            frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
-        });
-    }});
-});
 
 }, 1);

@@ -22,7 +22,8 @@ const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy
     ['hr'],
     ['div', {class: 'efy_flex'}, [
         ['button', {id: 'start'}, 'Start'],
-        ['button', {class: 'efy_quick_fullscreen efy_square_btn'}, [['i', {efy_icon: 'fullscreen'}]] ]
+        ['button', {class: 'efy_quick_fullscreen efy_square_btn'}, [['i', {efy_icon: 'fullscreen'}]] ],
+        ['button', {efy_sidebar_btn: '', class: 'efy_square_btn'}, [['i', {efy_icon: 'menu'}]] ]
     ]]
 ]);
 

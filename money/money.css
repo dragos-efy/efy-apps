@@ -3,7 +3,7 @@ body {width: 100%}
 .mn_nav {display: flex; justify-content: space-between; align-items: center}
 .mn_nav :is(button, a[role=button], label) {margin: 0; white-space: nowrap; min-width: var(---size); height: var(---size); display: flex; align-items: center; place-content: center}
 
-.mn_nav, .modal-overlay {margin-top: var(---gap)}
+.mn_nav, .modal_overlay {margin-top: var(---gap)}
 
 .button.cancel {display: flex; justify-content: center; align-items: center}
 
@@ -13,14 +13,14 @@ body {width: 100%}
 .percentageDisplay div {display: flex; gap: 10rem}
 .percentageDisplay progress {display: flex; width: 100%; margin-top: 10rem}
 
-#data-table {width: 100%; margin: var(---gap) 0 0 0}
+#data_table {width: 100%; margin: var(---gap) 0 0 0}
 table :is(td:nth-of-type(1), td:nth-of-type(2), td:nth-of-type(3)) {width: 100%; min-width: 100rem}
 
 .mn_income_expense_color td.income {color: #12a454}
 .mn_income_expense_color td.expense {color: #e92929}
 
-.modal-overlay {display: none}
-.modal-overlay.active {display: block}
+.modal_overlay {display: none}
+.modal_overlay.active {display: block}
 
 #form {max-width: 500px}
 #form h2 {margin-top: 0}
@@ -31,16 +31,16 @@ table :is(td:nth-of-type(1), td:nth-of-type(2), td:nth-of-type(3)) {width: 100%;
 .modal_grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); gap: var(---gap); border-top: var(---border); padding: var(---gap)}
 .modal_grid :is(input, [efy_number]) {margin: 0}
 
-.modal_grid .input-group {display: flex}
-.modal_grid .input-group label {display: flex; padding: var(---padding); background: var(---bg1); border-radius: var(---radius) 0 0 var(---radius); border: var(---border); border-right: 0}
-.modal_grid .input-group input {border-radius: 0 var(---radius) var(---radius) 0; height: 100%}
-.modal_grid .input-group [efy_number] {width: 100%}
-.modal_grid .input-group:focus-within label {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text_trans2); border-color: var(---text_trans2)}
-.modal_grid .input-group:focus-within {gap: calc(var(---border_size) + 2rem)}
+.modal_grid .input_group {display: flex}
+.modal_grid .input_group label {display: flex; padding: var(---padding); background: var(---bg1); border-radius: var(---radius) 0 0 var(---radius); border: var(---border); border-right: 0}
+.modal_grid .input_group input {border-radius: 0 var(---radius) var(---radius) 0; height: 100%}
+.modal_grid .input_group [efy_number] {width: 100%}
+.modal_grid .input_group:focus-within label {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text_trans2); border-color: var(---text_trans2)}
+.modal_grid .input_group:focus-within {gap: calc(var(---border_size) + 2rem)}
 
-.input-group.actions {padding: var(---gap)}
-.input-group.actions, .input-group.actions .buttons {display: flex; justify-content: space-between; align-items: center; gap: var(---gap)}
-.input-group.actions button {width: 100%; margin: 0}
+.input_group.actions {padding: var(---gap)}
+.input_group.actions, .input_group.actions .buttons {display: flex; justify-content: space-between; align-items: center; gap: var(---gap)}
+.input_group.actions button {width: 100%; margin: 0}
 
 #mn_search {margin: 0}
 

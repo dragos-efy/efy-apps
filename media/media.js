@@ -792,13 +792,30 @@ const speed_arrows =(multiply)=>{
 
 function checkSimultaneousKeys(event){
   event.preventDefault();
+
+  const level_nofify =(text)=>{
+    $all('.audio_level').forEach(x => x.remove());
+    $notify(1, text, '', '', 'audio', (x)=>{ x.forEach(y => y.classList.add('audio_level'))});
+  };
+
   if (keys.ArrowDown && keys.ArrowLeft){ prev_song()}
   else if (keys.ArrowDown && keys.ArrowRight){ next_song()}
-  else if (keys.ArrowUp && keys.ArrowLeft){ if (audio.playbackRate > 0.25) speed_arrows(-1)}
-  else if (keys.ArrowUp && keys.ArrowRight){ if (audio.playbackRate < 2) speed_arrows(1)}
-
-  else if (keys.ArrowDown){ if (audio.volume > 0) audio.volume = (audio.volume - 0.05).toFixed(2)}
-  else if (keys.ArrowUp){ if (audio.volume < 1) audio.volume = (audio.volume + 0.05).toFixed(2)}
+  else if (keys.ArrowUp && keys.ArrowLeft){
+    if (audio.playbackRate > 0.25) speed_arrows(-1);
+    level_nofify(`Speed - ${audio.playbackRate}X`);
+  }
+  else if (keys.ArrowUp && keys.ArrowRight){
+    if (audio.playbackRate < 2) speed_arrows(1);
+    level_nofify(`Speed - ${audio.playbackRate}X`);
+  }
+  else if (keys.ArrowDown){
+    if (audio.volume > 0) audio.volume = (audio.volume - 0.05).toFixed(2);
+    level_nofify(`Volume - ${audio.volume}`);
+  }
+  else if (keys.ArrowUp){
+    if (audio.volume < 1) audio.volume = (audio.volume + 0.05).toFixed(2);
+    level_nofify(`Volume - ${audio.volume}`);
+  }
   else if (keys.ArrowLeft){
     if (audio.classList.contains('image')){ prev_song()}
     else { audio.currentTime = (audio.currentTime < 10) ? 0 : Math.round(audio.currentTime - 10)}

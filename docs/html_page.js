@@ -124,12 +124,12 @@ $add('div', { 'efy_searchable': '' }, [ ['form', [
         ['div', { 'efy_searchable': '', 'id': 'dc_buttons' }, [
             ['button', 'button'],
             ['a', { 'href': '#' }, [['button', 'a > button']]],
-            ['a', { 'href': '#', 'role': 'button', 'style': 'display: unset; float: unset' }, 'role=button'],
-            ['button', { 'type': 'submit', 'onclick': 'return false;' }, 'button type=submit'],
-            ['button', { 'type': 'reset', 'onclick': 'return false;' }, 'button type=reset'],
-            ['input', { 'type': 'button', 'value': 'input type=button' }],
-            ['input', { 'type': 'submit', 'value': 'input type=submit', 'onclick': 'return false;' }],
-            ['input', { 'type': 'reset', 'value': 'input type=reset', 'onclick': 'return false;' }],
+            ['a', { 'href': '#', 'role': 'button', 'style': 'display: unset; float: unset' }, '[role=button]'],
+            ['button', { 'type': 'submit', 'onclick': 'return false;' }, 'button[type=submit]'],
+            ['button', { 'type': 'reset', 'onclick': 'return false;' }, 'button[type=reset]'],
+            ['input', { 'type': 'button', 'value': 'input[type=button]' }],
+            ['input', { 'type': 'submit', 'value': 'input[type=submit]', 'onclick': 'return false;' }],
+            ['input', { 'type': 'reset', 'value': 'input[type=reset]', 'onclick': 'return false;' }],
             ['button', { 'type': 'button', 'disabled': '' }, 'disabled']
         ]]
 ]] ], html_page);

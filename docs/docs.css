@@ -31,6 +31,7 @@ html {overflow: hidden;
             details :is(li, pre, summary, p) *:not(.efy_bar, .efy_bar *) {display: inline}
         }
         .dc_separator pre *:not(.efy_bar, .efy_bar *, ul, li, hr) {display: inline}
+        &:has([efy_content=apps][efy_active]) {gap: 0}
 }}
 
 body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
@@ -48,7 +49,7 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
         & > div {display: flex; flex-direction: column; place-content: center; align-items: center; text-align: center}
         & h2 {text-transform: uppercase}
         & > div:first-of-type {
-            & > h2 {line-height: 1; margin-bottom: 15rem; font-size: 62rem}
+            & > h2 {line-height: 1; margin-bottom: 30rem; font-size: 62rem}
             & > p {font-size: 28rem}
         }
         #dc_buttons.apps {max-width: 1000rem; place-content: center;
@@ -58,7 +59,8 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
     [efy_content=apps] {display: grid; grid-template-columns: 1fr 1fr; gap: var(---gap); padding: 0!important;
         &:has(.current_app.efy_hide_i) {grid-template-columns: 1fr}
         &:not([efy_active]) {display: none}
-        .current_app {display: flex; flex-direction: column; padding: 0; scale: 1; height: fit-content; margin: 0 var(---gap);
+        .current_app {display: flex; flex-direction: column; padding: 0; scale: 1; height: fit-content;
+            margin: var(---gap) var(---gap) 0 var(---gap);
             min-height: calc(var(---100vh) - var(---size) - var(---gap0)* 5 - var(---border_size));
             *:not(i) {margin: 0}
             .s1 {display: grid; grid-template-columns: 200rem 1fr; height: 200rem}
@@ -69,15 +71,11 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
             .actions {display: flex; flex-direction: column; gap: var(---gap); place-content: space-between;
                 .info {display: flex; flex-direction: column}
             }
-            .title {font-size: 30rem; font-weight: bold; line-height: 1}
+            .title {font-size: 30rem; font-weight: bold; line-height: 1.2}
             .start {height: var(---size);
                 &:not([href]) {display: none}
             }
-            .title_container {display: flex; gap: 10rem; align-items: center; border-bottom: var(---border); padding: 15rem;
-                .status {padding: 4rem 8rem; display: flex; align-items: center; place-content: center; line-height: 1;
-                    border-radius: var(---radius0);
-                }
-            }
+            .title_container {display: flex; gap: 10rem; align-items: center; border-bottom: var(---border); padding: 15rem}
             .description {padding: 15rem}
             .buttons {display: flex; gap: var(---gap0); padding: var(---gap); border-top: var(---border)}
             .tags {display: flex; flex-direction: column; border-top: var(---border);
@@ -86,6 +84,7 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
                     [tag] {border-radius: var(---radius0); padding: 5rem 6rem; height: fit-content; line-height: 1;
                         display: flex; align-items: center; place-content: center; border: var(---border); background: var(---bg1);
                         &[tag=title] {padding-right: 0; padding-left: 0; border: 0; background: transparent}
+                        &[tag=color] {background: var(---color_trans), var(---color); -webkit-text-fill-color: transparent; background-clip: border-box, text}
                     }
                 }
             }
@@ -122,16 +121,10 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
 }
 [efy_searchable=color_picker] [efy_color_preview] {margin: 5rem 0}
 
-#dc_buttons {margin: 0;
-    &.dc_cta {flex-direction: row; margin: 20rem 0 10rem 0; padding: 0}
-    *:not([efy_sidebar_btn] i, [efy_content="efy"] *) {margin: 0; width: 100%}
+#dc_buttons:not(.dc_cta) {margin: 0;
+    *:not([efy_sidebar_btn] i, [efy_content="efy"] *, [efy_content="html"] *) {margin: 0; width: 100%}
+    *:is([efy_content="html"] *) {margin: 0}
     [efy_card] {display: flex; align-items: center; height: fit-content; color: var(---text); -webkit-text-fill-color: var(---text); padding: 0;
-        &.more {flex-direction: row-reverse;
-            * {pointer-events: none}
-            i {border-right: 0; border-left: var(---border); border-radius: 0 var(---radius) var(---radius) 0; margin: 0}
-            .column_flex div {line-height: 1}
-            mark {-webkit-text-fill-color: var(---text); border: 0; padding-top: 3px}
-        }
         & mark {display: flex; background: transparent; color: var(---text_trans)!important; -webkit-text-fill-color: var(---text_trans);
             padding: 6px 10rem 0 10rem; line-height: 1; border-top: var(---border); width: 100%; margin: 0!important; border-radius: 0}
         :is(i, .logo) {padding: 15rem; border-radius: var(---radius) 0 0 var(---radius); display: flex; align-items: center;
@@ -146,20 +139,33 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
         &:focus-within {outline: calc(var(---border_size) + 2rem) solid var(---text)!important}
         input {opacity: 0; position: absolute; width: 0; height: 0; pointer-events: none}
     }
-    &.dc_cta :is(a, button):focus-within {outline-offset: 4rem}
+}
+
+#dc_buttons.dc_cta {display: grid; grid-template-columns: repeat(auto-fill, minmax(200rem, 1fr)); padding: 0; margin: 50rem 0 0 0; width: 100%;
+    > * {width: 100%; height: 70rem!important; margin: 0; display: flex; gap: 15rem;}
+    *:not([efy_sidebar_btn] i, [efy_content="efy"] *) {margin: 0; width: 100%}
+    [efy_card], button, a {display: flex; align-items: center; height: fit-content; padding: 0; margin: 0;
+        &:not(.efy_color_trans, [efy_sidebar_btn], .featured) {color: var(---text); -webkit-text-fill-color: var(---text); background: var(---bg1)}
+        i, .logo {display: flex; align-items: center; justify-content: center; font-size: 25rem; margin: 0;
+            &[efy_icon=dots] {font-size: 18rem!important}
+        }
+        .column_flex {display: flex; flex-direction: column; margin: 0!important; padding: 0!important;
+            div {padding: 0px 12rem 4px 10rem}
+        }
+    }
+    [efy_card], a, button {cursor: pointer!important;
+        &:focus-within {outline: calc(var(---border_size) + 2rem) solid var(---text)!important}
+        input {opacity: 0; position: absolute; width: 0; height: 0; pointer-events: none}
+        &, p, div, i {font-size: 20rem!important}
+    }
+    :is(a, button):focus-within {outline-offset: 4rem}
+    .efy_color_trans {background: var(---color), var(---color_trans);
+        -webkit-background-clip: text, border-box; background-clip: text, border-box;
+        background-origin: border-box;  -webkit-text-fill-color: transparent; height: var(---size);
+    }
 }
 
 /*Tabs*/ .dc_left [efy_tab]:not([efy_active]) + label {background: transparent; border: 0; -webkit-text-fill-color: var(---text)}
-
-/*Split Buttons*/
-.efy_btn_split {padding: 0; background: var(---color), var(---color_trans); -webkit-background-clip: text, border-box; background-clip: text, border-box;
-    background-origin: border-box;  -webkit-text-fill-color: transparent; height: var(---size);
-    & p {padding: var(---padding); height: calc(var(---size) - var(---border_size2)); display: flex; align-items: center; line-height: 1;
-        --size: calc(6.5rem + var(---border_size));
-        &:first-of-type {border-right: var(---border); padding-right: var(--size)}
-        &:last-of-type {padding-left: var(--size)}
-}}
-.dc_cta [efy_sidebar_btn] {display: flex; align-items: center}
 
 #dc_icons {display: flex; flex-wrap: wrap; gap: var(---gap);
     & > div {display: flex; align-items: center; width: fit-content; padding: 0;
@@ -192,7 +198,8 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
 @keyframes loading {0% {rotate: 0deg} 50% {scale: 2} 100% {rotate: 360deg}}
 
 #dc_buttons.apps_page {display: grid; grid-template-columns: repeat(auto-fill, minmax(100rem, 1fr)); gap: var(---gap);
-    place-content: start; height: calc(var(---100vh) - var(---size) - var(---gap0)* 5 - var(---border_size)); overflow: auto;
+    place-content: start; height: calc(var(---100vh) - var(---size) - var(---gap0) * 2 - var(---border_size));
+    overflow: auto; padding: var(---gap);
 	[efy_card] {aspect-ratio: 0.8; height: unset;
         &:is(.active + label, input:hover + label) {background: var(---color), var(---color_trans); background-clip: text, border-box; -webkit-text-fill-color: transparent; background-origin: border-box;}
 		.top {display: flex; flex-direction: column; align-items: center; place-content: space-between; height: 100%}

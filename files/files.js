@@ -1,6 +1,21 @@
 $ready('#efy_sbtheme', ()=>{ let directoryHandle;
 
-/*Create HTML*/
+let files_map = [], nr = 0, current_audio;
+
+async function playAudio(fileHandle) {
+    const file = await fileHandle.getFile();
+    const audioUrl = URL.createObjectURL(file);
+    try { current_audio.pause()} catch {}
+    current_audio = new Audio(audioUrl);
+    current_audio.play().catch(error =>{ $notify('short', 'Error playing audio:', error)});
+}
+
+$event(document, 'click', ()=>{ const x = event.target;
+    if (x.matches('[file_type=audio]')){
+        playAudio(files_map[Number(x.getAttribute('file_nr'))]);
+    }
+});
+
 $add('div', {efy_select: ''}, [
     ['button', {id: 'folder_picker'}, 'Folder'],
     ['button', {id: 'create'}, 'Create'],
@@ -19,15 +34,19 @@ $add('div', {id: 'fileList'}, [ ['ul'] ]);
 
 $event($('#folder_picker'), 'click', async () => {
     directoryHandle = await window.showDirectoryPicker(), fileList = $('#fileList ul');
-    for await (const entry of directoryHandle.values()){ let icon = 'circle';
+    $notify('short', 'loading');
+    for await (const entry of directoryHandle.values()){
+        let icon = 'circle', type = '';
         if (entry.kind === 'file'){
-            if (entry.name.includes('.mp3')){ icon = 'audio'}
+            if (entry.name.includes('.mp3')){ icon = 'audio'; type = 'audio'}
             else if (entry.name.includes('.svg')){ icon = 'star'}
         } else { icon = 'dots'}
-        $add('li', {efy_card: ''}, [
+        $add('li', {efy_card: '', file_type: type, file_nr: nr}, [
             ['i', {efy_icon: icon}], ['p', entry.name]
         ], fileList);
+        files_map.push(entry); nr++;
     }
+    $notify('short', 'Done!');
 });
 
 $event($('#create'), 'click', async () => { const type = $('#createType').value;

@@ -1,6 +1,6 @@
 /*Defaults*/ :root {
-    ---color: .8 .37 70 1, .55 .37 280 1;
-    /*No JS Fallback*/ ---color1_var: .8 .37 70 1; ---color2_var: .55 .37 280 1;
+    ---color: .7 .15 70 1;
+    /*No JS Fallback*/ ---color1_var: .7 .15 70 1; ---color2_var: .7 .15 70 1;
     ---color_angle: 165deg;
     ---radius: 12rem;
     ---border_size: 1.5rem;
@@ -13,7 +13,7 @@
     ---audio_folder: ./efy/audio;
     ---lang_folder: ./lang;
     ---lang_code: en;
-    ---modules: efy_quick, efy_filters, efy_backup, efy_accessibility, efy_language, efy_audio, efy_extra;
+    ---modules: efy_quick, efy_filters, efy_backup, efy_accessibility, efy_languages;
     ---protocol: file;
 }
 [efy_mode=default] {

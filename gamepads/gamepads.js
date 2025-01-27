@@ -226,13 +226,13 @@ function add_gamepad(gamepad){
     index: $$(map, '.index'), id: $$(map, '.id'), mapping: $$(map, '.mapping'), connected: $$(map, '.connected')
   };
 
-  if (gamepad.vibrationActuator){
+  if (gamepad.vibrationActuator){ const index = gamepad.index;
     $add('div', {class: 'vibration', efy_select: ''}, [
       ['div', {efy_lang: 'vibration', efy_range_text: 'Intensity'}, [
-        ['input', {type: 'range', id: 'vibration_intensity', min: 0.02, max: 1, step: 0.02, value: 0.5}]
+        ['input', {type: 'range', id: `vibration_intensity_${index}`, min: 0.02, max: 1, step: 0.02, value: 0.5}]
       ]],
       ['div', {efy_lang: 'time', efy_range_text: 'Time'}, [
-        ['input', {type: 'range', id: 'vibration_duration', min: 0.05, max: 5, step: 0.05, value: 3}]
+        ['input', {type: 'range', id: `vibration_duration_${index}`, min: 0.05, max: 5, step: 0.05, value: 3}]
       ]]
     ], map);
     vibration_fn();
@@ -308,25 +308,28 @@ function process(){
 requestAnimationFrame(process);
 
 
+function test_gamepad_vibration(intensity, duration, index){
+  const gamepad = navigator.getGamepads()[index];
+  if (gamepad && gamepad.vibrationActuator){
+    gamepad.vibrationActuator.playEffect("dual-rumble", {
+      startDelay: 0, duration: duration * 1000, // miliseconds
+      weakMagnitude: intensity, strongMagnitude: intensity,
+    });
+}}
+
 /*Vibration*/ const vibration_fn =()=>{
 
-  function test_gamepad_vibration(intensity, duration){
-    const gamepad = navigator.getGamepads()[0]; // 1st Gamepad
-    if (gamepad && gamepad.vibrationActuator){
-      gamepad.vibrationActuator.playEffect("dual-rumble", {
-        startDelay: 0, duration: duration * 1000, // miliseconds
-        weakMagnitude: intensity, strongMagnitude: intensity,
-      });
-  }}
+  $event(document, 'input', (event)=>{ const x = event.target;
 
-  $event($('#vibration_intensity'), 'input', ()=>{
-    const intensity = event.target.value, duration = $('#vibration_duration').value;
-    test_gamepad_vibration(intensity, duration)
-  });
+    if (x.matches('.map input:not(.efy_range_text_p)')){
+      const index = Number(x.id.replace('intensity_', '').replace('duration_', '').replace('vibration_', '')),
+      intensity = $(`#vibration_intensity_${index}`).value,
+      duration = $(`#vibration_duration_${index}`).value;
+      console.log(index);
 
-  $event($('#vibration_duration'), 'input', ()=>{
-    const duration = event.target.value, intensity = $('#vibration_intensity').value;
-    test_gamepad_vibration(intensity, duration)
+      test_gamepad_vibration(intensity, duration, index);
+    }
+
   });
 
 };

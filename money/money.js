@@ -1,6 +1,118 @@
-/*default data*/ if (localStorage.efy_mn === undefined){ localStorage.efy_mn = '[{"description": "Test Income","quantity":"1","price":100000,"date":"25/04/2023"}, {"description":"Test Expense","quantity":"1","price":-50000,"date":"25/04/2023"}]'};
+$ready('#efy_sbtheme', ()=>{
 
-/*Variables*/ const mn_modal = { toggle(){ $('.modal-overlay').classList.toggle('active'); $('.modal_grid #description').focus() } },
+$add('div', {id: 'mn_body', efy_search: '#data_table tr:not(.efy_ignore_search)'}, [
+    ['div', {id: 'balance'}, [
+        ['div', {efy_card: ''}, [
+            ['h6', {efy_lang: 'total'}],
+            ['h4', {id: 'totalDisplay'}, '$0,00']
+        ]],
+        ['div', {efy_card: ''}, [
+            ['h6', {efy_lang: 'income'}],
+            ['h4', {id: 'incomeDisplay'}, '$0,00']
+        ]],
+        ['div', {efy_card: ''}, [
+            ['h6', {efy_lang: 'expenses'}],
+            ['h4', {id: 'expenseDisplay'}, '$0,00']
+        ]],
+        ['div', {efy_card: '', class: 'percentageDisplay'}, [
+            ['div', [
+                ['h6', {efy_lang: 'left_'}],
+                ['h6', {id: 'percentageDisplay'}, '0%']
+            ]],
+            ['progress', {value: 100, max: 100}]
+        ]]
+    ]],
+
+    ['div', {class: 'mn_nav'}, [
+        ['div', {style: 'display: flex; gap: var(---gap0);'}, [
+            ['button', {class: 'button new efy_square_btn'}, [['i', {efy_icon: 'plus'}]]],
+            ['input', {id: 'mn_search', type: 'text', placeholder: 'Search...', efy_search_input:'', name: 'mn_search_input'}]
+        ]],
+        ['button', {efy_sidebar_btn: '', class: 'efy_square_btn'}, [['i', {efy_icon: 'menu'}]]]
+    ]],
+
+    ['div', {class: 'modal_overlay'}, [
+        ['div', {class: 'modal', efy_card: ''}, [
+            ['div', {class: 'form'}, [
+                ['form', {action: '#'}, [
+                    ['div', {class: 'input_group actions'}, [
+                        ['h6', {efy_lang: 'transaction'}],
+                        ['div', {class: 'buttons'}, [
+                            ['button', {efy_lang: 'save'}],
+                            ['button', {href: '#', class: 'button cancel efy_square_btn'}, [['i', {efy_icon: 'remove'}]]]
+                        ]]
+                    ]],
+                    ['div', {class: 'modal_grid'}, [
+                        ['div', {class: 'input_group'}, [
+                            ['label', {for: 'description', efy_lang: 'description', class: 'efy_trans_filter'}],
+                            ['input', {type: 'text', id: 'description', name: 'description'}]
+                        ]],
+                        ['div', {class: 'input_group'}, [
+                            ['label', {for: 'quantity', efy_lang: 'quantity', class: 'efy_trans_filter'}],
+                            ['input', {type: 'number', step: 'any', id: 'quantity', name: 'quantity', placeholder: 1, value: 1}]
+                        ]],
+                        ['div', {class: 'input_group'}, [
+                            ['label', {for: 'price', efy_lang: 'price', class: 'efy_trans_filter'}],
+                            ['input', {type: 'number', step: 'any', id: 'price', name: 'price', placeholder: '0.00'}]
+                        ]],
+                        ['div', {class: 'input_group'}, [
+                            ['label', {for: 'date', efy_lang: 'date', class: 'efy_trans_filter'}],
+                            ['input', {type: 'date', id: 'date', name: 'date'}]
+                        ]],
+                        ['div', {class: 'input_group'}, [
+                            ['label', {for: 'category', efy_lang: 'tags', class: 'efy_trans_filter'}],
+                            ['input', {type: 'text', id: 'category', name: 'category', placeholder: 'coming soon...', disabled: ''}]
+                        ]]
+                    ]]
+                ]]
+            ]]
+        ]]
+    ]],
+
+    ['table', {id: 'data_table', class: 'mn_table'}, [
+        ['thead', [
+            ['tr', {class: 'mn_row efy_ignore_search'}, [
+                ['td', {class: 'description', efy_lang: 'description'}],
+                ['td', {class: 'quantity', efy_lang: 'quantity'}],
+                ['td', {class: 'income', efy_lang: 'price'}],
+                ['td', {class: 'date', efy_lang: 'date'}],
+                ['td']
+            ]]
+        ]],
+        ['tbody']
+    ]],
+]);
+
+$add('details', {id: 'mn_settings', class: 'eos_menu'}, [
+    ['summary', [['i', {efy_icon: 'group'}], ['p', {efy_lang: 'money'}], ['mark', {efy_lang: 'beta'}]]],
+    ['div', {efy_tabs: 'mn_menu', efy_select: ''}, [
+        ['div', {class: 'efy_tabs'}, [
+            ['input', {type:'radio', id: 'mn_tab_backup', efy_tab: 'backup', efy_active: ''}],
+            ['label', {for: 'mn_tab_backup', efy_lang: 'backup'}],
+            ['input', {type:'radio', id: 'mn_tab_grid', efy_tab: 'grid'}],
+            ['label', {for: 'mn_tab_grid', efy_lang: 'grid'}],
+            ['input', {type:'radio', id: 'mn_tab_tags', efy_tab: 'tags'}],
+            ['label', {for: 'mn_tab_tags', efy_lang: 'tags'}]
+        ]],
+        ['div', {efy_content: 'backup', efy_select: '', id: 'mn_backup', efy_active: ''}, [
+            ['a', {role: 'button', class: 'mn_localstorage_export', efy_lang: 'save'}, [['i', {efy_icon: 'arrow_down'}]]],
+            ['label', {efy_upload: 'mn_localstorage_import, .json'}],
+            ['button', {class: 'mn_localstorage_reset', efy_lang: 'reset'}, [['i', {efy_icon: 'reload'}]]]
+        ]],
+        ['div', {efy_content: 'grid', efy_select: '', id: 'mn_grid'}, [
+            ['div', {efy_lang: 'coming_soon'}]
+        ]],
+        ['div', {efy_content: 'tags', efy_select: '', id: 'mn_tags'}, [
+            ['div', {efy_lang: 'coming_soon'}]
+        ]],
+    ]]
+], $('#efy_sbtheme'), 'beforebegin');
+
+/*default data*/ if (localStorage.efy_mn === undefined){
+    localStorage.efy_mn = '[{"description": "Test Income","quantity":"1","price":100000,"date":"25/04/2023"}, {"description":"Test Expense","quantity":"1","price":-50000,"date":"25/04/2023"}]'
+};
+
+/*Variables*/ const mn_modal = { toggle(){ $('.modal_overlay').classList.toggle('active'); $('.modal_grid #description').focus() } },
 
 mn_storage = {
     get(){ return JSON.parse(localStorage.efy_mn) || []},
@@ -59,7 +171,12 @@ format = { price(value){ return Number(value) * 100 },
 
 mn_form = { description: $('#description'), quantity: $('#quantity'), price: $('#price'), date: $('#date'),
 
-    get_values(){ return { description: mn_form.description.value, quantity: mn_form.quantity.value, price: mn_form.price.value, date: mn_form.date.value }},
+    get_values(){ return {
+        description: mn_form.description.value,
+        quantity: mn_form.quantity.value,
+        price: mn_form.price.value,
+        date: mn_form.date.value
+    }},
 
     validateFields(){ const { description, quantity, price, date } = mn_form.get_values();
         if (description.trim() === '' || quantity.trim() === '' || price.trim() === '' || date.trim() === ''){
@@ -74,50 +191,32 @@ mn_form = { description: $('#description'), quantity: $('#quantity'), price: $('
     save_transaction(transaction){ Transaction.add(transaction)},
     clear_fields(){ mn_form.description.value = ''; mn_form.quantity.value = '1'; mn_form.price.value = ''; mn_form.date.value = ''},
     submit(event){ event.preventDefault();
-        try {
+        // try {
+            console.log(mn_form.validateFields());
             mn_form.validateFields();
             const transaction = mn_form.data(); console.log(transaction);
             mn_form.save_transaction(transaction);
             mn_form.clear_fields();
             mn_modal.toggle();
-        } catch (error){ console.log(error.message)}
+        // } catch (error){ console.log(error.message)}
     }
 },
 
 App = {
     start(){ Transaction.all.forEach(mn_table.add_transaction); mn_table.update_balance(); mn_storage.set(Transaction.all) },
     reload(){ mn_table.clear_transactions(); App.start()}
-}; App.start();
+};
 
+App.start();
 
+$all('.mn_nav .new, .form .actions .cancel').forEach(x =>{
+    $event(x, 'click', ()=>{
+        event.preventDefault();
+        mn_modal.toggle();
+    })
+});
 
-/*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
-
-$add('details', {id: 'mn_settings', class: 'eos_menu'}, [
-    ['summary', [['i', {efy_icon: 'group'}], ['p', {efy_lang: 'money'}], ['mark', {efy_lang: 'beta'}]]],
-        ['div', {efy_tabs: 'mn_menu', efy_select: ''}, [
-            ['div', {class: 'efy_tabs'}, [
-                ['input', {type:'radio', id: 'mn_tab_backup', efy_tab: 'backup', efy_active: ''}],
-                ['label', {for: 'mn_tab_backup', efy_lang: 'backup'}],
-                ['input', {type:'radio', id: 'mn_tab_grid', efy_tab: 'grid'}],
-                ['label', {for: 'mn_tab_grid', efy_lang: 'grid'}],
-                ['input', {type:'radio', id: 'mn_tab_tags', efy_tab: 'tags'}],
-                ['label', {for: 'mn_tab_tags', efy_lang: 'tags'}]
-            ]],
-            ['div', {efy_content: 'backup', efy_select: '', id: 'mn_backup', efy_active: ''}, [
-                ['a', {role: 'button', class: 'mn_localstorage_export', efy_lang: 'save'}, [['i', {efy_icon: 'arrow_down'}]]],
-                ['label', {efy_upload: 'mn_localstorage_import, .json'}],
-                ['button', {class: 'mn_localstorage_reset', efy_lang: 'reset'}, [['i', {efy_icon: 'reload'}]]]
-            ]],
-            ['div', {efy_content: 'grid', efy_select: '', id: 'mn_grid'}, [
-                ['div', {efy_lang: 'coming_soon'}]
-            ]],
-            ['div', {efy_content: 'tags', efy_select: '', id: 'mn_tags'}, [
-                ['div', {efy_lang: 'coming_soon'}]
-            ]],
-        ]]
-], $('#efy_sbtheme'), 'beforebegin');
-
+$event($('.modal .form form'), 'submit', ()=>{ mn_form.submit(event) });
 
 $ready('.mn_localstorage_reset', ()=>{
     /*Export Settings*/ $event($('.mn_localstorage_export'), 'click', ()=>{ let e = $('.mn_localstorage_export'), f = localStorage.efy_mn.replaceAll('  ', '').replaceAll(',"', ', "').replaceAll('"},', '"},\n').replaceAll('":', '": ');
@@ -129,12 +228,8 @@ $ready('.mn_localstorage_reset', ()=>{
     /*Reset Settings*/ $all(".mn_localstorage_reset").forEach(x =>{ x.onclick =()=>{ Object.entries(localStorage).forEach(([k])=>{ if (k.includes('efy_mn')){ localStorage.removeItem(k)}}); location.reload()}});
 }, 1);
 
-/*Search Transactions*/ $add('input', {id: 'mn_search', type: 'text', placeholder: 'Search...', efy_search_input:''}, [], $('.mn_nav div'), 'beforeend');
-$body.setAttribute('efy_search','#data-table tr:not(.efy_ignore_search)');
-
 /*2 Decimals & Remove final 0 digits on Blur*/ $all('#price, #quantity').forEach(a=>{ $event(a, 'blur', ()=>{
     let b = parseFloat(a.value); if (!isNaN(b)){ a.value = b.toFixed(2).replace(/(?<=\d[1-9])0(?=\d)|\.0+$/g, '').replace(/(\.\d*?[1-9])0+$/g, '\$1');}
 })});
-
 
 }, 1);

@@ -1,20 +1,24 @@
+:root {
+    ---sh-bg-offset-x: 0; ---sh-bg-offset-y: 0; ---sh-bg-rotate: 0; ---sh-bg-scale: 1;
+}
+
+html .efy_3d_bg {background-position: var(---sh-bg-offset-x) var(---sh-bg-offset-y)!important}
+
 @keyframes point {
   0%, 100% {}
-  50% {translate: 0 -10rem}
+  50% {transform: translateY(-10rem)}
 }
 
 [efy_icon=shade_score]:before {content: ''; border: 4rem solid var(---text); border-radius: var(---radius0); height: 35%; aspect-ratio: 1; margin: 0 4rem}
 
 body, html {margin: 0; padding: 0; display: flex}
 
-#player_view {width: 100%; height: 40rem; background: var(---color_trans); position: absolute; opacity: 0}
-
 #gameContainer {
     ---dc_icon_size_nr: 40; ---dc_icon_size: calc(var(---dc_icon_size_nr) * 1rem);
     position: relative; width: 100%; height: 100%;
 }
-#player, .solid, .enemy, .point, .message, .portal {position: absolute}
-#player {background: var(---color);
+#player, .solid, .light, .lamp, .plant1, .enemy, .point, .message, .portal {position: absolute; left: 0; bottom: 0}
+#player {background: var(---color); z-index: 0;
     &:before {content: '\e978 \e978'; display: flex; position: absolute; width: 100%; height: 100%; top: 0; font-family: efy_icons;
         left: calc(var(---dc_icon_size) / 40); align-items: center; place-content: center; color: var(---text2);
         -webkit-text-fill-color: var(---text2); font-size: calc(var(---dc_icon_size) / 3); letter-spacing: calc(var(---dc_icon_size) / 20);
@@ -30,8 +34,7 @@ body, html {margin: 0; padding: 0; display: flex}
     &:before {content: '● ●'; position: absolute; width: 100%; height: 100%; top: 0; left: 0;
     display: flex; align-items: center; place-content: center; color: var(---text2)}
 }
-.point {border: 5rem solid var(---text); animation: point 5s infinite;}
-.point {width: 20rem; height: 20rem}
+.point {width: 20rem; height: 20rem; border: 5rem solid var(---text); animation: point 5s infinite;}
 #player, .solid, .enemy {width: 40rem; height: 40rem}
 .message {flex-direction: column; width: 80rem; height: 60rem; z-index: -1;
     &, &:before {display: flex; align-items: center; place-content: center}
@@ -58,3 +61,57 @@ border-radius: 0!important; background-position: var(---bg_x) var(---bg_y)!impor
 [efy_mode*=light] #confetti {filter: invert(1)}
 
 [efy_sidebar*="on_"] * {animation-play-state: paused!important}
+
+
+.lamp {
+    --oklch: 1 0 0;
+    z-index: 2;
+    mix-blend-mode: luminosity;
+    &:before {
+        content: ''; display: block; position: absolute;
+        width: 400%; aspect-ratio: 1; border-radius: 50%;
+        background: radial-gradient(circle at 50% 30%,
+            oklch(1 0 0) 5%,
+            oklch(0 0 0 / 0.5) 100%
+        );
+        box-shadow: inset 0 0 20rem oklch(1 0 0 / 0.5);
+        left: -150%; top: -39rem;
+    }
+    &:after {
+        content: ''; display: block; position: absolute; inset: 0;
+        width: 100%; height: 100%; background: #000;
+        clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+.light {
+    --oklch: 1 0 0;
+    &:before {
+        content: ''; z-index: 2; display: block; position: absolute;
+        top: -50%; left: -50%; width: 200%; height: 200%;
+        background: radial-gradient(oklch(var(--oklch) / .7), transparent 70%);
+        mix-blend-mode: plus-lighter;
+    }
+}
+.plant1 {
+    background: url('./bush.avif'); background-size: 60rem;
+    z-index: 1; opacity: 0.9; filter: brightness(1.5);
+	clip-path: polygon(20% 100%, 9.063% 99.375%, 2.5% 90%, 0.313% 76.25%, 0.625% 61.25%, 2.188% 55%, 6.25% 50%, 7.5% 41.25%, 10.313% 38.75%, 12.188% 27.5%, 18.438% 18.75%, 23.438% 14.375%, 26.25% 15%, 31.25% 5%, 49.063% 0%, 50% 0%, 68.75% 5%, 74.375% 15.625%, 78.438% 15.625%, 86.563% 25%, 93.75% 50%, 97.5% 54.375%, 99.688% 71.25%, 99.688% 74.375%, 97.188% 90.625%, 93.75% 96.875%, 82.813% 100%);
+    box-shadow: inset 0 0 40rem #000 !important;
+}
+
+/*Textures - Comment parts will be implemented soon*/
+html.shade_alpha_textures {
+    .solid:not(.enemy, .point, .portal, .player/*, .solid2, .solid_roof*/) {
+        background: url('./bricks_dark.avif'); background-size: 80rem 80rem;
+    }
+    .efy_3d_bg {background: url('bg_dark.avif')!important}
+    /*.solid2 {} .solid_roof {}*/
+}
+
+html:not(.shade_alpha_textures) :is(.lamp, .light, .plant1) {display: none}
+
+#start_container [efy_select] label {background: var(---text); margin: 0;
+    &:not(input:checked + label) {background: var(---bg1); -webkit-text-fill-color: var(---text)}
+    &:before {background: var(---text) border-box}
+}
