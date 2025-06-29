@@ -1,6 +1,5 @@
 /*Defaults*/ :root {
     ---color: .7 .15 70 1;
-    /*No JS Fallback*/ ---color1_var: .7 .15 70 1; ---color2_var: .7 .15 70 1;
     ---color_angle: 165deg;
     ---radius: 12rem;
     ---border_size: 1.5rem;
@@ -18,10 +17,7 @@
 }
 [efy_mode=default] {
     ---scheme: dark;
-    ---bg_var: 1 0 0;
-    ---bg_var2: 0 0 0;
     ---bg: oklch(0.11 0.05 89);
-    ---text: oklch(1 0 0);
 }
 
 /*EFY OS iFrames*/

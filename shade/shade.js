@@ -61,7 +61,7 @@ const start = $add('div', {efy_tabs: 'controls', id: 'start_container', class: '
     ['hr'],
     ['div', {efy_select: ''}, [
         ['input', {type: 'checkbox', id: 'shade_alpha_textures', ...alpha_textures}],
-        ['label', {for: 'shade_alpha_textures'}, 'Alpha Textures']
+        ['label', {for: 'shade_alpha_textures', class: 'efy_trans_filter_off'}, 'Alpha Textures']
     ]],
     ['hr'],
     ['div', {class: 'efy_flex'}, [
@@ -114,9 +114,10 @@ const container = $('#gameContainer'), player = $('#player'),
 scoreElement = $('#score'), livesElement = $('#lives'), solids = $all('.solid');
 
 function level_add(map){
+    const glass = (efy.distortion && !efy_sd.alpha_textures) ? ' efy-glass' : '';
     const class_name_map = {
-        solid: 'solid efy_trans_filter',
-        solid2: 'solid solid2 efy_trans_filter',
+        solid: 'solid efy_trans_filter' + glass,
+        solid2: 'solid solid2 efy_trans_filter' + glass,
         solid_roof: 'solid solid_roof efy_trans_filter',
         plant1: 'plant1',
         lights: 'light',
@@ -220,18 +221,20 @@ let enemy_touch_time = 0;
 
 function updatePlayerPosition() {
     update_player_xy();
+    const text = efy.text_zoom || 1,
+    text2 = visualViewport.scale / text;
 
     /*Gravity Down*/ if (falling && jump_lock <= 30) y += 5;
 
     if (keys['ArrowLeft']) {
-        if (x >= 0){ x -= 2; falling = true; $root.scrollBy(-2 / efy.text_zoom, 0)}
+        if (x >= 0){ x -= 2; falling = true; $root.scrollBy(-2 / text2, 0)}
     }
     if (keys['ArrowRight']){
-        if (x < level_width - player.offsetWidth){
-            x += 2; falling = true;
-            if (x > (level_width + player.offsetWidth - $root.offsetWidth)){
-                $root.scrollBy(2 / efy.text_zoom, 0);
-            }
+        if ((x < level_width - player.offsetWidth)){ x += 2; falling = true}
+        if (x > 400 && (x < level_width - player.offsetWidth)){
+            console.log(text2);
+            $root.scrollBy(2 / text2, 0);
+            // if (parallax_bg && bg_x > -400){ bg_x -= 2; $css_prop(`---sh-bg-offset-x`, bg_x + 'rem')}
         }
     }
     if (keys['ArrowUp']) {
@@ -255,6 +258,7 @@ function updatePlayerPosition() {
     })} catch {}
 
     player.style.translate = `${x}rem ${y}rem`;
+    if (isNaN(y)) { $audio_play(shade_audio.oof); enemy_touch(); resetLevel()}
 }
 
 

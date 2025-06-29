@@ -4,13 +4,13 @@ body {overflow: hidden}
 
 #efy_emoji {container: efy_emoji / inline-size}
 
-[efy_tabs=emoji] {gap: var(---gap); height: calc(var(---100vh) - var(---gap2));
+[efy_tabs=emoji] {gap: var(---gap); height: calc(var(---100vh) - var(---gap-o));
     .efy_tabs {place-content: space-between;
-        .left {display: flex; flex-wrap: wrap; gap: var(---gap0);
+        .left {display: flex; flex-wrap: wrap; gap: var(---gap-x);
             [type=search] {margin: 0}
         }
     }
-    #container {background: var(---bg1); border: var(---border); border-radius: var(---radius); overflow-y: auto;
+    #container {background: var(---card); border: var(---border); border-radius: var(---radius); overflow-y: auto;
         [efy_content] {background: unset; border: unset; border-radius: unset;}
     }
 }

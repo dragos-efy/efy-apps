@@ -1,0 +1,57 @@
+body {display: flex; flex-direction: row}
+
+.gk-host {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: calc(var(---100vh) - var(---gap-o));
+    z-index: 100; font-size: 32rem;
+    .help-text {
+        position: absolute; bottom: 16rem; right: 16rem;
+        background: var(---card); border: var(---border); border-radius: var(---radius);
+        padding: var(---gap);
+        > div {display: flex; gap: 5rem}
+    }
+}
+.gk-wing {
+    --rotate: 0deg;
+    display: flex; align-items: center; position: absolute;
+    width: 125rem; height: 0.5em;
+    transform-origin: right center;
+    transform: translateX(-50%) rotate(calc(1 * var(--rotate)));
+    &:nth-child(1) {--rotate: 90deg}
+    &:nth-child(2) {--rotate: 135deg}
+    &:nth-child(3) {--rotate: 180deg}
+    &:nth-child(4) {--rotate: 225deg}
+    &:nth-child(5) {--rotate: 270deg}
+    &:nth-child(6) {--rotate: 315deg}
+    &:nth-child(7) {--rotate: 0deg}
+    &:nth-child(8) {--rotate: 45deg}
+}
+.gk-sector {
+    display: flex;
+
+    transform: translateX(-50%) rotate(calc(-1 * var(--rotate)));
+    transform-origin: 50% 50%;
+    --size: 80rem;
+    width: fit-content; height: fit-content);
+    transition: transform 195ms ease-out;
+    [character_group] {
+        display: grid; grid-template-columns: 1fr 1fr; rotate: 45deg;
+        background: var(---card); border-radius: var(---radius);
+        &.active {background: var(---color);
+            .gk-button:not(.active) {color: var(---bg)}
+        }
+    }
+}
+.gk-button {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 25rem; text-align: center;
+    width: var(---size); height: var(---size);
+    border: var(---border); border-radius: var(---radius); color: var(---text);
+    cursor: pointer; user-select: none;
+    span {rotate: -45deg}
+    &.active {background: var(---bg)}
+    &:nth-child(1) {transform: translate(-50%, calc(-50% + var(--space)))}
+    &:nth-child(2) {transform: translate(calc(-50% + var(--space)), -50%)}
+    &:nth-child(3) {transform: translate(calc(-50% - var(--space)), -50%)}
+    &:nth-child(4) {transform: translate(-50%, calc(-50% - var(--space)))}
+}

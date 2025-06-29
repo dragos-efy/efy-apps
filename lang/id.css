@@ -49,7 +49,6 @@
 --music_volume: Music Volume;
 --media: Media;
 --sounds: Sounds;
---tasks: Tasks;
 --goal: Goal;
 --note: Note;
 --goal_note: Goal / Note;
@@ -57,4 +56,18 @@
 --vibration: Vibration;
 --contacts: Contacts;
 --storage: Storage;
+--clear: Clear;
+--undo: Undo;
+--redo: Redo;
+--group: Group;
+--email: Email;
+--phone: Phone;
+--birthday: Birthday;
+--views: Views;
+--cards: Cards;
+--masonry: Masonry;
+--table: Table;
+--nodes: Nodes;
+--scores: Scores;
+--calendar: Calendar;
 }

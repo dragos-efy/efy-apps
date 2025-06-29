@@ -7,18 +7,18 @@
   left: 50%;
   transform: translateX(-50%);
   border: var(---border);
-  border-radius: var(---radius2);
-  background: var(---bg1);
+  border-radius: var(---radius-o);
+  background: var(---card);
   display: flex;
   align-items: center;
-  padding: var(---gap0);
-  gap: var(---gap0);
+  padding: var(---gap-x);
+  gap: var(---gap-x);
 }
 .dt-dc-container {
   display: flex;
   align-items: center;
   place-content: center;
-  gap: var(---gap0);
+  gap: var(---gap-x);
 }
 .dt-default-colors {
   position: relative;
@@ -37,22 +37,22 @@
 
 .dw_current_color {background: var(--dw_current_color); display: flex; place-content: center; align-items: center; pointer-events: none;
   i {margin: 0;
-    &:before {color: var(---text2)}
+    &:before {color: var(---bg)}
   }
 }
 
-.dw_color_menu {flex-direction: column; padding: var(---gap0) 0; place-content: start; align-items: start;
-  .efy_hr_div {width: 100%; padding: 5rem 0 5rem var(---gap0);
+.dw_color_menu {flex-direction: column; padding: var(---gap-x) 0; place-content: start; align-items: start;
+  .efy_hr_div {width: 100%; padding: 5rem 0 5rem var(---gap-x);
     hr {margin-left: 8rem !important}
   }
-  > *:not(.efy_hr_div) {padding: 0 var(---gap0)}
+  > *:not(.efy_hr_div) {padding: 0 var(---gap-x)}
 }
 
 .dt-cp-container, .dt-undo-redo-container > div, .dt-download-container {
   width: var(---size);
   height: var(---size);
   border: var(---border);
-  border-radius: var(---radius0);
+  border-radius: var(---radius-x);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,29 +92,29 @@
   align-items: center;
   justify-content: center;
   border-left: var(---border);
-  padding: 0 0 0 var(---gap0);
-  gap: var(---gap0);
+  padding: 0 0 0 var(---gap-x);
+  gap: var(---gap-x);
 }
 
 .dt-undo-redo-container img {
   width: 18px;
   cursor: pointer;
 }
-.dt-download-container, .dt-undo-redo-container > div {background: var(---bg1)}
+.dt-download-container, .dt-undo-redo-container > div {background: var(---card)}
 
 .dt-download-container img {
   width: 18px;
   cursor: pointer;
 }
 
-.dw_shapes, .dw_actions {width: 100%; display: flex; flex-wrap: wrap; gap: var(---gap0);
+.dw_shapes, .dw_actions {width: 100%; display: flex; flex-wrap: wrap; gap: var(---gap-x);
   button {margin: 0}
   [efy_range_text] {width: 100%}
 }
 
-.dt-tools-container [efy_icon=edit]:before {color: var(---text2)}
-[efy_icon=square]:before {content: ''; background: var(---text2); width: 16rem; height: 16rem; transform: skew(-15deg, -15deg)}
+.dt-tools-container [efy_icon=edit]:before {color: var(---bg)}
+[efy_icon=square]:before {content: ''; background: var(---bg); width: 16rem; height: 16rem; transform: skew(-15deg, -15deg)}
 [efy_icon=checkboard]:before {content: ''; width: 16rem; height: 16rem;
-  background: conic-gradient(var(---text2) 25%, transparent 0 50%, var(---text2) 0 75%, transparent 0); background-size: 50% 50%; border: 1px solid var(---text2);
-  border-radius: var(---radius00)
+  background: conic-gradient(var(---bg) 25%, transparent 0 50%, var(---bg) 0 75%, transparent 0); background-size: 50% 50%; border: 1px solid var(---bg);
+  border-radius: var(---radius-xx)
 }

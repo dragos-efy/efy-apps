@@ -19,7 +19,7 @@ efy_wt.locations.map(name =>{
 $add('div', {class: 'nav'}, [
     ['div', {class: 'search_container'}, [
         ['div', {class: 'search_box'}, [
-            ['input', {type: 'text', id: 'search_input', placeholder: 'Enter City', autofocus: ''}],
+            ['input', {type: 'text', id: 'search_input', placeholder: 'Location', autofocus: ''}],
             ['button', {id: 'search_btn', class: 'efy_square_btn', type: 'submit', title: 'search'}, [['i', {efy_icon: 'search'}]]],
             ['button', {id: 'search_suggestions', class: 'efy_square_btn', title: 'Suggestions', efy_toggle: '.wt_suggestions'}, [['i', {efy_icon: 'location'}]]]
         ]]
@@ -35,29 +35,33 @@ $add('div', {class: 'nav'}, [
             ]]
         ]],
         ['div', {class: 'locations'}, locations]
+    ]],
+    ['div', {class: 'api_from efy-glass efy_trans_filter'}, [
+        ['p', 'Data from'], ['a', {href: 'https://openweathermap.org'}, 'OpenWeather'],
     ]]
 ]);
+
 $add('div', {class: 'glance efy_hide_i'}, [
     ['div', {efy_card: ''}, [
-        ['div', [ ['i', {efy_icon: 'location'}], ['p', {class: 'city', id: 'city'}] ]],
+        ['div', {class: 'item'}, [ ['i', {efy_icon: 'location'}], ['p', {class: 'city', id: 'city'}] ]],
         ['hr'],
-        ['div', [ ['i', {efy_icon: 'arrow'}], ['p', 'Temperature:'], ['p', {class: 'temp_now'}] ]],
+        ['div', {class: 'item'}, [ ['i', {efy_icon: 'arrow'}], ['p', 'Temperature:'], ['p', {class: 'temp_now'}] ]],
         ['hr'],
-        ['div', {class: 'img_des'}]
+        ['div', {class: 'img_des item pb'}]
     ]],
     ['div', {efy_card: ''}, [
-        ['div', [ ['i', {efy_icon: 'rain'}], ['p', 'Humidity:'], ['div', {id: 'humidity'}] ]],
+        ['div', {class: 'item'}, [ ['i', {efy_icon: 'rain'}], ['p', 'Humidity:'], ['div', {id: 'humidity'}] ]],
         ['hr'],
-        ['div', [ ['i', {efy_icon: 'arrow_up'}], ['p', 'Pressure:'], ['div', {id: 'pressure'}] ]],
+        ['div', {class: 'item'}, [ ['i', {efy_icon: 'arrow_up'}], ['p', 'Pressure:'], ['div', {id: 'pressure'}] ]],
         ['hr'],
-        ['div', [ ['i', {efy_icon: 'cloud'}], ['p', 'Wind Speed:'], ['div', {id: 'wind_speed'}] ]],
+        ['div', {class: 'item pb'}, [ ['i', {efy_icon: 'cloud'}], ['p', 'Wind Speed:'], ['div', {id: 'wind_speed'}] ]],
     ]],
     ['div', {efy_card: ''}, [
-        ['div', [ ['i', {efy_icon: 'sun'}], ['p', 'Sunrise:'], ['p', {id: 'sun'}] ]],
+        ['div', {class: 'item'}, [ ['i', {efy_icon: 'sun'}], ['p', 'Sunrise:'], ['p', {id: 'sun'}] ]],
         ['hr'],
-        ['div', [ ['i', {efy_icon: 'moon'}], ['p', 'Sunset:'], ['p', {id: 'moon'}] ]],
+        ['div', {class: 'item'}, [ ['i', {efy_icon: 'moon'}], ['p', 'Sunset:'], ['p', {id: 'moon'}] ]],
         ['hr'],
-        ['div', [ ['i', {efy_icon: 'group'}], ['p', 'Feels Like:'], ['p', {id: 'feels_like'}] ]]
+        ['div', {class: 'item pb'}, [ ['i', {efy_icon: 'group'}], ['p', 'Feels Like:'], ['p', {id: 'feels_like'}] ]]
     ]]
 ]);
 $add('div', {class: 'graph gamepad_scroll efy_hide_i'});
@@ -162,7 +166,7 @@ time_convert = (unix, timezone = 0, format)=>{
     normalized.forEach((a,i)=>{
         const day = data.list[i], dt = day.dt, hour = time_convert(dt, timezone);
         if ((i === 0) || (hour === '00:00') || (hour === '01:00') || (hour === '02:00')){
-            day_container = $add('div', {class: 'day_container efy_trans_filter efy_shadow_trans'}, [
+            day_container = $add('div', {class: 'day_container efy-glass efy_trans_filter efy_shadow_trans'}, [
                 ['p', time_convert(dt, timezone, 'day')]
             ], graph); day_nr++;
         }

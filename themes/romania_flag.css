@@ -1,0 +1,12 @@
+[efy_theme="romania flag"] [efy_preview] {
+---scheme: dark;
+---mode: dark,solid;
+---bg: oklch(0 0 0);
+---card: oklch(1 0 0 / .07);
+---color_angle: 90deg;
+---color: linear-gradient(var(---color_angle), oklch(.7 .3 30) 0%, oklch(.7 .3 30) 33%, oklch(1 .3 100) 33%, oklch(1 .3 100) 67%, oklch(.5 .3 260) 67%, oklch(.5 .3 260) 100%);
+---color_trans: linear-gradient(var(---color_angle), oklch(.7 .3 30 / .3) 0%, oklch(.7 .3 30 / .3) 33%, oklch(1 .3 100 / .3) 33%, oklch(1 .3 100 / .3) 67%, oklch(.5 .3 260 / .3) 67%, oklch(.5 .3 260 / .3) 100%);
+---text: oklch(1 0 0);
+---radius: 20rem;
+---border: var(---border_size) solid oklch(1 0 0 / .14);
+}

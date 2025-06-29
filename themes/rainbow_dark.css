@@ -1,0 +1,12 @@
+[efy_theme="rainbow dark"] [efy_preview] {
+---scheme: dark;
+---mode: dark,solid;
+---bg: oklch(0 0 0);
+---card: oklch(1 0 0 / .07);
+---color_angle: 90deg;
+---color: linear-gradient(var(---color_angle) in oklch longer hue, oklch(.7 .3 0), oklch(.7 .3 0));
+---color_trans: linear-gradient(var(---color_angle) in oklch longer hue, oklch(.7 .3 0 / .3), oklch(.7 .3 0 / .3));
+---text: oklch(1 0 0);
+---radius: 20rem;
+---border: var(---border_size) solid oklch(1 0 0 / .14);
+}

@@ -34,7 +34,7 @@ $add('div', {os_app: ''}, [
         ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Add App']]]
       ]]
     ]]]],
-  /*Dock*/ ['div', {os_bar: '', class: 'efy_trans_filter efy_shadow_trans'}, [
+  /*Dock*/ ['div', {os_bar: '', class: 'efy_trans_filter efy_shadow_trans efy-glass'}, [
     ['div', {class: 'os_buttons'}, [
       ['div', [ ['div', {efy_clock: ''}] ]],
     ]],
@@ -86,7 +86,7 @@ $add('div', {os_app: ''}, [
 $all('[os_drawer] [efy_card]').forEach(a =>{ let b = $$(a, '.name').textContent.replaceAll(' ', '_').toLowerCase(), c = a.getAttribute('efy_card');  if (a.classList[0] != 'add_app'){ a.setAttribute('efy_toggle', '[efy_frames], [os_drawer]')}; a.setAttribute('role', 'button');
     $event(a, 'click', ()=>{ if (c !== ''){ if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}
       let index = Number($all('[efy_frame]').length);
-      $add('div', {efy_frame: b, 'data-value': index, style: `order: ${index}`, class: 'efy_app efy_trans_filter'}, [
+      $add('div', {efy_frame: b, 'data-value': index, style: `order: ${index}`, class: 'efy_app efy_trans_filter efy-glass'}, [
         ['iframe', {src: c, allowfullscreen: 'true', loading: 'lazy', sandbox: 'allow-scripts allow-same-origin'}],
       ], $('[efy_frames]'))
 } else { $notify('short', 'Not available yet!', 'It should be released soon...')}})});

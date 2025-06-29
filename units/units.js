@@ -1,4 +1,4 @@
-$add('div', {class: 'container'}, [
+$add('div', {class: 'container efy-glass'}, [
     ['div', {class: 'efy_flex fifth'}, [
         ['button', {id: 'copy', class: 'efy_square_btn', title: 'copy'}, [['i', {efy_icon: 'paste'}]]],
         ['input', {type: 'number', id: 'value1', placeholder: 'Number', oninput: 'convert()'}],

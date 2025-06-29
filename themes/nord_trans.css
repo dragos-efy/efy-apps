@@ -1,0 +1,11 @@
+[efy_theme="nord trans"] [efy_preview] {
+---scheme: dark;
+---mode: dark,solid;
+---bg: oklch(.07 .1 300);
+---card: oklch(1 0 0 / .07);
+---color: linear-gradient(var(---color_angle), oklch(.7 .3 200), oklch(.7 .3 0));
+---color_trans: linear-gradient(var(---color_angle), oklch(.7 .3 200 / .3), oklch(.7 .3 0 / .3));
+---text: oklch(1 0 0);
+---radius: 20rem;
+---border: var(---border_size) solid oklch(1 0 0 / .14);
+}

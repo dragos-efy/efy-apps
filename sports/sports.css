@@ -5,9 +5,9 @@ body {padding: 0; height: var(---100vh); overflow: hidden}
     .container {height: 100%; width: 100%; display: grid; grid-template-columns: 1fr 40%;
 
         .poses_container {display: flex; flex-direction: column; border-left: var(---border); overflow: hidden;
-            #controls {display: flex; align-items: center; justify-content: space-between; gap: var(---gap0); border-bottom: var(---border);
-                padding: var(---gap0);
-                .efy_flex {gap: var(---gap0)}
+            #controls {display: flex; align-items: center; justify-content: space-between; gap: var(---gap-x); border-bottom: var(---border);
+                padding: var(---gap-x);
+                .efy_flex {gap: var(---gap-x)}
                 #secondsLeft, #totalSecondsLeft {width: fit-content}
                 button {margin: 0}
             }
@@ -16,9 +16,9 @@ body {padding: 0; height: var(---100vh); overflow: hidden}
             ::-webkit-progress-value {border-radius: 0 var(---radius) var(---radius) 0; height: 8rem!important}
         }
 
-        .poses {display: grid; grid-template-columns: repeat(auto-fill, minmax(250rem, 1fr)); gap: var(---gap0);
-            align-items: start; place-content: start; overflow-y: auto; padding: var(---gap0);
-            width: 100%; height: calc(100% - var(---size) - (var(---gap0) * 2));
+        .poses {display: grid; grid-template-columns: repeat(auto-fill, minmax(250rem, 1fr)); gap: var(---gap-x);
+            align-items: start; place-content: start; overflow-y: auto; padding: var(---gap-x);
+            width: 100%; height: calc(100% - var(---size) - (var(---gap-x) * 2));
             [pose] {width: 100%; display: flex; padding: 10rem; gap: 10rem; background-origin: border-box!important;
                 [efy_pose] {height: 48rem; aspect-ratio: 1; font-size: 48rem}
                 .time {display: none}
@@ -29,7 +29,7 @@ body {padding: 0; height: var(---100vh); overflow: hidden}
                 }
             }
         }
-        #active_pose {height: 100%; width: 100%; min-height: 450rem; font-size: 60cqmin; padding: var(---gap2);
+        #active_pose {height: 100%; width: 100%; min-height: 450rem; font-size: 60cqmin; padding: var(---gap-o);
             display: flex; flex-direction: column; gap: 15rem; align-items: center; place-content: center;
             .name {font-size: 25rem; font-weight: bold}
             .icon_container {display: flex; align-items: center; place-content: center; height: 100%}
@@ -44,7 +44,7 @@ body {padding: 0; height: var(---100vh); overflow: hidden}
     #sports_app .container {grid-template-columns: 1fr;
         .poses_container {border-left: 0; border-top: var(---border);
             progress {display: flex; order: -1}
-            .poses {height: calc(100% - var(---size) - (var(---gap0) * 2) - 8rem)}
+            .poses {height: calc(100% - var(---size) - (var(---gap-x) * 2) - 8rem)}
         }
     }
 }

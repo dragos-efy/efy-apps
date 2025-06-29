@@ -24,7 +24,7 @@ $add('div', {id: 'mn_body', efy_search: '#data_table tr:not(.efy_ignore_search)'
     ]],
 
     ['div', {class: 'mn_nav'}, [
-        ['div', {style: 'display: flex; gap: var(---gap0);'}, [
+        ['div', {style: 'display: flex; gap: var(---gap-x);'}, [
             ['button', {class: 'button new efy_square_btn'}, [['i', {efy_icon: 'plus'}]]],
             ['input', {id: 'mn_search', type: 'text', placeholder: 'Search...', efy_search_input:'', name: 'mn_search_input'}]
         ]],
@@ -69,7 +69,7 @@ $add('div', {id: 'mn_body', efy_search: '#data_table tr:not(.efy_ignore_search)'
         ]]
     ]],
 
-    ['table', {id: 'data_table', class: 'mn_table'}, [
+    ['table', {id: 'data_table', class: 'mn_table efy-glass'}, [
         ['thead', [
             ['tr', {class: 'mn_row efy_ignore_search'}, [
                 ['td', {class: 'description', efy_lang: 'description'}],

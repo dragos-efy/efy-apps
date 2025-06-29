@@ -1,0 +1,20 @@
+:root{
+  ---body_padding: 0;
+}
+[efy_app=fractals] {
+  padding: var(---gap); height: var(---100vh);
+  display: grid; grid-template-columns: 500rem 1fr; gap: var(---gap);
+  align-items: center; place-content: center; place-self: center;
+  #ft_canvas_container {
+    width: 500rem; height: 500rem; padding: 0;
+    canvas {border-radius: var(---radius)}
+  }
+  #ft_options {
+    max-width: 500rem;
+    &:has([value=tree]:checked) [efy_range_text]:not(.tree),
+    &:has([value=sierpinski]:checked) [efy_range_text]:not(.sierpinski),
+    &:has([value=koch]:checked) [efy_range_text]:not(.koch),
+    &:has([value=mandelbrot]:checked) [efy_range_text]
+    {display: none}
+  }
+}

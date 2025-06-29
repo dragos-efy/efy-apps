@@ -21,12 +21,12 @@ body:has(.carGame) {padding: 0!important}
     width: 10rem;
     height: 100rem;
     position: absolute;
-    background: var(---bg1);
-    border-radius: var(---radius0);
-    margin-left: 195rem;   /* center = (gameArea.width / 2) - (roadLines.width / 2) */
+    background: var(---card);
+    border-radius: var(---radius-x);
+    margin-left: 195rem;
 }
-.gameArea {width: 400rem; height: var(---100vh); background: var(---bg1); margin: auto; position: relative; overflow: hidden}
-.score {position: absolute; top: var(---gap); left: var(---gap); background: var(---bg1); border-radius: var(---radius);
+.gameArea {width: 400rem; height: var(---100vh); background: var(---card); margin: auto; position: relative; overflow: hidden}
+.score {position: absolute; top: var(---gap); left: var(---gap); background: var(---card); border-radius: var(---radius);
     padding: var(---padding); border: var(---border);
 }
 .startScreen{

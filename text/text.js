@@ -97,7 +97,7 @@ $add('div', {efy_tabs: 'text', id: 'tabs'}, [
         ]],
 
     ]],
-    ['div', {class: 'content'}, [
+    ['div', {class: 'content efy-glass'}, [
         ['pre', {efy_content: '0', efy_active: '', id: 'inputTextToSave', class: 'tt_highlight', contenteditable: ''}]
     ]]
 ]);

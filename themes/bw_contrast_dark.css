@@ -1,0 +1,10 @@
+[efy_theme="bw contrast dark"] [efy_preview] {
+---scheme: dark;
+---bg: oklch(0 0 0);
+---card: oklch(0 0 0);
+---color: linear-gradient(var(---color_angle), oklch(1 0 0), oklch(1 0 0));
+---color_trans: linear-gradient(var(---color_angle), oklch(1 0 0 / .3), oklch(1 0 0 / .3));
+---text: oklch(1 0 0);
+---radius: 0;
+---border: var(---border_size) solid oklch(1 0 0);
+}

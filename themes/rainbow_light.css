@@ -1,0 +1,12 @@
+[efy_theme="rainbow light"] [efy_preview] {
+---scheme: light;
+---mode: light,solid;
+---bg: oklch(1 0 0);
+---card: oklch(0 0 0 / .07);
+---color_angle: 90deg;
+---color: linear-gradient(var(---color_angle) in oklch longer hue, oklch(.7 .3 0), oklch(.7 .3 0));
+---color_trans: linear-gradient(var(---color_angle) in oklch longer hue, oklch(.7 .3 0 / .3), oklch(.7 .3 0 / .3));
+---text: oklch(0 0 0);
+---radius: 20rem;
+---border: var(---border_size) solid oklch(0 0 0 / .07);
+}

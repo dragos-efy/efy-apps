@@ -1,0 +1,12 @@
+[efy_theme="ireland flag"] [efy_preview] {
+---scheme: dark;
+---mode: dark,solid;
+---bg: oklch(0 0 0);
+---card: oklch(1 0 0 / .07);
+---color_angle: 90deg;
+---color: linear-gradient(var(---color_angle), oklch(.6 .15 150) 0, oklch(.6 .15 150) 33%, oklch(1 0 0) 33%, oklch(1 0 0) 67%, oklch(.70 .2 50) 67%, oklch(.70 .2 50) 100%);
+---color_trans: linear-gradient(var(---color_angle), oklch(.6 .15 150 / .3) 0, oklch(.6 .15 150 / .3) 33%, oklch(1 0 0 / .3) 33%, oklch(1 0 0 / .3) 67%, oklch(.70 .2 50 / .3) 67%, oklch(.70 .2 50 / .3) 100%);
+---text: oklch(1 0 0);
+---radius: 20rem;
+---border: var(---border_size) solid oklch(1 0 0 / .14);
+}

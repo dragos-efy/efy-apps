@@ -1,0 +1,136 @@
+<!doctype html><html lang="en"><head>
+
+<title>EFY</title><meta property="og:title" content="EFY">
+<meta name="description" content="User Customizable CSS / JS framework. Private, modular & convergent apps">
+<meta property="og:description" content="User Customizable CSS / JS framework. Private, modular & convergent apps">
+<link rel="icon" type="image/png" href="./icon.png"><link rel="apple-touch-icon" sizes="180x180" href="./icon.png">
+<meta property="og:type" content="website"><meta property="og:url" content="https://efy.ooo">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="robots" content="index, follow">
+
+<link rel="stylesheet" href="./efy/efy.min.css">
+<link rel="stylesheet" href="./global/efy_global.css">
+<style>:root {---sidebar_button: right_top, on}</style>
+<script src="./efy/efy_local.min.js"></script>
+
+</head><body>
+
+
+<style>
+:root {
+    --lt-node-size: 20rem;
+    --lt-node-distance: 150rem;
+}
+body {display: flex; align-items: center;}
+#graph-container {position: relative; width: 600rem; height: 600rem; margin-left: 10rem; margin-right: 20rem;}
+
+.node, .line {position: absolute; transform-origin: 0 0}
+.node {
+    z-index: 1;
+    *, * > div {display: flex; place-content: center; align-items: center; width: var(--lt-node-size); height: var(--lt-node-size)}
+    > div {background: var(---color); color: var(---text); border-radius: var(---radius);
+        > p {position: absolute; top: calc(var(--lt-node-size) + 5rem); width: 200rem; height: fit-content}
+    }
+}
+.central-node > div {background: transparent; box-shadow: inset 0 0 0 2rem var(---text)}
+.line {width: var(---border_size); background: linear-gradient(transparent, var(---text-x), transparent); z-index: 0}
+#error-message {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 0, 0, 0.7); color: white; padding: 10rem; border-radius: 5rem; display: none}
+textarea {width: 600rem; height: 700rem; margin: 0}
+</style>
+
+
+<div id="graph-container">
+    <div id="error-message">Your JSON has errors, try something else</div>
+</div>
+<textarea id="json-input"></textarea>
+
+
+<script>
+const defaultGraph = {
+  "name": "0",
+  "items": {
+    "1": {
+      "fly": false,
+      "colors": [
+        "black",
+        "white"
+      ]
+    },
+    "2": {
+      "fly": true,
+      "colors": "white"
+    },
+    "3": {
+      "fly": true,
+      "colors": "white"
+    },
+    "4": {
+      "fly": true,
+      "colors": "white"
+    },
+    "5": {
+      "fly": false,
+      "colors": [
+        "pink"
+      ]
+    }
+  }
+};
+
+const container = $('#graph-container'), errorMessage = $('#error-message'), jsonInput = $('#json-input');
+
+// Initialize textarea with default JSON
+jsonInput.value = JSON.stringify(defaultGraph, null, 2);
+
+function renderGraph(graph) {
+  // Clear previous graph
+  container.innerHTML = '<div id="error-message">Your JSON has errors, try something else</div>';
+  errorMessage.style.display = 'none';
+
+  let node_size = 20, node_size_half = node_size / 2;
+  // $css_prop(`---color`, `50rem`);
+  const centerX = 300; // Container Center
+  const centerY = 300; // Container Center
+  const radius = 150; // Distance from center to items
+
+  $add('div', {class: `node central-node`, style: `left: ${centerX - node_size_half}rem; top: ${centerY - node_size_half}rem`},
+      [['div', {}, [['p', graph.name]]]],
+  container);
+
+  // Calculate angle and position for each item
+  const items = Object.keys(graph.items);
+  const angleStep = (360 / items.length); // Use degrees
+
+  items.forEach((item, index) => {
+    const angle = index * angleStep;
+    radianAngle = angle * (Math.PI / 180),
+    itemX = centerX + radius * Math.cos(radianAngle),
+    itemY = centerY + radius * Math.sin(radianAngle),
+    [lineX, lineY] = [itemX - centerX, itemY - centerY],
+    length = Math.sqrt(lineX * lineX + lineY * lineY);
+
+    $add('div', {class: `line ${item}`, style: `height: ${length}rem; transform: rotate(${angle}deg) translateY(${node_size_half}rem); left: ${centerX}rem; top: ${centerY}rem`}, [], container);
+    $add('div', {
+      class: `node ${item}`,
+      style: `transform: rotate(${angle}deg) translateY(${radius + node_size_half}rem) translateX(-${node_size_half}rem); left: ${centerX}rem; top: ${centerY}rem`
+    }, [['div', {style: `transform: rotate(-${angle}deg)`}, [['p', item]]]], container);
+
+  });
+}
+
+function updateGraph() {
+  try {
+    const graph = JSON.parse(jsonInput.value);
+    renderGraph(graph);
+    errorMessage.style.display = 'none'; // Hide error if valid JSON
+  } catch (error) {
+    errorMessage.style.display = 'block'; // Show error if invalid JSON
+  }
+}
+
+jsonInput.addEventListener('input', updateGraph);
+renderGraph(defaultGraph);
+</script>
+
+</body></html>

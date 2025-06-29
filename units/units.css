@@ -1,9 +1,9 @@
 body {display: flex; justify-content: center; align-items: center; height: 100vh}
-.container {display: flex; flex-direction: column; gap: var(---gap); width: 100%; max-width: 600rem; background: var(---bg1);
+.container {display: flex; flex-direction: column; gap: var(---gap); width: 100%; max-width: 600rem; background: var(---card);
     border-radius: var(---radius); padding: var(---gap);
     .efy_flex {width: 100%; flex-direction: row; flex-wrap: no-wrap;
         > * {margin: 0; width: calc(50% - var(---gap) / 2)}
-        &.third > * {width: calc(50% - ((var(---gap2) + var(---size)) / 2))}
+        &.third > * {width: calc(50% - ((var(---gap-o) + var(---size)) / 2))}
         &.fifth > * {width: calc(50% - (((var(---gap)  * 1.34) + var(---size)) * 3) / 2)}
         #invert_units {width: var(---size); display: flex; flex-direction: row; gap: 0;
             i {font-size: 14rem; letter-spacing: -10rem;}

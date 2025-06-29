@@ -15,6 +15,11 @@ a[role=button][disabled]{opacity: 0.5;/*position: absolute; top: 100vw; left: 10
 .img2 {width: 100rem; height: 100rem}
 
 
-/*Temporary*/ [lc_card=css_beautify], [lc_card=js_minify], [lc_card=js_beautify], [lc_card=html_minify], [lc_card=html_beautify] {background: transparent; filter: contrast(0.5) saturate(0); pointer-events: none; opacity: 0.3; border: 2rem dashed var(---text_trans)}
-:is([lc_card=css_beautify], [lc_card=js_minify], [lc_card=js_beautify], [lc_card=html_minify], [lc_card=html_beautify]) :is(label, a) {filter: brightness(0); opacity: 0.3!important; }
-:is([lc_card=css_beautify], [lc_card=js_minify], [lc_card=js_beautify], [lc_card=html_minify], [lc_card=html_beautify]) :is(input) {display: none}
+/*Temporary*/
+[lc_card=css_beautify], [lc_card=js_minify], [lc_card=js_beautify],
+[lc_card=html_minify], [lc_card=html_beautify] {
+    background: transparent; filter: contrast(0.5) saturate(0); pointer-events: none;
+    opacity: 0.3; border: 2rem dashed var(---text-x);
+    :is(label, a) {filter: brightness(0); opacity: 0.3!important; }
+    input {display: none}
+}

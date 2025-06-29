@@ -1,15 +1,15 @@
 body {display: flex; flex-direction: column; padding: 0}
-.is_nav {height: calc(var(---size) + var(---gap2)); display: flex; align-items: center; place-content: space-between;
-    gap: var(---gap0); border-bottom: var(---border); margin-bottom: var(---gap); padding: var(---gap);
-    #instruments_container {display: flex; gap: var(---gap0);
+.is_nav {height: calc(var(---size) + var(---gap-o)); display: flex; align-items: center; place-content: space-between;
+    gap: var(---gap-x); border-bottom: var(---border); margin-bottom: var(---gap); padding: var(---gap);
+    #instruments_container {display: flex; gap: var(---gap-x);
         label:before, label:after {display: none}
         input {pointer-events: none}
     }
     *, label {margin: 0!important}
     label {height: var(---size)}
-    .efy_flex {gap: var(---gap0)}
+    .efy_flex {gap: var(---gap-x)}
     .efy_split_btn {display: flex;
-        label {border-right: 0; border-radius: var(---radius) 0 0 var(---radius); background: var(---bg1);
+        label {border-right: 0; border-radius: var(---radius) 0 0 var(---radius); background: var(---card);
             -webkit-text-fill-color: var(---text); font-weight: normal;
             &:before, &:after {display: none}
         }
@@ -17,10 +17,10 @@ body {display: flex; flex-direction: column; padding: 0}
         * {height: var(---size)}
     }
 }
-#piano {---height: calc(var(---100vh) - var(---size) - var(---gap2) * 2);
-    width: calc(100% - 2 * var(---gap)); height: var(---height); display: flex; flex-direction: column; gap: var(---gap0); position: relative;
+#piano {---height: calc(var(---100vh) - var(---size) - var(---gap-o) * 2);
+    width: calc(100% - 2 * var(---gap)); height: var(---height); display: flex; flex-direction: column; gap: var(---gap-x); position: relative;
     margin: 0 var(---gap);
-    > div {	display: flex; gap: var(---gap0); pointer-events: none;
+    > div {	display: flex; gap: var(---gap-x); pointer-events: none;
         > button {display: flex; align-items: end; place-content: center; padding: 15rem 0; width: 100%; font-weight: bold;
             border-radius: 0 0 var(---radius) var(---radius); pointer-events: all; margin: 0; background-origin: border-box!important;
             &.active {background: var(---color); color: var(---bg); -webkit-text-fill-color: var(---bg)}
@@ -29,11 +29,11 @@ body {display: flex; flex-direction: column; padding: 0}
             &:focus {outline: none!important}
         }
     }
-    .normal button {background: var(---text_trans); color: var(---text); height: var(---height);
+    .normal button {background: var(---text-x); color: var(---text); height: var(---height);
         &:first-of-type {border-top-left-radius: var(---radius)}
         &:last-of-type {border-top-right-radius: var(---radius)}
     }
-    .sharp {position: absolute; top: 0; width: 100%; height: calc(var(---height) * 0.6); left: calc(var(---gap00) / 2 - 100% / 36);
-        button {background: var(---bg); -webkit-text-fill-color: var(---text); border-color: var(---text_trans); border-top-color: transparent; z-index: 1}
+    .sharp {position: absolute; top: 0; width: 100%; height: calc(var(---height) * 0.6); left: calc(var(---gap-xx) / 2 - 100% / 36);
+        button {background: var(---bg); -webkit-text-fill-color: var(---text); border-color: var(---text-x); border-top-color: transparent; z-index: 1}
     }
 }

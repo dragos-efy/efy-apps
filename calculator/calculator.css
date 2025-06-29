@@ -4,7 +4,7 @@ body {display: flex}
     input {margin: 0}
     .cc_buttons {display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: var(---gap); margin-top: var(---gap); user-select: none;
         button {width: 100%; min-width: 50rem; min-height: 50rem; aspect-ratio: 1; margin: 0;
-            &:not(#equal, #del, #bksp, [efy_sidebar_btn]){background: var(---bg1); color: var(---text!important); -webkit-text-fill-color: var(---text)}
+            &:not(#equal, #del, #bksp, [efy_sidebar_btn]){background: var(---card); color: var(---text!important); -webkit-text-fill-color: var(---text)}
             &:is(#pct, #div, #mul, #sub, #add, #ptleft, #ptright, #exp, #sqrt) {
                 background: var(---color), var(---color_trans); background-clip: text, border-box;
                 background-origin: border-box; -webkit-text-fill-color: transparent
@@ -13,14 +13,14 @@ body {display: flex}
         }
         #equal {font-size: 200%}
     }
-    &.full {max-width: 100%; width: 100%; height: calc(var(---100vh) - var(---gap2)); backdrop-filter: none!important;
+    &.full {max-width: 100%; width: 100%; height: calc(var(---100vh) - var(---gap-o)); backdrop-filter: none!important;
         .cc_buttons {height: calc(100% - var(---size) - var(---gap));
             button {height: 100%; font-size: 200%}
             #equal {font-size: 50rem}
             [efy_sidebar_btn] i {font-size: 25rem}
         }
     }
-    &:not(.full) {margin: auto; background: var(---bg1); padding: var(---gap); border: var(---border); border-radius: var(---radius)}
+    &:not(.full) {margin: auto; background: var(---card); padding: var(---gap); border: var(---border); border-radius: var(---radius)}
 }
 
 .efy_iframe :is(.efy_sidebar, [efy_sidebar_btn*=absolute]) {display: none}

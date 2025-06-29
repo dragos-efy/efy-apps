@@ -31,6 +31,10 @@ $banner_card =(title, href, icon, description, tags, compatible, uncompatible)=>
 
     const tags_container = $add('div', {class: 'tags'}, [], banner);
 
+    if (efy.distortion){
+        $add('div', {class: 'efy-card-back'}, null, banner)
+    }
+
     if (tags){
         $add('div', {tags: ''}, [
             ['p', {tag: 'title'}, 'Tags:'],
@@ -51,7 +55,7 @@ $banner_card =(title, href, icon, description, tags, compatible, uncompatible)=>
     }
 };
 
-const app_previews = $add('div', {id: 'dc_buttons', class: 'apps_page', efy_searchable: ''}, [], $('div[efy_content=apps]'));
+const app_previews = $add('div', {id: 'dc_buttons', class: 'apps_page efy_asset_off', efy_searchable: ''}, [], $('div[efy_content=apps]'));
 
 const $app_card =(i, title, href, icon, description, tags)=>{
     const id = `dc_app_${i}`;
@@ -83,6 +87,9 @@ $event($('div[efy_content=apps]'), 'click', ()=>{
             const id = x.getAttribute('app');
             $banner_card(apps_keys[id], ...Object.values(apps_list)[id]);
             banner.classList.remove('efy_hide_i');
+            console.log(x);
+            const gap = efy.gap ? Number(efy.gap.replace('rem', '')) : 15;
+            $('.apps_page').scrollTo({top: $(`label[for="dc_app_${id}"]`).offsetTop - gap, behavior: 'smooth'});
         }
     }
     else if (x.matches('.current_app .copy_url')){

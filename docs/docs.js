@@ -9,14 +9,14 @@ const link = window.location, hash = link.hash, href = link.href;
 
 let contents = [], tabs = [];
 
-['EFY', 'FAQ', 'Apps', 'HTML', 'Docs'].map(name =>{
-    const tab = name.toLowerCase(), details = (tab === 'html') ? null : {efy_details: ''};
+['EFY', 'Apps', 'Learn', 'Themes'].map(name =>{
+    const tab = name.toLowerCase();
     tabs.push(
         ['input', {id: `dc_left_${tab}`, type: 'radio', efy_tab: tab, name: 'dc_left'}],
         ['label', {for: `dc_left_${tab}`, class: 'efy_trans_filter_off'}, name]
     );
     contents.push(
-        ['div', {efy_content: tab, class: 'efy_trans_filter_off efy_hide_i', ...details}],
+        ['div', {efy_content: tab, class: 'efy_trans_filter_off efy_hide_i'}],
         ['i', {efy_icon: 'reload', efy_content: tab, class: 'loading efy_trans_filter_off efy_hide_i'}]
     );
 });
@@ -31,21 +31,19 @@ $add('div', {id: 'efy_docs', efy_search: 'details, #efy_docs [efy_searchable]'},
                         ['i', {efy_icon: 'search'}],
                         ['input', {type: 'text', efy_search_input: '', placeholder: 'Search...', name: 'dc_search_input'}]
                     ]],
-                    ['button', {efy_sidebar_btn: '', class: 'efy_square_btn efy_trans_filter_off', title: 'Menu'}, [['i', {efy_icon: 'menu'}]]]
+                    ['button', {efy_sidebar_btn: '', title: 'Menu'}, [
+                        ['i', {efy_icon: 'menu'}], ['p', {efy_lang: 'modify'}]
+                    ]]
                 ]]
             ]]
         ]], ...contents
     ]]
 ]);
 
-/* Hash Isolated Parts*/ let searchables = {faq: '', docs: '', apps: '', html: ''};
-const hash_fn =(a,b)=>{ const x = $(`[efy_content="${a}"] [efy_searchable="${b}"]`);
-    $wait(.3, ()=>{
-        x.scrollIntoView({behavior: 'instant', block: 'start'});
-        const number = efy.gap ? Number(efy.gap.replace('rem', '')) * -1 : -15;
-        $body.scrollBy({top: number === -0 ? 0 : number});
-    });
-    x.open = true; x.classList.add('hash_focus'); $wait(2, ()=> x.classList.remove('hash_focus'))
+/* Hash Isolated Parts*/ let searchables = {apps: '', themes: '', learn: ''};
+const hash_fn =(a,b)=>{
+    const x = $(`[efy_content="${a}"] [efy_searchable="${b}"]`);
+    x.click(); x.classList.add('hash_focus'); $wait(2, ()=> x.classList.remove('hash_focus'))
 },
 searchable =(a)=>{ let p = [];
     $all(`[efy_content=${a}] [efy_searchable]`).forEach((x)=>{ p.push(x.getAttribute('efy_searchable')) } );
@@ -58,6 +56,9 @@ tab_load_fn =(tab, click = false)=>{
         $add('script', {src: `./global/apps_list.js`}, [], $('head'));
         apps_unlisted = false;
     }
+    if (tab === 'themes'){
+        $add('link', {rel: 'stylesheet', href: `./docs/themes.css`}, null, $('head'));
+    }
     const wait_time = apps_unlisted ? '0' : '0.1';
     loading.classList.remove('efy_hide_i');
     $wait(wait_time, ()=>{
@@ -65,7 +66,7 @@ tab_load_fn =(tab, click = false)=>{
         $event($(`script[src="${src}"]`), 'load', ()=>{
             loading.classList.add('efy_hide_i'); frame.classList.add('efy_dom'); frame.classList.remove('efy_hide_i');
             if (click) $(`[efy_tabs=dc] [efy_tab=${tab}]`).click();
-            if (('faq apps docs'.includes(tab))){
+            if (('apps learn themes'.includes(tab))){
                 searchable(tab);
                 searchables[tab].forEach(q =>{ if ((q !== '') && (hash.includes(`#${q}`))) hash_fn(tab, q) });
             }
@@ -74,12 +75,16 @@ tab_load_fn =(tab, click = false)=>{
 };
 
 if (hash === '') tab_load_fn('efy', true);
-for (const tab of ['efy', 'apps', 'faq', 'html', 'docs']){
+for (const tab of ['efy', 'apps', 'learn', 'themes']){
     if (hash.includes(`#${tab}`)) tab_load_fn(tab, true);
     const frame = $(`[efy_tabs=dc] [efy_content="${tab}"]:not(.loading)`);
     $event($(`[efy_tabs=dc] [efy_tab=${tab}]`), 'click', ()=>{
         if (!frame.classList.contains('efy_dom')) tab_load_fn(tab);
     });
 }
+
+$wait(5, ()=>{
+    $('[efy_tabs=dc] .dc_right [efy_sidebar_btn] p').classList.add('efy_hide_p');
+});
 
 }, 1);

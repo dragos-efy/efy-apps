@@ -1,0 +1,450 @@
+:root {overflow-x: hidden; ---body_padding: 0}
+body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
+
+[pn_priority], .priority_picker :is([for*="priority_none"], [id*="priority_none"]:checked + label),
+.priority_color .card:has([pn_priority]) button {background: var(---text)!important}
+
+.card:has(.priority_picker [id*="priority_low"]:checked) [pn_priority],
+.priority_picker :is([for*="priority_low"], [id*="priority_low"]:checked + label),
+.priority_color .card:has([pn_priority*=low]) button {background: oklch(var(--pn_tag_color_low))!important}
+
+.card:has(.priority_picker [id*="priority_medium"]:checked) [pn_priority],
+.priority_picker :is([for*="priority_medium"], [id*="priority_medium"]:checked + label),
+.priority_color .card:has([pn_priority*=medium]) button {background: oklch(var(--pn_tag_color_medium))!important}
+
+.card:has(.priority_picker [id*="priority_high"]:checked) [pn_priority],
+.priority_picker :is([for*="priority_high"], [id*="priority_high"]:checked + label),
+.priority_color .card:has([pn_priority*=high]) button {background: oklch(var(--pn_tag_color_high))!important}
+
+[pn_planner] .card:has(.priority_picker [id*="full"]:checked) {
+    ---full_bg: oklch(from var(---bg) calc(1 + (-1 * l)) c h / alpha);
+    ---card: oklch(from var(---bg) l c h / calc(alpha - 0.8))!important;
+    ---color: var(---bg)!important;
+    ---color_trans: var(---card)!important;
+    ---text: var(---bg)!important;
+    [pn_priority] {background: var(---color)!important}
+    .summary :is(.title), .summary:before {-webkit-text-fill-color: transparent; background: var(---bg); background-clip: text}
+    .info, .info p {border-color: var(---card)}
+    .time, .name, .numbers, .numbers input, textarea, .date, [efy_text], .info p, .info p input {color: var(---bg)}
+    &, .summary .title:has(.priority_picker [id*="priority_high"]:checked) {
+        background: var(---full_bg);
+        button {---bg: var(---full_bg)}
+    }
+    &:has(.priority_picker [id*="priority_low"]:checked) {---full_bg: oklch(var(--pn_tag_color_low))}
+    &:has(.priority_picker [id*="priority_medium"]:checked) {---full_bg: oklch(var(--pn_tag_color_medium))}
+    &:has(.priority_picker [id*="priority_high"]:checked) {---full_bg: oklch(var(--pn_tag_color_high))}
+    :is(.pn_tags, .scores, [efy_timer]) button {-webkit-text-fill-color: var(---full_bg)}
+}
+
+#pn_menu [efy_color] {width: 100%}
+
+.price_value, .quantity_value, .total_price_value {margin: 0; background: transparent; border: 0!important}
+
+.pn_nav {display: flex; justify-content: space-between; align-items: center; border-bottom: var(---border); padding: var(---gap-x);
+    :is(button, a[role=button], label) {margin: 0; white-space: nowrap; height: var(---size)}
+    .pn_toggles {display: flex; gap: var(---gap-x)}
+}
+
+.pn_tags {display: flex; gap: var(---gap-x); flex-wrap: wrap}
+
+.pn_search {width: fit-content; height: fit-content; position: relative;
+    input {width: var(---size); height: var(---size); margin: 0}
+    i {position: absolute; z-index: 2; width: fit-content; height: 100%; padding: calc(10rem + var(---border_size))}
+    input:focus {width: 170rem; padding-left: 35rem}
+    :not(input:focus, i), :not(input:focus)::placeholder {color: transparent}
+}
+
+.buttons :is(.cancel, .pn_submit) {display: flex; justify-content: center; align-items: center}
+
+.modal-overlay {display: none; padding: calc(var(---gap-x) / 2) var(---gap) var(---gap) var(---gap);
+    border-bottom: var(---border); margin: 10rem 0 5rem 0;
+    &.active {display: block}
+    :is(#priority, #group) label {&:before, &:after {display: none!important}}
+}
+#form {max-width: 500px;
+    h2 {margin-top: 0}
+}
+
+.price_value:after {content: 'RON'; padding-left: 8rem}
+
+.modal {padding: 0;
+    &:focus-within {box-shadow: none!important}
+}
+
+.modal_grid {display: flex; flex-direction: column; gap: 0;
+    .grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); gap: var(---gap); border-top: var(---border); padding: var(---gap)}
+    :is(input, [efy_number]) {margin: 0}
+    #info {margin: 0 var(---gap) var(---gap) var(---gap); width: calc(100% - var(---gap) * 2)}
+}
+
+.time {
+    :is(.hour, .minute), label:not([for=time]) {border-radius: 0!important}
+    input {text-align: center}
+}
+
+.modal_grid .input-group {display: flex;
+    label:not(details label) {display: flex; padding: var(---padding); background: var(---card);
+        border-radius: var(---radius) 0 0 var(---radius); border: var(---border); border-right: 0}
+    :is(input, select) {border-radius: 0 var(---radius) var(---radius) 0; height: 100%; line-height: 1; margin: 0}
+    [efy_number] {width: 100%}
+    &:focus-within :is(label:not(details label), input:not(input:focus)) {
+        box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text-xx); border-color: var(---text-xx)}
+    &:focus-within {gap: calc(var(---border_size) + 2rem)}
+    details {width: 100%; margin: 0}
+}
+
+.input-group.actions {padding: var(---gap);
+    &, .buttons {display: flex; justify-content: space-between; align-items: center; gap: var(---gap-x)}
+    button {margin: 0;
+        i {margin: 0}
+}}
+
+#pn_backup {display: flex; flex-wrap: wrap; gap: var(---gap-x);
+    > :is(a, label, button) {margin: 0}
+}
+
+[pn_planner] {display: grid; gap: calc(var(---gap) /2.5) var(---gap);
+    grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); padding: 0 var(---gap) var(---gap) var(---gap);
+    .header {display: flex; justify-content: start; gap: var(---gap-x); align-items: center; margin: 10rem 0;
+        mark {padding: 5rem 7rem; background: var(---card); color: var(---text); line-height: 1; font-size: 18rem;
+            border: var(---border); align-items: center; display: flex; justify-content: center; min-width: 30rem}
+    }
+    h5 {line-height: 1; margin: 0}
+    .pn_full {padding: 7rem 0!important;
+        i {margin-right: 0; font-size: 14rem}
+    }
+    [efy_timer] {margin: var(---gap-x)}
+    .time {border: var(---border); line-height: 1; padding: 3rem 5rem; background: var(---card); border-radius: var(---radius-x); display: flex; align-items: center}
+    :is(.card, #priority)[open] {padding: 0;
+        .summary {padding: 0 0 0 12rem; margin-bottom: 7rem;
+            &:before {right: 9rem}
+        }
+    }
+    .summary {display: flex; gap: 8rem; align-items: center; padding: var(---padding); height: var(---size);}
+    .title {display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+    word-break: break-all; overflow-wrap: anywhere; width: fit-content;
+        &[contenteditable=true] {-webkit-line-clamp: 3; line-height: 20rem}
+        &:is(.lt_group > .header .title) {height: 30rem; place-content: center}
+    }
+    .info {white-space: pre-wrap; text-wrap: wrap; border-top: var(---border); border-bottom: var(---border); resize: none;
+        .email, .phone, .birthday, .price, .quantity, .total_price {display: flex; align-items: center; border-bottom: var(---border);
+            &:last-of-type {border-radius: 0 0 var(---radius-x) var(---radius-x); border-bottom: none}
+            > * {padding: var(---padding); width: 100%}
+            p:first-of-type {border-right: var(---border); min-width: 30%}
+            a {-webkit-text-fill-color: var(---text); font-weight: normal}
+        }
+    }
+    .info[readonly]:focus {box-shadow: none!important}
+    .info .info {display: flex; margin: 0; background: none; border: 0; border-top: var(---border); border-radius: 0}
+    .date {background: var(---card); border: var(---border); border-radius: var(---radius); padding: 6rem 8rem; width: fit-content;}
+    .pn_tags {padding: 10rem}
+    [pn_done=true] {
+        [pn_priority], .time, [efy_timer], .pn_fs {display: none}
+        .title, .date, .info .info, [pn_priority] {opacity: 0.5}
+        .title {text-decoration: line-through}
+        .info .info {border-top: none}
+        [efy_timer], .time {display: none}
+        .done_btn {background: var(---color), var(---color_trans); -webkit-text-fill-color: transparent;
+        background-clip: text, border-box !important; background-origin: border-box!important}
+    }
+    &.priority_color {
+        ::-webkit-progress-bar {background: transparent}
+        progress {background: var(---text-x)}
+        ::-webkit-progress-value {background: var(---text)}
+        .card:has([pn_priority*=low]) {
+            progress {background: oklch(var(--pn_tag_color_alpha_low))}
+            ::-webkit-progress-value {background: oklch(var(--pn_tag_color_low))}
+        }
+        .card:has([pn_priority*=medium]) {
+            progress {background: oklch(var(--pn_tag_color_alpha_medium))}
+            ::-webkit-progress-value {background: oklch(var(--pn_tag_color_medium))}
+        }
+        .card:has([pn_priority*=high]) {
+            progress {background: oklch(var(--pn_tag_color_alpha_high))}
+            ::-webkit-progress-value {background: oklch(var(--pn_tag_color_high))}
+        }
+        [pn_done=true] {
+            .done_btn {background: var(---text-x)!important; -webkit-text-fill-color: var(---text)}
+            &:has([pn_priority*=low]) .done_btn {background: oklch(var(--pn_tag_color_alpha_low))!important; -webkit-text-fill-color: oklch(var(--pn_tag_color_low))}
+            &:has([pn_priority*=medium]) .done_btn {background: oklch(var(--pn_tag_color_alpha_medium))!important; -webkit-text-fill-color: oklch(var(--pn_tag_color_medium))}
+            &:has([pn_priority*=high]) .done_btn {background: oklch(var(--pn_tag_color_alpha_high))!important; -webkit-text-fill-color: oklch(var(--pn_tag_color_high))}
+        }
+    }
+    &:not(.pn_fs) .info {max-height: 385rem; overflow: visible}
+    :is(:is(.title, .name, .url, .email_value, .phone_value, .birthday_value, .price_value, .quantity_value, .total_price_value)[contenteditable=true], .info .info:not([readonly])) {border: var(---border_size) dashed var(---text-xx); border-radius: calc(var(---radius-x) * 0.75); padding: 0 5rem}
+    :is(:is(.title, .name, .url)[contenteditable=true], .info .info:not([readonly])):focus {border: var(---border_size) solid var(---text); box-shadow: 0 0 0 var(---border_size) var(---text)}
+    &:has([contenteditable=true]:focus) :is(.card, a) {pointer-events: none; box-shadow: none!important}
+    .scores {display: flex; flex-direction: column; gap: var(---gap-x); padding: var(---gap-x); border-bottom: var(---border);
+        .score {display: flex; flex-direction: column; gap: var(---gap-x); align-items: center;
+            .top {display: flex; gap: var(---gap-x); align-items: center; justify-content: space-between; width: 100%;
+                .buttons {display: flex; gap: var(---gap-x);
+                    .numbers {display: flex; align-items: center; background: var(---card); border-radius: var(---radius-x); border: var(---border); padding: 0 3rem;
+                        * {margin: 0}
+                        [type=number] {width: 2ch; padding: 3rem; background: none; border: 0; border-radius: var(---radius-xx)}
+                        p {margin-right: 3rem}
+                    }
+                    .remove {width: 30rem; height: 30rem; border-radius: var(---radius-x);
+                        i:before {font-size: 14rem!important}
+                    }
+                }
+                .name {white-space: nowrap; overflow: hidden; overflow-y: scroll; text-overflow: ellipsis; width: 100%}
+            }
+            progress {width: 100%}
+        }
+    }
+}
+
+#priority[open] > div {
+    border-top: var(---border);  padding: 10rem; display: flex; flex-wrap: wrap; gap: var(---gap-x);
+    label {margin: 0}
+}
+
+.lt_cards {display: flex; gap: var(---gap-x); flex-wrap: wrap;
+    > * {width: 100%; margin: 0}
+    > div {background: var(---card); border: var(---border); border-radius: var(---radius); padding: var(---padding)}
+    a:not(:is(.email, .phone, .birthday, .price, .quantity, .links) a) {
+        padding: var(---padding); background: var(---card)!important; -webkit-text-fill-color: var(---text)!important;
+    }
+    &.pn_full_on {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr))!important;
+        .card {height: fit-content}
+    }
+}
+[efy_drag=on] {
+    * {cursor: move!important}
+    * > * {pointer-events: none}
+    > *.active {border: var(---border_size) dashed var(---text); background: transparent}
+}
+[efy_drag_cursor] {display: none}
+
+
+[efy_tabs=pn_form] {
+    :is([efy_tab], [efy_tab]:last-of-type) {margin: 0}
+    [efy_content] {padding: 0; border: none; background: transparent}
+    .pn_tabs {display: flex; align-items: center; gap: var(---gap-x)}
+}
+
+[pn_priority] {width: 12rem; height: 12rem; border-radius: var(---radius-xx); padding: 5rem; margin: 0; border: 0}
+
+/*Pseudo Fullscreen*/ html.pn_fs {padding-top: var(---100vh); overflow: hidden!important}
+.card.pn_fs {
+    position: absolute!important; z-index: 9; inset: 0; margin: 0; border-radius: 0; border: 0; background: var(---bg);
+    .summary {pointer-events: none}
+    &:active, .info2 {transform: unset!important}
+
+}
+:is([efy_mode=default], [efy_mode*=trans]) .card.pn_fs {background: transparent}
+.card.pn_fs {
+    .info {overflow: unset!important; height: calc(var(---100vh) - 120rem)!important; max-height: unset}
+    :not(.efy_sidebar) [efy_timer] {width: 100%; height: 100%; background: transparent; border: 0; justify-content: center; box-shadow: none}
+
+}
+.pn_fs [efy_timer] {
+    [efy_text] {font-size: 20vmin; padding: 3rem 10rem; line-height: 1}
+    button {display: none}
+}
+
+.pn_tags {
+    button.pseudo {display: flex; justify-content: center; align-items: center}
+    [efy_start].pseudo:before { content: "\e90a"}
+    [efy_start].pseudo[efy_active]:before { content: "\e90b"}
+}
+.card:not(.pn_fs) .pn_tags button.pseudo {display: none}
+
+.pn_toggles label {
+    &:before, &:after {display: none!important}
+    i {margin: 0}
+}
+#pn_edit_toggle, #pn_drag_toggle, #lt_views_toggle {pointer-events: none!important}
+html :is([for=pn_edit_toggle], [for=pn_drag_toggle], [for=lt_views_toggle]) {
+    display: flex; gap: 8rem; align-items: center;
+    p {margin: 0}
+}
+[for=pn_drag_toggle] [efy_icon=move], [for=lt_views_toggle] {margin-right: 4rem;
+    &:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(---color); color: transparent}
+}
+[efy_color_button][efy_mode] [for=pn_drag_toggle] [efy_icon=move]:before {background: oklch(var(---color_button) / .7)}
+
+#pn_theme {display: flex; flex-wrap: wrap; gap: var(---gap-x);
+    .pn_title {line-height: 1; margin: 0; width: 100%}
+    label {margin: 0}
+}
+
+#pn_confetti {
+    position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(---100vh);
+    border-radius: 0!important; background-position: var(---bg_x) var(---bg_y)!important; pointer-events: none;
+} [efy_mode*=light] #pn_confetti {filter: invert(1)}
+
+/*Convergence*/
+@media (max-width: 799px) {
+    :is([for=pn_edit_toggle], [for=pn_drag_toggle]) p {display: none}
+    [for=pn_drag_toggle] [efy_icon=move] {margin-right: 0}
+}
+
+/*Temporary*/ .pn_tabs [efy_tab=tags] {display: none}
+
+
+[pn_planner] .card [efy_timer] {
+    background: transparent;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    place-content: space-between;
+    flex-wrap: nowrap;
+    [efy_text] {width: 100%}
+}
+
+.priority_picker {
+    padding: var(---gap-x); display: flex; flex-wrap: wrap; gap: var(---gap-x); border-bottom: var(---border);
+    label {
+        display: flex; align-items: center; place-content: center;
+        background: var(---text)!important; background-origin: border-box!important; -webkit-text-fill-color: var(---text)!important;
+        margin: 0!important; width: var(---size); height: var(---size);
+        &:before, &:after {display: none!important}
+        i {-webkit-text-fill-color: var(---bg); margin: 0!important}
+    }
+    input:checked + label {background: var(---color)!important; background-origin: border-box!important; -webkit-text-fill-color: var(---bg)!important}
+    input:not(:checked) + label i {display:none!important}
+    input {pointer-events: none!important; position: absolute!important}
+}
+
+.lt_views, .lt_move_info {
+    display: flex; gap: var(---gap-x); flex-wrap: wrap; padding: var(---gap-x);
+    width: 100%; border-bottom: var(---border);
+    label {
+        margin: 0!important; height: var(---size);
+        &:before, &:after {display: none!important}
+        p {margin: 0}
+    }
+    input {pointer-events: none}
+}
+.lt_move_info {
+    background: var(---color), var(---color_trans);
+    background-clip: text, border-box;
+    background-origin: border-box;
+    -webkit-text-fill-color: transparent;
+    margin: 0 var(---gap-x); width: calc(100% - var(---gap-x) * 2);
+    border-radius: var(---radius); border: var(---border);
+    i {margin: 0}
+}
+
+[pn_planner] .card {
+    padding: 0; position: relative;
+    &, label {cursor: pointer!important}
+    .summary:before {
+        content: "\e907"; position: absolute; top: 8rem; right: 10rem; font-family: 'efy_icons';
+        transition: transform calc(var(---animation) * .1s) ease;
+    }
+    .content {display: none; flex-direction: column}
+    &:has([name=lt_cards]:focus) {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text)!important}
+    &:has([name=lt_cards]:checked) {
+        .summary:before {transform: rotate(90deg)}
+        .content {display: flex}
+    }
+    [name=lt_cards] {position: absolute; opacity: 0; pointer-events: none}
+    .links {
+        display: grid; grid-template-columns: 1fr 1fr; padding: var(---gap-x); gap: var(---gap-x);
+        .link {
+            display: flex; position: relative; gap: 0; border: var(---border); border-radius: var(---radius);
+            background: var(---card); padding: 2rem 8rem; align-items: center;
+            a {position:absolute; width: 100%; height: 100%; inset: 0; z-index: 1}
+            i {margin: 0}
+            input {height: 30rem; margin: 0; width: fit-content}
+            input:first-of-type {border: 0; background: transparent}
+            .remove, input:last-of-type {display: none}
+            input {pointer-events: none}
+        }
+    }
+}
+
+#pn_body:has(#lt_views_table:checked) {
+    [pn_planner] {
+        display: flex; flex-direction: column;
+    }
+    .lt_group .lt_cards {gap: 0; background: var(---card); border-radius: var(---radius); border: var(---border)}
+    [pn_planner] .card {
+        display: flex; flex-direction: row; background: transparent; border-radius: 0;
+        place-content: space-between; align-items: center; border-left: 0; border-right: 0; border-top: 0;
+        &:last-of-type {border-bottom: 0}
+        .summary:before, .time {display: none}
+        .info, .pn_tags {display: inline-flex; border: 0}
+        .summary, .info, .pn_tags {display: inline-flex; width: fit-content}
+        [efy_timer] {
+            border-top: 0; border-bottom: 0; flex-wrap: wrap; align-items: center; place-content: center; width: 125rem;
+            [efy_text] {text-align: center; font-size: 25rem}
+        }
+        .pn_tags {
+            place-content: center; align-items: center;
+            width: 300rem; border-left: var(---border);
+            .date {margin-right: auto; height: fit-content}
+        }
+        .content {display: flex; flex-direction: row}
+    }
+}
+#pn_body:has(#lt_views_cards:checked) {
+    overflow: hidden!important;
+    [pn_planner] {
+        display: flex; flex-direction: row; overflow: auto; scrollbar-gutter: stable;
+        width: 100%; height: calc(var(---100vh) - var(---size) - var(---gap-x) * 2 - var(---border_size));
+    }
+    .lt_group {display: flex; flex-direction: column; width: 400rem; min-width: 400rem}
+}
+#pn_body:has(#lt_views_masonry:checked) {
+    [pn_planner] {
+        display: block; gap: var(---gap); padding: 0 var(---gap) var(---gap) var(---gap);
+        columns: 400rem auto; width: 100%; margin-top: -20rem;
+        .lt_group, .lt_cards, .card {break-inside: avoid;}
+        .lt_group {padding-top: 20rem}
+    }
+}
+#pn_body:has(#lt_views_calendar:checked) {
+    [pn_planner] {display: none}
+}
+#pn_body:not(:has(#lt_views_calendar:checked)) {
+    .calendar {display: none}
+}
+.calendar {
+    margin: var(---gap)!important;
+    max-width: 100%!important; height: calc(var(---100vh) - var(---size) - var(---gap-x) * 5 - var(---border_size))!important;
+    .days {
+        grid-template-rows: repeat(6, 1fr); height: 100%;
+        div {aspect-ratio: unset!important; height: 100%}
+    }
+}
+
+#pn_body:has(#pn_drag_toggle:checked){
+    .move_selected {
+        background: var(---color), var(---color_trans); background-clip: text, border-box; -webkit-text-fill-color: transparent;
+        .summary:before {content: "\e90c"; transform: rotate(45deg); background: var(---color); -webkit-text-fill-color: transparent; background-clip: text;}
+        .content {display: none}
+        .title, .date, .info .info, [pn_priority] {opacity: 1}
+    }
+    .pn_nav {border-bottom: none}
+}
+
+#pn_body:has(#pn_edit_toggle:checked){
+    [pn_planner] .card .links .link {
+        gap: var(---gap-x);
+        a {display: none; pointer-events: none}
+        input:first-of-type {}
+        .remove, input:last-of-type {display: flex}
+        input {pointer-events: all}
+    }
+}
+
+.lt_form_links, .lt_form_scores {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300rem, 1fr)); gap: var(---gap);
+    padding: var(---gap);
+    .card {
+        display: flex; flex-wrap: wrap; gap: var(---gap-x); padding: var(---gap-x); border: var(---border);
+        border-radius: var(---radius); background: var(---card);
+        input, .remove {height: 30rem; border-radius: var(---radius-x)}
+        .remove {
+            width: 30rem;
+            i:before {font-size: 14rem}
+        }
+        input {backdrop-filter: none!important}
+        [id*="link_name_"], [id*="score_name_"] {width: calc(100% - 30rem - var(---gap-x))}
+        [name=form_add_scores_min], [name=form_add_scores_max] {width: calc(50% - var(---gap-xx))}
+    }
+}

@@ -1,0 +1,11 @@
+[efy_theme="transparent test"] [efy_preview] {
+---scheme: dark;
+---mode: dark,trans;
+---bg: oklch(0 0 0);
+---color: linear-gradient(var(---color_angle), oklch(.9 .37 15), oklch(.6 .37 175));
+---color_trans: linear-gradient(var(---color_angle), oklch(.9 .37 15 / .3), oklch(.6 .37 175 / .3));
+---text: oklch(.9 .05 175);
+---radius: 10rem;
+---gap: 4rem;
+---card: oklch(0 0 0);
+}

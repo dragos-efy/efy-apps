@@ -1,0 +1,10 @@
+[efy_theme="germany flag"] [efy_preview] {
+---scheme: light;
+---mode: light,solid;
+---bg: oklch(1 0 0);
+---text: oklch(0 0 0);
+---color_angle: 180deg;
+---color: linear-gradient(var(---color_angle), oklch(0 0 0) 0, oklch(0 0 0) 33%, oklch(.65 .25 30) 33%, oklch(.65 .25 30) 67%, oklch(.85 .2 90) 67%, oklch(.85 .2 90) 100%);
+---color_trans: linear-gradient(var(---color_angle), oklch(0 0 0 / .3) 0, oklch(0 0 0 / .3) 33%, oklch(.65 .25 30 / .3) 33%, oklch(.65 .25 30 / .3) 67%, oklch(.85 .2 90 / .3) 67%, oklch(.85 .2 90 / .3) 100%);
+---radius: 10rem;
+}

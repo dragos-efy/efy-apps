@@ -2,22 +2,21 @@
 
 #builder {display: flex; height: var(---100vh);
     #bd_sidebar {display: flex; flex-wrap: wrap; flex-direction: column; width: 400rem; border-right: var(---border);
-        #nav, [efy_tabs=components] {display: flex; flex-wrap: wrap; gap: var(---gap0); padding: var(---gap0) var(---gap0) 0 var(---gap0);
+        #nav, [efy_tabs=components] {display: flex; flex-wrap: wrap; gap: var(---gap-x); padding: var(---gap-x) var(---gap-x) 0 var(---gap-x);
             & button {margin: 0; height: var(---size)}
         }
         [efy_tabs=components] {
             .efy_tabs {margin: 0; display: flex; flex-wrap: nowrap; gap: 0; border-radius: var(---radius);
-                ---bc: oklch(var(---bg_var) / var(---border_alpha));
                 label {width: 100%}
                 [efy_tab]:not([efy_active]) + label {background: transparent; border-color: transparent}
                 [efy_tab]:not([efy_active], :focus) + label {border-radius: 0}
-                &:has([efy_active]:is([efy_tab]:nth-of-type(1))) label:not(:first-of-type, :last-of-type) {border-right: var(---border); border-right-color: var(---bc)}
-                &:has([efy_active]:is([efy_tab]:nth-of-type(2))) label:not(:first-of-type, :nth-child(1), :last-child) {border-right: var(---border); border-right-color: var(---bc)}
-                &:has([efy_active]:is([efy_tab]:nth-of-type(3))) label:not(:nth-of-type(2), :last-of-type) {border-right: var(---border); border-right-color: var(---bc)}
+                &:has([efy_tab][efy_active]:nth-of-type(1)) label:not(:first-of-type, :last-of-type),
+                &:has([efy_tab][efy_active]:nth-of-type(2)) label:not(:first-of-type, :nth-child(1), :last-child),
+                &:has([efy_tab][efy_active]:nth-of-type(3)) label:not(:nth-of-type(2), :last-of-type) {border-right: var(---border)}
             }
-            [efy_content] {width: 100%; display: flex; flex-wrap: wrap; gap: var(---gap0); padding: 0;
+            [efy_content] {width: 100%; display: flex; flex-wrap: wrap; gap: var(---gap-x); padding: 0;
                 backdrop-filter: none!important; background: transparent; border: 0;
-                & button {width: calc(50% - var(---gap0) / 2); background: var(---bg2);
+                & button {width: calc(50% - var(---gap-x) / 2); background: var(---card);
                     -webkit-text-fill-color: var(---text); display: flex; place-content: start
                 }
             }

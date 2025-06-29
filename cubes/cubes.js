@@ -2,11 +2,11 @@ $ready('#efy_sbtheme', ()=>{
 
 $add('div', {class: 'view_3d'}, [
   ['div', {class: 'map'}, [
-    ['div', {class: 'cube'}], ['div', {class: 'cube trans'}], ['div', {class: 'cube bg1'}]
+    ['div', {class: 'cube'}], ['div', {class: 'cube trans'}], ['div', {class: 'cube card'}]
   ]]
 ]);
 
-for (let i = 0; i < 6; i++){ ['', '.trans', '.bg1'].map(type =>{
+for (let i = 0; i < 6; i++){ ['', '.trans', '.card'].map(type =>{
   $add('div', {class: 'face efy_trans_filter'}, [], $(`.cube${type}`));
 })}
 

@@ -10,7 +10,7 @@ $ready('#efy_sbtheme', ()=>{
     ['radius', 'gap'].forEach(a =>{ const store = efy[a];
         if (store) $root.style.setProperty(`---${a}`, store);
     });
-    if (efy.text) $root.style.setProperty(`---color_text_var`, efy.text);
+    if (efy.text) $root.style.setProperty(`---color_text`, efy.text);
     $root.toggleAttribute('efy_color_text', (efy.text_status === 'on'));
 }})};
 

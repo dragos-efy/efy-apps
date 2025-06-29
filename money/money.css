@@ -32,10 +32,10 @@ table :is(td:nth-of-type(1), td:nth-of-type(2), td:nth-of-type(3)) {width: 100%;
 .modal_grid :is(input, [efy_number]) {margin: 0}
 
 .modal_grid .input_group {display: flex}
-.modal_grid .input_group label {display: flex; padding: var(---padding); background: var(---bg1); border-radius: var(---radius) 0 0 var(---radius); border: var(---border); border-right: 0}
+.modal_grid .input_group label {display: flex; padding: var(---padding); background: var(---card); border-radius: var(---radius) 0 0 var(---radius); border: var(---border); border-right: 0}
 .modal_grid .input_group input {border-radius: 0 var(---radius) var(---radius) 0; height: 100%}
 .modal_grid .input_group [efy_number] {width: 100%}
-.modal_grid .input_group:focus-within label {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text_trans2); border-color: var(---text_trans2)}
+.modal_grid .input_group:focus-within label {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text-xx); border-color: var(---text-xx)}
 .modal_grid .input_group:focus-within {gap: calc(var(---border_size) + 2rem)}
 
 .input_group.actions {padding: var(---gap)}
@@ -44,12 +44,12 @@ table :is(td:nth-of-type(1), td:nth-of-type(2), td:nth-of-type(3)) {width: 100%;
 
 #mn_search {margin: 0}
 
-.mn_table thead .mn_row {background: var(---bg1)}
-.mn_table thead .mn_row td {padding: var(---gap) calc(var(---gap0) + 5rem)}
-.mn_table .mn_row td {padding: var(---gap0) 15rem}
-.mn_table .mn_row td:last-of-type {padding: var(---gap0)}
+.mn_table thead .mn_row {background: var(---card)}
+.mn_table thead .mn_row td {padding: var(---gap) calc(var(---gap-x) + 5rem)}
+.mn_table .mn_row td {padding: var(---gap-x) 15rem}
+.mn_table .mn_row td:last-of-type {padding: var(---gap-x)}
 
-#mn_backup {display: flex; flex-wrap: wrap; gap: var(---gap0)}
+#mn_backup {display: flex; flex-wrap: wrap; gap: var(---gap-x)}
 #mn_backup > :is(a, label, button) {margin: 0}
 
 /*Temporary*/ [efy_number] button {display: none!important}

@@ -49,7 +49,6 @@
 --music_volume: Volum Muzică;
 --media: Media;
 --sounds: Sunete;
---tasks: Taskuri;
 --goal: Obiectiv;
 --note: Notiță;
 --goal_note: Obiectiv / Notiță;
@@ -57,4 +56,15 @@
 --vibration: Vibrație;
 --contacts: Contacte;
 --storage: Stocare;
+--group: Grup;
+--email: Email;
+--phone: Telefon;
+--birthday: Data Nasterii;
+--views: Views;
+--cards: Carduri;
+--masonry: Masonerie;
+--table: Tabel;
+--nodes: Noduri;
+--scores: Scoruri;
+--calendar: Calendar;
 }

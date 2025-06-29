@@ -1,0 +1,31 @@
+[efy_content=themes] #app {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280rem, 1fr));
+    gap: var(---gap);
+    [efy_theme] {
+        display: flex; flex-direction: column;
+        width: 100%; background: var(---card); border: var(---border); border-radius: var(---radius);
+        > p {
+            padding: 5rem 10rem; border-bottom: var(---border);
+            border-radius: var(---radius) var(---radius) 0 0; text-transform: capitalize;
+        }
+        [efy_preview] {
+            display: flex; flex-wrap: wrap; flex-grow: 1; min-height: 250rem;
+            gap: var(---gap); align-items: center; place-content: center;
+            padding: 15rem; border-radius: 0; background: var(---bg); cursor: pointer;
+            > * {pointer-events: none}
+            * {backdrop-filter: none!important; margin: 0!important}
+            progress {width: calc(100% - 26rem)}
+            :is(button, i, [efy_select] label) {margin: 0}
+            mark {line-height: 1.5}
+            :is(i, p) {line-height: 1}
+            [efy_card] {padding: 2rem 7rem; width: fit-content}
+            [efy_card].bg {background: var(---bg)}
+            :is([efy_card], i) {color: var(---text)}
+        }
+        .actions {
+            display: flex; flex-wrap: wrap; gap: var(---gap-x); padding: var(---gap-x);
+            .disabled {background: var(---card); -webkit-text-fill-color: var(---text-x); border-color: var(---text-x)!important}
+        }
+    }
+    style[efy_theme] {pointer-events: none; display: none; opacity: 0}
+}

@@ -1,0 +1,47 @@
+.calendar {
+  margin: var(---gap) 0 0 var(---gap);
+  position: relative; min-width: 300rem; max-width: 400rem; background: var(---card);
+  overflow: hidden; border: var(---border); border-radius: var(---radius);
+  .days {display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: var(---gap-x); padding: var(---gap-x);
+    div {aspect-ratio: 1; display: flex; align-items: center; place-content: center;
+      > a {display: flex; justify-content: center}
+      &:not(.prev-dates, .next-dates):hover {background: var(---color); color: var(---bg); border-radius: var(---radius); border: 0}
+      &.empty-dates:hover {border: 1rem solid transparent}
+    }
+    :is(.prev-dates, .next-dates) {color: var(---text-x);
+      &:hover {pointer-events: none}
+    }
+    .today {background: var(---color); color: var(---bg); border-radius: var(---radius); border: 0}
+    :is(.today, div:hover) a {color: var(---bg); -webkit-text-fill-color: var(---bg)!important}
+  }
+  .controls {display: flex; gap: var(---gap-x); place-content: space-between; padding: var(---gap-x);
+    .calendar-year-month {
+      display: flex; justify-content: space-evenly; align-items: center; background: var(---card);
+      border-radius: var(---radius); border: var(---border); height: 35rem; font-weight: bold;
+    }
+  }
+  .today-date {
+    background: var(---card); border-radius: var(---radius); border: var(---border); padding: 8rem;
+    height: 35rem; display: flex; align-items: center; font-weight: bold;
+    &:hover {background: var(---text); color: var(---bg); border-color: var(---text)}
+  }
+  .calendar-month-label {padding: 8rem; border-radius: var(---radius) 0 0 var(---radius); border-right: var(---border); height: 35rem; display: flex; align-items: center}
+  .calendar-year-label {padding: 8rem}
+  :is(.prev, .next) a {
+    background: var(---card); border: var(---border); width: 35rem; height: 35rem;
+    display: inline-flex; align-items: center; place-content: center;
+    &:hover {background: var(---text);
+      [efy_icon*=chevron]:before {-webkit-text-fill-color: var(---bg)!important; color: var(---bg)!important}
+    }
+  }
+  [efy_icon*=chevron]:before, .days div > a {-webkit-text-fill-color: var(---text)!important; color: var(---text)!important}
+  [efy_icon*=chevron] {margin: 0}
+  .prev a {border-radius: var(---radius-x) 0 0 var(---radius-x)}
+  .next a {border-radius: 0 var(---radius-x) var(---radius-x) 0; border-left: 0}
+  .arrows {display: flex}
+  .day_names {
+    display: grid; grid-template-columns: repeat(7, 1fr); border-top: var(---border);
+    border-bottom: var(---border); padding: 10rem 0}
+    div {display: flex; place-content: center; align-items: center}
+  }
+}

@@ -23,7 +23,7 @@ body {display: flex; flex-wrap: wrap; flex-direction: column; gap: var(---gap)!i
 }
 [efy_cursor], #gamepads {display: none!important}
 
-.container{position: relative; background: var(---bg1); border: var(---border); width: 300rem; height: 300rem; border-radius: var(---radius); display: inline-flex;
+.container{position: relative; background: var(---card); border: var(---border); width: 300rem; height: 300rem; border-radius: var(---radius); display: inline-flex;
   &.img .human .head {background-image: url(./face.webp)!important; background-size: 105%; background-position: -1rem -1rem;
     .eye1, .eye2, .mouth {display: none}
   }
@@ -36,20 +36,20 @@ body {display: flex; flex-wrap: wrap; flex-direction: column; gap: var(---gap)!i
     .head, .neck, .body, .arm_left, .arm_left2, .arm_left3, .arm_right, .arm_right2, .arm_right3, .leg_left, .leg_left2,
     .leg_right, .leg_right2, .boob_left, .boob_right, .shirt_neck, .shirt_chest, .shirt_left, .shirt_right, .underwear,
     .skirt, .support {
-      background: oklch(var(---skin_bg)); transition: all var(---human_speed); /*box-shadow: 0 0 30rem oklch(var(---bg_var2) / .5)*/
+      background: oklch(var(---skin_bg)); transition: all var(---human_speed);
     }
     &, .head, .body {position: relative}
     &, .head {margin: auto}
     .arm_left, .arm_right {height: 62rem; z-index: 1}
     .arm_left2, .arm_right2 {bottom: -35rem; height: 50rem}
     .arm_left3, .arm_right3 {display: none; bottom: -10rem; height: 25rem}
-    .arm_left, .arm_left2, .arm_right, .arm_right2, .arm_left3, .arm_right3 {width: 20rem; border-radius: var(---radius0); position: absolute; transform-origin: 10rem 10rem}
+    .arm_left, .arm_left2, .arm_right, .arm_right2, .arm_left3, .arm_right3 {width: 20rem; border-radius: var(---radius-x); position: absolute; transform-origin: 10rem 10rem}
     .leg_left, .leg_left2, .leg_right, .leg_right2 {height: 68rem; width: 20rem; position: absolute; bottom: -50rem; border-radius: var(---radius); transform-origin: 10rem 10rem}
 
-    .head {height: 50rem; width: 40rem; border-radius: var(---radius2); z-index: 1}
+    .head {height: 50rem; width: 40rem; border-radius: var(---radius-o); z-index: 1}
 
     .eye1, .eye2 {width: var(--eyes_width); height: var(--eyes_height); top: var(--eyes_top); background: oklch(var(---eye_bg));
-      box-shadow: 0 0 0 2rem oklch(var(---eye2_bg)); border-radius: var(---radius00); position: absolute;
+      box-shadow: 0 0 0 2rem oklch(var(---eye2_bg)); border-radius: var(---radius-xx); position: absolute;
     }
     .eye1 {left: var(--eyes_distance)}
     .eye2 {right: var(--eyes_distance)}
@@ -59,7 +59,7 @@ body {display: flex; flex-wrap: wrap; flex-direction: column; gap: var(---gap)!i
     }
 
     .mouth {width: var(--mouth_width); height: var(--mouth_height); top: var(--mouth_top); left: 14rem;
-      box-shadow: 0 0 0 2rem oklch(var(---mouth_bg)); border-radius: var(---radius00); position: absolute;
+      box-shadow: 0 0 0 2rem oklch(var(---mouth_bg)); border-radius: var(---radius-xx); position: absolute;
     }
 
     .neck {height: 20rem; width: 18rem; position: absolute; top: 41rem; left: 16rem; z-index: 0!important;
@@ -91,12 +91,12 @@ body {display: flex; flex-wrap: wrap; flex-direction: column; gap: var(---gap)!i
     }
     .skirt {clip-path: polygon(10rem 0%, 60rem 0%, 100% 100%, 0% 100%); height: 40rem; width: 70rem;
       position: absolute; left: -10rem; bottom: -10rem; background: oklch(var(---skirt_bg));
-      border-radius: var(---radius00); transition: all var(---human_speed), background 0s;
+      border-radius: var(---radius-xx); transition: all var(---human_speed), background 0s;
     }
     .support {opacity: 0; scale: 0; border-radius: var(---radius); width: 70rem; height: 98rem;
-      background: var(---bg1); border: var(---border); left: 79rem; bottom: -110rem; position: absolute;
+      background: var(---card); border: var(---border); left: 79rem; bottom: -110rem; position: absolute;
       display: flex; align-items: center; place-content: center;
-      &:before {content: "\e90c"; rotate: 45deg; font-family: efy_icons; font-size: 25rem; color: var(---bg1)}
+      &:before {content: "\e90c"; rotate: 45deg; font-family: efy_icons; font-size: 25rem; color: var(---card)}
     }
 
     &.girl {
@@ -163,7 +163,7 @@ body {display: flex; flex-wrap: wrap; flex-direction: column; gap: var(---gap)!i
     }
   }
 }
-.controls {margin-top: var(---gap); width: fit-content; display: flex; gap: var(---gap0);
+.controls {margin-top: var(---gap); width: fit-content; display: flex; gap: var(---gap-x);
   label {margin: 0!important;
     &:before, &:after {display: none!important}
   }

@@ -1,0 +1,11 @@
+[efy_theme="orange dashes"] [efy_preview] {
+---scheme: dark;
+---bg: oklch(0 0 0);
+---card: oklch(.75 0.2 60 / .1);
+---color: radial-gradient(oklch(.75 0.2 60) 20%, oklch(0 0 0 / 0));
+---color_trans: linear-gradient(345deg, oklch(.75 0.2 60 / 0.33) 20%, oklch(0 0 0 / 0));
+---text: oklch(.75 0.2 60);
+---radius: 25rem; ---radius-x: 25rem; ---radius-xx: 25rem;
+---border: var(---border_size) dashed oklch(.75 0.2 60);
+---gap: 15rem;
+}

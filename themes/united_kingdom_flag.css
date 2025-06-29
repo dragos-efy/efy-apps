@@ -1,0 +1,23 @@
+[efy_theme="united kingdom flag"] [efy_preview] {
+---scheme: light;
+---mode: light,solid;
+---bg: oklch(1 0 0);
+---card: oklch(0 0 0 / .07);
+---text-shadow: 0 1rem oklch(0 0 0), 0 -1rem oklch(0 0 0), 1rem 0 oklch(0 0 0), -1rem 0 oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0), 0 0 1rem oklch(0 0 0);
+---text-stroke: 1.5rem oklch(0 0 0);
+---color:
+linear-gradient(90deg, transparent 46%, oklch(.53 .21 22) 46%, oklch(.53 .21 22) 56%, transparent 56%),
+linear-gradient(transparent 38%, white 38%, white 42%, oklch(.53 .21 22) 42%, oklch(.53 .21 22) 58%, white 58%, white 62%, transparent 62%),
+linear-gradient(90deg, transparent 44%, white 44%, white 46%, oklch(.53 .21 22) 46%, oklch(.53 .21 22) 56%, white 56%, white 58%, transparent 58%),
+linear-gradient(33deg, transparent 45%, white 45%, white 48%, oklch(.53 .21 22) 48%, oklch(.53 .21 22) 54%, white 54%, white 57%, transparent 57%),
+linear-gradient(-33deg, oklch(.3 .15 262) 45%, white 45%, white 48%, oklch(.53 .21 22) 48%, oklch(.53 .21 22) 54%, white 54%, white 57%, oklch(.3 .15 262) 57%);
+---color_trans:
+linear-gradient(90deg, transparent 46%, oklch(.53 .21 22 / .3) 46%, oklch(.53 .21 22 / .3) 56%, transparent 56%),
+linear-gradient(transparent 38%, white 38%, white 42%, oklch(.53 .21 22 / .3) 42%, oklch(.53 .21 22 / .3) 58%, white 58%, white 62%, transparent 62%),
+linear-gradient(90deg, transparent 44%, white 44%, white 46%, oklch(.53 .21 22 / .3) 46%, oklch(.53 .21 22 / .3) 56%, white 56%, white 58%, transparent 58%),
+linear-gradient(33deg, transparent 45%, white 45%, white 48%, oklch(.53 .21 22 / .3) 48%, oklch(.53 .21 22 / .3) 54%, white 54%, white 57%, transparent 57%),
+linear-gradient(-33deg, oklch(.3 .15 262 / .3) 45%, white 45%, white 48%, oklch(.53 .21 22 / .3) 48%, oklch(.53 .21 22 / .3) 54%, white 54%, white 57%, oklch(.3 .15 262 / .3) 57%);
+---text: oklch(0 0 0);
+---radius: 20rem;
+---border: var(---border_size) solid oklch(0 0 0 / .14);
+}

@@ -60,7 +60,7 @@ $event($('#pn_theme'), 'input', ()=>{
 });
 
 ['', 'img'].map(x =>{
-  $add('div', {class: `container efy_trans_filter ${x}`}, [
+  $add('div', {class: `container efy-glass efy_trans_filter ${x}`}, [
     ['div', {class: 'human girl'}, [
       ['div', {class: 'head'}, [
         ['div', {efy_pose: 'hair_long0'}],

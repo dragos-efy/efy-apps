@@ -4,8 +4,8 @@
     &:before {content: ''; width: var(---dc_icon_size); height: var(---dc_icon_size); background: var(---text); border-radius: calc(var(---radius) * (var(---dc_icon_size_nr) / 45))}
 }
 [efy_icon=shade]:after {content: '\e978 \e978'; position: absolute; width: 100%; height: 100%; top: 0; left: calc(var(---dc_icon_size) / 45); display: flex;
-    font-size: calc(var(---dc_icon_size) / 3); align-items: center; place-content: center; color: var(---text2);
-    -webkit-text-fill-color: var(---text2); letter-spacing: calc(var(---dc_icon_size) / 22.5);
+    font-size: calc(var(---dc_icon_size) / 3); align-items: center; place-content: center; color: var(---bg);
+    -webkit-text-fill-color: var(---bg); letter-spacing: calc(var(---dc_icon_size) / 22.5);
 }
 
 
@@ -14,7 +14,7 @@ button :is(p,i) {pointer-events: none}
 html {overflow: hidden;
     [efy_tabs=dc] {
         & > [efy_content][efy_active] {background: transparent; width: 100%; border: 0;
-            padding: 0 15rem 15rem 15rem; backdrop-filter: none!important; -webkit-backdrop-filter: none!important
+            padding: 0 15rem 15rem 15rem; backdrop-filter: none!important;
         }
         & > [efy_content=docs][efy_active] {padding: 0;
             .dc_separator [efy_tabs]:not([efy_tabs="dc2"], [efy_tabs="dc3"], [efy_color]) {padding: 0 var(---gap)}
@@ -31,7 +31,11 @@ html {overflow: hidden;
             details :is(li, pre, summary, p) *:not(.efy_bar, .efy_bar *) {display: inline}
         }
         .dc_separator pre *:not(.efy_bar, .efy_bar *, ul, li, hr) {display: inline}
-        &:has([efy_content=apps][efy_active]) {gap: 0}
+        &:has(:is([efy_content=apps], [efy_content=learn])[efy_active]) {gap: 0}
+        [efy_content=learn] {
+            padding: 0!important;
+            [efy_tabs=docs_tabs] > [efy_content] {border-radius: 0; border: 0; box-shadow: none!important}
+        }
 }}
 
 body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
@@ -40,10 +44,17 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
 [efy_tabs=dc] {display:flex; flex-wrap: wrap; gap: var(---gap); justify-content: space-between;
     & > [efy_content] {flex-basis: 100%}
     & > input {width: fit-content; flex-basis: auto}
-    :is(.dc_right, .dc_left) {display:flex; flex-wrap: wrap; gap: var(---gap0); align-items: center; height: fit-content}
+    :is(.dc_right, .dc_left) {display:flex; flex-wrap: wrap; gap: var(---gap-x); align-items: center; height: fit-content}
     :is(.dc_right, .dc_left, .dc_left:last-of-type) *, :is(table, figcaption, input, textarea, select, section, [efy_number]) {margin: 0}
     .dc_right {flex-wrap: nowrap;
-        [efy_sidebar_btn] {align-items: center; place-content: center}
+        [efy_sidebar_btn] {
+            align-items: center; place-content: center; width: fit-content; gap: 8rem; height: var(---size);
+            &:not(:focus, :hover):has(p.efy_hide_p), &:is([efy_sidebar*=on] &) {
+                gap: 0;
+                p {font-size: 0rem!important; opacity: 0; pointer-events: none}
+            }
+            &, p {transition: var(---anim_0_3) all}
+        }
     }
     [efy_content=efy] {display: grid; gap: var(---gap); min-height: calc(var(---100vh) - var(---gap) * 6); align-items: center; place-content: space-evenly;
         & > div {display: flex; flex-direction: column; place-content: center; align-items: center; text-align: center}
@@ -61,7 +72,7 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
         &:not([efy_active]) {display: none}
         .current_app {display: flex; flex-direction: column; padding: 0; scale: 1; height: fit-content;
             margin: var(---gap) var(---gap) 0 var(---gap);
-            min-height: calc(var(---100vh) - var(---size) - var(---gap0)* 5 - var(---border_size));
+            min-height: calc(var(---100vh) - var(---size) - var(---gap-x)* 5 - var(---border_size));
             *:not(i) {margin: 0}
             .s1 {display: grid; grid-template-columns: 200rem 1fr; height: 200rem}
             .logo {---dc_icon_size_nr: 100; ---dc_icon_size: calc(var(---dc_icon_size_nr) * 1rem);
@@ -77,14 +88,17 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
             }
             .title_container {display: flex; gap: 10rem; align-items: center; border-bottom: var(---border); padding: 15rem}
             .description {padding: 15rem}
-            .buttons {display: flex; gap: var(---gap0); padding: var(---gap); border-top: var(---border)}
+            .buttons {display: flex; gap: var(---gap-x); padding: var(---gap); border-top: var(---border)}
             .tags {display: flex; flex-direction: column; border-top: var(---border);
-                .efy_hr_div p {margin: calc(var(---gap0) / 2) var(---gap0) calc(var(---gap0) / 2) 0}
-                [tags] {display: flex; flex-wrap: wrap; gap: var(---gap0); place-content: start; padding: var(---gap); border-bottom: var(---border);
-                    [tag] {border-radius: var(---radius0); padding: 5rem 6rem; height: fit-content; line-height: 1;
-                        display: flex; align-items: center; place-content: center; border: var(---border); background: var(---bg1);
+                .efy_hr_div p {margin: calc(var(---gap-x) / 2) var(---gap-x) calc(var(---gap-x) / 2) 0}
+                [tags] {display: flex; flex-wrap: wrap; gap: var(---gap-x); place-content: start; padding: var(---gap); border-bottom: var(---border);
+                    [tag] {border-radius: var(---radius-x); padding: 5rem 6rem; height: fit-content; line-height: 1;
+                        display: flex; align-items: center; place-content: center; border: var(---border); background: var(---card);
                         &[tag=title] {padding-right: 0; padding-left: 0; border: 0; background: transparent}
-                        &[tag=color] {background: var(---color_trans), var(---color); -webkit-text-fill-color: transparent; background-clip: border-box, text}
+                        &[tag=color] {
+                            background: var(---color_trans), var(---color); background-origin: border-box;
+                            -webkit-text-fill-color: transparent; background-clip: border-box, text;
+                        }
                     }
                 }
             }
@@ -102,14 +116,14 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
 .dc_nav {flex-wrap: wrap; gap: var(---gap);
     &:has([efy_content=docs][efy_active]){gap: unset}
 }
-.dc_nav_div {align-items: start; border-bottom: var(---border); padding: var(---gap0)}
+.dc_nav_div {align-items: start; border-bottom: var(---border); padding: var(---gap-x)}
 .dc_search {width: fit-content; height: fit-content; position: relative;
     & i {position: absolute; z-index: 2; 	width: fit-content; height: 100%; padding: calc(10rem + var(---border_size))}
     & input:focus {width: 170rem; padding-left: 35rem}
     & :not(input:focus, i), & :not(input:focus)::placeholder {color: transparent}
     &:not(&:focus-within) {display: flex; place-content: center}
 }
-.dc_search input, .dc_right [efy_sidebar_btn] {width: var(---size); height: var(---size); cursor: pointer}
+.dc_search input {width: var(---size); height: var(---size); cursor: pointer}
 
 #dc_headings, #dc_buttons, #dc_lists {display: flex; flex-wrap: wrap; gap: var(---gap); align-items: center; margin: var(---gap) 0 var(---gap) 0}
 #dc_headings {
@@ -122,10 +136,10 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
 [efy_searchable=color_picker] [efy_color_preview] {margin: 5rem 0}
 
 #dc_buttons:not(.dc_cta) {margin: 0;
-    *:not([efy_sidebar_btn] i, [efy_content="efy"] *, [efy_content="html"] *) {margin: 0; width: 100%}
-    *:is([efy_content="html"] *) {margin: 0}
+    *:not([efy_sidebar_btn] i, [efy_content="efy"] *, [efy_content="docs_tab_html"] *) {margin: 0; width: 100%}
+    *:is([efy_content="docs_tab_html"] *) {margin: 0}
     [efy_card] {display: flex; align-items: center; height: fit-content; color: var(---text); -webkit-text-fill-color: var(---text); padding: 0;
-        & mark {display: flex; background: transparent; color: var(---text_trans)!important; -webkit-text-fill-color: var(---text_trans);
+        & mark {display: flex; background: transparent; color: var(---text-x)!important; -webkit-text-fill-color: var(---text-x);
             padding: 6px 10rem 0 10rem; line-height: 1; border-top: var(---border); width: 100%; margin: 0!important; border-radius: 0}
         :is(i, .logo) {padding: 15rem; border-radius: var(---radius) 0 0 var(---radius); display: flex; align-items: center;
             justify-content: center; height: 63rem; width: 63rem; border-right: var(---border); font-size: 30rem; margin: 0;
@@ -134,18 +148,20 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
             div {padding: 0px 12rem 4px 10rem}
         }
     }
-    &.apps [efy_card] {background: var(---bg1)}
+    &.apps [efy_card] {background: var(---card)}
     &:is(.apps, .dc_cta) :is([efy_card], a, button) {cursor: pointer!important;
         &:focus-within {outline: calc(var(---border_size) + 2rem) solid var(---text)!important}
         input {opacity: 0; position: absolute; width: 0; height: 0; pointer-events: none}
     }
 }
 
-#dc_buttons.dc_cta {display: grid; grid-template-columns: repeat(auto-fill, minmax(200rem, 1fr)); padding: 0; margin: 50rem 0 0 0; width: 100%;
+#dc_buttons.dc_cta {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200rem, 1fr));
+    padding: 0; margin: 50rem 0 0 0; width: 100%; max-width: min(840rem, calc(100vw - var(---gap-x-o)));
     > * {width: 100%; height: 70rem!important; margin: 0; display: flex; gap: 15rem;}
     *:not([efy_sidebar_btn] i, [efy_content="efy"] *) {margin: 0; width: 100%}
     [efy_card], button, a {display: flex; align-items: center; height: fit-content; padding: 0; margin: 0;
-        &:not(.efy_color_trans, [efy_sidebar_btn], .featured) {color: var(---text); -webkit-text-fill-color: var(---text); background: var(---bg1)}
+        &:not(.efy_color_trans, [efy_sidebar_btn], .featured) {color: var(---text); -webkit-text-fill-color: var(---text); background: var(---card)}
         i, .logo {display: flex; align-items: center; justify-content: center; font-size: 25rem; margin: 0;
             &[efy_icon=dots] {font-size: 18rem!important}
         }
@@ -168,6 +184,7 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
 /*Tabs*/ .dc_left [efy_tab]:not([efy_active]) + label {background: transparent; border: 0; -webkit-text-fill-color: var(---text)}
 
 #dc_icons {display: flex; flex-wrap: wrap; gap: var(---gap);
+    [efy_card] * {pointer-events: none}
     & > div {display: flex; align-items: center; width: fit-content; padding: 0;
         & > p {border-left: var(---border); padding: var(---padding); pointer-events: none}
         & > i {padding: 8rem 4rem 8rem 12rem; line-height: 1}
@@ -178,19 +195,19 @@ body {min-height: var(---100vh); height: var(---100vh); overflow: auto}
 
 .dc_grid {display:grid; gap: var(---gap); grid-template-columns: 1fr 1fr}
 
-[efy_content=faq], .dc_separator {display: flex; gap: var(---gap); flex-direction: row}
-[efy_content=faq] > div, .dc_separator > div {display: flex; flex-direction: column; width: 100%;
+[efy_content=docs_tab_questions], .dc_separator {display: flex; gap: var(---gap); flex-direction: row}
+[efy_content=docs_tab_questions] > div, .dc_separator > div {display: flex; flex-direction: column; width: 100%;
     hr {margin: 0 auto}
 }
 
-[efy_tabs=demo_select_menu] [efy_select] label {margin: calc(var(---gap0) / 2) var(---gap0) calc(var(---gap0) / 2) 0}
+[efy_tabs=demo_select_menu] [efy_select] label {margin: calc(var(---gap-x) / 2) var(---gap-x) calc(var(---gap-x) / 2) 0}
 
 .hash_focus {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text)!important; border-radius: var(---radius);
     &.dc_code_preview {box-shadow: inset 0 0 0 calc(var(---border_size) + 2rem) var(---text)!important}
 }
 [efy_shadow*=trans] .hash_focus {box-shadow: 0 0 0 calc(var(---border_size) + 2rem) var(---text), var(---shadow_trans)!important}
 
-div:is([efy_content=apps], [efy_content=html]) + .loading {
+div:is([efy_content=apps]) + .loading {
     min-height: calc(var(---100vh) - (var(---size) + var(---gap) * 2.5)); padding: 0!important; display: flex; align-items: center;
     justify-content: center; width: 100%; background: transparent!important; animation: loading 2s linear infinite;
     &.efy_hide_i {animation: none; display: none}
@@ -198,7 +215,7 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
 @keyframes loading {0% {rotate: 0deg} 50% {scale: 2} 100% {rotate: 360deg}}
 
 #dc_buttons.apps_page {display: grid; grid-template-columns: repeat(auto-fill, minmax(100rem, 1fr)); gap: var(---gap);
-    place-content: start; height: calc(var(---100vh) - var(---size) - var(---gap0) * 2 - var(---border_size));
+    place-content: start; height: calc(var(---100vh) - var(---size) - var(---gap-x) * 2 - var(---border_size));
     overflow: auto; padding: var(---gap);
 	[efy_card] {aspect-ratio: 0.8; height: unset;
         &:is(.active + label, input:hover + label) {background: var(---color), var(---color_trans); background-clip: text, border-box; -webkit-text-fill-color: transparent; background-origin: border-box;}
@@ -220,9 +237,10 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
 	}
 }
 
-[efy_content=faq] {display: block; columns: 2; padding: 0 15rem; width: 100%;
+[efy_content=docs_tab_questions] {display: block; columns: 2; padding: 0 15rem; width: 100%;
     details {break-inside: avoid; break-after: avoid-page;
         :is(p, summary, li) > * {display: inline}
+        pre {width: 100%}
     }
     [efy_searchable=reset], [efy_searchable=status], [efy_searchable=bg_image] {
         [efy_icon=chevron] {margin: 0 5rem}
@@ -251,8 +269,8 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
 .dc_code_preview {display: flex; gap: var(---gap); flex-direction: column; margin: 0;
     border-bottom: var(---border); padding: var(---gap)!important;
     .tabs {display: flex; align-items: center; place-content: start;
-        & button:not([efy_active]){background: linear-gradient(var(---bg1), var(---bg1))!important; -webkit-text-fill-color: var(---text)!important}
-        [efy_active]{background: linear-gradient(var(---text), var(---text)), linear-gradient(var(---text_trans), var(---text_trans))!important}
+        & button:not([efy_active]){background: linear-gradient(var(---card), var(---card))!important; -webkit-text-fill-color: var(---text)!important}
+        [efy_active]{background: linear-gradient(var(---text), var(---text)), linear-gradient(var(---text-x), var(---text-x))!important}
         & button {border-radius: 0; height: var(---size); margin: 0!important;
             &:first-of-type {border-radius: var(---radius) 0 0 var(---radius)}
             &:last-of-type {border-radius: 0 var(---radius) var(---radius) 0; border-left: 0}
@@ -260,7 +278,7 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
     }
     [efy_content]:not(:is([efy_tabs="dc2"], [efy_color]) [efy_content]) {display: flex; flex-wrap: wrap; gap: var(---gap); padding: 0!important; background: none; margin: 0; padding: 0; border: 0;
         & pre {width: 100%; margin: 0;
-            & mark {background: var(---bg1); color: var(---text); border: var(---border)}
+            & mark {background: var(---card); color: var(---text); border: var(---border)}
         }
         & > button {margin: 0}
     }
@@ -274,9 +292,23 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
     & > div:first-of-type {border-right: var(---border)}
 }
 
-.dc_colors {display: flex; flex-wrap: wrap; gap: var(---gap);
-    div {padding: var(---padding); border-radius: var(---radius); -webkit-text-fill-color: var(---text)!important; background-origin: border-box!important; margin: 0!important}
-    #dc_colors1, #dc_colors3, #dc_colors5 {-webkit-text-fill-color: var(---bg)!important;}
+#efy_social_options {
+    display: flex; margin-top: var(---gap); flex-direction: column; text-align: center;
+    &, .dc_cta {gap: var(---gap); align-items: center; place-content: center}
+    .dc_cta {
+        display: grid; width: 100%; grid-template-columns: 1fr 1fr;
+        a {
+            width: 100%; height: 100%;
+            &:focus-within {
+                outline: calc(var(---border_size) + 2rem) solid var(---text) !important;
+                outline-offset: 4rem;
+            }
+            * {font-size: 20rem!important}
+        }
+    }
+}
+.social:is([efy_content=efy]:has(#efy_social_options:not(.efy_hide_i)) .social) {
+    background: var(---color); -webkit-text-fill-color: var(---bg);
 }
 
 /*Convergence*/
@@ -302,7 +334,7 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
             & > p {font-size: 20rem}
     }}
     [efy_tabs=dc] > [efy_content=apps] {grid-template-columns: 1fr; gap: unset;
-        .current_app {height: fit-content; min-height: fit-content; width: calc(100% - var(---gap2));
+        .current_app {height: fit-content; min-height: fit-content; width: calc(100% - var(---gap-o));
             .s1 {grid-template-columns: 100rem 1fr;height: fit-content;}
             .logo {---dc_icon_size_nr: 50;
                 height: auto; min-width: 100rem;
@@ -311,22 +343,278 @@ div:is([efy_content=apps], [efy_content=html]) + .loading {
         .apps_page {height: fit-content!important; padding: var(---gap)}
     }
     .dc_right .dc_search {display: none!important}
-    [efy_content=faq], .dc_separator {flex-direction: column}
+    [efy_content=docs_tab_questions], .dc_separator {flex-direction: column}
     .dc_separator > div {
         &:first-of-type {border-right: 0}
         &:not(:first-of-type) {padding-top: 0}
     }
-    [efy_content=faq], [efy_content=docs] > .columns2 {columns: 1}
+    [efy_content=docs_tab_questions], [efy_content=docs] > .columns2 {columns: 1}
+
+    [efy_content=learn] [efy_tabs="docs_tabs"] {
+        flex-direction: column;
+        .efy_tabs {
+            width: 100%; max-width: 100%;
+            height: fit-content; min-height: fit-content;
+        }
+    }
 }
 @container content0 (max-width: 425px){
     [efy_tabs=dc] > [efy_content=efy] {
         & > div {text-align: left; align-items: start}
         :is(#dc_buttons, #dc_buttons.apps) {place-content: start}
     }
-    div:is([efy_content=apps], [efy_content=html]) + .loading {min-height: calc(var(---100vh) - (var(---size) * 2 + var(---gap) * 3))}
+    div:is([efy_content=apps]) + .loading {min-height: calc(var(---100vh) - (var(---size) * 2 + var(---gap) * 3))}
+    #efy_social_options .dc_cta {grid-template-columns: 1fr}
 }
 @media screen and (max-width: 767.9px){
     [efy_tabs=dc] > [efy_content=efy], .dc_grid {grid-template-columns: 1fr}
     [efy_tabs=dc] > [efy_content=efy] > div {padding: 0}
     .dc_separator div:first-of-type details {margin: 0}
+}
+
+
+.docs_shapes {
+    display: grid; gap: var(---gap);
+    grid-template-columns: repeat(auto-fill, minmax(250rem, 1fr));
+    > div {aspect-ratio: 1; display: flex; align-items: center; place-content: center}
+}
+
+[efy_shape=wavy_line] {
+    --s: 8rem; /* size */
+    --b: 4rem; /* thickness */
+    --m: 0.4; /* curvature [0 2] */
+    display: flex; width: 100%;
+
+    background: var(---color);
+    --R: calc(var(--s)*sqrt(var(--m)*var(--m) + 1) + var(--b)/2);
+    height: calc(2*var(--R));
+    width: 100%;
+    --_g: #0000 calc(99% - var(--b)), #000 calc(101% - var(--b)) 99%, #0000 101%;
+    mask:
+    radial-gradient(var(--R) at left 50% bottom calc(-1*var(--m)*var(--s)), var(--_g))
+    calc(50% - 2*var(--s)) calc(50% - var(--s)/2 - var(--b)/2)/calc(4*var(--s)) calc(var(--s) + var(--b)) repeat-x,
+    radial-gradient(var(--R) at left 50% top calc(-1*var(--m)*var(--s)),var(--_g))
+    50% calc(50% + var(--s)/2 + var(--b)/2)/calc(4*var(--s)) calc(var(--s) + var(--b)) repeat-x;
+}
+
+[efy_shape=arc] {
+    --b: 8rem; /* size */
+    --a: 180deg; /* progress */
+    display: flex;
+    width: var(---size);
+    aspect-ratio: 1;
+    padding: var(--b);
+    border-radius: 50%;
+    background: var(---color);
+    --_g:/var(--b) var(--b) no-repeat radial-gradient(50% 50%,#000 97%,#0000);
+    mask: top var(--_g), calc(50% + 50%*sin(var(--a))) calc(50% - 50%*cos(var(--a))) var(--_g),
+    linear-gradient(#0000 0 0) content-box intersect, conic-gradient(#000 var(--a),#0000 0);
+}
+
+[efy_shape*=inverted_radius] {
+    --r: 10rem; /* the radius */
+    --s: 15rem; /* size of inner curve */
+    --x: 10rem; /* horizontal offset (no percentage) */
+    --y: 10rem; /* vertical offset (no percentage) */
+
+    width: 125rem;
+    aspect-ratio: 1;
+    background: var(---color);
+    border-radius: var(--r);
+    --_m:/calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%);
+    --_g:conic-gradient(at calc(100% - var(--r)) var(--r),#0000 25%,#000 0);
+    --_d:(var(--s) + var(--r));
+    mask:
+    calc(100% - var(--_d) - var(--x)) 0 var(--_m),
+    100% calc(var(--_d) + var(--y)) var(--_m),
+    radial-gradient(var(--s) at 100% 0,#0000 99%,#000 calc(100% + 1px))
+    calc(-1*var(--r) - var(--x)) calc(var(--r) + var(--y)),
+    var(--_g) calc(-1*var(--_d) - var(--x)) 0,
+    var(--_g) 0 calc(var(--_d) + var(--y));
+    mask-repeat: no-repeat;
+}
+
+[efy_shape=inverted_radius2] {
+    ---rotate: 90deg;
+    rotate: var(---rotate);
+    ---angle2: calc(var(---color_angle) - var(---rotate));
+    ---color: linear-gradient(var(---angle2), oklch(0.58 0.37 150), oklch(0.22 0.09 41), oklch(0.75 0.37 145));
+}
+
+
+[efy_shape=triangle] {
+    --r: var(---radius);
+    width: calc(3 * var(---size));
+    display: flex;
+    aspect-ratio: 1/cos(30deg);
+    --_g:calc(tan(60deg)*var(--r)) bottom var(--r),#000 98%,#0000 101%;
+    -webkit-mask:
+    conic-gradient(from -30deg at 50% calc(200% - 3*var(--r)/2),#000 60deg,#0000 0)
+    0 100%/100% calc(100% - 3*var(--r)/2) no-repeat,
+    radial-gradient(var(--r) at 50% calc(2*var(--r)),#000 98%,#0000 101%),
+    radial-gradient(var(--r) at left  var(--_g)),
+    radial-gradient(var(--r) at right var(--_g));
+    clip-path: polygon(50% 0,100% 100%,0 100%);
+    background: var(---color);
+}
+
+[efy_shape=flower] {
+    display: flex;
+    width: calc(3 * var(---size)); /* adjust to control the size */
+    aspect-ratio: 1;
+    --g:/20.56% 20.56% radial-gradient(#000 calc(71% - 1px),#0000 71%) no-repeat;
+    mask: 100% 50% var(--g),93.301% 75% var(--g),75% 93.301% var(--g),50% 100% var(--g),25% 93.301% var(--g),6.699% 75% var(--g),0% 50% var(--g),6.699% 25% var(--g),25% 6.699% var(--g),50% 0% var(--g),75% 6.699% var(--g),93.301% 25% var(--g),radial-gradient(100% 100%,#000 38.366%,#0000 calc(38.366% + 1px));
+    background: var(---color);
+}
+
+[efy_shape=slant] {
+    display: flex;
+    background: var(---color);
+    --p: 70px; /* control the shape (can be percentage) */
+    height: calc(3 * var(---size));
+    aspect-ratio: 1;
+    clip-path: polygon(var(--p) 0,100% 0,100% 100%,0 100%);
+}
+
+[efy_shape=rect_progress] {
+    display: flex; box-shadow: 0 0 0 1.5px #fff1;
+    width: 200px; aspect-ratio: 1;
+    --r: 5%; --r2: var(--r) var(--r);
+    --x: calc(100% - var(--r)); --x2: calc(100% - 2 * var(--r));
+    --o: calc(2 * var(--r));
+    clip-path: shape(
+        from var(--r) 0%, hline to var(--x), vline to var(--o), hline to var(--r), close,
+        move to var(--x2) var(--r), hline to 100%, vline to var(--x), hline to var(--x2), close,
+        move to var(--r) var(--x2), hline to var(--x), vline to 100%, hline to var(--r), close,
+        /*move to 0% var(--r), hline to var(--o), vline to var(--x), hline to 0%, close,*/
+
+        move to var(--r) 0%, arc to var(--r) var(--o) of var(--r2), close,
+        move to var(--x) 0%, arc to var(--x) var(--o) of var(--r2) cw, close,
+        move to 100% var(--x), arc to var(--x2) var(--x) of var(--r2) cw, close,
+        move to var(--r) var(--x2), arc to var(--r) 100% of var(--r2), close,
+        move to 0% var(--r), arc to var(--o) var(--r) of var(--r2) cw, close,
+    );
+    background: var(---color);
+}
+
+[efy_tabs=docs_tabs] {
+    flex-direction: row; height: 100%; gap: 0;
+    > .efy_tabs {
+        flex-direction: column; align-items: start; place-content: start;
+        width: fit-content; min-width:200px; max-width:300px;
+        border-right: var(---border); padding: var(---gap-x) 0; gap: 0;
+        min-height: calc(var(---100vh) - var(---size) - var(---gap-x) * 2 - var(---border_size));
+        label {width: calc(100% - var(---gap-x) * 2); place-content: start; margin: 0 var(---gap-x);}
+        & label:not([efy_tab]:is([efy_tabs=docs_tabs] [efy_active], &:checked) + label) {
+            background: none; -webkit-text-fill-color: unset; border-color: transparent;
+        }
+        .summary {
+            font-weight: bold;
+            &:after {font-weight: normal}
+        }
+        /*.docs_tab_group_components [efy_tab]:not([efy_active]:checked) + label {
+            background: none; -webkit-text-fill-color: unset; border-color: transparent;
+        }*/
+    }
+    > [efy_content] {
+        background: none; border: none; backdrop-filter: none !important;
+        flex-grow: 1;
+        pre {
+            white-space: pre-wrap; display: inline-block; flex-wrap: wrap;
+            hr {height: var(---border_size)}
+        }
+        pre *:not(.efy_bar, .efy_bar *, ul, li, hr), :is(li, p) * {display: inline}
+    }
+    [efy_content=docs_tab_variables] {
+        padding: 15rem 0;
+        > * {padding-left: 15rem; padding-right: 15rem;}
+        h4 {line-height: 1; margin-bottom: 10rem}
+        .dc_colors {display: flex; flex-wrap: wrap; gap: var(---gap); margin-top: var(---gap);
+            div {
+                display: flex; gap: 10rem; align-items: center; place-content: center;
+                height: var(---size); background: var(---card);
+                background-origin: border-box!important; -webkit-text-fill-color: var(---text)!important;
+                margin: 0!important; padding: var(---padding); border-radius: var(---radius);
+                border: var(---border);
+            }
+            .dc-fill-bg {-webkit-text-fill-color: var(---bg)!important;}
+            .dc_gap {
+                ---demo: var(---gap);
+                div {
+                    border: 2rem solid var(---text); width: var(---demo);
+                    height: 100%; border-radius: 0; padding: 0; background: var(---text-xxx);
+                    &:not(:is(.dc_radius, .dc_padding) .dc_gap div) {border-top: 0; border-bottom: 0}
+                }
+                p {margin: 0}
+            }
+            &.dc_radius .dc_gap {
+                height: fit-content; padding: 10rem;
+                div {width: var(---size); height: var(---size); border-width: 2rem;}
+                &.r1 div {border-radius: var(---r) 0 0 0}
+                &.r2 div {border-radius: 0 var(---r) 0 0}
+                &.r3 div {border-radius: 0 0 var(---r) 0}
+                &.r4 div {border-radius: 0 0 0 var(---r)}
+                &:is(.r1, .r2, .r3, .r4) div {
+                    ---r: var(---radius);
+                    width: 25rem; height: 25rem;
+                    &:is(.xx div) {---r: var(---radius-xx)}
+                    &:is(.x div) {---r: var(---radius-x)}
+                    &:is(.o div) {---r: var(---radius-o)}
+                }
+                &:is(.r1, .r4) div {border-right: 0}
+                &:is(.r1, .r2) div {border-bottom: 0}
+                &:is(.r2, .r3) div {border-left: 0}
+                &:is(.r3, .r4) div {border-top: 0}
+            }
+            &.dc_padding .dc_gap {
+                height: 100%; min-height: calc(50rem + var(---border_size2)); padding: 10rem;
+                div {
+                    width: fit-content; height: fit-content; border-color: var(---text); background: transparent;
+                    p {
+                        pointer-events: none; height: 15rem;
+                        color: transparent; -webkit-text-fill-color: transparent; text;
+                    }
+                }
+            }
+        }
+    }
+
+    [efy_content=docs_tab_start] {
+        display: flex; flex-direction: column; place-content: center; align-items: center; text-align: center;
+        > div {
+            display: grid; gap: var(---gap); grid-template-columns: repeat(auto-fill, minmax(260rem, 1fr));
+            width: 100%; max-width: min(850rem, 100%); margin: 30rem 0 0 0;
+            button {margin: 0; width: 100%; height: 100%; min-height: 100rem;}
+        }
+    }
+
+    [efy_content=docs_tab_notifications], [efy_content=docs_tab_clock],
+    [efy_content=docs_tab_timer], [efy_content=docs_tab_select_menu],
+    [efy_content=docs_tab_color_picker], [efy_content=docs_tab_add],
+    [efy_content=docs_tab_shapes], [efy_content=docs_tab_icons], [efy_content=docs_tab_tabs] {
+        display: flex; flex-direction: column; gap: var(---gap);
+        > #dc_notify_test, > [efy_select] {margin: 0}
+        > [efy_select] {width: fit-content}
+    }
+
+    .group {
+        width: 100%; border-top: var(---border); border-bottom: var(---border);
+        > input {
+            pointer-events: none!important; opacity: 0; position: absolute;
+            &:focus + .summary {
+                outline: calc(var(---border_size) + 2rem) solid var(---text)!important;
+                outline-offset: 4rem !important;
+            }
+            &:checked + .summary:after {transform: rotate(90deg)}
+
+        }
+        .summary {
+            width: 100%; display: flex; place-content: space-between; align-items: center;
+            height: var(---size); border-radius: var(---radius); padding: var(---gap);
+            &:after {
+                content: "\e907"; font-family: 'efy_icons';
+                transition: transform calc(var(---animation) * .1s) ease;
+            }
+        }
+    }
 }

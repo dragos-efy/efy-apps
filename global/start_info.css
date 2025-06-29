@@ -4,12 +4,12 @@ body {display: flex;
     }
 }
 
-#start_container {margin: auto; width: fit-content; padding: 10rem 0; gap: 0; border-radius: var(---radius2);
+#start_container {margin: auto; width: fit-content; padding: 10rem 0; gap: 0; border-radius: var(---radius-o);
     h1 {line-height: 1; font-size: 40rem}
     hr {margin: 10rem auto}
     > *:not(hr) {margin: 0 10rem}
     li:not(.rules li) {display: flex; gap: 8rem; align-items: center; padding: 0 15rem; margin: 0;
-        i, .key {background: var(---bg1); border-radius: var(---radius0); padding: 2rem 6rem;
+        i, .key {background: var(---card); border-radius: var(---radius-x); padding: 2rem 6rem;
             border: var(---border); margin: 0; display: flex; aspect-ratio: 1; height: var(---size0);
             align-items: center; place-content: center;
         }
@@ -20,13 +20,13 @@ body {display: flex;
         }
     }
     .rules li {margin: 0; list-style-type: '• '}
-    .efy_flex {gap: var(---gap0);
+    .efy_flex {gap: var(---gap-x);
         button {margin: 0; width: 100%}
     }
     [efy_content] {background: unset; border: 0; padding: 0; margin: 0; backdrop-filter: unset!important; box-shadow: unset!important;
         &:empty:before {content: 'Coming soon...'; padding: 15rem}
     }
-    [efy_tab] + label {background: linear-gradient(var(---bg1), var(---bg1))!important; -webkit-text-fill-color: var(---text) !important;}
+    [efy_tab] + label {background: linear-gradient(var(---card), var(---card))!important; -webkit-text-fill-color: var(---text) !important;}
     [efy_tab][efy_active] + label {background: linear-gradient(var(---text), var(---text))!important; -webkit-text-fill-color: var(---bg) !important;}
 }
 
@@ -39,6 +39,6 @@ body {display: flex;
 @media (max-width: 480px){
     #start_container {
         [efy_tab] + label {width: 100%!important}
-        .efy_flex button {width: calc(50% - var(---gap00))!important}
+        .efy_flex button {width: calc(50% - var(---gap-xx))!important}
     }
 }

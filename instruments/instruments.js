@@ -1,3 +1,7 @@
+let key_repeat_time = 100;
+
+const audioElement = $add('audio', {src: './instruments/C3.mp3', id: 'is_audio_piano'});
+
 const FX2 =(instrument, ...parameters)=>{ return FX.play(instrument, ...parameters)},
 
 FX = {
@@ -7,38 +11,9 @@ FX = {
     audioBuffers: {},
     play: async function(instrument, ...parameters) {
         if (instrument === 'piano' || instrument === 'guitar'){
-            return await this.playPiano(instrument, parameters);
+            //Piano Function?
         }
         else { return this.playSamples(this.buildSamples(...parameters))}
-    },
-    playPiano: async function(instrument, parameters) {
-        await this.loadAudioBuffer(`is_audio_${instrument}`);
-        return this.playSamples(this.modifyPiano(parameters));
-    },
-    loadAudioBuffer: async function(audioId) {
-        if (!this.audioBuffers[audioId]) {
-            const audioElement = $('is_audio_piano');
-            if (!audioElement || !audioElement.src) {
-            console.error(`Audio element with ID ${audioId} not found or not loaded`);
-            return;
-            }
-            try {
-            // const arrayBuffer = await audioElement.src.arrayBuffer();
-            this.audioBuffers[audioId] = await this.x.createMediaElementSource(audioElement); console.log(this.audioBuffers[audioId])
-            } catch (error){ console.error(`Error loading audio buffer for ${audioId}:`, error)}
-        }
-    },
-    modifyPiano: function(parameters) {
-        const samples = this.audioBuffers['is_audio_piano']/*.getChannelData(0)*/;
-        return this.pianoEffects(samples, parameters);
-    },
-    pianoEffects: function(samples, parameters) {
-        const frequency = 220 /*parameters.find(param => param.frequency)*/;
-        if (frequency) {
-        const ratio = frequency / 440;
-        return samples.map(sample => sample * ratio);
-        }
-        return samples;
     },
     playSamples: function(...samples){
         // create buffer and source
@@ -174,7 +149,11 @@ $add('div', {class: 'is_nav', efy_select: ''}, [
         ]],
         ['select', {id: 'wave_shape', style: 'width: 120rem'}, [
             ['option', 'sine'], ['option', 'triangle'], ['option', 'saw'], ['option', 'tan'], ['option', 'noise']
-        ]]
+        ]],
+        ['select', {id: 'repeat_time', style: 'width: 80rem'}, [
+            ['option', '25'], ['option', '50'], ['option', '100'], ['option', '150'], ['option', '200'], ['option', '250'], ['option', '300']
+        ]],
+        ['button', {id: 'request-midi-access'}, 'MIDI Devices']
     ]],
     ['button', {efy_sidebar_btn: '', class: 'efy_square_btn'}, [['i', {efy_icon: 'menu'}]]]
 ]);
@@ -228,52 +207,212 @@ for (i = 0; i < 36; i++){
 // keyboard key to piano key
 T = i => (k = `ZSXDCVGBHNJM,L.;/Q2W3ER5T6Y7UI9O0P[=]`.indexOf(i.key.toUpperCase()), k - 5 * (k > 16));
 
+
+const KEY_LAYOUT = `ZSXDCVGBHNJM,L.;/Q2W3ER5T6Y7UI9O0P[=]`;
+let keysDown = {};
+
+$event(document, 'keydown', handleKeyDown);
+$event(document, 'keyup', handleKeyUp);
+
+$event($('#repeat_time'), 'change', ()=>{ updateInterval(event.target.value)});
+
+function handleKeyDown(event) {
+    const key = event.key.toUpperCase();
+    if (KEY_LAYOUT.includes(key) && !keysDown[key]){ keysDown[key] = true}
+}
+
+function handleKeyUp(event) {
+    const key = event.key.toUpperCase();
+    if (KEY_LAYOUT.includes(key) && keysDown[key]){ delete keysDown[key]; onkeyup2({key: key})}
+}
+
+// Function to check if a key is being held (to be used with setInterval)
+function isKeyHeld(key) {
+    return keysDown[key] === true;
+}
+
+function setupInterval(key_repeat_time) {
+    intervalId = setInterval(() => {
+        Object.keys(keysDown).forEach(key => {
+            if (isKeyHeld(key)) onkeydown2({key: key});
+        });
+    }, key_repeat_time);
+}
+function updateInterval(newKeyRepeatTime) {
+    if (intervalId) clearInterval(intervalId);
+    setupInterval(newKeyRepeatTime);
+}
+
+setupInterval(key_repeat_time);
+
+function changeKeyRepeatTime(key_repeat_time) {
+    updateInterval(key_repeat_time);
+}
+
 // play note on key down
-onkeydown = i =>{ let ti = T(i), octave = 2;
-    if (ti !== -1){
-        if (ti >= 12 && ti < 24) {ti -= 12; octave += 1}
-        else if (ti >= 24 && ti < 36) {ti -= 24; octave += 2}
-        let note = letters[ti];
+const onkeydown2 = i => {
+    let note, octave, octave_kb = 2;
+    if (typeof i === 'object' && i.key) {
+        // Handle keyboard key
+        let ti = T(i);
+        if (ti !== -1) {
+            if (ti >= 12 && ti < 24) { ti -= 12; octave = octave_kb + 1 }
+            else if (ti >= 24 && ti < 36) { ti -= 24; octave = octave_kb + 2 }
+            note = letters[ti];
+        }
+    } else if (typeof i === 'number') {
+        // Handle MIDI note number
+        note = getNoteFromNoteNumber(i);
+        octave = getOctaveFromNoteNumber(i);
+    } else {
+        console.error('Invalid parameter type');
+        return;
+    }
+
+    if (note) {
         const frequency = get_frequency(note, octave + Number(Number($('#octave').value) + (Number($('#Y').value) / 12))),
-        key = note + (octave - 2);
-        shape = wave_shape.selectedIndex;
+       key = note + (octave - 2);
+       shape = wave_shape.selectedIndex;
 
-        let sounds = [
-            /*Pad*/ [,0,frequency,.15,,,shape],
-            /*Drums*/ [16,0,frequency,,.15,.05,4,25,.3,,,,,,,,,0,.15,,-70],
-            /*Synth*/ [,0,frequency,.01,,0,shape,0,.3,,,,,,,,,0,.06],
-            /*Funny*/ [,0,frequency,.05,,.05,shape,.5,.3,,,,,,,,,,.15],
-            /*Glitchy*/ [,0,frequency,,.15,0,shape,0,,,,,.05,,,.2,,.8,,1,400],
-            /*Metalic*/ [.6,,frequency,.03,.07,.12,shape,.8,,,185,.05,,,48,,,.93,.01,,-562],
-            /*Bell*/ [,0,frequency,,.09,.15,shape,3.6,,,,,.07,,,.1,,.6,.02],
-            /*Flute*/ [2.9,0,frequency,.01,.04,.02,shape,3.6,,,,,,.7,,,.42,.59,.01,.13,405],
-            /*Beep*/ [,0,frequency,,,.15,shape,1.2,,,,,,,,,,.6,.15,,400],
-            /*Bleep*/ [,0,frequency,,.01,.02,shape,.7,,,,,,,,,,.89,.02]
-        ];
+       let sounds = [
+           /*Pad*/ [,0,frequency,.15,,,shape],
+           /*Drums*/ [16,0,frequency,,.15,.05,4,25,.3,,,,,,,,,0,.15,,-70],
+           /*Synth*/ [,0,frequency,.01,,0,shape,0,.3,,,,,,,,,0,.06],
+           /*Funny*/ [,0,frequency,.05,,.05,shape,.5,.3,,,,,,,,,,.15],
+           /*Glitchy*/ [,0,frequency,,.15,0,shape,0,,,,,.05,,,.2,,.8,,1,400],
+           /*Metalic*/ [.6,,frequency,.03,.07,.12,shape,.8,,,185,.05,,,48,,,.93,.01,,-562],
+           /*Bell*/ [,0,frequency,,.09,.15,shape,3.6,,,,,.07,,,.1,,.6,.02],
+           /*Flute*/ [2.9,0,frequency,.01,.04,.02,shape,3.6,,,,,,.7,,,.42,.59,.01,.13,405],
+           /*Beep*/ [,0,frequency,,,.15,shape,1.2,,,,,,,,,,.6,.15,,400],
+           /*Bleep*/ [,0,frequency,,.01,.02,shape,.7,,,,,,,,,,.89,.02]
+       ];
 
-        /*const test =()=>*/ FX2('synth', ...sounds[I]);
-        const k = $(`[key="${key}"]`); k.classList.add('active');
+       console.log(note, frequency, key)
+       /*const test = () => */ FX2('synth', ...sounds[I]);
+       const k = $(`[key="${key}"]`); k.classList.add('active');
 
-        // test2 = setInterval(()=>{
-        //     test();
-        //     $wait(.3, test);
-        //     $wait(.5, test);
-        // }, 1000); test2;
-
-        console.log(ti, frequency, key, note)
+       // test2 = setInterval(()=>{
+       //     test();
+       //     $wait(.3, test);
+       //     $wait(.5, test);
+       // }, 1000); test2;
     }
 };
-// release note on key up
-onkeyup = i=> { let ti = T(i), octave = 2;
-    if (ti !== -1){
-        if (ti >= 12 && ti < 24) {ti -= 12; octave += 1}
-        else if (ti >= 24 && ti < 36) {ti -= 24; octave += 2}
-        let note = letters[ti]; key = note + (octave - 2);
 
+// release note on key up
+const onkeyup2 = i => {
+    let note, octave, octave_kb = 2;
+    if (typeof i === 'object' && i.key) {
+        // Handle keyboard key
+        let ti = T(i);
+        if (ti !== -1) {
+            if (ti >= 12 && ti < 24) { ti -= 12; octave = octave_kb + 1 }
+            else if (ti >= 24 && ti < 36) { ti -= 24; octave = octave_kb + 2 }
+            note = letters[ti];
+        }
+    } else if (typeof i === 'number') {
+        // Handle MIDI note number
+        note = getNoteFromNoteNumber(i);
+        octave = getOctaveFromNoteNumber(i);
+    } else {
+        console.error('Invalid parameter type');
+        return;
+    }
+
+    if (note) {
+        const key = note + (octave - 2);
         const k = $(`[key="${key}"]`); k.classList.remove('active');
+    }
+};
+
+// Helper function to get the note from a MIDI note number
+function getNoteFromNoteNumber(noteNumber) {
+    const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    return notes[(noteNumber - 24) % 12];
+}
+
+// Helper function to get the octave from a MIDI note number
+function getOctaveFromNoteNumber(noteNumber) {
+    return Math.floor((noteNumber - 24) / 12);
+}
+
+
+
+$event($('#piano'), 'contextmenu', (event)=> event.preventDefault());
+
+// Midi
+
+const requestMidiAccessButton = document.getElementById('request-midi-access');
+
+requestMidiAccessButton.addEventListener('click', async () => {
+    if (navigator.requestMIDIAccess) {
+        try {
+            const midiAccess = await navigator.requestMIDIAccess();
+            // Handle MIDI access granted
+            handleMidiAccessGranted(midiAccess);
+        } catch (error) {
+            console.error('Error requesting MIDI access:', error);
+        }
+    } else {
+        console.error('Web MIDI API not supported');
+    }
+});
+
+function handleMidiAccessGranted(midiAccess) {
+    // Get the list of available MIDI inputs
+    const midiInputs = midiAccess.inputs.values();
+
+    // Create a select menu to choose the MIDI input
+    const midiInputSelect = document.createElement('select');
+    midiInputSelect.id = 'midi-input-select';
+
+    // Populate the select menu with the available MIDI inputs
+    for (const input of midiInputs) {
+        const option = document.createElement('option');
+        option.value = input.id;
+        option.text = input.name;
+        midiInputSelect.appendChild(option);
+    }
+
+    // Add the select menu to the page
+    document.body.appendChild(midiInputSelect);
+
+    // Add an event listener to the select menu to handle changes
+    midiInputSelect.addEventListener('change', (event) => {
+        const selectedInputId = event.target.value;
+        const selectedInput = midiAccess.inputs.get(selectedInputId);
+
+        // Handle MIDI messages from the selected input
+        selectedInput.onmidimessage = (event) => {
+            handleMidiMessage(event);
+        };
+    });
+}
+
+function handleMidiMessage(event) {
+    const midiMessage = event.data;
+    const noteOn = (midiMessage[0] === 144 && midiMessage[2] !== 0);
+    const noteOff = (midiMessage[0] === 128 || midiMessage[2] === 0);
+    const noteNumber = midiMessage[1];
+    console.log(midiMessage);
+
+    if (noteOn) {
+        // Handle note on
+        const note = getNoteFromNoteNumber(noteNumber);
+        const octave = getOctaveFromNoteNumber(noteNumber);
+        const key = note + octave;
+        console.log(key);
+        onkeydown2(midiMessage[1]);
+    } else if (noteOff) {
+        // Handle note off
+        const note = getNoteFromNoteNumber(noteNumber);
+        const octave = getOctaveFromNoteNumber(noteNumber);
+        const key = note + octave;
+        console.log('up');
+        onkeyup2(midiMessage[1]);
     }
 }
 
-$event($('#piano'), 'contextmenu', (event)=> event.preventDefault());
+// Midi - END
 
 });

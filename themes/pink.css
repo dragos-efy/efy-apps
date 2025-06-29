@@ -1,0 +1,10 @@
+[efy_theme="pink"] [efy_preview] {
+---scheme: dark;
+---bg: oklch(.2 .02 0);
+---color: linear-gradient(345deg, oklch(1 0.37 0 / 1), oklch(1 0.37 0 / 1));
+---color_trans: linear-gradient(345deg, oklch(1 0.37 0 / 0.33), oklch(1 0.37 0 / 0.33));
+---text: oklch(1 0.37 0);
+---radius: 4rem; ---radius-x: 4rem; ---radius-xx: 4rem;
+---border: var(---border_size) solid oklch(1 0.37 0);
+---gap: 30rem;
+}

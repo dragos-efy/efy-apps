@@ -1,0 +1,11 @@
+[efy_theme="quirky pastel"] [efy_preview] {
+---scheme: light;
+---mode: light,solid;
+---bg: radial-gradient(oklch(.95 0 0) 1rem, oklch(1 0 0) 1rem) repeat center / 10rem 10rem;
+---card: oklch(0 0 0 / .07);
+---color: repeating-linear-gradient(-45deg, oklch(.9 .3 240) 0 25rem, oklch(1 .2 40) 0 50rem);
+---color_trans: repeating-linear-gradient(-45deg, oklch(.9 .3 240 / .3) 0 25rem, oklch(1 .2 40 / .3) 0 50rem);
+---text: oklch(0 0 0);
+---radius: 12rem;
+---border: var(---border_size) solid oklch(0 0 0 / .07);
+}

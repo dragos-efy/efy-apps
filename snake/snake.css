@@ -1,0 +1,58 @@
+body {display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0}
+#controls {
+    display: flex; flex-direction: column; align-items: center;
+    [efy_range_text] {width: 100%}
+    .efy_flex {
+        display: grid; grid-template-columns: 1fr 1fr; gap: var(---gap-x); margin-top: var(---gap);
+        width: 100%;
+        button {width: 100%; margin: 0}
+        button * {pointer-events: none}
+    }
+}
+#game, #game_container {border-radius: var(---radius)}
+#game_container {background: var(---card); border: var(---border)}
+#game {
+    display: none; gap: 0;
+    grid-template-columns: repeat(40, 20rem); grid-template-rows: repeat(40, 20rem);
+}
+#controls, #scores {width: fit-content}
+#scores {
+    width: fit-content; display: flex; gap: 0;
+    border-left: var(---border); padding: 0; margin-top: var(---gap);
+    .score_div, .lives_div {
+        padding: var(---padding); gap: 0; border: 0;
+    }
+    .lives_div {border-left: var(---border)}
+}
+
+.snake {background: var(---color)}
+.bomb:before, .apple:before {
+    font-family: 'efy_icons'; color: var(---text);
+    display: flex ; align-items: center; place-content: center; height: 100%; width: 100%;
+}
+.apple:before {content: "\e974"; font-size: 20rem}
+.bomb:before {content: "\e952"; font-size: 22rem}
+.lives_div, .score_div {display: flex; gap: 10rem}
+.snake {
+    position: relative;
+    &.head {
+        &.up {border-radius: var(---radius) var(---radius) 0 0}
+        &.down {border-radius: 0 0 var(---radius) var(---radius)}
+        &.left {border-radius: var(---radius) 0 0 var(---radius)}
+        &.right {border-radius: 0 var(---radius) var(---radius) 0}
+        &:before {
+            content: '\e91c \e91c'; font-family: 'efy_icons'; width: 100%; height: 100%;
+            display: flex; align-items: center; place-content: center;
+            top: 0; left: 0;
+            font-size: 5rem; letter-spacing: 2rem;
+            color: var(---bg); -webkit-text-fill-color: var(---bg);
+        }
+        &:is(.left, .right):before {transform: rotate(90deg)}
+    }
+    &.tail {
+        &.up {clip-path: polygon(0% 0%, 100% 0%, 50% 100%)}
+        &.down {clip-path: polygon(0% 100%, 100% 100%, 50% 0%)}
+        &.left {clip-path: polygon(0% 100%, 0% 0%, 100% 50%)}
+        &.right {clip-path: polygon(100% 100%, 100% 0%, 0% 50%)}
+    }
+}

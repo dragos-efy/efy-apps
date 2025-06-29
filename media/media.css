@@ -9,7 +9,7 @@
 
 .ms_loader { position: fixed; top: 15rem; left: 15rem; width: 300rem; height: 100rem; bottom: 0; background: #0003; z-index: 10; backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; border-radius: var(---radius)}
 
-[ms_bar] {width: calc(100% - var(---gap2)); margin: var(---gap) 0 var(---gap) var(---gap); display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(---gap0); border: var(---border); border-radius: var(---radius2); background: var(---bg1); align-items: center;
+[ms_bar] {width: calc(100% - var(---gap-o)); margin: var(---gap) 0 var(---gap) var(---gap); display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(---gap-x); border: var(---border); border-radius: var(---radius-o); background: var(---card); align-items: center;
     .mobile {display: none}
     .desktop {display: flex}
 }
@@ -19,7 +19,9 @@
     canvas {width: calc(100% - 95rem); height: var(---size); padding-top: 8rem; position: absolute; border-radius: var(---radius) 0 0 var(---radius); z-index: -1}
 }
 .ms_time_text {padding: 0 10rem 0 8rem !important; height: var(---size)!important; border-radius: 0 var(---radius) var(---radius) 0; border-left: 0}
-#seeker_slider {border-radius: var(---radius) 0 0 var(---radius); width: 100%; height: var(---size)!important;
+#seeker_slider {
+    border-radius: var(---radius) 0 0 var(---radius); width: 100%; height: var(---size)!important;
+    border-right: 0;
     &::-webkit-slider-thumb {width: var(---size)!important; height: var(---size)!important}
 }
 
@@ -27,12 +29,19 @@
 .ms_buttons > div.efy_color {border-radius: var(---radius);
     button {aspect-ratio: 1; height: calc(var(---size) - var(---border_size2)); align-items: center;
         justify-content: center; background: transparent!important; border-radius: 0; border: 0;
-        border-right: var(---border_size) solid oklch(var(---bg_var2) / .3);
+        border-right: var(---border_size) solid var(---border-color-invert);
         &, &:first-of-type {width: calc(var(---size) - var(---border_size))}
         &:first-of-type {border-radius: var(---radius) 0 0 var(---radius)}
         &:last-of-type {border-radius: 0 var(---radius) var(---radius) 0; width: calc(var(---size) - var(---border_size2)); border-right: 0}
         i {margin: 0}
     }
+}
+
+html .ms_buttons2 .efy_color {
+    display: flex; border-radius: var(---radius);
+    [efy-radius] {background: transparent!important; backdrop-filter: none!important}
+    [efy-radius=left] {border-radius: var(---radius) 0 0 var(---radius); border-right: var(---border_size) solid var(---border-color-invert)}
+    [efy-radius=right] {border-radius: 0 var(---radius) var(---radius) 0}
 }
 
 .ms_speed_text, .ms_time_text {display: flex; gap: 5rem; align-items: center; width: fit-content; height: var(---size); padding: 7rem 10rem; font-weight: bold; color: var(---text); -webkit-text-fill-color: var(---text)}
@@ -46,24 +55,24 @@
 .ms_song_info {display: flex; gap: 15rem}
 
 .songs {
-    .song {display: flex; flex-direction: column; justify-content: space-between; height: fit-content; background: var(---bg1);
+    .song {display: flex; flex-direction: column; justify-content: space-between; height: fit-content; background: var(---card);
         border-radius: var(---radius); border: var(---border); padding: 0; color: var(---text); cursor: pointer;
         .info {display: flex; gap: 10rem; justify-content: flex-start; align-items: center; flex-wrap: nowrap}
         .number {min-width: fit-content}
-        :is(.delete, :empty):not(img, i) {display: none}
+        :is(.delete, :empty):not(img, i, .efy-card-back) {display: none}
         .text {display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; padding-right: 10rem; pointer-events: none; overflow: hidden;
             &:not(.nature .text) {word-break: break-all}
             p {display: inline}
             .efy_hide_i:not(.title) + .separator {display: none!important}
         }
         &.nature {flex-direction: unset; justify-content: flex-start; align-items: center; flex-wrap: nowrap; text-transform: capitalize;
-            justify-content: space-between; gap: 15rem; padding: var(---gap0) var(---gap) var(---gap0) var(---gap0);
+            justify-content: space-between; gap: 15rem; padding: var(---gap-x) var(---gap) var(---gap-x) var(---gap-x);
             :is(.image, .volume) {margin: 0}
             .left {display: flex; gap: 15rem; align-items: center; place-content: center}
             .text {display: flex; gap: 5rem}
         }
-        .image {display: flex!important; height: var(--ms_thumb_height); aspect-ratio: 1; border-radius: var(---radius); align-items: center; justify-content: center; margin: var(---gap0) 0 var(---gap0) var(---gap0);
-            &:is(.ms_empty) {background: var(---bg1); border: var(---border)}
+        .image {display: flex!important; height: var(--ms_thumb_height); aspect-ratio: 1; border-radius: var(---radius); align-items: center; justify-content: center; margin: var(---gap-x) 0 var(---gap-x) var(---gap-x);
+            &:is(.ms_empty) {background: var(---card); border: var(---border)}
             i {margin: 0; font-size: calc(var(--ms_thumb_height) / 2); letter-spacing: 0!important}
             &:not(.ms_empty) {background-size: cover!important; background-position: center!important; background-repeat: no-repeat!important}
         }
@@ -73,7 +82,7 @@
         }
 }}
 
-.ms_flex {display: flex; align-items: center; flex-wrap: wrap; gap: var(---gap0);
+.ms_flex {display: flex; align-items: center; flex-wrap: wrap; gap: var(---gap-x);
     label {display: flex; align-items: center; width: fit-content}
 }
 
@@ -81,13 +90,13 @@
 :is(.efy_sidebar details details):not([open]) {padding: 0 12rem}
 
 #bar_position {
-    div {display: flex; gap: var(---gap0); flex-wrap: wrap;
+    div {display: flex; gap: var(---gap-x); flex-wrap: wrap;
         label {margin: 0}
     }
-    [efy_range_text="Columns"] {margin-top: var(---gap0); gap: 0}
+    [efy_range_text="Columns"] {margin-top: var(---gap-x); gap: 0}
 }
 
-.ms_buttons2 {align-items: center; gap: var(---gap0)}
+.ms_buttons2 {align-items: center; gap: var(---gap-x)}
 .ms_filesystem {width: var(---size); height: var(---size);	display: flex;	align-items: center; place-content: center}
 
 
@@ -102,20 +111,20 @@ html, body {overflow: hidden}
 [efy_content=grid] p:first-of-type {margin: -5rem 0 5rem 0}
 
 [efy_content=tags] {
-    .efy_flex {gap: var(---gap0)}
+    .efy_flex {gap: var(---gap-x)}
     [efy_range_text] {margin: 6rem 0 -8rem 0}
 }
 [efy_tabs=ms_menu] [efy_content=backup] {padding: 0;
     label {margin: 0}
-    #md_storage_api, .api_options .efy_flex {display: flex; flex-wrap: wrap; gap: var(---gap0); padding: var(---gap)}
+    #md_storage_api, .api_options .efy_flex {display: flex; flex-wrap: wrap; gap: var(---gap-x); padding: var(---gap)}
     .efy_hr_div {padding: 0 0 0 var(---gap); gap: 8rem; line-height: 1;
         * {margin: 0}
     }
 }
 
-/*Filter*/ .ms_filter {display: flex; /*flex-direction: column;*/ padding: var(---gap) var(---gap) 0 var(---gap); gap: var(---gap0);
-    .bar {display: flex; gap: var(---gap0)}
-    [tags] {display: flex; gap: var(---gap0); border-top: none !important; padding: 0 !important;
+/*Filter*/ .ms_filter {display: flex; /*flex-direction: column;*/ padding: var(---gap) var(---gap) 0 var(---gap); gap: var(---gap-x);
+    .bar {display: flex; gap: var(---gap-x)}
+    [tags] {display: flex; gap: var(---gap-x); border-top: none !important; padding: 0 !important;
         [tag] {color: var(---text); -webkit-text-fill-color: unset; padding: var(---padding); font-weight: normal; cursor: pointer; height: var(---size)}
         .tab { display: flex; gap: 8rem;
             &:not(.active) {background: var(---color), var(---color_trans); background-clip: text, border-box;
@@ -131,28 +140,30 @@ html, body {overflow: hidden}
     :is(.bar, [tags]) * {margin: 0 !important}
 }
 /*Custom Tags*/
-.song .custom_tags, .ms_filter [tags] {display: flex; flex-wrap: wrap; gap: var(---gap0); border-top: var(---border); padding: var(---gap0);
-    [tag] {display: flex; align-items: center; place-content: center; background: var(---bg1); border-radius: var(---radius0); border: var(---border); line-height: 1;
-        &.active {background: var(---text_trans); color: var(---text);}
+.song .custom_tags, .ms_filter [tags] {display: flex; flex-wrap: wrap; gap: var(---gap-x); border-top: var(---border); padding: var(---gap-x);
+    [tag] {display: flex; align-items: center; place-content: center; background: var(---card); border-radius: var(---radius-x); border: var(---border); line-height: 1;
+        &.active {background: var(---text-x); color: var(---text);}
     }
 }
 .song .custom_tags {
     [tag] {height: calc(var(---size0) - 5.5rem); padding: 5rem 7rem;
         &:is(.add, .remove) {width: calc(var(---size0) - 5.5rem);
             &.active {background: var(---color); border-style: hidden;
-                i {background: transparent; -webkit-text-fill-color: var(---text2)}
+                i {background: transparent; -webkit-text-fill-color: var(---bg)}
             }
             i {margin: 0; &:before {font-size: 12rem}}
 }}}
 
-:is(.song:hover, .song.playing) .custom_tags [tag] {background: var(---color), var(---bg1); background-clip: text, border-box; -webkit-background-clip: text, border-box; -webkit-text-fill-color: transparent;
+:is(.song:hover, .song.playing) .custom_tags [tag] {background: var(---color), var(---card); background-clip: text, border-box; -webkit-background-clip: text, border-box; -webkit-text-fill-color: transparent;
     i:before {-webkit-background-clip: text!important; background-clip: text!important; background: var(---color); color: transparent}
 }
 
 
-.vd_video_div { display: flex; width: calc(100% - var(---gap2)); position: relative; margin: var(---gap) var(---gap) 0 var(---gap); border-radius: var(---radius); background-size: cover;
-    video {max-height: calc(100vh - var(---gap2)); border: var(---border); background-size: contain; background-repeat: no-repeat; background-position: center; backdrop-filter: blur(100px) brightness(0.7)}
-    [ms_bar] {width: calc(100% - (var(---gap2))); z-index: 999999; position: absolute; bottom: 0; left: 0; backdrop-filter: blur(30px) brightness(0.7)!important;
+.vd_video_div { display: flex; width: calc(100% - var(---gap-o)); position: relative; margin: var(---gap) var(---gap) 0 var(---gap); border-radius: var(---radius); background-size: cover;
+    video {max-height: calc(100vh - var(---gap-o)); border: var(---border); background-size: contain; background-repeat: no-repeat; background-position: center; backdrop-filter: blur(100px) brightness(0.7)}
+    [ms_bar] {
+        width: calc(100% - (var(---gap-o))); z-index: 999999; position: absolute!important; bottom: 0; left: 0;
+        &:not(html.svg_filters &) {backdrop-filter: blur(30px) brightness(0.7)!important}
     }
 }
 [efy_mode*=light] .vd_video_div {

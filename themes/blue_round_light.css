@@ -1,0 +1,11 @@
+[efy_theme="blue round light"] [efy_preview] {
+---scheme: light;
+---mode: light,solid;
+---bg: oklch(1 0 0);
+---card: oklch(0 0 0 / .07);
+---color: linear-gradient(var(---color_angle), oklch(.55 .3 260), oklch(.55 .3 260));
+---color_trans: linear-gradient(var(---color_angle), oklch(.55 .3 260 / .3), oklch(.55 .3 260 / .3));
+---text: oklch(0 0 0);
+---radius: 20rem;
+---border: var(---border_size) solid oklch(0 0 0 / .14);
+}

@@ -1,0 +1,10 @@
+[efy_theme="violet neon"] [efy_preview] {
+---scheme: light;
+---bg: oklch(.9 .07 310);
+---card: oklch(0 0 0 / .14);
+---text: oklch(0 0 0);
+---color: linear-gradient(0, oklch(.5 0.3 277), oklch(.4 .2 313), oklch(.41 .06 195), oklch(.9 .16 178));
+---color_trans: linear-gradient(0, oklch(.5 0.3 277 / .3), oklch(.4 .2 313 / .3), oklch(.41 .06 195 / .3), oklch(.9 .16 178 / .3));
+---radius: 25rem; ---radius-x: 12.5rem; ---radius-xx: 6.25rem;
+---border: var(---border_size) solid oklch(0 0 0 / .14);
+}

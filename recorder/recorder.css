@@ -3,25 +3,25 @@
 [rc_app] {display: flex; flex-direction: column; gap: var(---gap); width: 100%; height: var(---100vh); max-height: var(---100vh); margin: 0; overflow: hidden;
     .video_grid {
         display: flex; gap: var(---gap); width: 100%; height: 100%; overflow-y: auto; padding: var(---gap) var(---gap) 0 var(---gap);
-        height: 100%; max-height: calc(var(---100vh) - var(---size) - var(---border_size) * 2 - var(---gap2))
+        height: 100%; max-height: calc(var(---100vh) - var(---size) - var(---border_size) * 2 - var(---gap-o))
     }
     .video_grid.columns2 video {max-width: calc(50% - var(---gap) / 2)}
-    & video {margin: 0; height: 100%; background: var(---bg1); border: var(---border); flex: 1}
+    & video {margin: 0; height: 100%; background: var(---card); border: var(---border); flex: 1}
 } [rc_app*=top] {flex-direction: column-reverse}
 
-[rc_bar] {width: calc(var(---bg_width) - var(---gap2)); display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(---gap0); background: var(---bg1); border-radius: var(---radius); border: var(---border); margin: 0 var(---gap) var(---gap) var(---gap);
+[rc_bar] {width: calc(var(---bg_width) - var(---gap-o)); display: flex; gap: 10rem; flex-wrap: wrap; justify-content: space-between; padding: var(---gap-x); background: var(---card); border-radius: var(---radius); border: var(---border); margin: 0 var(---gap) var(---gap) var(---gap);
     :is(input, button, select, label) {width: fit-content; margin: 0}
     .efy_flex {gap: 10rem}
     & label { width: var(---size); height: var(---size); background-origin: border-box!important;
-        :is(.square) {background: var(---text2); width: 16rem; height: 16rem}
+        :is(.square) {background: var(---bg); width: 16rem; height: 16rem}
         .circle {border-radius: 50%}
-        .square {border-radius: var(---radius00)}
+        .square {border-radius: var(---radius-xx)}
     }
     [efy_select] [for=recordToggle] {background: var(---color); padding: 8rem}
     [efy_select] [for=recordToggle]:before {-webkit-mask: none!important; background: var(---bg)!important; border-radius: 50%; width: 16rem; height: 16rem; margin: 0; border: 0}
     [efy_select] #recordToggle:not(:checked) + label:before {background: transparent!important; content: "\e914"; -webkit-text-fill-color: var(---bg); font-family: 'efy_icons'; line-height: 1; margin-bottom: -3rem}
     [efy_select] label:after, [efy_select] [type=checkbox]:checked + label:after {display: none; content: none}
-    :is(#videoSource, #audioSource) {width: var(---size); background: var(---bg1); border-left: 0}
+    :is(#videoSource, #audioSource) {width: var(---size); background: var(---card); border-left: 0}
     .source_input, .select_icon {display: flex; align-items: center}
     .select_icon {position: relative; place-content: center;
         & i {position: absolute; margin: 0}
@@ -32,13 +32,13 @@
         #microphoneToggle + label:before {content: "\e914"!important; font-family: 'efy_icons'}
         &:has(input:checked) {
             .select_icon {display: none}
-            & label {border-radius: var(---radius); background: var(---bg1); -webkit-text-fill-color: var(---text)}
+            & label {border-radius: var(---radius); background: var(---card); -webkit-text-fill-color: var(---text)}
         }
     }
     .source_input label:before, [efy_select] [for=fullscreen]:before {margin: 0; display: none}
     .source_input i, [efy_select] [for=fullscreen] i {margin: 0}
     [efy_select] #screenShareToggle {
-        & + label {border-radius: var(---radius); background: var(---bg1); -webkit-text-fill-color: var(---text)}
+        & + label {border-radius: var(---radius); background: var(---card); -webkit-text-fill-color: var(---text)}
         &:checked + label {background: var(---color); -webkit-text-fill-color: var(---bg)}
     }
 }

@@ -1,7 +1,6 @@
-
 :root {---color_0deg: var(---color); ---color_trans_0deg: var(---color)}
 
-.view_3d {perspective: 400rem; height: calc(var(---100vh) - var(---gap2))}
+.view_3d {perspective: 400rem; height: calc(var(---100vh) - var(---gap-o))}
 .cube {top: 50%; left: 25%; transform-style: preserve-3d; font-size: 8vmin;
     transform: rotate3d(var(--i, -7), var(--j, 8), -2, var(--a, 45deg)) var(--p,  );
     &, .face {position: absolute;}
@@ -23,14 +22,14 @@
             &:nth-child(6) {background: var(---color_trans_first)}
         }
     }
-    &.bg1 {left: 75%;
-        .face {background: var(---bg1)}
+    &.card {left: 75%;
+        .face {background: var(---card)}
     }
 }
 
 @media screen and (max-width: 850px) {
     .cube {top: 20%; left: 50%;
         &.trans {top: 50%}
-        &.bg1 {top: 80%; left: 50%}
+        &.card {top: 80%; left: 50%}
     }
 }

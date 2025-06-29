@@ -3,7 +3,7 @@ $add('div', {rc_app: ''}, [
 	['video', {autoplay: '', class: 'camera efy_trans_filter efy_shadow_trans'}],
 	['video', {autoplay: '', class: 'screen_sharing efy_trans_filter efy_shadow_trans efy_hide'}]
   ]],
-  ['div', {rc_bar: '', class: 'efy_trans_filter efy_shadow_trans'}, [
+  ['div', {rc_bar: '', class: 'efy_trans_filter efy_shadow_trans efy-glass'}, [
     ['div', {class: 'efy_flex', efy_select: 'margin0'}, [
       ['select', {id: 'mediaSelect', title: 'Media Type'}, [
           ['option', {value: 'video'}, 'Video'],

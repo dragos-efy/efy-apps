@@ -1,6 +1,6 @@
 $ready('#efy_sbtheme', ()=>{
 
-$add('div', {id: 'cc_calculator', class: 'efy_trans_filter'}, [
+$add('div', {id: 'cc_calculator', class: 'efy-glass efy_trans_filter'}, [
     ['input', {type: 'text', id: 'display', readonly: '', placeholder: 'efy calculator'}],
     ['div', {id: 'buttons', class: 'cc_buttons'}]
 ]);

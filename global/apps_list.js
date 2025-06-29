@@ -64,17 +64,23 @@ const apps_list = {
         'alpha chromium offline',
         'firefox safari gamepads keyboard'
     ],
+    Fractals: [
+        '#fractals', 'group',
+        "Experimental Fractal Generator",
+        'productivity fun static',
+        'alpha chromium offline firefox safari gamepads keyboard',
+    ],
     Gamepads: [
         '#gamepads', 'gamepad',
         'Test and remap your gamepads or use them to control efy apps',
         'game fun static',
         'alpha chromium firefox safari offline gamepads keyboard'
     ],
-    Injector: [
-        '', 'globe',
-        "Inject efy into normal websites and apps that don't have it. It won't work in all cases",
-        'fun extension dynamic',
-        'soon'
+    GameType: [
+        '#gametype', 'gamepad',
+        'Experimental gamepad typing',
+        'game fun static',
+        'alpha chromium firefox safari offline gamepads keyboard'
     ],
     Instruments: [
         '#instruments', 'audio',
@@ -96,8 +102,8 @@ const apps_list = {
         'alpha'
     ],
     Lists: [
-        './planner2.html', 'check',
-        'Newest version of Planner, separated for testing, but unsafe to use normally currently',
+        '#lists', 'check',
+        'Organize your goals, notes, reminders, contacts, money, links, etc. in a central place',
         'productivity offline static',
         'alpha'
     ],
@@ -109,13 +115,13 @@ const apps_list = {
         'gamepads'
     ],
     Money: [
-        './money.html', 'group',
+        '#money', 'group',
         'Keep track of your income, expenses, subscriptions, products and services. Create your budgets and categorize your tranzactions',
         'productivity offline static',
         'beta'
     ],
     OS: [
-        './os.html', 'dots',
+        '#os', 'dots',
         'Web based operating system with efy apps inside. Some features are limited compared to a real OS',
         'productivity offline static',
         'alpha offline touchscreen mouse chromium firefox safari',
@@ -123,15 +129,9 @@ const apps_list = {
     ],
     Passwords: [
         '', 'key',
-        'Store encrypted passwords, generate TOTP codes for 2FA, export and import files. Experiment',
+        'Modular part of the Lists app for storing passwords',
         'productivity offline static',
         'soon'
-    ],
-    Planner: [
-        './planner.html', 'check',
-        'Organize your tasks, take notes, time-based reminders, track your progress and time',
-        'productivity offline static',
-        'alpha'
     ],
     Pong : [
         '#pong', 'circle',
@@ -152,6 +152,13 @@ const apps_list = {
         'alpha chromium firefox safari offline gamepads keyboard',
         'touchscreen mouse'
     ],
+    Snake: [
+        '#snake', 'circle2',
+        'Grow as big as you can',
+        'game fun offline static',
+        'alpha chromium firefox safari offline gamepads keyboard',
+        'touchscreen mouse'
+    ],
     Sports: [
         '#sports', 'star',
         'Helps you stay fit, relax, breathe, manage poses, create personalized routines, track your progress',
@@ -163,12 +170,6 @@ const apps_list = {
         'Edit text files, dynamic syntax highlighting, multiple tabs, split view, custom text colors. Mainly for simple use cases, not competing with complex text editors',
         'productivity offline static',
         'alpha'
-    ],
-    Themes: [
-        '', 'heart',
-        'Upload, Share & Download user made efy themes',
-        'fun public server static',
-        'soon'
     ],
     Torch: [
         '#torch', 'flash',

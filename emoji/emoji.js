@@ -25,7 +25,7 @@ $add('div', {id: 'efy_emoji', efy_search: '.emoji > div'}, [
             ]],
             ['button', {efy_sidebar_btn: '', class: 'efy_square_btn desktop'}, [['i', {efy_icon: 'menu'}]]]
         ]],
-        ['div', {id: 'container'}, [
+        ['div', {id: 'container', class: 'efy-glass'}, [
             // ['div', {efy_content: 'recent'}, 'Coming soon...']
         ]]
     ]]
@@ -35,8 +35,8 @@ const tabs = $('[efy_tabs=emoji]'); tabs_nav = [$('[efy_tabs=emoji] .efy_tabs .l
 
 Object.keys(emoji).map((key, i) =>{ const id = `efy_emoji${i}`;
     $add('input', {efy_tab: id, id: id, name: 'efy_emoji', type: 'radio'}, [], ...tabs_nav);
-    $add('label', {for: id}, key, ...tabs_nav);
-    const content = $add('div', {efy_content: id, class: 'emoji'}, [], $('[efy_tabs=emoji] #container'));
+    $add('label', {for: id, class: 'efy-glass'}, key, ...tabs_nav);
+    const content = $add('div', {efy_content: id, class: 'emoji efy_trans_filter_off'}, [], $('[efy_tabs=emoji] #container'));
     emoji[key].split(';').map(e =>{ const em = e.split(',');
         $add('div', {title: em[1]}, em[0], content);
     })

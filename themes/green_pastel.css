@@ -1,0 +1,11 @@
+[efy_theme="green pastel"] [efy_preview] {
+---scheme: light;
+---mode: light,solid;
+---bg: oklch(1 .15 140);
+---card: oklch(.2 .2 140 / .07);
+---color: linear-gradient(var(---color_angle), oklch(.5 .2 140), oklch(.5 .2 140));
+---color_trans: linear-gradient(var(---color_angle), oklch(.5 .2 140 / .3), oklch(.5 .2 140 / .3));
+---text: oklch(.2 .2 140);
+---radius: 4rem;
+---border: var(---border_size) solid oklch(.5 .2 140);
+}

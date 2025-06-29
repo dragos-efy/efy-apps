@@ -3,30 +3,34 @@ try { if (localStorage.efy_ms){ efy_ms = JSON.parse(localStorage.efy_ms)} $ms_sa
 
 /*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
-const player_bar = ['div', {ms_bar: '', class: 'efy_trans_filter efy_shadow_trans'}, [
+const player_bar = ['div', {ms_bar: '', class: 'efy-glass efy_trans_filter efy_shadow_trans'}, [
     ['div', {class: 'ms_buttons'}, [
-      ['div', {class: 'efy_color'}, [
-        ['button', {class: 'prev efy_trans_filter_off', title: 'Previous'}, [ ['i', {efy_icon: 'chevron'}] ]],
-        ['button', {class: 'player efy_trans_filter_off', title: 'Play or Pause'}, [ ['i', {efy_icon: 'play', class: 'btn-play'}] ]],
-        ['button', {class: 'next efy_trans_filter_off', title: 'Next'}, [ ['i', {efy_icon: 'chevron'}] ]]
+      ['div', {class: 'efy_color efy_shadow_button'}, [
+        ['button', {class: 'prev efy_trans_filter_off efy_shadow_button_off', title: 'Previous'}, [ ['i', {efy_icon: 'chevron'}] ]],
+        ['button', {class: 'player efy_trans_filter_off efy_shadow_button_off', title: 'Play or Pause'}, [ ['i', {efy_icon: 'play', class: 'btn-play'}] ]],
+        ['button', {class: 'next efy_trans_filter_off efy_shadow_button_off', title: 'Next'}, [ ['i', {efy_icon: 'chevron'}] ]]
       ]],
       ['div', {class: 'mobile ms_buttons2'}, [
-        ['button', {class: 'ms_speed_text efy_button_text_off', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, '1X'],
-        ['label', {efy_upload: 'ms_upload, [audio/*,video/*,image/*], small, multiple', title: 'Add file'}],
-        ['button', {class: 'ms_filesystem efy_square_btn efy_hide_i', title: 'Add file'}, [['i', {efy_icon: 'plus'}]]],
-        ['button', {class: 'ms_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [['i', {efy_icon: 'menu'}]]]
+        ['button', {class: 'ms_speed_text efy_button_text_off efy-glass-off', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, '1X'],
+        ['div', {class: 'efy_color efy_shadow_button'}, [
+          ['label', {efy_upload: 'ms_upload, [audio/*,video/*,image/*], small, multiple', title: 'Add file', class: 'efy_shadow_button_off', 'efy-radius': 'left'}],
+          ['button', {class: 'ms_filesystem efy_square_btn efy_hide_i', title: 'Add file'}, [['i', {efy_icon: 'plus'}]]],
+          ['button', {class: 'ms_menu efy_square_btn efy_shadow_button_off efy_trans_filter_off', efy_sidebar_btn: '', title: 'Menu', 'efy-radius': 'right'}, [['i', {efy_icon: 'menu'}]]]
+        ]]
       ]]
      ]],
     ['div', {class: 'audio_seeker'}, [
       ['canvas'],
       ['input', {type: 'range', max: '100', id: 'seeker_slider', value: '0'}],
-      ['div', {class: 'ms_time_text', efy_card: ''}, [ ['p', {class: 'seeker-start-value'}, '0:00'], ['p', '/'], ['p', {class: 'seeker-end-value'}, '0:00'] ]]
+      ['div', {class: 'ms_time_text efy-glass-off', efy_card: ''}, [ ['p', {class: 'seeker-start-value'}, '0:00'], ['p', '/'], ['p', {class: 'seeker-end-value'}, '0:00'] ]]
     ]],
     ['div', {class: 'desktop ms_buttons2'}, [
-      ['button', {class: 'ms_speed_text efy_button_text_off', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, '1X'],
-      ['label', {efy_upload: 'ms_upload, [audio/*,video/*,image/*], small, multiple', title: 'Add file'}],
-      ['button', {class: 'ms_filesystem efy_square_btn efy_hide_i', title: 'Add file'}, [['i', {efy_icon: 'plus'}] ]],
-      ['button', {class: 'ms_menu efy_square_btn', efy_sidebar_btn: '', title: 'Menu'}, [ ['i', {efy_icon: 'menu'}] ]]
+      ['button', {class: 'ms_speed_text efy_button_text_off efy-glass-off', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, '1X'],
+      ['div', {class: 'efy_color efy_shadow_button'}, [
+        ['label', {efy_upload: 'ms_upload, [audio/*,video/*,image/*], small, multiple', title: 'Add file', class: 'efy_shadow_button_off', 'efy-radius': 'left'}],
+        ['button', {class: 'ms_filesystem efy_square_btn efy_hide_i', title: 'Add file'}, [['i', {efy_icon: 'plus'}] ]],
+        ['button', {class: 'ms_menu efy_square_btn efy_shadow_button_off efy_trans_filter_off', efy_sidebar_btn: '', title: 'Menu', 'efy-radius': 'right'}, [ ['i', {efy_icon: 'menu'}] ]]
+      ]]
     ]]
   ]];
 
