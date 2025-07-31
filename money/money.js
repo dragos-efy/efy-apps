@@ -44,23 +44,23 @@ $add('div', {id: 'mn_body', efy_search: '#data_table tr:not(.efy_ignore_search)'
                     ]],
                     ['div', {class: 'modal_grid'}, [
                         ['div', {class: 'input_group'}, [
-                            ['label', {for: 'description', efy_lang: 'description', class: 'efy_trans_filter'}],
+                            ['label', {for: 'description', efy_lang: 'description', class: 'efy_card_filter'}],
                             ['input', {type: 'text', id: 'description', name: 'description'}]
                         ]],
                         ['div', {class: 'input_group'}, [
-                            ['label', {for: 'quantity', efy_lang: 'quantity', class: 'efy_trans_filter'}],
+                            ['label', {for: 'quantity', efy_lang: 'quantity', class: 'efy_card_filter'}],
                             ['input', {type: 'number', step: 'any', id: 'quantity', name: 'quantity', placeholder: 1, value: 1}]
                         ]],
                         ['div', {class: 'input_group'}, [
-                            ['label', {for: 'price', efy_lang: 'price', class: 'efy_trans_filter'}],
+                            ['label', {for: 'price', efy_lang: 'price', class: 'efy_card_filter'}],
                             ['input', {type: 'number', step: 'any', id: 'price', name: 'price', placeholder: '0.00'}]
                         ]],
                         ['div', {class: 'input_group'}, [
-                            ['label', {for: 'date', efy_lang: 'date', class: 'efy_trans_filter'}],
+                            ['label', {for: 'date', efy_lang: 'date', class: 'efy_card_filter'}],
                             ['input', {type: 'date', id: 'date', name: 'date'}]
                         ]],
                         ['div', {class: 'input_group'}, [
-                            ['label', {for: 'category', efy_lang: 'tags', class: 'efy_trans_filter'}],
+                            ['label', {for: 'category', efy_lang: 'tags', class: 'efy_card_filter'}],
                             ['input', {type: 'text', id: 'category', name: 'category', placeholder: 'coming soon...', disabled: ''}]
                         ]]
                     ]]

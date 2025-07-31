@@ -1,6 +1,6 @@
 $ready('#efy_sbtheme', ()=>{
 
-const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy_card: ''}, [
+const start = $add('div', {id: 'start_container', class: 'efy_card_filter', efy_card: ''}, [
     ['h1', 'INVADERS · DEMO'],
     ['hr'],
     ['h6', 'Rules'],
@@ -34,7 +34,7 @@ let grid_size = Math.min(window.innerWidth, window.innerHeight) + 'rem';
 $css_prop('---grid_size', grid_size);
 
 $add('div', {class: 'nav'}, [
-    ['div', {class: 'results efy_square_btn efy_trans_filter', efy_card: ''}, '0'],
+    ['div', {class: 'results efy_square_btn efy_card_filter', efy_card: ''}, '0'],
     ['button', {class: 'efy_square_btn', efy_sidebar_btn: ''}, [['i', {efy_icon: 'menu'}]]]
 ]);
 $add('div', {class: 'grid', efy_card: ''});

@@ -158,21 +158,21 @@ $add('div', {class: 'modal-overlay'}, [
      ]]
             ]]
         ]],
-     ['div', {class: 'efy_trans_filter_off'}, [
-         ['div', {efy_content: 'goals', efy_active: '', class: 'form pn_goals_form efy_shadow_trans_off efy_trans_filter_off'}, [
+     ['div', {class: 'efy_card_filter_off'}, [
+         ['div', {efy_content: 'goals', efy_active: '', class: 'form pn_goals_form efy_shadow_card_off efy_card_filter_off'}, [
              ['form', {action: '#'}, [
                  ['div', {class: 'modal_grid'}, [
                      ['div', {class: 'grid'}, [
                          ['div', {class: 'input-group'}, [
-                             ['label', {for: 'text', efy_lang: 'name', class: 'efy_trans_filter'}],
+                             ['label', {for: 'text', efy_lang: 'name', class: 'efy_card_filter'}],
      ['input', {type: 'text', id: 'text', name: 'text'}]
                          ]],
      ['div', {class: 'input-group'}, [
-        ['label', {for: 'date', efy_lang: 'date', class: 'efy_trans_filter'}],
+        ['label', {for: 'date', efy_lang: 'date', class: 'efy_card_filter'}],
         ['input', {type: 'date', id: 'date', name: 'date', value: date_today}]
      ]],
      ['div', {class: 'input-group time'}, [
-         ['label', {efy_lang: 'timer', class: 'efy_trans_filter'}],
+         ['label', {efy_lang: 'timer', class: 'efy_card_filter'}],
      ['input', {type: 'number', value: '00', step: 'any', min: '0', max: '24', class: 'hour', id: 'add_hour'}],
      ['label', ':'],
      ['input', {type: 'number', value: '00', step: 'any', min: '0', max: '60', class: 'minute', id: 'add_minute'}],
@@ -212,32 +212,32 @@ $add('div', {class: 'modal-overlay'}, [
          ]]
      ]],
      ['div', {class: 'input-group'}, [
-        ['label', {for: 'price', efy_lang: 'price', class: 'efy_trans_filter'}],
+        ['label', {for: 'price', efy_lang: 'price', class: 'efy_card_filter'}],
         ['input', {type: 'text', id: 'price', name: 'price'}]
      ]],
      ['div', {class: 'input-group'}, [
-        ['label', {for: 'quantity', efy_lang: 'quantity', class: 'efy_trans_filter'}],
+        ['label', {for: 'quantity', efy_lang: 'quantity', class: 'efy_card_filter'}],
         ['input', {type: 'text', id: 'quantity', name: 'quantity'}]
      ]],
      ['div', {class: 'input-group'}, [
-        ['label', {for: 'email', efy_lang: 'email', class: 'efy_trans_filter'}],
+        ['label', {for: 'email', efy_lang: 'email', class: 'efy_card_filter'}],
         ['input', {type: 'text', id: 'email', name: 'email', autocomplete: 'off'}]
      ]],
      ['div', {class: 'input-group'}, [
-        ['label', {for: 'phone', efy_lang: 'phone', class: 'efy_trans_filter'}],
+        ['label', {for: 'phone', efy_lang: 'phone', class: 'efy_card_filter'}],
         ['input', {type: 'text', id: 'phone', name: 'phone', autocomplete: 'off'}]
      ]],
      ['div', {class: 'input-group'}, [
-        ['label', {for: 'birthday', efy_lang: 'birthday', class: 'efy_trans_filter'}],
+        ['label', {for: 'birthday', efy_lang: 'birthday', class: 'efy_card_filter'}],
         ['input', {type: 'text', id: 'birthday', name: 'birthday'}]
      ]],
      ['div', {class: 'input-group efy_flex'}, [
-        ['button', {efy_lang: 'scores', id: 'lt_add_scores', type: 'button', class: 'efy_trans_filter', style: 'margin: 0'}],
-        ['button', {efy_lang: 'links', id: 'lt_add_links', type: 'button', class: 'efy_trans_filter', style: 'margin: 0'}]
+        ['button', {efy_lang: 'scores', id: 'lt_add_scores', type: 'button', class: 'efy_card_filter', style: 'margin: 0'}],
+        ['button', {efy_lang: 'links', id: 'lt_add_links', type: 'button', class: 'efy_card_filter', style: 'margin: 0'}]
      ]],
      ]],
-     ['div', {class: 'lt_form_scores efy_trans_filter_off_all'}],
-     ['div', {class: 'lt_form_links efy_trans_filter_off_all'}],
+     ['div', {class: 'lt_form_scores efy_card_filter_off_all'}],
+     ['div', {class: 'lt_form_links efy_card_filter_off_all'}],
      ['textarea', {id: 'info', name: 'info', placeholder: 'Info'}]
                  ]]
              ]]
@@ -246,7 +246,7 @@ $add('div', {class: 'modal-overlay'}, [
     ]]
 ]);
 
-$add('div', {class: 'calendar efy_trans_filter efy_shadow_trans efy-glass'});
+$add('div', {class: 'calendar efy_card_filter efy_shadow_card efy-glass'});
 
 let pn_sections = [];
 
@@ -254,9 +254,9 @@ const add_group_fn =(name) =>{ const id = 'pn_' + name;
     pn_sections.push(['div', {id: id, class: 'lt_group'}, [
         ['div', {class: 'header'}, [
             ['h5', {class: 'title'}, name],
-            ['mark', {class: 'efy_trans_filter efy_shadow_trans'}, '0'],
+            ['mark', {class: 'efy_card_filter efy_shadow_card'}, '0'],
             ['mark', {
-                class: 'efy_trans_filter pn_full efy_shadow_trans',
+                class: 'efy_card_filter pn_full efy_shadow_card',
                 efy_toggle: `[pn_planner] > div:not(#${id})`, title: 'Full Size'
             }, [['i', {efy_icon: 'fullscreen'}]]]
         ]],
@@ -295,14 +295,14 @@ const App_goals ={
                 date = goal.date.split('/');
                 month = month_name[date[1]];
                 date0 = date[0];
-                date_div = ['div', {class: 'date efy_shadow_trans'}, month +', '+ date0];
+                date_div = ['div', {class: 'date efy_shadow_card'}, month +', '+ date0];
                 pn_date = {pn_date: goal.date}
             }
             if (goal.info){
-                info_div = ['textarea', {class: 'info efy_trans_filter_off efy_shadow_trans_off', readonly: ''}, goal.info];
+                info_div = ['textarea', {class: 'info efy_card_filter_off efy_shadow_card_off', readonly: ''}, goal.info];
             }
             if (goal.time){
-                timer_div = ['div', {efy_timer: `${now},${goal.time},reverse`, class: 'efy_trans_filter_off'}];
+                timer_div = ['div', {efy_timer: `${now},${goal.time},reverse`, class: 'efy_card_filter_off'}];
                 time_div = ['div', {class: 'time'}, $sec_time(goal.time)];
             }
             if (goal.scores){ let scores = [];
@@ -311,7 +311,7 @@ const App_goals ={
                         ['div', {class: 'top'}, [
                             ['p', {class: 'name'}, score[0]],
                             ['div', {class: 'buttons'}, [
-                                ['div', {class: 'numbers efy_trans_filter_off_all'}, [
+                                ['div', {class: 'numbers efy_card_filter_off_all'}, [
                                     ['input', {type: 'number', class: 'min', value: score[1]}],
                                     ['p', '/'],
                                     ['input', {type: 'number', class: 'max', value: score[2]}]
@@ -324,13 +324,13 @@ const App_goals ={
                 })
                 scores_div = ['div', {class: 'scores'}, scores];
             }
-            if (goal.email){ email_div = ['p', {class: 'email efy_trans_filter_off efy_shadow_trans_off'}, [
+            if (goal.email){ email_div = ['p', {class: 'email efy_card_filter_off efy_shadow_card_off'}, [
                 ['p', 'Email'], ['a', {href: `mailto:${goal.email}`, class: 'email_value'}, goal.email]
             ]]};
-            if (goal.phone){ phone_div = ['p', {class: 'phone efy_trans_filter_off efy_shadow_trans_off'}, [
+            if (goal.phone){ phone_div = ['p', {class: 'phone efy_card_filter_off efy_shadow_card_off'}, [
                 ['p', 'Phone'], ['a', {href: `tel:${goal.phone}`, class: 'phone_value'}, goal.phone]
             ]]};
-            if (goal.birthday){ birthday_div = ['p', {class: 'birthday efy_trans_filter_off efy_shadow_trans_off'}, [
+            if (goal.birthday){ birthday_div = ['p', {class: 'birthday efy_card_filter_off efy_shadow_card_off'}, [
                 ['p', 'Birthday'], ['p', {class: 'birthday_value'}, goal.birthday]
             ]]};
 
@@ -344,24 +344,24 @@ const App_goals ={
                         ['input', {type: 'text', placeholder: 'URL', value: x[1]}]
                     ]]);
                 });
-                links_div = ['div', {class: 'links efy_trans_filter_off_all efy_shadow_trans_off'}, children];
+                links_div = ['div', {class: 'links efy_card_filter_off_all efy_shadow_card_off'}, children];
             };
 
-            if (goal.price){ price_div = ['p', {class: 'price efy_trans_filter_off efy_shadow_trans_off'}, [
+            if (goal.price){ price_div = ['p', {class: 'price efy_card_filter_off efy_shadow_card_off'}, [
                 ['p', 'Price'],
                 ['input', {
                     type: 'number', step: '0.01', min: '-999999999', max: '999999999',
                     class: 'price_value', value: goal.price
                 }]
             ]]};
-            if (goal.quantity){ quantity_div = ['p', {class: 'quantity efy_trans_filter_off efy_shadow_trans_off'}, [
+            if (goal.quantity){ quantity_div = ['p', {class: 'quantity efy_card_filter_off efy_shadow_card_off'}, [
                 ['p', 'Quantity'],
                 ['input', {
                     type: 'number', step: '0.01', min: '0', max: '999999999',
                     class: 'quantity_value', value: goal.quantity
                 }]
             ]]}
-            if (goal.quantity > 1){ total_price_div = ['p', {class: 'total_price efy_trans_filter_off efy_shadow_trans_off'}, [
+            if (goal.quantity > 1){ total_price_div = ['p', {class: 'total_price efy_card_filter_off efy_shadow_card_off'}, [
                 ['p', 'Total Price'],
                 ['input', {
                     type: 'number', step: '0.01', min: '-999999999', max: '999999999',
@@ -411,7 +411,7 @@ const App_goals ={
                 );
             });
 
-            $add('div', {efy_searchable: '', class: 'card efy_trans_filter efy-glass', 'data-value': index, id: now, ...pn_date, pn_done: goal.done, lt_group: pn_group}, [
+            $add('div', {efy_searchable: '', class: 'card efy_card_filter efy-glass', 'data-value': index, id: now, ...pn_date, pn_done: goal.done, lt_group: pn_group}, [
                 ['label', {class: 'summary', for: `lt_toggle_${now}`}, [
                     ['input', {type: 'checkbox', id: `lt_toggle_${now}`, name: 'lt_cards'}],
                     ['button', {pn_priority: '', efy_toggle: `#${now} .priority_picker`}],

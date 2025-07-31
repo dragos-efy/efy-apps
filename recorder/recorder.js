@@ -1,9 +1,9 @@
 $add('div', {rc_app: ''}, [
   ['div', {'class': 'video_grid'}, [
-	['video', {autoplay: '', class: 'camera efy_trans_filter efy_shadow_trans'}],
-	['video', {autoplay: '', class: 'screen_sharing efy_trans_filter efy_shadow_trans efy_hide'}]
+	['video', {autoplay: '', class: 'camera efy_card_filter efy_shadow_card'}],
+	['video', {autoplay: '', class: 'screen_sharing efy_card_filter efy_shadow_card efy_hide'}]
   ]],
-  ['div', {rc_bar: '', class: 'efy_trans_filter efy_shadow_trans efy-glass'}, [
+  ['div', {rc_bar: '', class: 'efy_card_filter efy_shadow_card efy-glass'}, [
     ['div', {class: 'efy_flex', efy_select: 'margin0'}, [
       ['select', {id: 'mediaSelect', title: 'Media Type'}, [
           ['option', {value: 'video'}, 'Video'],

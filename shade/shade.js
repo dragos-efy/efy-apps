@@ -18,7 +18,7 @@ if (efy_sd.alpha_textures){
     alpha_textures = {checked: true};
 }
 
-const start = $add('div', {efy_tabs: 'controls', id: 'start_container', class: 'efy_trans_filter', efy_card: ''}, [
+const start = $add('div', {efy_tabs: 'controls', id: 'start_container', class: 'efy_card_filter', efy_card: ''}, [
     ['h1', 'SHADE · DEMO'],
     ['hr'],
     ['div', {class: 'rules'}, [
@@ -61,7 +61,7 @@ const start = $add('div', {efy_tabs: 'controls', id: 'start_container', class: '
     ['hr'],
     ['div', {efy_select: ''}, [
         ['input', {type: 'checkbox', id: 'shade_alpha_textures', ...alpha_textures}],
-        ['label', {for: 'shade_alpha_textures', class: 'efy_trans_filter_off'}, 'Alpha Textures']
+        ['label', {for: 'shade_alpha_textures', class: 'efy_card_filter_off'}, 'Alpha Textures']
     ]],
     ['hr'],
     ['div', {class: 'efy_flex'}, [
@@ -104,7 +104,7 @@ try { $all('#gameContainer, .status, .animation, .shade_level').forEach(x => x.r
 $add('div', {id: 'gameContainer', class: 'gamepad_scroll'}, [
     ['div', {id: 'player'}]
 ]);
-$add('div', {class: 'status efy_trans_filter'}, [
+$add('div', {class: 'status efy_card_filter'}, [
     ['div', {class: 'efy_flex'}, [ ['i', {efy_icon: 'heart'}], ['div', {id: 'lives'}, '3'] ]],
     ['div', {class: 'efy_flex'}, [ ['i', {efy_icon: 'shade_score'}], ['div', {id: 'score'}, '0'] ]]
 ]);
@@ -114,11 +114,11 @@ const container = $('#gameContainer'), player = $('#player'),
 scoreElement = $('#score'), livesElement = $('#lives'), solids = $all('.solid');
 
 function level_add(map){
-    const glass = (efy.distortion && !efy_sd.alpha_textures) ? ' efy-glass' : '';
+    const glass = (efy.svg_filters && !efy_sd.alpha_textures) ? ' efy-glass' : '';
     const class_name_map = {
-        solid: 'solid efy_trans_filter' + glass,
-        solid2: 'solid solid2 efy_trans_filter' + glass,
-        solid_roof: 'solid solid_roof efy_trans_filter',
+        solid: 'solid efy_card_filter' + glass,
+        solid2: 'solid solid2 efy_card_filter' + glass,
+        solid_roof: 'solid solid_roof efy_card_filter',
         plant1: 'plant1',
         lights: 'light',
         lamps: 'lamp',

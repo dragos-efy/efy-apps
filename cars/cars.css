@@ -26,9 +26,10 @@ body:has(.carGame) {padding: 0!important}
     margin-left: 195rem;
 }
 .gameArea {width: 400rem; height: var(---100vh); background: var(---card); margin: auto; position: relative; overflow: hidden}
-.score {position: absolute; top: var(---gap); left: var(---gap); background: var(---card); border-radius: var(---radius);
+.score {position: absolute!important; top: var(---gap); left: var(---gap); background: var(---card); border-radius: var(---radius);
     padding: var(---padding); border: var(---border);
 }
+:is(.gameArea, .score) {}
 .startScreen{
     position: absolute;
     background: var(---bg);

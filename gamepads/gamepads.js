@@ -116,21 +116,21 @@ let contents = [], tabs = [];
 ['Gamepads', 'Mappings'].map(name =>{
     const tab = name.toLowerCase(), details = (tab === 'html') ? null : {efy_details: ''};
     tabs.push(
-        ['input', {id: `dc_left_${tab}`, type: 'radio', efy_tab: tab, name: 'dc_left'}],
-        ['label', {for: `dc_left_${tab}`, class: 'efy_trans_filter_off'}, name]
+        ['input', {id: `gp_left_${tab}`, type: 'radio', efy_tab: tab, name: 'gp_left'}],
+        ['label', {for: `gp_left_${tab}`, class: 'efy_card_filter_off'}, name]
     );
-    contents.push(['div', {efy_content: tab, class: 'gamepad_scroll efy_trans_filter_off', ...details}]);
+    contents.push(['div', {efy_content: tab, class: 'gamepad_scroll efy_card_filter_off', ...details}]);
 });
 
-$add('div', {id: 'efy_docs', efy_search: 'details, #efy_docs [efy_searchable]'}, [
-    ['div', {efy_tabs: 'dc', class: 'dc_nav efy_shadow_trans_off'}, [
-        ['div', {class: 'dc_nav_div'}, [
-            ['div', {class: 'dc_left efy_button_text_off'}, tabs],
-            ['div', {class: 'dc_left efy_button_text_off'}, [
-                ['div', {class: 'dc_right'}, [
-                    ['label', {class: 'dc_search'}, [
+$add('div', {id: 'efy_gamepads_app', efy_search: 'details, #efy_gamepads_app [efy_searchable]'}, [
+    ['div', {efy_tabs: 'gp', class: 'gp_nav efy_shadow_card_off'}, [
+        ['div', {class: 'gp_nav_div'}, [
+            ['div', {class: 'gp_left efy_button_text_off'}, tabs],
+            ['div', {class: 'gp_left efy_button_text_off'}, [
+                ['div', {class: 'gp_right'}, [
+                    ['label', {class: 'gp_search'}, [
                         ['i', {efy_icon: 'search'}],
-                        ['input', {type: 'text', efy_search_input: '', placeholder: 'Search...', name: 'dc_search_input'}]
+                        ['input', {type: 'text', efy_search_input: '', placeholder: 'Search...', name: 'gp_search_input'}]
                     ]],
                     ['button', {efy_sidebar_btn: '', class: 'efy_square_btn', title: 'Menu'}, [['i', {efy_icon: 'menu'}]]]
                 ]]
@@ -192,9 +192,9 @@ const gamepads_selector = $('[efy_content=gamepads]'), gamepads_by_index = {};
 function add_gamepad(gamepad){
   const map = $add('div', {class: 'map', efy_card: ''}, [
     ['div', {class: 'info'}, [
-      ['div', {class: 'efy_shadow_trans'}, [['div', {class: 'index'}], ['div', {class: 'id'}]]],
-      ['div', {class: 'efy_shadow_trans'}, [['div', {class: 'label'}, 'connected:'], ['span', {class: 'connected'}]]],
-      ['div', {class: 'efy_shadow_trans'}, [['div', {class: 'label'}, 'mapping:'], ['span', {class: 'mapping'}]]]
+      ['div', {class: 'efy_shadow_card'}, [['div', {class: 'index'}], ['div', {class: 'id'}]]],
+      ['div', {class: 'efy_shadow_card'}, [['div', {class: 'label'}, 'connected:'], ['span', {class: 'connected'}]]],
+      ['div', {class: 'efy_shadow_card'}, [['div', {class: 'label'}, 'mapping:'], ['span', {class: 'mapping'}]]]
     ]],
     ['div', {class: 'inputs'}, [['div', {class: 'axes'}], ['div', {class: 'buttons'}]]]
   ], gamepads_selector);
@@ -202,7 +202,7 @@ function add_gamepad(gamepad){
   const axes = [], buttons = [], axes_selector = $$(map, '.axes'), buttons_selector = $$(map, '.buttons');
 
   for (let ndx = 0; ndx < gamepad.axes.length; ndx += 2){
-    const div = $add('div', {class: 'circle efy_shadow_trans'}, [
+    const div = $add('div', {class: 'circle efy_shadow_card'}, [
       ['div', {class: 'grid'}, [
         ['div', {class: 'horizontal'}], ['div', {class: 'vertical'}], ['div', {class: 'axis'}],
       ]],
@@ -213,7 +213,7 @@ function add_gamepad(gamepad){
   }
 
   for (let ndx = 0; ndx < gamepad.buttons.length; ++ndx){
-    const div = $add('div', {class: 'button efy_shadow_trans'}, [
+    const div = $add('div', {class: 'button efy_shadow_card'}, [
       ['p', {class: 'index'}, '0'], ['hr'], ['p', {class: 'value'}, '0.00']
     ], buttons_selector);
 

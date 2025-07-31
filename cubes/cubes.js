@@ -7,7 +7,7 @@ $add('div', {class: 'view_3d'}, [
 ]);
 
 for (let i = 0; i < 6; i++){ ['', '.trans', '.card'].map(type =>{
-  $add('div', {class: 'face efy_trans_filter'}, [], $(`.cube${type}`));
+  $add('div', {class: 'face efy_card_filter'}, [], $(`.cube${type}`));
 })}
 
 let drag = false, x0 = null, y0 = null;

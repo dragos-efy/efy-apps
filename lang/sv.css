@@ -32,7 +32,6 @@
 --notes: Notes;
 --timer: Timer;
 --links: Links;
---docs: Docs;
 --launcher_mode: Launcher Mode;
 --unreleased: Unreleased;
 --center: Center;
@@ -70,4 +69,5 @@
 --nodes: Nodes;
 --scores: Scores;
 --calendar: Calendar;
+--learn: Learn;
 }

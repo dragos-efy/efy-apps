@@ -14,12 +14,7 @@
   padding: var(---gap-x);
   gap: var(---gap-x);
 }
-.dt-dc-container {
-  display: flex;
-  align-items: center;
-  place-content: center;
-  gap: var(---gap-x);
-}
+
 .dt-default-colors {
   position: relative;
   border-radius: 50%;

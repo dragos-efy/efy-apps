@@ -1,6 +1,6 @@
 [efy_theme="blue round dark"] [efy_preview] {
----scheme: light;
----mode: light,solid;
+---scheme: dark;
+---mode: dark,solid;
 ---bg: oklch(0 0 0);
 ---card: oklch(1 0 0 / .07);
 ---color: linear-gradient(var(---color_angle), oklch(.55 .3 260), oklch(.55 .3 260));

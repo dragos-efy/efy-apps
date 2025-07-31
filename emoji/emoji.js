@@ -36,7 +36,7 @@ const tabs = $('[efy_tabs=emoji]'); tabs_nav = [$('[efy_tabs=emoji] .efy_tabs .l
 Object.keys(emoji).map((key, i) =>{ const id = `efy_emoji${i}`;
     $add('input', {efy_tab: id, id: id, name: 'efy_emoji', type: 'radio'}, [], ...tabs_nav);
     $add('label', {for: id, class: 'efy-glass'}, key, ...tabs_nav);
-    const content = $add('div', {efy_content: id, class: 'emoji efy_trans_filter_off'}, [], $('[efy_tabs=emoji] #container'));
+    const content = $add('div', {efy_content: id, class: 'emoji efy_card_filter_off'}, [], $('[efy_tabs=emoji] #container'));
     emoji[key].split(';').map(e =>{ const em = e.split(',');
         $add('div', {title: em[1]}, em[0], content);
     })

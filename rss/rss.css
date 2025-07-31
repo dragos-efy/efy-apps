@@ -1,0 +1,13 @@
+body {padding: var(---gap)}
+#feed-controls {display: flex; flex-wrap: wrap; gap: var(---gap-x); margin-bottom: var(---gap);
+    * {margin: 0}
+    > * {width: calc(25% - var(---gap) / 2)}
+}
+#feed-list {display: flex; flex-wrap: wrap; gap: var(---gap-x); margin-bottom: var(---gap)}
+.feed-item {background: var(---card); padding: 10rem; border-radius: var(---radius); cursor: pointer}
+#posts {display: grid; gap: var(---gap); grid-template-columns: 1fr 1fr 1fr;}
+.post {
+    display: flex; flex-direction: column; gap: var(---gap);
+    img { max-width: 100%; height: auto; }
+    .post-actions { display: flex; justify-content: space-between; margin-top: var(---gap-x); }
+}

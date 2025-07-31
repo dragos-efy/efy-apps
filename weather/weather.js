@@ -12,7 +12,7 @@ let locations = [];
 efy_wt.locations.map(name =>{
     locations.push(
         ['input', {id: name, type: 'radio', name: 'wt_suggestions'}],
-        ['label', {for: name, class: 'efy_shadow_trans'}, name]
+        ['label', {for: name, class: 'efy_shadow_card'}, name]
     );
 });
 
@@ -36,7 +36,7 @@ $add('div', {class: 'nav'}, [
         ]],
         ['div', {class: 'locations'}, locations]
     ]],
-    ['div', {class: 'api_from efy-glass efy_trans_filter'}, [
+    ['div', {class: 'api_from efy-glass efy_card_filter'}, [
         ['p', 'Data from'], ['a', {href: 'https://openweathermap.org'}, 'OpenWeather'],
     ]]
 ]);
@@ -104,7 +104,7 @@ $event(suggestions, 'click', (event)=>{ const target = event.target;
         const name = search.value, locations = $('.locations');
         efy_wt.locations.push(search.value); $wt_save();
         $add('input', {id: name, type: 'radio', name: 'wt_suggestions'}, [], locations);
-        $add('label', {for: name, class: 'efy_shadow_trans'}, name, locations);
+        $add('label', {for: name, class: 'efy_shadow_card'}, name, locations);
     }
 });
 $event(search_btn, 'click', send_weather_request);
@@ -166,7 +166,7 @@ time_convert = (unix, timezone = 0, format)=>{
     normalized.forEach((a,i)=>{
         const day = data.list[i], dt = day.dt, hour = time_convert(dt, timezone);
         if ((i === 0) || (hour === '00:00') || (hour === '01:00') || (hour === '02:00')){
-            day_container = $add('div', {class: 'day_container efy-glass efy_trans_filter efy_shadow_trans'}, [
+            day_container = $add('div', {class: 'day_container efy-glass efy_card_filter efy_shadow_card'}, [
                 ['p', time_convert(dt, timezone, 'day')]
             ], graph); day_nr++;
         }

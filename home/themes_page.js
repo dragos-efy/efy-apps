@@ -14,7 +14,7 @@ theme_names = [
 const variables = 'theme scheme mode color color_trans color_text color_button text radius radius-x radius-xx border bg color_bg bg card gap text-shadow text-stroke'.split(' ');
 
 theme_names.map(x =>{
-    app_themes.push(['div', {efy_theme: x.replaceAll('_', ' '), class: 'efy_trans_filter efy-glass', efy_searchable: ''}, [
+    app_themes.push(['div', {efy_theme: x.replaceAll('_', ' '), class: 'efy_card_filter efy-glass', efy_searchable: x}, [
         ['p', {class: 'title'}, 'Current Theme'],
         ['div',  {efy_preview: ''},[
             ['button', {tabindex: '-1'}, '123'],
@@ -29,9 +29,9 @@ theme_names.map(x =>{
             ['progress', {value: 1, max: 2}]
         ]],
         ['div', {class: 'actions'}, [
-            ['button', {class: 'efy_square_btn try', title: 'Try'}, [['i', {efy_icon: 'play'}]]],
-            ['button', {class: 'efy_square_btn disabled', title: 'Apply', tabindex: '-1'}, [['i', {efy_icon: 'check'}]]],
-            ['button', {class: 'efy_square_btn disabled', title: 'Save', tabindex: '-1'}, [['i', {efy_icon: 'arrow_down'}]]],
+            ['button', {class: 'efy_square_btn apply', title: 'Apply'}, [['i', {efy_icon: 'check'}]]],
+            ['button', {class: 'efy_square_btn download', title: 'Download'}, [['i', {efy_icon: 'arrow_down'}]]],
+            ['button', {class: 'efy_square_btn copy', title: 'Copy'}, [['i', {efy_icon: 'copy'}]]],
             ['button', {class: 'efy_square_btn disabled', title: 'Favorite', tabindex: '-1'}, [['i', {efy_icon: 'heart'}]]],
             ['button', {class: 'efy_square_btn disabled', title: 'Copy URL', tabindex: '-1'}, [['i', {efy_icon: 'globe'}]]]
         ]]
@@ -79,25 +79,79 @@ $ready('[efy_theme] [efy_preview]', (x)=>{
     $$(x.parentElement, '.title').textContent = x.parentElement.getAttribute('efy_theme');
 });
 
-$event($body, 'click', ()=>{ const x = event.target;
-    if (x.matches('[efy_theme] [efy_preview]')){
+const actions_fn =(x, action = 'apply')=>{
+        const theme_name = $$(x.closest('[efy_theme]'), '.title').textContent;
+        let code = {};
+
         themes_style.textContent = '';
         variables.map(y =>{
             const z = `---${y}`;
             style[z] = $css_prop(z, false, x) + '!important';
+            code[y] = $css_prop(`---${y}`, false, x);
+            if (code[y] === '') delete code[y];
         });
-        const mode = (style['---mode'].includes('trans')) ? '' : `.efy_3d_bg {background: ${style['---bg']}}`;
-        console.log(style['---mode'].includes('trans'));
-        themes_style.textContent = `
-            :root:not([efy_theme]) {${$string(style)}}
-            ${mode}
-        `;
-    }
+        if (action === 'apply') {
+            const mode = (style['---mode'].includes('trans')) ? '' : `.efy_3d_bg {background: ${style['---bg']}}`;
+            themes_style.textContent = `
+                :root:not([efy_theme]) {${$string(style)}}
+                ${mode}
+            `;
+        }
+
+        if (!code.modules) code.modules = ['efy_quick', 'efy_filters', 'efy_backup', 'efy_accessibility', 'efy_languages'];
+        if (code.bg) {
+            code.bg = code.bg.replace('oklch(', '').replace(')', '');
+            code.bg_status = true;
+        }
+        if (code.card) {
+            let card = code.card.replace('oklch(', '').replace(')', '');
+            if (card.split(' ').length >= 3) card = card.split(' ').slice(0, 3).join(' ');
+            code.card = card;
+            code.cardcol_status = true;
+        }
+        if (code.text) {
+            code.text = code.text.replace('oklch(', '').replace(')', '');
+            code.text_status = true;
+        }
+        if (code.color) {
+            let colors = code.color.split('oklch('); colors.shift();
+            colors.map((x,i)=>{
+                colors[i] = `${i + 1} ${x.split(')')[0].replaceAll(')', '')}`;
+                colors[i] = (colors[i].includes(' / ')) ? colors[i].replace(' /') : colors[i] + ' 1';
+            });
+            code.colors = colors;
+            delete code.color; delete code.color_trans;
+        }
+        if (action === 'apply'){
+            efy = code;
+            $save(); $notify('short', 'Theme Applied', theme_name, null, 'heart');
+        }
+        else if (action === 'download'){
+            const blob = new Blob([JSON.stringify(code, null, 2)], { type: 'application/json' });
+            const link = $add('a', {href: URL.createObjectURL(blob), download: 'efy_theme_' + theme_name.replaceAll(' ', '_')});
+            link.click(); link.remove(); URL.revokeObjectURL(link.href);
+        }
+        else if (action === 'copy'){
+            const result = JSON.stringify(code, null, 2);
+            navigator.clipboard.writeText(result);
+            if (efy.notify_clipboard != false) $notify('short', 'Copied to clipboard', result);
+        }
+};
+
+$event($body, 'click', ()=>{
+    const x = event.target;
     if (x.matches('[efy_theme="Default"] [efy_preview]')){
         themes_style.textContent = '';
     }
-    if (x.matches('[efy_theme] .try')){
-        $$(x.closest('[efy_theme]'), '[efy_preview]').click();
+    else if (x.matches('[efy_theme] [efy_preview]')){ actions_fn(x)}
+    if (x.matches('[efy_theme] .apply')){
+        actions_fn($$(x.closest('[efy_theme]'), '[efy_preview]'));
+    }
+    if (x.matches('[efy_theme] .download')){
+        actions_fn($$(x.closest('[efy_theme]'), '[efy_preview]'), 'download');
+    }
+    if (x.matches('[efy_theme] .copy')){
+        actions_fn($$(x.closest('[efy_theme]'), '[efy_preview]'), 'copy');
     }
 });
 

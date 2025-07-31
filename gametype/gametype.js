@@ -23,7 +23,7 @@ directions2 = ['up', 'right', 'left', 'down'];
 buttonData.forEach((group, i) => {
     const wing = $add('div', {class: 'gk-wing'}, [], gkHost);
     const sector0 = $add('div', {class: 'gk-sector'}, [
-        ['div', {character_group: `${directions[i]}`, class: 'efy_trans_filter'}]
+        ['div', {character_group: `${directions[i]}`, class: 'efy_card_filter'}]
     ], wing);
 
     const sector = $(`[character_group=${directions[i]}]`);
@@ -42,7 +42,7 @@ buttonData.forEach((group, i) => {
 //     });
 // });
 
-$add('div', {class: 'help-text efy_trans_filter'}, [
+$add('div', {class: 'help-text efy_card_filter'}, [
     ['div', [['code', 'Left Stick'], ['p', '- Select Group']]],
     ['div', [['code', 'Right Stick'], ['p', '- Select Character']]]
 ], gkHost);

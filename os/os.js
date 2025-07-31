@@ -5,7 +5,7 @@ $ready('#efy_sbtheme', ()=>{
 
 let apps_dom = [];
 Object.keys(apps_list).forEach(key =>{ apps_dom.push(
-  ['a', {efy_card: `./index.html${apps_list[key][0]}`, class: 'efy_trans_filter_off'}, [
+  ['a', {efy_card: `./index.html${apps_list[key][0]}`, class: 'efy_card_filter_off'}, [
     ['i', {efy_icon: apps_list[key][1], class: 'efy_color'}],
     ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, key]]]
   ]]
@@ -16,25 +16,25 @@ $add('div', {os_app: ''}, [
   /*Add App Form*/ ['div', {efy_content: 'links', class: 'pn_links_form efy_hide_i', efy_card: ''}, [
     ['form', {action: '#'}, [ ['div', {class: 'modal_grid'}, [ ['div', {class: 'grid'}, [
       ['div', {class: 'input-group'}, [
-        ['label', {for: 'text', efy_lang: 'name', class: 'efy_trans_filter'}],
+        ['label', {for: 'text', efy_lang: 'name', class: 'efy_card_filter'}],
         ['input', {type: 'text', id: 'text', name: 'text'}]
       ]],
       ['div', {class: 'input-group'}, [
-        ['label', {for: 'url', class: 'efy_trans_filter'}, 'URL'],
+        ['label', {for: 'url', class: 'efy_card_filter'}, 'URL'],
         ['input', {type: 'url', id: 'url', name: 'url'}]
       ]],
       ['div', {class: 'input-group'}, [
-        ['label', {for: 'category', efy_lang: 'tags', class: 'efy_trans_filter'}],
+        ['label', {for: 'category', efy_lang: 'tags', class: 'efy_card_filter'}],
         ['input', {type: 'text', id: 'category', name: 'category', placeholder: 'coming soon...', disabled: ''}]
     ]]]]]]]]]],
-    /*Apps*/ ['div', {os_drawer: '', class: 'efy_hide_i efy_trans_filter', efy_card: ''}, [ ['div', {class: 'apps'}, [
+    /*Apps*/ ['div', {os_drawer: '', class: 'efy_hide_i efy_card_filter', efy_card: ''}, [ ['div', {class: 'apps'}, [
       ...apps_dom,
-      ['a', {efy_card: '', class: 'add_app soon efy_trans_filter_off'}, [
+      ['a', {efy_card: '', class: 'add_app soon efy_card_filter_off'}, [
         ['i', {efy_icon: 'plus', class: 'efy_color_trans'}],
         ['div', {class: 'column_flex'}, [ ['div', {class: 'name'}, 'Add App']]]
       ]]
     ]]]],
-  /*Dock*/ ['div', {os_bar: '', class: 'efy_trans_filter efy_shadow_trans efy-glass'}, [
+  /*Dock*/ ['div', {os_bar: '', class: 'efy_card_filter efy_shadow_card efy-glass'}, [
     ['div', {class: 'os_buttons'}, [
       ['div', [ ['div', {efy_clock: ''}] ]],
     ]],
@@ -86,7 +86,7 @@ $add('div', {os_app: ''}, [
 $all('[os_drawer] [efy_card]').forEach(a =>{ let b = $$(a, '.name').textContent.replaceAll(' ', '_').toLowerCase(), c = a.getAttribute('efy_card');  if (a.classList[0] != 'add_app'){ a.setAttribute('efy_toggle', '[efy_frames], [os_drawer]')}; a.setAttribute('role', 'button');
     $event(a, 'click', ()=>{ if (c !== ''){ if (efy.audio_status == 'on'){ $audio_play(efy_audio.wind)}
       let index = Number($all('[efy_frame]').length);
-      $add('div', {efy_frame: b, 'data-value': index, style: `order: ${index}`, class: 'efy_app efy_trans_filter efy-glass'}, [
+      $add('div', {efy_frame: b, 'data-value': index, style: `order: ${index}`, class: 'efy_app efy_card_filter efy-glass'}, [
         ['iframe', {src: c, allowfullscreen: 'true', loading: 'lazy', sandbox: 'allow-scripts allow-same-origin'}],
       ], $('[efy_frames]'))
 } else { $notify('short', 'Not available yet!', 'It should be released soon...')}})});

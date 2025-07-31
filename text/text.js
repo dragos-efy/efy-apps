@@ -110,7 +110,7 @@ $add('div', {efy_tabs: 'text', id: 'tabs'}, [
                 $add('label', {for: tabId}, fileToLoad.name, $('#tabs .buttons'));
 
                 $add('div', {efy_content: tabId}, [
-                    ['pre', {contentEditable: 'true', class: 'tt_highlight efy_trans_filter_off', spellcheck: 'false'}, textFromFileLoaded],
+                    ['pre', {contentEditable: 'true', class: 'tt_highlight efy_card_filter_off', spellcheck: 'false'}, textFromFileLoaded],
                     ['div', {class: 'tt_nr', id: `tt_nr_${tabId}`}]
                 ], $('#tabs .content'));
                 tt_highlight.reset();

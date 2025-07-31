@@ -1,5 +1,6 @@
 [efy_theme="bw contrast light"] [efy_preview] {
----scheme: dark;
+---scheme: light;
+---mode: light,solid;
 ---bg: oklch(1 0 0);
 ---card: oklch(1 0 0);
 ---color: linear-gradient(var(---color_angle), oklch(0 0 0), oklch(0 0 0));

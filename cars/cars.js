@@ -2,7 +2,7 @@ $ready('#efy_sbtheme', ()=>{
 
 /*Temporary Fix*/ try { if (gamepad_maps){}} catch { gamepad_maps = {ok: ['', ''], yes: ['', '']} }
 
-const start = $add('div', {efy_tabs: 'controls', id: 'start_container', class: 'efy_trans_filter', efy_card: ''}, [
+const start = $add('div', {efy_tabs: 'controls', id: 'start_container', class: 'efy_card_filter', efy_card: ''}, [
     ['h1', 'CARS · DEMO'],
     ['hr'],
     ['h2', {class: 'game_over efy_hide_i'}],
@@ -66,11 +66,11 @@ $event($$(start, '#start'), 'click', ()=>{
     $('.game_over').classList.add('efy_hide_i');
 
 const game_container = $add('div', {class: 'carGame'}, [
-    ['div', {class: 'score efy_trans_filter'}, 'Score: 0'],
-    ['div', {class: 'gameArea efy_trans_filter'}]
+    ['div', {class: 'score efy_card_filter efy-glass'}, [['p', 'Score: 0']]],
+    ['div', {class: 'gameArea efy_card_filter efy-glass'}]
 ]);
 
-const score = $('.score'), startScreen = $('#start'), gameArea = $('.gameArea');
+const score = $('.score p'), startScreen = $('#start'), gameArea = $('.gameArea');
 
 let cars_audio = [];
 

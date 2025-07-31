@@ -64,9 +64,15 @@ const apps_list = {
         'alpha chromium offline',
         'firefox safari gamepads keyboard'
     ],
+    Flap: [
+        '#flap', 'square',
+        'Fly & avoid obstacles',
+        'game fun',
+        'alpha offline static'
+    ],
     Fractals: [
         '#fractals', 'group',
-        "Experimental Fractal Generator",
+        "Experimental fractal generator",
         'productivity fun static',
         'alpha chromium offline firefox safari gamepads keyboard',
     ],
@@ -143,6 +149,12 @@ const apps_list = {
         '#recorder', 'circle3',
         'Record audio, your video camera, screen sharing, take pictures, all in one place',
         'audio video image productivity offline',
+        'alpha'
+    ],
+    RSS: [
+        '#rss', 'notify',
+        'See RSS Feed Posts. Experimental Draft, not ready to be used yet!',
+        'productivity',
         'alpha'
     ],
     Shade: [

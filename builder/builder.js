@@ -1,7 +1,7 @@
 $ready('#efy_sbtheme', ()=>{
 
 const select_unit = [
-    ['input', {id: 'style_margin', type: 'number', value: 0, class: 'efy_trans_filter_off'}],
+    ['input', {id: 'style_margin', type: 'number', value: 0, class: 'efy_card_filter_off'}],
     ['select', {value: 'rem'}, [
         ['option', {value: 'rem'}, 'rem'],
         ['option', {value: 'px'}, 'px'],
@@ -13,7 +13,7 @@ const select_unit = [
 ];
 
 $add('div', {id: 'builder'}, [
-    ['div', {id: 'bd_sidebar', class: 'efy_trans_filter'}, [
+    ['div', {id: 'bd_sidebar', class: 'efy_card_filter'}, [
         ['div', {id: 'nav'}, [
             ['button', {efy_sidebar_btn: '', class: 'efy_square_btn efy_color_trans'}, [['i', {efy_icon: 'menu'}]] ],
             ['button', {id: 'search', class: 'efy_square_btn efy_color_trans'}, [['i', {efy_icon: 'search'}]] ],

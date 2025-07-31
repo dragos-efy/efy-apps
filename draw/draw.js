@@ -1,6 +1,6 @@
 $ready('#efy_sbtheme', ()=>{
 
-const start = $add('div', {id: 'start_container', class: 'efy_trans_filter', efy_card: ''}, [
+const start = $add('div', {id: 'start_container', class: 'efy_card_filter', efy_card: ''}, [
     ['h1', 'DRAW · DEMO'],
     ['hr'],
     ['div', {class: 'rules'}, [

@@ -60,13 +60,13 @@
 }
 
 body {height: var(---100vh); overflow: hidden; padding: 0}
-#efy_docs {container: content0 / inline-size}
+#efy_gamepads_app {container: content0 / inline-size}
 
-[efy_tabs=dc] {display:flex; flex-wrap: wrap; justify-content: space-between; gap: 0;
-    :is(.dc_right, .dc_left) {display:flex; gap: var(---gap-x); align-items: center; height: fit-content}
-    :is(.dc_right, .dc_left, .dc_left:last-of-type) *, :is(table, figcaption, input, textarea, select, section, [efy_number]) {margin: 0}
-    .dc_left {flex-wrap: wrap}
-    .dc_right {flex-wrap: nowrap}
+[efy_tabs=gp] {display:flex; flex-wrap: wrap; justify-content: space-between; gap: 0;
+    :is(.gp_right, .gp_left) {display:flex; gap: var(---gap-x); align-items: center; height: fit-content}
+    :is(.gp_right, .gp_left, .gp_left:last-of-type) *, :is(table, figcaption, input, textarea, select, section, [efy_number]) {margin: 0}
+    .gp_left {flex-wrap: wrap}
+    .gp_right {flex-wrap: nowrap}
     [efy_content=efy] {display: grid; gap: var(---gap); min-height: calc(var(---100vh) - var(---gap) * 6); align-items: center; place-content: space-evenly;
         & > div {display: flex; flex-direction: column; place-content: center; align-items: center; text-align: center}
         & h2 {text-transform: uppercase}
@@ -74,21 +74,21 @@ body {height: var(---100vh); overflow: hidden; padding: 0}
             & > h2 {line-height: 1; margin-bottom: 15rem; font-size: 62rem}
             & > p {font-size: 28rem}
         }
-        #dc_buttons.apps {max-width: 1000rem; place-content: center}
+        #gp_buttons.apps {max-width: 1000rem; place-content: center}
     }
     [efy_content=apps]:not([efy_active]) {display: none}
     [efy_color] :is([type=number], [efy_number]) {margin-bottom: 10rem}
 }
 
-.dc_nav, .dc_nav_div {display: flex; justify-content: space-between; width: 100%}
-.dc_nav_div {align-items: start; border-bottom: var(---border); padding: var(---gap-x)}
-.dc_search {width: fit-content; height: fit-content; position: relative;
+.gp_nav, .gp_nav_div {display: flex; justify-content: space-between; width: 100%}
+.gp_nav_div {align-items: start; border-bottom: var(---border); padding: var(---gap-x)}
+.gp_search {width: fit-content; height: fit-content; position: relative;
     & i {position: absolute; z-index: 2; 	width: fit-content; height: 100%; padding: calc(10rem + var(---border_size))}
     & input:focus {width: 170rem; padding-left: 35rem}
     & :not(input:focus, i), & :not(input:focus)::placeholder {color: transparent}
     &:not(&:focus-within) {display: flex; place-content: center}
 }
-.dc_search input, .dc_right [efy_sidebar_btn] {width: var(---size); height: var(---size); cursor: pointer}
+.gp_search input, .gp_right [efy_sidebar_btn] {width: var(---size); height: var(---size); cursor: pointer}
 
 .scroll_btn {position: absolute; pointer-events: none; width: 0; height: 0; opacity: 0}
 [efy_content=mappings]:has(.scroll_btn:focus) {box-shadow: inset 0 0 0 calc(var(---border_size) + 1rem) var(---text-x)!important}

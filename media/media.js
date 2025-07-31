@@ -3,19 +3,19 @@ try { if (localStorage.efy_ms){ efy_ms = JSON.parse(localStorage.efy_ms)} $ms_sa
 
 /*Add menu when ready*/ $ready('#efy_sbtheme', ()=>{
 
-const player_bar = ['div', {ms_bar: '', class: 'efy-glass efy_trans_filter efy_shadow_trans'}, [
+const player_bar = ['div', {ms_bar: '', class: 'efy-glass efy_card_filter efy_shadow_card'}, [
     ['div', {class: 'ms_buttons'}, [
       ['div', {class: 'efy_color efy_shadow_button'}, [
-        ['button', {class: 'prev efy_trans_filter_off efy_shadow_button_off', title: 'Previous'}, [ ['i', {efy_icon: 'chevron'}] ]],
-        ['button', {class: 'player efy_trans_filter_off efy_shadow_button_off', title: 'Play or Pause'}, [ ['i', {efy_icon: 'play', class: 'btn-play'}] ]],
-        ['button', {class: 'next efy_trans_filter_off efy_shadow_button_off', title: 'Next'}, [ ['i', {efy_icon: 'chevron'}] ]]
+        ['button', {class: 'prev efy_card_filter_off efy_shadow_button_off', title: 'Previous'}, [ ['i', {efy_icon: 'chevron'}] ]],
+        ['button', {class: 'player efy_card_filter_off efy_shadow_button_off', title: 'Play or Pause'}, [ ['i', {efy_icon: 'play', class: 'btn-play'}] ]],
+        ['button', {class: 'next efy_card_filter_off efy_shadow_button_off', title: 'Next'}, [ ['i', {efy_icon: 'chevron'}] ]]
       ]],
       ['div', {class: 'mobile ms_buttons2'}, [
         ['button', {class: 'ms_speed_text efy_button_text_off efy-glass-off', efy_card: '', efy_sidebar_btn: '', title: 'Speed'}, '1X'],
         ['div', {class: 'efy_color efy_shadow_button'}, [
           ['label', {efy_upload: 'ms_upload, [audio/*,video/*,image/*], small, multiple', title: 'Add file', class: 'efy_shadow_button_off', 'efy-radius': 'left'}],
           ['button', {class: 'ms_filesystem efy_square_btn efy_hide_i', title: 'Add file'}, [['i', {efy_icon: 'plus'}]]],
-          ['button', {class: 'ms_menu efy_square_btn efy_shadow_button_off efy_trans_filter_off', efy_sidebar_btn: '', title: 'Menu', 'efy-radius': 'right'}, [['i', {efy_icon: 'menu'}]]]
+          ['button', {class: 'ms_menu efy_square_btn efy_shadow_button_off efy_card_filter_off', efy_sidebar_btn: '', title: 'Menu', 'efy-radius': 'right'}, [['i', {efy_icon: 'menu'}]]]
         ]]
       ]]
      ]],
@@ -29,7 +29,7 @@ const player_bar = ['div', {ms_bar: '', class: 'efy-glass efy_trans_filter efy_s
       ['div', {class: 'efy_color efy_shadow_button'}, [
         ['label', {efy_upload: 'ms_upload, [audio/*,video/*,image/*], small, multiple', title: 'Add file', class: 'efy_shadow_button_off', 'efy-radius': 'left'}],
         ['button', {class: 'ms_filesystem efy_square_btn efy_hide_i', title: 'Add file'}, [['i', {efy_icon: 'plus'}] ]],
-        ['button', {class: 'ms_menu efy_square_btn efy_shadow_button_off efy_trans_filter_off', efy_sidebar_btn: '', title: 'Menu', 'efy-radius': 'right'}, [ ['i', {efy_icon: 'menu'}] ]]
+        ['button', {class: 'ms_menu efy_square_btn efy_shadow_button_off efy_card_filter_off', efy_sidebar_btn: '', title: 'Menu', 'efy-radius': 'right'}, [ ['i', {efy_icon: 'menu'}] ]]
       ]]
     ]]
   ]];
@@ -486,10 +486,10 @@ const $update_tag = (name, tagss, remove) => {
             canvas.width = img.width / img.height * 80; canvas.height = 80;
             canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
             let thumbnail = canvas.toDataURL('image/webp');
-            $add('div', {class: 'image efy_shadow_trans', style: `background: url(${thumbnail})`, title: 'Song image'}, [], info, 'afterbegin');
+            $add('div', {class: 'image efy_shadow_card', style: `background: url(${thumbnail})`, title: 'Song image'}, [], info, 'afterbegin');
             audios_image[i] = thumbnail;
           };
-        } catch { $add('div', {class: 'ms_empty image efy_shadow_trans'}, [ $add('i', {efy_icon: 'audio'}) ], info, 'afterbegin') }
+        } catch { $add('div', {class: 'ms_empty image efy_shadow_card'}, [ $add('i', {efy_icon: 'audio'}) ], info, 'afterbegin') }
       }
       else if (type.startsWith('image')){ audios_type[i] = 'image';
         const blob = new Blob([file], {type: file.type}), url = URL.createObjectURL(blob),
@@ -499,7 +499,7 @@ const $update_tag = (name, tagss, remove) => {
           canvas.width = img.width / img.height * 80; canvas.height = 80;
           canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
           thumbnail = canvas.toDataURL('image/webp');
-          $add('div', {class: 'image efy_shadow_trans', style: `background: url(${thumbnail})`, title: 'Song image'}, [], info, 'afterbegin')
+          $add('div', {class: 'image efy_shadow_card', style: `background: url(${thumbnail})`, title: 'Song image'}, [], info, 'afterbegin')
         });
       } else if (type.startsWith('video') || file.name.endsWith('.mkv') || file.name.endsWith('.mov')){ audios_type[i] = 'video';
         const blob = new Blob([file], {type: file.type}), url = URL.createObjectURL(blob),
@@ -509,7 +509,7 @@ const $update_tag = (name, tagss, remove) => {
           canvas.width = video.videoWidth / video.videoHeight * 80; canvas.height = 80;
           canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
           thumbnail = canvas.toDataURL('image/webp');
-          $add('div', {class: 'image efy_shadow_trans', style: `background: url(${thumbnail})`, title: 'Song image'}, [], info, 'afterbegin')
+          $add('div', {class: 'image efy_shadow_card', style: `background: url(${thumbnail})`, title: 'Song image'}, [], info, 'afterbegin')
           const success = thumbnail.length > 100000; if (success){ URL.revokeObjectURL(url)}; return success;
         };
         video.addEventListener('canplaythrough', ()=>{ if (snapImage()){ video.pause()} });

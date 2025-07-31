@@ -1,0 +1,58 @@
+body, html {padding: 0; margin: 0; height: 100%; overflow: hidden}
+#game-container {
+    position: relative; width: 100%; height: 100%;
+}
+#player {
+    position: absolute;
+    width: var(---size); height: var(---size);
+    background: var(---color); border: var(---border); border-radius: var(---radius);
+    transition: .1s all, .075s transform ease-in;
+    background-origin: border-box!important;
+    transform-origin: center!important;
+}
+.obstacle {
+    position: absolute!important;
+    background: var(---card);
+    transition: .1s all;
+    &.bottom {
+        border-radius: var(---radius) var(---radius) 0 0;
+        background: linear-gradient(180deg, var(---text-x), transparent);
+    }
+    &.top {
+        border-radius: 0 0 var(---radius) var(---radius);
+        background: linear-gradient(0deg, var(---text-x), transparent);
+    }
+    * {position: absolute!important}
+}
+#start-screen {
+    max-width: 400rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; flex-direction: column; place-content: center; align-items: center;
+    > * {width: 100%}
+    h1 {text-align: center}
+    .efy_flex > * {width: 100%; gap: 0; margin: 0}
+    .efy_flex {flex-wrap: nowrap; gap: var(---gap-x); margin-top: 5rem}
+}
+#score {
+    position: absolute;
+    top: 10rem; left: 10rem;
+    padding: 10rem;
+    color: white;
+    width: fit-content; min-width: var(---size);
+    line-height: 1;
+    display: flex; flex-direction: column; place-content: center; align-items: center;
+}
+
+@keyframes player_initial {
+    0% {left: -10%}
+    30% {left: 0%}
+    50% {left: 10%}
+    100% {left: 20%}
+}
+
+#confetti {position: fixed; inset: 0; z-index: 99999; object-fit: cover; width: 100vw; height: var(---100vh);
+border-radius: 0!important; background-position: var(---bg_x) var(---bg_y)!important; pointer-events: none}
+[efy_mode*=light] #confetti {filter: invert(1)}

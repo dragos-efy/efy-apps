@@ -60,7 +60,7 @@ $event($('#pn_theme'), 'input', ()=>{
 });
 
 ['', 'img'].map(x =>{
-  $add('div', {class: `container efy-glass efy_trans_filter ${x}`}, [
+  $add('div', {class: `container efy-glass efy_card_filter ${x}`}, [
     ['div', {class: 'human girl'}, [
       ['div', {class: 'head'}, [
         ['div', {efy_pose: 'hair_long0'}],
@@ -97,12 +97,12 @@ $event($('#pn_theme'), 'input', ()=>{
 });
 
 const controls_container = $add('div', {class: 'efy_flex', style: 'place-content: center'}, [
-  ['div', {class: 'warning efy_trans_filter', efy_card: ''}, [
+  ['div', {class: 'warning efy_card_filter', efy_card: ''}, [
     ['p', 'Avatars is in Pre-Alpha. Expect LOTS of bugs!']
   ]]
 ]);
 
-const controls = $add('div', {class: 'controls efy_trans_filter', efy_select: '', efy_card: ''}, [], controls_container);
+const controls = $add('div', {class: 'controls efy_card_filter', efy_select: '', efy_card: ''}, [], controls_container);
 
 ['default', 'mountain', 'side_stretch', 'side_stretch_flex', 'star', 'triangle', 'half_moon', /*'pose2'*/].map(pose =>{
   $add('input', {type: 'radio', id: `ppt_${pose}`, name: 'ppt_pose'}, [], controls)

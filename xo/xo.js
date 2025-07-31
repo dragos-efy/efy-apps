@@ -27,13 +27,13 @@ $event($('.xo_menu'), 'input', (event)=>{
 let cells_dom = []; for (let i = 0; i < 9; i++){
   cells_dom.push(
     ['input', {type: 'radio', name: 'xo_cells', id: `cell_${i}`}],
-    ['label', {for: `cell_${i}`, class: 'efy_trans_filter_off'}]
+    ['label', {for: `cell_${i}`, class: 'efy_card_filter_off'}]
   );
 }
 
 $add('div', {class: 'xo_body'}, [
   ['div', {ttt: '', efy_select: ''}, [
-    ['div', {class: 'cells efy_shadow_trans efy_trans_filter efy-glass'}, cells_dom],
+    ['div', {class: 'cells efy_shadow_card efy_card_filter efy-glass'}, cells_dom],
     ['div', {id: 'result'}],
     ['div', {class: 'control'}, [
         ['button', {class: 'reset', efy_lang: 'reset'}, [['i', {efy_icon: 'reload'}]]],
