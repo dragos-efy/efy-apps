@@ -1,0 +1,95 @@
+#lockScreen, #app {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+}
+#lockCard {
+  width: min(640rem,96%);
+  h2 {margin: 0 0 10rem}
+  p {margin: 0 0 18rem}
+}
+#unlockRow {
+  display: flex; gap: var(---gap-x); align-items: center;
+  #unlockPassword {flex: 1; width: 300rem}
+}
+
+.input_private {
+  width: fit-content; position: relative;
+  #toggleUnlock {
+    width: fit-content; padding: 0; background: transparent; position: absolute; right: 0;
+    i {-webkit-text-fill-color: var(---text)}
+  }
+}
+
+#app {display: none;
+  button {margin: 0}
+}
+#main {
+  display: flex; height: 100vh; gap: 0;
+  input[type=file] {width: 260rem; margin-right: var(---gap-x)}
+}
+
+#sidebar {
+  width: 300rem; background: var(---card); border: 0; border-right: var(---border);
+  padding: var(---gap); display: flex; flex-direction: column; margin: 0;
+  border-radius: 0;
+  #topBar {display: flex; gap: 6rem; margin-bottom: 12rem; flex-wrap: wrap}
+  #storageInfo {margin-top: auto; color: var(---text-xx); font-size: 14rem}
+  #itemList {
+    overflow: auto; border-top: var(---border); margin-top: 12rem; padding-top: 8rem;
+  }
+  .item {
+    padding: var(---gap0); border-radius: var(---radius); margin-bottom: var(---gap-xx); background: var(---card);
+    border: var(---border); cursor: pointer;
+    &:hover, &.active {
+      background: var(---color_trans);
+    }
+ }
+}
+
+#popup {
+  display:none; position:fixed; inset:0; z-index:9999
+  align-items:center; justify-content:center;
+  background: oklch(0 0 0 / .3);
+  .container {
+    display: flex ; align-items: center; place-content: center; position: relative;
+    max-width: 95%; max-height: 90%; overflow: auto; padding: var(---gap); margin: auto;
+    #popupClose {position:absolute; right:8px; top:8px;padding:8px}
+  }
+}
+
+#content {
+  flex: 1; padding: 18rem; overflow: auto; height: var(---100vh);
+  #itemDetails {}
+  .row {display: flex; gap: var(---gap-x); align-items: center; margin-bottom: var(---gap-x)}
+  label {width: 150rem}
+  input[type="text"], input[type="password"],
+  input[type="number"], input[type="month"], textarea {flex: 1}
+  textarea {min-height: 80rem; resize: vertical}
+  .fieldControls {display: flex; gap: var(---gap-xx)}
+  #actions {display: flex; gap: 8rem; margin-top: var(---gap)}
+}
+
+.fileLabel {font-size: 14rem}
+.topButtons {display: flex; gap: 8rem; align-items: center; margin-bottom: 8rem}
+.copyAll {margin-left: auto}
+.sectionTitle {color: var(---text-xx); margin: 10rem 0 5rem; font-size: 14rem}
+
+pre.codeView {white-space: pre-wrap; max-height: 80vh; overflow: auto}
+footer {position: fixed; right: 12rem; bottom: 12rem; font-size: 12rem}
+
+@media (max-width: 800px) {
+  #sidebar {width: 100%; height: auto}
+  #main {flex-direction: column}
+  #content {padding: 12rem}
+}
+
+
+.card {
+  width: 380px; height: 230px; overflow: hidden; position: relative; margin-bottom: var(---gap);
+  .visa_logo {float: right; padding: 10px}
+  .visa_info {
+    padding: 10px; margin: 20px 0;
+    .chip {width: 60px; height: 45px; background: var(---card); border-radius: 10px}
+    p {font-size: 22px; padding: 15px 0; letter-spacing: 2px}
+  }
+  .visa_crinfo {display: flex; justify-content: space-between; padding: 0 10px;}
+}

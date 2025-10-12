@@ -20,7 +20,7 @@ $add('div', {id: 'sports_app'}, [
             ]],
             ['div', {class: 'name'}, 'Select a pose to start...']
         ]],
-        ['div', {class: 'poses_container'}, [
+        ['div', {class: 'poses_container efy-glass'}, [
             ['div', {id: 'controls'}, [
                 ['div', {class: 'efy_flex'}, [
                     ['div', {id: 'secondsLeft', efy_card: '', class: 'efy_square_btn'}, '0'],

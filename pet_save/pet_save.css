@@ -1,0 +1,57 @@
+body {
+    display: flex; flex-direction: column;
+    align-items: center; place-content: center;
+}
+.pet_game {width: fit-content; height: fit-content; padding: 0;}
+#game-board {
+    ---cell: 50rem;
+    display: flex; flex-wrap: wrap; max-width: calc(var(---cell) * 9); gap: 0rem;
+/*    grid-template-columns: repeat(9, var(---cell));
+    grid-template-rows: repeat(9, var(---cell));*/
+    .cell {
+        width: var(---cell);
+        aspect-ratio: 1 / cos(30deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        pointer-events: all;
+        &:before {
+            content: ''; position: absolute; inset: 0;
+            width: 100%;
+            pointer-events: none;
+            --b: var(---border_size);
+            aspect-ratio: 1 / cos(30deg);
+            clip-path: polygon(0 50%, 50% -50%, 100% 50%, 50% 150%, 0 50%, var(--b) 50%, calc(25% + var(--b) * cos(60deg)) calc(100% - var(--b) * sin(60deg)), calc(75% - var(--b) * cos(60deg)) calc(100% - var(--b) * sin(60deg)), calc(100% - var(--b)) 50%, calc(75% - var(--b) * cos(60deg)) calc(var(--b) * sin(60deg)), calc(25% + var(--b) * cos(60deg)) calc(var(--b) * sin(60deg)), var(--b) 50%);
+            background: var(---border-color);
+        }
+        &:not(.pillow) {cursor: pointer}
+    }
+    .cell input {
+        position: absolute;
+        opacity: 0;
+        width: 100%; height: 100%;
+        cursor: pointer;
+    }
+    .pet {
+        background: var(---color);
+        aspect-ratio: 1/cos(30deg);
+        clip-path: polygon(50% -50%, 100% 50%, 50% 150%, 0 50%);
+    }
+    .pillow {
+        background: var(---text);
+        aspect-ratio: 1/cos(30deg);
+        clip-path: polygon(50% -50%, 100% 50%, 50% 150%, 0 50%);
+    }
+    .row:nth-child(even) {
+        margin-top: 22rem;
+        margin-left: -13rem;
+        margin-right: -13rem;
+    }
+}
+.game-status {
+    margin: var(---gap) 0;
+    font-weight: bold;
+}
+.restart-btn {
+}

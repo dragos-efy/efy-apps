@@ -541,10 +541,10 @@ $add('div', {efy_tabs: 'home_tabs'}, [
     ['div', {efy_content: 'home_tab_notifications', class: 'efy_card_filter_off'}, [
         ['button', {id: 'hm_notify_test'}, [['i', {efy_icon: 'notify'}], ['p', 'Test Notification']]],
         ['pre', {efy_code: 'logic · js'}, [
-            ['p', "$notify('"], ['code', 'time'], ['p', "', '"], ['code', 'text'], ['p', "', '"], ['code', 'text'],
-            ['p', "', '"], ['code', 'lang'], ['p', "', "], ['code', 'function'], ['p', ')'],
+            ['p', "$notify('"], ['code', 'time'], ['p', "', '"], ['code', 'title'], ['p', "', '"], ['code', 'info'],
+            ['p', "', '"], ['code', 'lang'], ['p', "', '"], ['code', 'icon'], ['p', "', "], ['code', 'function'], ['p', ')'],
             ['hr', {style: 'margin: 5rem auto'}, '\n'],
-            ['code', 'lang'], ['p', ' & '], ['code', 'function'], ['p', ' are optional\n'],
+            ['code', 'info'], ['p', ', '], ['code', 'lang'], ['p', ', '], ['code', 'icon'], ['p', ' & '], ['code', 'function'], ['p', ' are optional\n'],
             ['code', 'time'], ['p', ' = '], ['code', 'short'], comma2, ['code', 'long'], comma2, ['code', 'infinite'],
             ['p', ' or '], ['code', 'seconds'], ['p', ' (example: '], ['code', '3'], ['p', ')\n'],
             ['code', 'lang'], ['p', ' - use efy translation variables instead of normal text']

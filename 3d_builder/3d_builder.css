@@ -1,0 +1,28 @@
+:root {---body_padding: 0; ---b3d_face_bg: oklch(.7 .37 85 / .7)}
+
+.controls2 {display:flex; flex-direction: column; flex-wrap:wrap; justify-content:center; gap:1em; padding:1em;
+    label {display:flex; flex-direction:column; font-size:0.8em}
+}
+.scene {perspective:120vmin; width:100%; height:80vh; display:flex; align-items:center; justify-content:center}
+.shape {position:relative; transform-style:preserve-3d; transform:rotateX(-20deg) rotateY(30deg)}
+.face {position:absolute; background:var(---b3d_face_bg)}
+
+[builder3d_app] {
+    display: flex; /*flex-direction: row-reverse;*/ /*gap: var(---gap);*/
+    /*align-items: center; place-content: space-between;*/
+    width: 100%; height: var(---100vh);
+}
+
+#bd_sidebar {
+    display: flex; /*flex-wrap: wrap;*/ flex-direction: column; width: 100%; max-width: 400rem; border-right: var(---border);
+    width: 100%; max-width: 400rem; height: var(---100vh);
+    .nav, [efy_tabs=avatars_sidebar] {
+        display: flex; gap: var(---gap-x); padding: var(---gap-x) var(---gap-x) 0 var(---gap-x);
+        & button {margin: 0; height: var(---size)}
+    }
+    [efy_range_text] {width: 100%; text-align: start}
+    label[for="caps"] {
+        width: fit-content;
+        &:before, &:after {display: none}
+    }
+}

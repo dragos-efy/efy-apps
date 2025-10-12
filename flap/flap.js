@@ -110,7 +110,7 @@ function jump(e){
         player_rotate = player_rotate >= 360 ? 0 : player_rotate - 45;
         player.style.transform = `translateX(60rem) translateY(${Math.max(0, parseInt(top - (70 - gameSpeed) / 1))}rem) rotate(${player_rotate}deg) scale(${scale})`;
     };
-    if (e.code === 'Space' && isGameRunning) {
+    if ((e.code === 'Space' || e.code === 'ArrowUp') && isGameRunning) {
         scale = 1.3; transform_fn();
         $wait(.1, ()=>{ scale = 1 });
         $audio_play(audio.flap);
@@ -168,6 +168,7 @@ function endGame(){
     scoreDisplay.textContent = 0;
     $audio_play(audio.error)
     player_rotate = 0;
+    start_button.focus();
 }
 
 $event(speedSlider, 'input', ()=>{
@@ -175,3 +176,9 @@ $event(speedSlider, 'input', ()=>{
 });
 
 $event(start_button, 'click', startGame);
+
+$event(container, 'pointerdown', ()=>{
+    if (isGameRunning) jump({code: 'Space'});
+});
+
+$event(container, 'contextmenu', ()=> event.preventDefault());

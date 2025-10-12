@@ -1,7 +1,7 @@
 :root {---body_padding: 0}
 
 #builder {display: flex; height: var(---100vh);
-    #bd_sidebar {display: flex; flex-wrap: wrap; flex-direction: column; width: 400rem; border-right: var(---border);
+    #bd_sidebar {display: flex; flex-wrap: wrap; flex-direction: column; width: 100%; max-width: 400rem; border-right: var(---border);
         #nav, [efy_tabs=components] {display: flex; flex-wrap: wrap; gap: var(---gap-x); padding: var(---gap-x) var(---gap-x) 0 var(---gap-x);
             & button {margin: 0; height: var(---size)}
         }

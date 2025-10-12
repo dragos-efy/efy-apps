@@ -1,4 +1,25 @@
 const apps_list = {
+    '3D Builder': [
+        '#3d_builder', 'triangle',
+        'Create 3D css objects',
+        'productivity',
+        'alpha offline static touchscreen mouse keyboard chromium firefox safari',
+        'gamepads'
+    ],
+    '3D Tennis': [
+        '#3d_tennis', 'circle',
+        'Play tennis allone or with friends. Currently a prototype.',
+        'game fun',
+        'alpha offline static keyboard chromium firefox safari',
+        'gamepads mouse touchscreen'
+    ],
+    AI: [
+        '#ai', 'circle2',
+        'Talk to local or remote AIs. Offline LMStudio support',
+        'productivity offline server',
+        'alpha touchscreen mouse chromium firefox safari',
+        'keyboard gamepads'
+    ],
     Avatars: [
         '#avatars', 'user',
         'Customize your own avatars & reuse them across apps like Sports',
@@ -133,15 +154,21 @@ const apps_list = {
         'alpha offline touchscreen mouse chromium firefox safari',
         'gamepads keyboard'
     ],
-    Passwords: [
-        '', 'key',
-        'Modular part of the Lists app for storing passwords',
+    Pass: [
+        '#pass', 'key',
+        'Encrypt local offline data (passwords, cards, notes, contacts, etc.)',
         'productivity offline static',
-        'soon'
+        'alpha'
     ],
     Pong : [
         '#pong', 'circle',
         '1-4 player 2d ping pong game with effects and extra customization',
+        'game fun offline static',
+        'alpha'
+    ],
+    'Pet Save' : [
+        '#pet_save', 'square',
+        'Save the pet',
         'game fun offline static',
         'alpha'
     ],

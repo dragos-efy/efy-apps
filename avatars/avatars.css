@@ -1,14 +1,13 @@
-@font-face {font-family: 'efy_poses'; src: url('../assets/efy_poses.ttf') format('woff2');
+:root {---body_padding: 0}
+
+/*@font-face {font-family: 'efy_avatars'; src: url('../assets/efy_avatars.ttf') format('woff2');
     font-weight: normal; font-style: normal;
-}
-[efy_pose] {align-items: center; place-content: center; font-family: 'efy_poses'!important; speak: never; font-style: normal;
-    font-weight: normal; font-variant: normal; text-transform: none; vertical-align: middle; background: var(---color);
+}*/
+[efy_pose] {align-items: center; place-content: center; /*font-family: 'efy_avatars'!important; speak: never; font-style: normal;
+    font-weight: normal; font-variant: normal; text-transform: none;*/ /*vertical-align: middle; background: var(---color);
     background-clip: text; -webkit-text-fill-color: transparent; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-    &, &:before {display: inline-flex}
+    &, &:before {display: inline-flex}*/
 }
-[efy_pose=arm]:before {content: '\e900'}
-[efy_pose=chest]:before {content: '\e901'}
-[efy_pose=hair_long0]:before {content: '\e950'; background: unset; color: red}
 
 .icon_container:has([efy_pose=seated_forward_bend]) {rotate: -90deg}
 
@@ -16,37 +15,177 @@
 .container:is(.img, .img2) {display: none}
 .warning {display: flex; flex-wrap: wrap; gap: var(---gap); align-items: center; width: fit-content; padding: 6rem 12rem;}
 
-body {display: flex; flex-wrap: wrap; flex-direction: column; gap: var(---gap)!important; align-items: center; place-content: center;}
-.controls {display: grid!important; grid-template-columns: repeat(auto-fill, minmax(150rem, 1fr));
-  width: 100%!important; max-width: 500rem; margin: 0!important;
-  label {width: 100%!important; height: var(---size)!important}
+body {display: flex}
+
+[avatars_app] {
+  display: flex; /*flex-direction: row-reverse;*/ /*gap: var(---gap);*/
+  /*align-items: center; place-content: space-between;*/
+  width: 100%; height: var(---100vh);
 }
 [efy_cursor], #gamepads {display: none!important}
 
-.container{position: relative; background: var(---card); border: var(---border); width: 300rem; height: 300rem; border-radius: var(---radius); display: inline-flex;
+#bd_sidebar {
+  display: flex; /*flex-wrap: wrap;*/ flex-direction: column; width: 100%; max-width: 400rem; border-right: var(---border);
+  width: 100%; max-width: 400rem; height: var(---100vh);
+  .nav, [efy_tabs=avatars_sidebar] {
+    display: flex; gap: var(---gap-x); padding: var(---gap-x) var(---gap-x) 0 var(---gap-x);
+    & button {margin: 0; height: var(---size)}
+  }
+  .nav {flex-wrap: wrap}
+  [efy_tabs=avatars_sidebar] {
+    width: 100%; height: 100%;
+    .efy_tabs:not([efy_tabs="av_rotate"] .efy_tabs, [efy_content="avatar"] .efy_tabs, [efy_content="pose"] .efy_tabs) {
+      margin: 0; display: flex; flex-wrap: nowrap; gap: 0; border-radius: var(---radius);
+      label {width: 100%}
+      [efy_tab]:not([efy_active]) + label {background: transparent; border-color: transparent}
+      [efy_tab]:not([efy_active], :focus) + label {border-radius: 0}
+      &:has([efy_tab][efy_active]:nth-of-type(1)) label:not(:first-of-type, :last-of-type),
+      &:has([efy_tab][efy_active]:nth-of-type(2)) label:not(:first-of-type, :nth-child(1), :last-child),
+      &:has([efy_tab][efy_active]:nth-of-type(3)) label:not(:nth-of-type(2), :last-of-type) {border-right: var(---border)}
+    }
+    [efy_content]:not([efy_content=avatar], [efy_content="pose"]) {
+      width: 100%; display: flex; flex-wrap: wrap; padding: 0; overflow-y: auto; height: 100%;
+      backdrop-filter: none!important; background: transparent; border: 0; border-radius: 0;
+      button {width: calc(50% - var(---gap-x) / 2); background: var(---card);
+          -webkit-text-fill-color: var(---text); display: flex; place-content: start
+      }
+    }
+    [efy_content="poses"] {height: fit-content!important; overflow-y: visible!important; display: flex !important}
+    [efy_content="avatars"] {
+      height: fit-content!important; overflow: visible!important;
+      .avatars {display: grid; grid-template-columns: 1fr 1fr; gap: var(---gap-x); width: 100%;}
+      .avatar {
+        display: flex; flex-direction: column; width: 100%;
+        align-items: center; place-content: center; cursor: pointer;
+        border: var(---border); border-radius: var(---radius); background: var(---card);
+        &:hover {
+          background: var(---color_trans);
+          .name, i:before {background: var(---color); background-clip: text; -webkit-text-fill-color: transparent}
+        }
+        * {pointer-events: none}
+        .image {
+          width: 100%; aspect-ratio: 1; display: flex; align-items: center; place-content: center;
+          border-bottom: var(---border); background-position: center; background-size: contain; background-repeat: no-repeat;
+          i:before {font-size: 30rem}
+        }
+      }
+    }
+    [efy_content="avatar"], [efy_content="pose"] {
+      padding: 0; background: none; border: none; box-shadow: none; border-radius: 0;
+      .nav {
+        padding: 0 0 var(---gap) 0; margin: 0 0 var(---gap) 0;
+        border-bottom: var(---border); align-items: center; place-content: space-between;
+        gap: var(---gap-x); flex-wrap: nowrap;
+        .back [efy_icon]:before {background: var(---color)!important; background-clip: text!important; -webkit-text-fill-color: transparent!important}
+        button p {margin: 0}
+        .start {display: flex; gap: var(---gap-x); align-items: center; width: 100%}
+      }
+    }
+    [efy_content="avatar"] {
+      .hair.options {
+        display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: var(---gap-x); width: 100%;
+        label {
+          display: flex; flex-direction: column; width: 100%; aspect-ratio: 1;
+          align-items: center; place-content: center; cursor: pointer; margin: 0;
+          border: var(---border); border-radius: var(---radius); background: var(---card);
+          &:hover {background: var(---color_trans)}
+          * {pointer-events: none}
+          &:before, &:after {display: none!important}
+          [efy_pose] {
+            inset: 0; width: 70%; max-height: 70%; object-fit: contain; position: relative; background: var(---text);
+          }
+          [efy_pose=hair_long_0] {width: 60%}
+          i {background: var(---text); background-clip: text!important; margin: 0; font-size: 30rem}
+          &:hover, &:has(input:checked){
+            background: var(---color_trans);
+            i, [efy_pose] {background: var(---color)}
+          }
+        }
+      }
+    }
+
+    > .efy_tabs [efy_tab].efy_hide_i + label {display: none!important}
+    &:has(#avatars_sidebar_avatar[efy_active]) [for="avatars_sidebar_avatars"],
+    &:has(#avatars_sidebar_pose[efy_active]) [for="avatars_sidebar_poses"] {
+      background: var(---color), var(---bg); border-radius: var(---radius);
+      * {background: var(---bg); -webkit-text-fill-color: transparent; background-clip: text;}
+    }
+  }
+  [efy_range_text] {width: 100%}
+  .title {margin: 0}
+}
+
+.container {
+  ---human_speed: calc(var(---anim_status) * var(---anim_speed) * .4s) ease-in-out;
+  position: relative;
+  width: 300rem; height: 300rem; display: flex;
   &.img .human .head {background-image: url(./face.webp)!important; background-size: 105%; background-position: -1rem -1rem;
     .eye1, .eye2, .mouth {display: none}
   }
+  .view {width: 300rem; height: 300rem; display: flex; align-items: center; place-content: center; transition: all var(---human_speed);}
   .human {
     --eyes_width: 5rem; --eyes_height: 5rem; --eyes_distance: 10rem; --eyes_top: 15rem;
     --mouth_width: 10rem; --mouth_height: 3rem; --mouth_top: 30rem;
-    ---human_speed: calc(var(---anim_status) * var(---anim_speed) * .4s) ease-in-out;
 
-    height: 150rem; width: 50rem; top: -50rem; transition: all var(---human_speed);
-    .head, .neck, .body, .arm_left, .arm_left2, .arm_left3, .arm_right, .arm_right2, .arm_right3, .leg_left, .leg_left2,
-    .leg_right, .leg_right2, .boob_left, .boob_right, .shirt_neck, .shirt_chest, .shirt_left, .shirt_right, .underwear,
+    /*height: 150rem; width: 50rem; */
+    --th: 300rem; --tw: calc(var(--th) / 3);
+    --width: var(--tw); --height: var(--th);
+
+    /*top: calc(100% / 3);*/
+    top: 0; left: 120rem;
+
+    transition: all var(---human_speed);
+    .head, .neck, .body, .arm_left, .arm_left2, .arm_left3, .arm_right, .arm_right2, .arm_right3, .leg_left, .leg_left2, .leg_left3,
+    .leg_right, .leg_right2, .leg_right3, .boob_left, .boob_right, .shirt_neck, .shirt_chest, .shirt_left, .shirt_right, .underwear,
     .skirt, .support {
       background: oklch(var(---skin_bg)); transition: all var(---human_speed);
     }
     &, .head, .body {position: relative}
     &, .head {margin: auto}
-    .arm_left, .arm_right {height: 62rem; z-index: 1}
-    .arm_left2, .arm_right2 {bottom: -35rem; height: 50rem}
-    .arm_left3, .arm_right3 {display: none; bottom: -10rem; height: 25rem}
-    .arm_left, .arm_left2, .arm_right, .arm_right2, .arm_left3, .arm_right3 {width: 20rem; border-radius: var(---radius-x); position: absolute; transform-origin: 10rem 10rem}
-    .leg_left, .leg_left2, .leg_right, .leg_right2 {height: 68rem; width: 20rem; position: absolute; bottom: -50rem; border-radius: var(---radius); transform-origin: 10rem 10rem}
+    .arm_left, .arm_left2, .arm_right, .arm_right2, .arm_left3, .arm_right3 {border-radius: var(---radius-x); transform-origin: 50% calc(0.5% * var(--width))}
+    .leg_left, .leg_left2, .leg_left3, .leg_right, .leg_right2, .leg_right3 {border-radius: var(---radius); transform-origin: 50% calc(0.5% * var(--width))}
 
-    .head {height: 50rem; width: 40rem; border-radius: var(---radius-o); z-index: 1}
+    &, .head, .neck, .body, .underwear,
+    .arm_left, .arm_right, .arm_left2, .arm_right2, .arm_left3, .arm_right3,
+    .leg_left, .leg_left2, .leg_left3, .leg_right, .leg_right2, .leg_right3 {
+/*       box-shadow: 0 0 0 1.5rem white!important; */
+      position: absolute;
+      width: calc(var(--th) * (var(--width) / 100));
+      height: calc(var(--th) * (var(--height) / 100));
+    }
+
+    .head {--width: 12.5; --height: 17.5; border-radius: var(---radius-o); z-index: 1; left: calc(var(--width) * 1rem)}
+    .neck {--width: 6; --height: 2.5; top: 52rem; left: calc(var(--width) * 3.75rem); z-index: 0!important;
+      clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%); box-shadow: inset 0 10rem 2rem #0003;
+    }
+    .body {--width: 20; --height: 37; margin-top: 60rem; border-radius: 0 0 var(---radius) var(---radius)}
+    .arm_left, .arm_right {
+      --width: 6; --height: 15.625;
+      top: calc(1% * var(--width));
+      z-index: 1;
+      border-radius: 50% 50% 40% 40% / 40% 40% 85% 85%;
+    }
+    .arm_left2, .arm_right2 {
+      --width: 5; --height: 12.5; bottom: -10rem; right: 2rem;
+      border-radius: 50% 50% 40% 40% / 15% 15% 85% 85%;
+    }
+    .arm_left3, .arm_right3 {
+      --width: 5; --height: 9.375; bottom: -17rem;
+      border-radius: 40% 40% 50% 50% / 85% 85% 30% 30%;
+    }
+
+    .leg_left, .leg_right {
+      --width: 10; --height: 25; bottom: -60rem; border-radius: 50% 50% 50% 50% / 30% 30% 50% 50%;
+    }
+    .leg_left2, .leg_right2 {
+      --width: 8; --height: 25; bottom: -60rem; right: 3rem; border-radius: 50% 50% 40% 40% / 30% 30% 85% 85%;
+    }
+    .leg_left3, .leg_right3 {
+      --width: 7; --height: 9.375; bottom: -25rem; right: 1.016rem;
+      border-radius: 50% 50% 50% 50% / 85% 85% 40% 40%;
+      background: oklch(var(---shoe_bg));
+    }
+
 
     .eye1, .eye2 {width: var(--eyes_width); height: var(--eyes_height); top: var(--eyes_top); background: oklch(var(---eye_bg));
       box-shadow: 0 0 0 2rem oklch(var(---eye2_bg)); border-radius: var(---radius-xx); position: absolute;
@@ -62,36 +201,43 @@ body {display: flex; flex-wrap: wrap; flex-direction: column; gap: var(---gap)!i
       box-shadow: 0 0 0 2rem oklch(var(---mouth_bg)); border-radius: var(---radius-xx); position: absolute;
     }
 
-    .neck {height: 20rem; width: 18rem; position: absolute; top: 41rem; left: 16rem; z-index: 0!important;
-      clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%); box-shadow: inset 0 10rem 2rem #0003;
-    }
-    .body {height: 100rem; width: 50rem; margin-top: 10rem; border-radius: 0 0 var(---radius) var(---radius)}
-    .arm_left {left:-8rem; rotate: 90deg}
-    .arm_right {right:-8rem; rotate: -90deg}
-    .leg_right {right:0}
-    [efy_pose]:not([efy_pose*=hair]):before {background: var(---color); background-clip: text; -webkit-text-fill-color: transparent}
-    [efy_pose=hair_long0]:before {background: oklch(var(---hair_bg)); font-size: 60rem; background-clip: text; position: absolute; top: -28rem; left: -5rem}
+    .arm_left {left: calc((-0.125% * var(--width)) * var(--width)); rotate: 90deg}
+    .arm_right {right: calc(-1% * var(--width)); rotate: -90deg}
+    .leg_left {left: -2rem}
+    .leg_right {right: -2rem}
     .body {font-size: 40rem;
       &:before {font-size: 100rem}
     }
-    .boob_left, .boob_right {width: 26rem; height: 26rem; position: absolute; top: 15rem; z-index: 1;
-      background: oklch(var(---shirt_bg)); box-shadow: inset 0 -5rem 3rem #0002; border-radius: 8rem 8rem 50% 50%;
+    .boob_left, .boob_right {width: 30rem; height: 26rem; position: absolute; top: 20rem; z-index: 1;
+      background: oklch(var(---shirt_bg)); box-shadow: inset 0 -5rem 3rem oklch(0 0 0 / .1); border-radius: 8rem 8rem 50% 50%;
     }
     .boob_left {left: -1rem}
     .boob_right {right: -1rem}
-    .shirt_chest {height: 70rem; background: oklch(var(---shirt_bg))}
+    .shirt_chest {height: 80rem; background: oklch(var(---shirt_bg))}
     .shirt_neck {height: 10%; width: 50%; border-radius: 0 0 var(---radius) var(---radius); top: 0; left: 25%; z-index: 1;
       background: oklch(var(---skin_bg)); position: absolute; box-shadow: 0 0 0 0.2rem oklch(var(---skin_bg));
     }
-    .shirt_left, .shirt_right {height: 20rem; width: 20rem; background: oklch(var(---shirt_bg));
+    .shirt_left, .shirt_right {height: 50%; width: 100%; background: oklch(var(---shirt_bg));
       box-shadow: 0 0 0 0.2rem oklch(var(---shirt_bg)); border-radius: var(---radius) var(---radius) 0 0;
+      position: absolute; z-index: 1;
     }
-    .underwear {height: 30rem; width: 51rem; background: black; z-index: 0; position: absolute;
+    .underwear {height: 30rem; background: black; z-index: 0; position: absolute;
       clip-path: polygon(0% 0%, 100% 0%, 60% 100%, 39% 100%); background: oklch(var(---underwear_bg));
+      transform: translateZ(10rem) translateY(-1rem)!important;
     }
     .skirt {clip-path: polygon(10rem 0%, 60rem 0%, 100% 100%, 0% 100%); height: 40rem; width: 70rem;
-      position: absolute; left: -10rem; bottom: -10rem; background: oklch(var(---skirt_bg));
+      position: absolute; left: -10rem; bottom: -9rem;
       border-radius: var(---radius-xx); transition: all var(---human_speed), background 0s;
+    }
+    .pants_base {
+      position: absolute; left: -2.4rem; height: 30rem; width: 108%;
+      background: oklch(var(---pants_bg));
+      box-shadow: 0 0 0 0.2rem oklch(var(---pants_bg));
+      clip-path: polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%); z-index: 1;
+    }
+    .pants_left, .pants_right {height: 50%; width: 100%; background: oklch(var(---pants_bg));
+      box-shadow: 0 0 0 0.2rem oklch(var(---pants_bg)); border-radius: var(---radius) var(---radius) 0 0;
+      position: absolute; z-index: 1;
     }
     .support {opacity: 0; scale: 0; border-radius: var(---radius); width: 70rem; height: 98rem;
       background: var(---card); border: var(---border); left: 79rem; bottom: -110rem; position: absolute;
@@ -106,65 +252,77 @@ body {display: flex; flex-wrap: wrap; flex-direction: column; gap: var(---gap)!i
     }
     &:not([boobs]) :is(.boob_left, .boob_right) {display: none}
 
-    &[pose=pose2]{
-      .head {translate: 0 -9rem}
-      .body {translate: 0 -15rem}
-      .arm_left {rotate: 110deg}
-      .arm_left2 {rotate: -90deg}
-      .arm_right {rotate: -110deg}
-      .arm_right2 {rotate: 90deg}
-      .leg_left {rotate: 110deg}
-      .leg_left2 {rotate: -90deg}
-      .leg_right {rotate: -110deg}
-      .leg_right2 {rotate: 90deg}
-      .skirt {clip-path: polygon(15rem 0%, 65rem 0%, 100% 100%, 0% 100%); translate: -5rem 0; width: 80rem}
-    }
-    &[pose=mountain]{
-      .arm_left, .arm_right {rotate: 0deg}
-    }
-    &[pose=side_stretch], &[pose=side_stretch_flex]{translate: -35rem 0;
-      .arm_left {rotate: 30deg}
-      .arm_left2 {rotate: -80deg}
-      .arm_right {rotate: -30deg}
-      .arm_right2 {rotate: 80deg}
-      .leg_right {rotate: -90deg}
+    &[pose=side_stretch]{
       .skirt {width: 81rem; clip-path: polygon(10rem 0%, 60rem 0%, 100% 31%, 0% 155%)}
       .support {opacity: 1; scale: 1}
     }
-    &[pose=side_stretch_flex] {scale: -1 1; translate: 35rem 0}
-    &[pose=star] {
-      .leg_left {rotate: 35deg}
-      .leg_right {rotate: -35deg}
-      .underwear {clip-path: polygon(0% 0%, 100% 0%, 66% 100%, 33% 100%)}
-      .skirt {clip-path: polygon(15rem 0%, 65rem 0%, 100% 100%, 0% 100%); translate: -5rem 0; width: 80rem}
+  }
+}
+.controls {
+  display: grid!important; grid-template-columns: repeat(auto-fill, minmax(150rem, 1fr));
+  gap: var(---gap-x); width: 100%;
+  .pose {
+    display: flex; align-items: center; place-content: space-between; width: 100%;
+    label {
+      width: 100%!important; height: var(---size)!important; margin: 0!important;
+      place-content: start!important;
+      &:before, &:after {display: none!important}
     }
-    &[pose=triangle] {rotate: 90deg; translate: 25rem 60rem;
-      .head, .neck {translate: -12rem 0}
-      .body {width: 25rem; height: 86rem}
-      .arm_left, .arm_right {height: 50rem}
-      .leg_left {rotate: -51deg}
-      .leg_right {rotate: -130deg; right: 5rem; bottom: -52rem; height: 72rem}
-      .shirt_neck {width: 80%; left: 12%}
-      .skirt {clip-path: polygon(25rem 0%, /*25rem 9%, 27rem 3%, 30rem 0%,*/ 50rem 0%, 100% 100%, 0% 100%);
-        translate: -11rem -1rem; rotate: -88deg; width: 80rem;
-      }
-    }
-    &[pose=half_moon] {rotate: 90deg; translate: 40rem 60rem;
-      .head {translate: -13rem 0}
-      .neck {left: 4rem}
-      .body {width: 25rem; height: 86rem}
-      .leg_left {rotate: 20deg}
-      .leg_right {rotate: -90deg}
-      .leg_right2 {bottom: -37rem}
-      .shirt_neck {width: 80%; left: 12%}
-      .skirt {clip-path: polygon(40rem 0%, 68rem 0%, 100% 100%, 0% 100%);
-        translate: -22rem 0rem; rotate: -29deg; width: 103rem;
+    .edit {
+      position: absolute; right: 0; cursor: pointer; border-radius: var(---radius);
+      height: var(---size); aspect-ratio: 1;
+      display: flex; align-items: center; place-content: center;
+      &:hover {background: var(---color); i:before {background: var(---bg); background-clip: text; -webkit-text-fill-color: transparent}}
+      i {
+        margin: 0;
+        &:before {
+          pointer-events: none; background: var(---color);
+          background-clip: text; -webkit-text-fill-color: transparent
+
+        }
       }
     }
   }
 }
-.controls {margin-top: var(---gap); width: fit-content; display: flex; gap: var(---gap-x);
-  label {margin: 0!important;
-    &:before, &:after {display: none!important}
+
+.scene {
+  display: flex; align-items: center; place-content: center; flex-grow: 1;
+  width: 100%; height: 100%; transform: translateZ(-100rem);
+  &, & * {transform-style: preserve-3d; perspective: 1600rem;}
+}
+
+.part {
+  position: absolute; height: 100%; width: 100%;
+  background: inherit; border-radius: inherit;
+  transform: rotateX(calc(var(--rotate_x, 0) * 1deg)) rotateY(calc(var(--rotate_y, 0) * 1deg));
+}
+
+.skirt {
+  clip-path: unset!important; background: transparent!important;
+  .part {
+    width: 100%; clip-path: polygon(10rem 0%, 60rem 0%, 100% 100%, 0% 100%);
+    transform: none; background: oklch(var(---skirt_bg));
+    &.p0 {transform: translate3d(0, 0, 25rem) rotate3d(1, 0, 0, 15deg)}
+    &.p1 {transform: translate3d(25rem, 0, 0) rotate3d(0, 1, 0, 90deg)}
+    &.p2 {transform: translate3d(0, 0, -25rem) rotate3d(1, 0, 0, -15deg)}
+    &.p3 {transform: translate3d(-25rem, 0, 0) rotate3d(0, 1, 0, -90deg)}
   }
 }
+
+.head * {transform: translateZ(5rem)}
+.shirt_neck {transform: translateZ(25rem)}
+.container .human {
+  &:not([boobs]) :is(.boob_left, .boob_right) {transform: translateZ(25rem); display: unset}
+}
+
+#pose {
+  overflow: scroll; height: 100%;
+  background: #fff1; color: #fff; z-index: 1000;
+  div:not([efy_tabs], [efy_tabs] *) {display: flex; align-items: center}
+  :is(label, button p, button) {margin: 0}
+  [efy_tabs] {
+    .efy_tabs label:before, .efy_tabs label:after {display: none!important}
+  }
+}
+
+/*Temporary*/ .boob_left, .boob_right {display: none!important}

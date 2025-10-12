@@ -90,7 +90,7 @@ $add('details', {id: 'ms_music_player', class: 'eos_menu'}, [
         ['label', {for: 'pitch', efy_lang: 'pitch'}]
       ]],
       ['div', {efy_range_text: 'Speed', efy_lang: 'speed'}, [
-        ['input', {type: 'range', id: 'rate', min: '0.25', max: '2', step: '0.05', value: '1'}]
+        ['input', {type: 'range', id: 'rate', min: '0.25', max: '3', step: '0.05', value: '1'}]
       ]],
       ['div', {efy_range_text: 'Volume', efy_lang: 'music_volume', style: 'margin: 5rem 0 0 0; display: flex; flex-flow: wrap;'}, [
         ['input', {type: 'range', id: 'volume_music', class: 'volume_music', min: 0, max: 1, step: 0.05, value: 1}]
@@ -809,7 +809,7 @@ function checkSimultaneousKeys(event){
     level_nofify(`Speed - ${audio.playbackRate}X`);
   }
   else if (keys.ArrowUp && keys.ArrowRight){
-    if (audio.playbackRate < 2) speed_arrows(1);
+    if (audio.playbackRate < 3) speed_arrows(1);
     level_nofify(`Speed - ${audio.playbackRate}X`);
   }
   else if (keys.ArrowDown){

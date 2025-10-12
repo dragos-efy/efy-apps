@@ -147,13 +147,25 @@ $add('div', {class: 'is_nav', efy_select: ''}, [
             ['label', {for: 'Y'}, 'Semitone'],
             ['input', {type: 'number', id: 'Y', style: 'width:40rem', value: '0', min: '-12', max: '12'}]
         ]],
+        ['div', {class: 'efy_split_btn'}, [
+            ['label', {for: 'sustain'}, 'Sustain'],
+            ['input', {type: 'number', id: 'sustain', style: 'width:40rem', value: '0', min: '0', max: '1', step: '0.1'}]
+        ]],
+        ['div', {class: 'efy_split_btn'}, [
+            ['label', {for: 'release'}, 'Release'],
+            ['input', {type: 'number', id: 'release', style: 'width:40rem', value: '0.1', min: '0', max: '5', step: '0.1'}]
+        ]],
+        ['div', {class: 'efy_split_btn'}, [
+            ['label', {for: 'attack'}, 'Attack'],
+            ['input', {type: 'number', id: 'attack', style: 'width:40rem', value: '0', min: '0', max: '1', step: '0.1'}]
+        ]],
         ['select', {id: 'wave_shape', style: 'width: 120rem'}, [
             ['option', 'sine'], ['option', 'triangle'], ['option', 'saw'], ['option', 'tan'], ['option', 'noise']
         ]],
         ['select', {id: 'repeat_time', style: 'width: 80rem'}, [
             ['option', '25'], ['option', '50'], ['option', '100'], ['option', '150'], ['option', '200'], ['option', '250'], ['option', '300']
         ]],
-        ['button', {id: 'request-midi-access'}, 'MIDI Devices']
+        ['button', {id: 'request-midi-access'}, 'MIDI']
     ]],
     ['button', {efy_sidebar_btn: '', class: 'efy_square_btn'}, [['i', {efy_icon: 'menu'}]]]
 ]);
@@ -168,7 +180,7 @@ I = 0; // instrument type
 
 // instrument select
 
-const sound_names = 'Pad, Drums, Synth, Funny, Glitchy, Metalic, Bell, Flute, Beep, Bleep'.split(', ');
+const sound_names = 'Pad, Synth, Synth2, Funny, Glitchy, Metalic, Bell, Flute, Beep, Bleep, Test'.split(', ');
 
 for (let i = 0; i < sound_names.length; i++){ const id = `instrument_${i}`, checked = (i === 0) ? {checked: ''} : null;
     $add('input', {id: id, type: 'radio', name: I, ...checked, onclick: `I = ${i}`}, '', instruments_container);
@@ -274,17 +286,24 @@ const onkeydown2 = i => {
        key = note + (octave - 2);
        shape = wave_shape.selectedIndex;
 
+       let sustain = $('#sustain').value,
+       release = $('#release').value,
+       attack = $('#attack').value;
+
+       const custom = [frequency,attack,sustain,release,shape];
+
        let sounds = [
-           /*Pad*/ [,0,frequency,.15,,,shape],
-           /*Drums*/ [16,0,frequency,,.15,.05,4,25,.3,,,,,,,,,0,.15,,-70],
-           /*Synth*/ [,0,frequency,.01,,0,shape,0,.3,,,,,,,,,0,.06],
-           /*Funny*/ [,0,frequency,.05,,.05,shape,.5,.3,,,,,,,,,,.15],
-           /*Glitchy*/ [,0,frequency,,.15,0,shape,0,,,,,.05,,,.2,,.8,,1,400],
-           /*Metalic*/ [.6,,frequency,.03,.07,.12,shape,.8,,,185,.05,,,48,,,.93,.01,,-562],
-           /*Bell*/ [,0,frequency,,.09,.15,shape,3.6,,,,,.07,,,.1,,.6,.02],
-           /*Flute*/ [2.9,0,frequency,.01,.04,.02,shape,3.6,,,,,,.7,,,.42,.59,.01,.13,405],
-           /*Beep*/ [,0,frequency,,,.15,shape,1.2,,,,,,,,,,.6,.15,,400],
-           /*Bleep*/ [,0,frequency,,.01,.02,shape,.7,,,,,,,,,,.89,.02]
+           /*Pad*/ [,0, ...custom],
+           /*Synth*/ [16,0, ...custom, .3,,,,,,,,,0,.15,,-70],
+           /*Synth2*/ [,0, ...custom, 0,.3,,,,,,,,,0,.06],
+           /*Funny*/ [,0, ...custom, .5,.3,,,,,,,,,,.15],
+           /*Glitchy*/ [,0, ...custom, 0,,,,,.05,,,.2,,.8,,1,400],
+           /*Metalic*/ [.6,, ...custom, .8,,,185,.05,,,48,,,.93,.01,,-562],
+           /*Bell*/ [,0, ...custom, 3.6,,,,,.07,,,.1,,.6,.02],
+           /*Flute*/ [2.9,0, ...custom, 3.6,,,,,,.7,,,.42,.59,.01,.13,405],
+           /*Beep*/ [,0, ...custom, 1.2,,,,,,,,,,.6,.15,,400],
+           /*Bleep*/ [,0, ...custom, .7,,,,,,,,,,.89,.02],
+           /*Test*/ [2.1,0, ...custom, 3.4,,,,,,,,,.01,.78]
        ];
 
        console.log(note, frequency, key)
