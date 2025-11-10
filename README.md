@@ -13,4 +13,10 @@ git submodule update --init --remote efy
 ```
 2. open `index.html`
 
+## Testing
+
+1. Install `jasmine-core`.
+2. Run `npx jasmine-browser-runner serve --esm`.
+3. Open http://localhost:8888 in your web browser.
+
 Documentation is coming soon...
