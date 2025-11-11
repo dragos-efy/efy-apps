@@ -109,6 +109,9 @@ describe("EFY", function() {
             const iframe = document.createElement("iframe");
             iframe.src = "about:blank";
             iframe.title = "EFY Testbed"
+            // Viewport of an iPhone 12/13 + Pro
+            iframe.height = "844";
+            iframe.width = "390";
             container.appendChild(iframe);
             return new Promise((resolve) => {
                 iframe.addEventListener("load", async function() {
@@ -169,20 +172,16 @@ describe("EFY", function() {
             iframe.contentWindow.$wait = EFY.$wait;
             iframe.contentWindow.$event = EFY.$event;
             iframe.contentWindow.$ = EFY.$;
-            iframe.contentWindow.addEventListener("load", function () {
-                console.log("Module keys", Object.keys(EFY))
-                console.log("IFrame keys", Object.keys(iframe.contentWindow))
-            });
 
             try {
                 await load_files("index");
-                //await load_files("efy");
+                await load_files("efy");
             } catch (exc) {
                 console.error(exc);
             }
 
             const LoadEvent = new Event("load");
-            //window.dispatchEvent(LoadEvent, {});
+            iframe.contentWindow.dispatchEvent(LoadEvent, {});
             expect(true).toBe(true);
         })
     });
