@@ -1,0 +1,49 @@
+/*Defaults*/ :root {
+    ---color: .7 .15 70 1;
+    ---color_angle: 165deg;
+    ---radius: 12rem;
+    ---border_size: 1.5rem;
+    ---gap: 15rem;
+    ---sidebar_button: right_top, off;
+    ---body_width: 100%;
+    ---body_padding: var(---gap);
+    ---font_family: nunito, sans-serif, emoji;
+    ---folder: ./__src__/efy;
+    ---audio_folder: ./efy/audio;
+    ---lang_folder: ./__src__/lang;
+    ---lang_code: en;
+    ---modules: efy_quick, efy_filters, efy_backup, efy_accessibility, efy_languages;
+    ---protocol: file;
+}
+[efy_mode=default] {
+    ---scheme: dark;
+    ---bg: oklch(0.11 0.05 89);
+}
+
+/*EFY OS iFrames*/
+html.efy_iframe:not([eos=app]) {
+    &, :is(body, .efy_3d_bg) {background: transparent!important}
+    :is(.efy_3d_front, .efy_3d_back) {display: none}
+}
+.efy_iframe:not([eos=app]) {
+    .efy_sidebar :is(#efy_sbtheme, #efy_vfilters, #efy_backup, #efy_language, #efy_accessibility, #efy_audio, #efy_nature), .efy_sidebar > details > summary {display: none}
+    .efy_sidebar > details {background: transparent; padding: 0; border: 0; margin: 0; box-shadow: none!important}
+}
+
+/*Dynamic Font Loading*/
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_latin.woff2') format('woff2'); font-weight: normal; unicode-range: U+0000-007F}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_latin_a.woff2') format('woff2'); font-weight: normal; unicode-range: U+0100-017F}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_latin_b.woff2') format('woff2'); font-weight: normal; unicode-range: U+0180-024F}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_latin_1s.woff2') format('woff2'); font-weight: normal; unicode-range: U+00A0-00FF}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_latin_additional.woff2') format('woff2'); font-weight: normal; unicode-range: U+001E00-001EFF}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_cyrillic.woff2') format('woff2'); font-weight: normal; unicode-range: U+00400-0052F}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_extra.woff2') format('woff2'); font-weight: normal; unicode-range: U+00250-003FF}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_extra2.woff2') format('woff2'); font-weight: normal; unicode-range: U+002000-00FB4F}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_bold_latin.woff2') format('woff2'); font-weight: bold; unicode-range: U+0000-007F}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_bold_latin_a.woff2') format('woff2'); font-weight: bold; unicode-range: U+0100-017F}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_bold_latin_b.woff2') format('woff2'); font-weight: bold; unicode-range: U+0180-024F}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_bold_latin_1s.woff2') format('woff2'); font-weight: bold; unicode-range: U+00A0-00FF}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_bold_latin_additional.woff2') format('woff2'); font-weight: bold; unicode-range: U+001E00-001EFF}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_bold_cyrillic.woff2') format('woff2'); font-weight: bold; unicode-range: U+00400-0052F}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_bold_extra.woff2') format('woff2'); font-weight: bold; unicode-range: U+00250-003FF}
+@font-face {font-family: nunito; src: url('./__src__/efy/fonts/nunito_bold_extra.woff2') format('woff2'); font-weight: bold; unicode-range: U+002000-00FB4F}
