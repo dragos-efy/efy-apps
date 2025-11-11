@@ -623,11 +623,11 @@ summary::-webkit-details-marker {display: none}
         [efy_alerts*=right] {right: var(---gap); left: unset}
     }
 }
-/*EFY Icons*/ @font-face {font-family: 'efy_icons'; src: url('./fonts/efy_icons.woff2') format('woff2');
+/*EFY Icons*/ @font-face {font-family: 'efy_icons'; src: url('./__src__/efy/fonts/efy_icons.woff2') format('woff2');
     font-weight: normal; font-style: normal; unicode-range: U+00E950-00E920;
-} @font-face {font-family: 'efy_icons'; src: url('../efy/fonts/efy_weather.woff2') format('woff2');
+} @font-face {font-family: 'efy_icons'; src: url('./__src__/efy/fonts/efy_weather.woff2') format('woff2');
     font-weight: normal; font-style: normal; unicode-range: U+00E950-00E956;
-} @font-face {font-family: 'efy_icons'; src: url('../efy/fonts/efy_icons_extra.woff2') format('woff2');
+} @font-face {font-family: 'efy_icons'; src: url('./__src__/efy/fonts/efy_icons_extra.woff2') format('woff2');
     font-weight: normal; font-style: normal; unicode-range: U+00E970-00E999;
 }
 i, :is([efy_timer] button, details > summary):before, [efy_help] summary:after, [type=checkbox]:checked:after {

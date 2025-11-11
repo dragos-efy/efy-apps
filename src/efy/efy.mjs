@@ -80,7 +80,6 @@ $notify =(seconds, title, info, lang, icon, callback)=>{ let selectors = [];
 };
 
 /*After Page Loads*/ window.onload = async ()=>{ $root = $(":root"), $head = document.head, $body = document.body;
-    console.log("Set", $root, $head, $body);
     if (!efy.modules) efy.modules = $css_prop('---modules').replaceAll(' ', '').split(',');
     $efy_module = (a) =>{ let b = efy.modules.includes(a) ? true : false; return b}; let a, b;
 
@@ -150,10 +149,8 @@ $add('video', {class: 'efy_3d_bg', autoplay: '', loop: '', muted: '', playsinlin
 });
 
 efy.modules.map(x =>{
-    /* FIXME: These elements are `null` during test execution
     $(`#efy_module_toggles_${x}`).checked = true;
     $(`[for="efy_module_toggles_${x}"] i`).setAttribute('efy_icon', 'check');
-    */
 });
 
 $event($body, 'change', ()=>{ const x = event.target;
@@ -869,7 +866,7 @@ $wait(.1, ()=>{ // Temporary fix, Make it work without a timeout
     a = $('[efy_sidebar_btn=absolute]'); b = 'efy_btn_align';
 
     if (efy.btn_align){ let c = efy.btn_align; $("#" + c).setAttribute('checked', ''); a.setAttribute(b, c)}
-    else { let y = sd_btn[0];/* FIXME: y is ""! $('#'+y).setAttribute('checked', '');*/ a.setAttribute(b, y)}
+    else { let y = sd_btn[0]; $('#'+y).setAttribute('checked', ''); a.setAttribute(b, y)}
     $all("[name=efy_btn_align]").forEach(x =>{ x.onclick =()=>{ a.setAttribute(b, x.id); efy.btn_align = x.id; $save() }});
 
     /*Toggle Sidebar*/ $event($body, 'click', ()=>{ let x = event.target;
