@@ -33,7 +33,7 @@ const file_map = {
     keyboard: ['keyboard/keyboard.css', 'keyboard/keyboard.js'],
     lists: ['lists/lists.css', 'lists/lists.js', 'global/calendar.css', 'global/calendar.js'],
     media: ['media/media.css', 'global/music_tags.js', 'media/media.js'],
-    money: ['money/money.css', 'money/money.js'],
+    maps: ['maps/maplibre-gl.css', 'maps/maps.css', empty, 'maps/maplibre-gl.js', 'maps/maps.js'],
     multi_media: ['multi_media/multi_media.css', 'multi_media/multi_media.js'],
     os: ['./global/apps_list.js', 'os/os.css', 'os/os.js'],
     pass: ['pass/pass.css', 'pass/pass.js'],

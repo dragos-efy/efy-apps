@@ -87,7 +87,6 @@ html .ms_buttons2 .efy_color {
 }
 
 #ms_music_player details:last-of-type, #ms_img_size {margin-bottom: 0}
-:is(.efy_sidebar details details):not([open]) {padding: 0 12rem}
 
 #bar_position {
     div {display: flex; gap: var(---gap-x); flex-wrap: wrap;

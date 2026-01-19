@@ -101,7 +101,7 @@ if (efy_hm.apps_invert_layout) {
     $root.classList.add('apps_invert_layout');
 }
 
-$add('details', {id: 'home_menu'}, [
+$add('details', {id: 'home_menu', name: 'efy_sidebar_modules'}, [
     ['summary', [ ['i', {efy_icon: 'home'}], ['p', 'Home'], ['mark', {efy_lang: 'alpha'}] ]],
     ['div', {efy_tabs: 'pn_menu', efy_select: ''}, [
         ['div', {class: 'efy_tabs'}, [

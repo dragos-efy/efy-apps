@@ -1,0 +1,143 @@
+body {margin: 0; padding: 0}
+
+#map-container {
+    width: 100%; height: var(---100vh);
+}
+
+#controls {
+    padding: var(---gap); border-top: var(---border);
+    .control-group {
+        margin-bottom: 10px;
+        border-bottom: var(---border);
+        padding-bottom: 10px;
+    }
+
+    details > .control-group {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 5px;
+    }
+
+    details:last-of-type {
+        border-bottom: var(---border);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .control-group:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .control-group label,
+    .control-group h4 {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 0.9em;
+        font-weight: bold;
+    }
+
+    .control-group h4 {
+        margin-top: 10px;
+        font-size: 1em;
+    }
+
+    button.full-width {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    input[type="color"] {width: var(---size-o)}
+
+    #zoom-controls {display: flex; gap: var(---gap-x)}
+    .color-picker-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 3px;
+        gap: var(---gap-x);
+    }
+
+    .color-picker-container span {
+        margin-left: 8px;
+        flex-grow: 1;
+    }
+
+    .color-picker-container input {
+        margin-right: 0;
+    }
+
+    /* Search Bar Styles */
+    #search-input {width: calc(100% - var(---size-o))}
+
+    #find-button {margin-left: var(---gap)}
+
+    /* Saved Locations & Presets Styles */
+    #saved-locations-list,
+    #preset-list {
+        padding: 0; margin: 5rem 0; background: var(---card);
+        max-height: 400px; overflow-y: auto; list-style-type: none;
+        border: var(---border); border-radius: var(---radius);
+        li {
+            padding: 5rem; border-bottom: var(---border);
+            cursor: pointer; display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &:last-child {border-bottom: none}
+            &:hover {background: var(---card)}
+        }
+    }
+
+    .saved-location-name,
+    .preset-name {
+        flex-grow: 1;
+    }
+
+    .remove-location-btn,
+    .delete-preset-btn {
+        padding: 2px 6px;
+        border-radius: var(---radius-x);
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5px;
+    }
+
+    .button-container button {
+        margin: 0;
+    }
+
+    .setting-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+    }
+
+    .setting-container label {
+        margin-bottom: 0;
+    }
+
+    .setting-container input,
+    .setting-container select {
+        margin-left: 10px;
+    }
+
+    /* Info Footer */
+    #info-footer {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.8em;
+        margin-top: 10px;
+    }
+}
+
+.maplibregl-ctrl-bottom-right {display: none!important}

@@ -134,18 +134,19 @@ const apps_list = {
         'productivity offline static',
         'alpha'
     ],
+    Maps: [
+        '#maps', 'location',
+        'Customize maps & save locations. Experimental version, so expect bugs!',
+        'fun',
+        'alpha chromium firefox safari touchscreen keyboard mouse',
+        'gamepads offline'
+    ],
     Media: [
         '#media', 'audio',
         'Play local offline music, videos and images. Organize them with custom tags, categories and search',
         'audio video image static fun',
         'beta chromium firefox safari offline touchscreen keyboard mouse',
         'gamepads'
-    ],
-    Money: [
-        '#money', 'group',
-        'Keep track of your income, expenses, subscriptions, products and services. Create your budgets and categorize your tranzactions',
-        'productivity offline static',
-        'beta'
     ],
     OS: [
         '#os', 'dots',

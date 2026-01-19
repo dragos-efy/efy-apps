@@ -44,8 +44,9 @@ body {display: flex}
       &:has([efy_tab][efy_active]:nth-of-type(3)) label:not(:nth-of-type(2), :last-of-type) {border-right: var(---border)}
     }
     [efy_content]:not([efy_content=avatar], [efy_content="pose"]) {
-      width: 100%; display: flex; flex-wrap: wrap; padding: 0; overflow-y: auto; height: 100%;
-      backdrop-filter: none!important; background: transparent; border: 0; border-radius: 0;
+      width: 100%; display: flex; flex-wrap: wrap; flex-direction: column;
+      padding: 0; overflow-y: auto; height: 100%; background: transparent;
+      border: 0; border-radius: 0; backdrop-filter: none!important;
       button {width: calc(50% - var(---gap-x) / 2); background: var(---card);
           -webkit-text-fill-color: var(---text); display: flex; place-content: start
       }
@@ -57,7 +58,8 @@ body {display: flex}
       .avatar {
         display: flex; flex-direction: column; width: 100%;
         align-items: center; place-content: center; cursor: pointer;
-        border: var(---border); border-radius: var(---radius); background: var(---card);
+        border: var(---border); border-radius: var(---radius);
+        background: var(---card); background-origin: border-box!important;
         &:hover {
           background: var(---color_trans);
           .name, i:before {background: var(---color); background-clip: text; -webkit-text-fill-color: transparent}
@@ -87,7 +89,8 @@ body {display: flex}
         label {
           display: flex; flex-direction: column; width: 100%; aspect-ratio: 1;
           align-items: center; place-content: center; cursor: pointer; margin: 0;
-          border: var(---border); border-radius: var(---radius); background: var(---card);
+          border: var(---border); border-radius: var(---radius);
+          background: var(---card); background-origin: border-box!important;
           &:hover {background: var(---color_trans)}
           * {pointer-events: none}
           &:before, &:after {display: none!important}
@@ -108,6 +111,7 @@ body {display: flex}
     &:has(#avatars_sidebar_avatar[efy_active]) [for="avatars_sidebar_avatars"],
     &:has(#avatars_sidebar_pose[efy_active]) [for="avatars_sidebar_poses"] {
       background: var(---color), var(---bg); border-radius: var(---radius);
+      background-origin: border-box!important;
       * {background: var(---bg); -webkit-text-fill-color: transparent; background-clip: text;}
     }
   }

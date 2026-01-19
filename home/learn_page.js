@@ -230,7 +230,7 @@ $add('div', {efy_tabs: 'home_tabs'}, [
             ['div', [
                 ['details', {open: ''}, [ ['summary', 'Details'],
                     ['p', 'Content'],
-                    ['details', {style: 'margin: 0 var(---gap) var(---gap) var(---gap)' }, [ ['summary', 'Summary'], ['p', 'content'] ]]
+                    ['details', {style: 'margin-bottom: 0' }, [ ['summary', 'Summary'], ['p', 'content'] ]]
                 ]],
                 ['audio', {src: './assets/dreamy.webm', controls: '', loading: 'lazy'}],
                 ['div', {efy_searchable: ''}, [
@@ -322,6 +322,7 @@ $add('div', {efy_tabs: 'home_tabs'}, [
             ['div', {class: 'hm_color efy_card_filter', style: 'background: var(---text-xxx)'}, 'text-xxx'],
             ['div', {class: 'hm_color efy_card_filter', style: 'background: var(---bg)'}, 'bg'],
             ['div', {class: 'hm_color efy_card_filter', style: 'background: var(---card)'}, 'card'],
+            ['div', {class: 'hm_color efy_card_filter', style: 'background: var(---card-o)'}, 'card-o'],
             ['div', {class: 'hm_color efy_card_filter', style: 'background: var(---border-color)'}, 'border-color'],
             ['div', {class: 'hm_color efy_card_filter', style: 'background: var(---border-color-invert)'}, 'border-color-invert']
         ]], hr,
@@ -724,7 +725,7 @@ $add('div', {efy_tabs: 'home_tabs'}, [
     ]]
 ], learn_page);
 
-/*Icons*/ $ready('#hm_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio camera car check chevron chevron_down chevron_left chevron_up circle circle2 circle3 circle4 cloud copy dots edit flash fullscreen gamepad github globe group heart help home key location menu menu2 menu3 microphone moon move notify notify_active paste pause play plus rain reload remove rocket screen search snow square star sun triangle user zoom_in zoom_out'.split(' ').map(b=> $add('div', {efy_card: '', efy_searchable: b}, [['i', {efy_icon: b}], ['p', b]], $('#hm_icons')) )}, 1);
+/*Icons*/ $ready('#hm_icons', (a)=>{ 'accessibility arrow arrow_down arrow_left arrow_up audio calendar camera car check chevron chevron_down chevron_left chevron_up circle circle2 circle3 circle4 clock cloud compress copy dots edit email enlarge flash fullscreen gamepad github globe group heart help home key location menu menu2 menu3 microphone moon move notify notify_active paste pause phone play plus rain reload remove rocket screen search snow square star sun trash triangle user zoom_in zoom_out'.split(' ').map(b=> $add('div', {efy_card: '', efy_searchable: b}, [['i', {efy_icon: b}], ['p', b]], $('#hm_icons')) )}, 1);
 
 /*Copy URL / Icon*/ $event($('[efy_tabs=home_tabs]'), 'click', (e)=>{
     const x = e.target, match = [x.matches('.copy_url'), x.matches('#hm_icons [efy_card]')];

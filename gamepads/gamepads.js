@@ -122,7 +122,7 @@ let contents = [], tabs = [];
     contents.push(['div', {efy_content: tab, class: 'gamepad_scroll efy_card_filter_off', ...details}]);
 });
 
-$add('div', {id: 'efy_gamepads_app', efy_search: 'details, #efy_gamepads_app [efy_searchable]'}, [
+$add('div', {id: 'efy_gamepads_app'}, [
     ['div', {efy_tabs: 'gp', class: 'gp_nav efy_shadow_card_off'}, [
         ['div', {class: 'gp_nav_div'}, [
             ['div', {class: 'gp_left efy_button_text_off'}, tabs],
@@ -130,7 +130,7 @@ $add('div', {id: 'efy_gamepads_app', efy_search: 'details, #efy_gamepads_app [ef
                 ['div', {class: 'gp_right'}, [
                     ['label', {class: 'gp_search'}, [
                         ['i', {efy_icon: 'search'}],
-                        ['input', {type: 'text', efy_search_input: '', placeholder: 'Search...', name: 'gp_search_input'}]
+                        ['input', {type: 'text', efy_search2: '#efy_gamepads_app :is(details, [efy_searchable])', placeholder: 'Search...', name: 'gp_search_input'}]
                     ]],
                     ['button', {efy_sidebar_btn: '', class: 'efy_square_btn', title: 'Menu'}, [['i', {efy_icon: 'menu'}]]]
                 ]]
