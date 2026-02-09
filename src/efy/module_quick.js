@@ -1,4 +1,5 @@
 (()=>{ let output = [['div', {efy_clock: ''}]];
+    let $ = document.querySelector.bind(document);
     [['back', 'chevron'], ['forward', 'chevron'], ['reload', 'reload'], ['fullscreen', 'fullscreen']].map(x =>{
         output.push(['button', {'class': `efy_quick_${x[0]} efy_square_btn`}, [['i', {efy_icon: x[1]}]]]);
     });
