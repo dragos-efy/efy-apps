@@ -112,10 +112,10 @@ describe("EFY", function() {
             // Viewport of an iPhone 12/13 + Pro
             iframe.height = "844";
             iframe.width = "390";
-            container.appendChild(iframe);
             return new Promise((resolve) => {
                 iframe.addEventListener("load", async function() {
-                    ["./__src__/efy/efy.css", "./__src__/global/efy_global.css"].forEach(async (url) => {
+                    const styles = ["./__src__/efy/efy.css", "./__src__/global/efy_global.css"];
+                    styles.forEach(async (url) => {
                         const css = document.createElement("style");
                         css.dataset.source = url;
                         const response = await fetch(url);
@@ -132,6 +132,7 @@ describe("EFY", function() {
                     iframe.contentDocument.body.appendChild(js);
                     resolve(js);
                 });
+                container.appendChild(iframe);
             });
         });
 
