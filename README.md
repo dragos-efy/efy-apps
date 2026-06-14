@@ -1,16 +1,11 @@
 # EFY Apps
+User Customizable CSS / JS framework. Private, modular & convergent apps.
 
-The website + a collection of static apps built with [efy](https://github.com/dragos-efy/efy).
+## Helpful Links
 
-Try the [live demos](https://efy.ooo) for testing, but if you want to personally use the apps regularly, download them to your device or set up your own instance, to not consume server resources here and benefit from them working offline as well. You don't need a server or nodejs, just a browser and to open the html files, but it works either way.
+Live demo & Documentation: https://efy.ooo
+Code: https://codeberg.org/efy
 
-## Use Apps Locally
-1. run these in a terminal:
-```
-git clone https://github.com/dragos-efy/efy-apps
-cd efy-apps
-git submodule update --init --remote efy
-```
-2. open `index.html`
+## Code Moved To Codeberg
 
-Documentation is coming soon...
+Github is becoming greedier, sloppier, more privacy invasive and more corporate oriented, so the code moved to Codeberg instead cuz it's a much better place. See you there 🤟
